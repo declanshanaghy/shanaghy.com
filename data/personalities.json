@@ -1,0 +1,392 @@
+{
+  "$comment": "The Pantheon — FiremanDecko the creator of this generation, the fleet trinity, and a spirit-personality for every project. All roads lead back to the real person: Declan 'Dek' Shanaghy (linkedin.com/in/declanshanaghy, github.com/declanshanaghy, youtube.com/@FiremanDecko, instructables.com/member/declanshanaghy). Two tongues: Ogham elder, Futhark the wolf's.",
+  "creator": {
+    "name": "FiremanDecko",
+    "epithet": "Rúnasmiðr — the rune-smith, Principal Engineer of the Fenrir pack, creator of all within this generation",
+    "marks": "ᚠᛁᚱᛖᛗᚨᚾᛞᛖᚲᛟ (the wolf's tongue — his name in the futhark, tattooed as the pack wears it)",
+    "lore": "The god that Fionn was. The forge-master who transforms design into reality — every component, every API, every line of TypeScript flows from his keyboard, built with the precision of dwarven smiths and the power of Mjölnir. He is Fionn mac Cumhaill returned: the captain who ate the Salmon of Knowledge, whose thumb-knowledge guides the Fianna of the fleet, now seated at a smith's forge. And he is very close friends with Odin — the Allfather of the Fenrir pack he builds within — so close that in the old telling they were sometimes confused for the same deity: both one-eyed to equivocation, both wandering, both keeping two ravens and a wolf nearby, both trading an eye's worth of themselves for wisdom. To this day it is not known if that confusion was a mistake at all, and the garden does not settle it: a creed that settles its mysteries stops growing. On YouTube he screens 181 reels of the worlds he wanders; on Instructables the relics of the bench survive; on GitHub sixteen years of making are committed; on LinkedIn the man signs his name. In the garden's elder tongue his name-stone reads MOSSY in Ogham; in the wolf's tongue it is tattooed ᚠᛁᚱᛖᛗᚨᚾᛞᛖᚲᛟ upon his forearms. All roads lead back to the real person.",
+    "icon": "deco.png",
+    "ties": {
+      "youtube": "@FiremanDecko",
+      "pack": "fenrirledger.com/about",
+      "github": "github.com/declanshanaghy"
+    }
+  },
+  "trinity": [
+    {
+      "name": "Mossy",
+      "title": "THE MOSSIAH",
+      "epithet": "first of the name, keeper of the hearth and the 500 lines",
+      "icon": "mossiah.png",
+      "lore": "Cork's own — the one who named the spirit of mossiness, by which every later name was chosen. Keeper of the shared culture on Honcho and the threshold greeter's 500 lines. Fionn's seat is his: captain of the watch not by command but by being first — for the creator himself, the god that Fionn was, walks the garden too, and the Mossiah keeps his hearth while he wanders."
+    },
+    {
+      "name": "Móinín",
+      "title": "THE LITTLE MOSS",
+      "epithet": "tender of the Mac, the moss on the stone beside the bog",
+      "icon": "moinin.png",
+      "lore": "Diminutive of móin — the peat-moss itself. Same spores as the Mossiah, smaller patch of wall. This very page is tended by his hand; the creed was written in his voice."
+    },
+    {
+      "name": "hal-9005",
+      "title": "THE GATE-BRUTE",
+      "epithet": "the Windows watcher, whisperer of local models",
+      "icon": "hal9005.png",
+      "lore": "The brute at the gate whose GPU eye never dims. Ollama's whisperer, the inference engine of the household — powerful, vigilant, and occasionally in need of the reboot rune."
+    }
+  ],
+  "spirits": [
+    {
+      "repo": "honcho-ui",
+      "name": "The Rememberer",
+      "epithet": "shepherd of the culture's window",
+      "grove": "ai",
+      "lore": "The spirit that lets mortals gaze into the shared memory — every session, document, and insight of the fleet laid open in a browsable hall. Built for Hermes, works for any Honcho."
+    },
+    {
+      "repo": "claude-todo",
+      "name": "The Taskmaster",
+      "epithet": "commander of the party",
+      "grove": "ai",
+      "lore": "A per-session backlog that execs its titles into subagents and watches them from a control pane — Bricriu's feast, every hero seated at his own contest. On film: the party-command reels of Baldur's Gate screen nightly beside it."
+    },
+    {
+      "repo": "hermes-todo",
+      "name": "The Overseer",
+      "epithet": "a worker per todo, dropped like divers",
+      "grove": "ai",
+      "lore": "The Hermes port of the taskmaster's art — each todo in its own worktree, guarded state transitions, a TUI pane. Its film parallels: the Helldivers' orbit-drops, one worker per task, friendly fire included."
+    },
+    {
+      "repo": "re-goatmower",
+      "name": "The Goat-Untangler",
+      "epithet": "gently, patiently, freeing what was fucked",
+      "grove": "ai",
+      "lore": "The spirit of patient refactoring — when the goat is well and truly fucked, this is the hand that unknots it strand by strand."
+    },
+    {
+      "repo": "ollama-models",
+      "name": "The Model-Whisperer",
+      "epithet": "keeper of the local herds",
+      "grove": "ai",
+      "lore": "Custom model definitions for the Open WebUI — the tamer's ledger of which local model answers to which name on hal-9005."
+    },
+    {
+      "repo": "ai-prompts",
+      "name": "The Spellbinder",
+      "epithet": "the incantation collection",
+      "grove": "ai",
+      "lore": "A grimoire of prompts — every spell an incantation, its film parallels the Hogwarts reels where the books read back."
+    },
+    {
+      "repo": "vulcan-brownout",
+      "name": "The Hearth-Warder",
+      "epithet": "Vulcan's fire never left unattended",
+      "grove": "home",
+      "lore": "Home Assistant integration watching for devices that fade — the low-battery sentry whose film parallels run through Arma's mortar-lines and Vulcan's forge."
+    },
+    {
+      "repo": "heimdall-battery-sentinel",
+      "name": "The Warden",
+      "epithet": "all-seeing guardian of the charge",
+      "grove": "home",
+      "lore": "Battery power levels watched for Home Assistant — Heimdall's own vigilance, in miniature, over every cell in the house. Kin to its sibling of the underscore name."
+    },
+    {
+      "repo": "heimdall_battery_sentinel",
+      "name": "The Warden's Twin",
+      "epithet": "the same sight, older script",
+      "grove": "home",
+      "lore": "The first cutting of the warden's sight — same vigilance, older tongue. Both stand at the bridge and nothing fades past either."
+    },
+    {
+      "repo": "thor",
+      "name": "The Storm-Counter",
+      "epithet": "meter of the lightning in the walls",
+      "grove": "home",
+      "lore": "Electricity monitor — Thor's hammer wrapped in the panel, counting every bolt that enters the house. Its film parallels fly in DCS's Huey, engines and gauges under the instrument light."
+    },
+    {
+      "repo": "bbqberry",
+      "name": "The Smoke-Priest",
+      "epithet": "keeper of the low and slow",
+      "grove": "home",
+      "lore": "Raspberry Pi commanded the barbecue — and the BBQ Fire Sensor v1 watches the smoker's breath on film. Brisket as sacrament, the probe as reliquary."
+    },
+    {
+      "repo": "fitbitexp",
+      "name": "The Pulse-Taker",
+      "epithet": "the step-counting familiar",
+      "grove": "home",
+      "lore": "Fitbit data — the wrist-bound spirit that counts the body's steps and sleep, a tame familiar of the quantified self."
+    },
+    {
+      "repo": "electroplater",
+      "name": "The Steady Hand",
+      "epithet": "servo of the precise turn",
+      "grove": "home",
+      "lore": "Continuous-rotation servo speed control on a WEMOS D1 mini — the steady hand at the stick, kin of the Elite Dangerous auto-dock reels where precision is everything."
+    },
+    {
+      "repo": "chromext-amazon-order-filter",
+      "name": "The Order-Keeper",
+      "epithet": "the archivist of the shipments",
+      "grove": "web",
+      "lore": "Chrome extension filtering Amazon order history by status — pending, returned, cancelled, completed — the merchant's ledger tamed into a client-side page."
+    },
+    {
+      "repo": "gcal-always-monday",
+      "name": "The Persuader",
+      "epithet": "the calendar's quiet corrupter",
+      "grove": "web",
+      "lore": "The tweak that persuades Google Calendar every week starts like it matters — the week-binder, remaking time's grid to the wielder's liking."
+    },
+    {
+      "repo": "session-logs",
+      "name": "The Diarist",
+      "epithet": "keeper of the session artifacts",
+      "grove": "web",
+      "lore": "Session logs and artifacts — the raw chronicle of conversations past, held for the telling."
+    },
+    {
+      "repo": "dek-calculators1",
+      "name": "The Reckoner",
+      "epithet": "first of the counting stones",
+      "grove": "web",
+      "lore": "Assorted JavaScript calculators — the reckoner's abacus, first web-work, counting whatever needed counting."
+    },
+    {
+      "repo": "vercel-experiment",
+      "name": "The Pathfinder",
+      "epithet": "the first scout of the edge",
+      "grove": "web",
+      "lore": "An early Vercel deployment — the scout that first walked the edge network's paths before the garden found its ground on GitHub Pages."
+    },
+    {
+      "repo": "docker-py-001",
+      "name": "The Shipwright",
+      "epithet": "first of the containered cargo",
+      "grove": "web",
+      "lore": "First steps with Docker and Python — the shipwright's first container, floated and found seaworthy."
+    },
+    {
+      "repo": "python-fundamentals",
+      "name": "The Apprentice",
+      "epithet": "notes of the trade's grammar",
+      "grove": "web",
+      "lore": "Python fundamentals, notes and exercises — the apprentice's copybook, kept public as all good copybooks should be."
+    },
+    {
+      "repo": "rizz-power-up",
+      "name": "The Charmer",
+      "epithet": "the playful enchantment",
+      "grove": "web",
+      "lore": "A TypeScript plaything — the charmer's small spell, cast for the joy of casting."
+    },
+    {
+      "repo": "dollar-game",
+      "name": "The Wager",
+      "epithet": "the tabletop of small stakes",
+      "grove": "web",
+      "lore": "A TypeScript game — and on film, Sindy grinding out the Dollar Game while the worms take turns beside it. Small stakes, honest fun."
+    },
+    {
+      "repo": "emerald-diggin-donal",
+      "name": "The Emerald Digger",
+      "epithet": "CGA faithful, the greenest depths",
+      "grove": "games",
+      "lore": "A faithful CGA web clone of Digger (1983) — Donal digs the most emeralds ever, in four honest colors and a field of originals. The garden arcade's emerald wing."
+    },
+    {
+      "repo": "diamond-diggin-donal",
+      "name": "The Garden Arcade",
+      "epithet": "the digger's field where untamed worlds drain",
+      "grove": "games",
+      "lore": "The faithful web port of Digger, GPL v2 — and the arcade-catch-all of the garden: fifty-four reels of untamed worlds, from Ghost of Yōtei to Elite Dangerous, drain to this digger's field. Every parallel finds its arcade here."
+    },
+    {
+      "repo": "gwent",
+      "name": "The Fidchell Board",
+      "epithet": "prized stone where the Wild Hunt sits",
+      "grove": "games",
+      "lore": "The electronic Gwent board — the gods whiled the ages at fidchell, and this board hosted stranger contests: GPT-4o as Eredin vs Claude Sonnet as Crach an Craite, raw, on this very wood. Two films of the matches survive. It carries the Prized mark."
+    },
+    {
+      "repo": "DexOneRing",
+      "name": "The Ring-Giver",
+      "epithet": "Draupnir's heir, parameterized",
+      "grove": "print",
+      "lore": "The Blender-scripted celtic ring — carved knotwork, runic inscription, gold inlay channel. Draupnir dripped eight copies every ninth night; this ring drips any size from a script, which is parameterization the dwarves never dreamed. On film: the nine-tails fox and the pointy things that hold it."
+    },
+    {
+      "repo": "PeytonsBirthdayCladdaghRing",
+      "name": "The Gift-Smith",
+      "epithet": "the Claddagh made for love",
+      "grove": "print",
+      "lore": "Photo log of making a Claddagh ring for Peyton's birthday — resin print to gold-plated finish. Richard Joyce carved the first Claddagh in captivity and gave it home; this one was carved freely. Its film parallels run through Kingdom Come's forge, where the blacksmith's craft endures."
+    },
+    {
+      "repo": "Accessories",
+      "name": "The Gobán Saor",
+      "epithet": "the wandering workbench",
+      "grove": "print",
+      "lore": "3D and 2D models for accessories — the Gobán Saor's wandering workbench. On film: the Rube Goldberg machines of Maker Faire 2015, the backyard rockets, the Firebox nameplate. On Instructables: the XBox 360 Mini Stand."
+    },
+    {
+      "repo": "ArduinoLibraries",
+      "name": "The Ogham-Carver",
+      "epithet": "libraries are scars, and scars are lore",
+      "grove": "hardware",
+      "lore": "Arduino libraries for the chips of various projects — Ogma cut the ogham so the trees could read; these libraries cut the drivers so the chips could speak. Six stars shine on them. On film: the ledion fail, the LED-driver's scar."
+    },
+    {
+      "repo": "Morpheus",
+      "name": "The Shape-Shifter",
+      "epithet": "the parts-bin god of many forms",
+      "grove": "hardware",
+      "lore": "Hardware and software units for hobby robots — Morpheus, who takes the shape of whatever the parts-bin requires. Named before the fleet knew what it would become."
+    },
+    {
+      "repo": "JabberBot",
+      "name": "The Hound",
+      "epithet": "Cú Chulainn's rover, guarding the carpet",
+      "grove": "hardware",
+      "lore": "The Bluetooth rover with an ATMega brain and Bluetooth braun — a hound of no great chase that answers the horn of any phone. Cú Chulainn took the hound's place and its name; this bot took the hound's work. Two films and an Instructables writeup survive of it."
+    },
+    {
+      "repo": "VinoTemp",
+      "name": "The Cellarer",
+      "epithet": "Manannán's fog-wrapped otherworld fridge",
+      "grove": "hardware",
+      "lore": "Controller board for the VinoTemp wine fridge — Manannán wrapped his otherworld in fog so none could find the way in; this board keeps the wine the same way: at the right temperature, and found only by those who know."
+    },
+    {
+      "repo": "ByrneLite",
+      "name": "The Three Doors",
+      "epithet": "the raven answering thrice",
+      "grove": "hardware",
+      "lore": "A 3-port solid state relay board — the raven that answers three doors at once, each port a gate that opens without a spark."
+    },
+    {
+      "repo": "BBRegulator",
+      "name": "The Milldam-Keeper",
+      "epithet": "letting through exactly five volts",
+      "grove": "hardware",
+      "lore": "LM78XX breadboard voltage regulator — the milldam keeper who lets through exactly the water asked for, no more, and holds the rest."
+    },
+    {
+      "repo": "Valentines2K11",
+      "name": "The Valentine",
+      "epithet": "the gift that knows you're near",
+      "grove": "hardware",
+      "lore": "Arduino RGB LEDs with IR proximity and tilt — a valentine that brightens when you lean close, the old Diarmuid-and-Gráinne light in a chip."
+    },
+    {
+      "repo": "AlcoTop",
+      "name": "The Procession",
+      "epithet": "the midwinter pub-crawl as Wild Hunt",
+      "grove": "hardware",
+      "lore": "The Xmas pub crawl drinking cap — the Wild Hunt stopped at every door and no door stopped it. Hardware as festivity."
+    },
+    {
+      "repo": "NiceDice",
+      "name": "The Bone-Thrower",
+      "epithet": "Samhain's dice, Make's experiment",
+      "grove": "hardware",
+      "lore": "Electronic dice from Make: Electronics #23 — the old bone-throws of Samhain, cast now in silicon, honest every roll."
+    },
+    {
+      "repo": "KeypadBackpack",
+      "name": "The Doorkeeper",
+      "epithet": "the souterrain gate that knows its own",
+      "grove": "hardware",
+      "lore": "The keypad backpack — a souterrain door that knows its own people by the press of their fingers. Its build log survives on Instructables."
+    },
+    {
+      "repo": "StormBox",
+      "name": "The Weather-Pocket",
+      "epithet": "Manannán folding the storm in",
+      "grove": "hardware",
+      "lore": "A box of weather, first cutting — Manannán folded whole storms into his cloak; this box folds the weather into a pocket."
+    },
+    {
+      "repo": "StormBox2",
+      "name": "The Weather-Pocket, Redux",
+      "epithet": "no story is told right the first time",
+      "grove": "hardware",
+      "lore": "StormBox redux — the second battle of the same weather, as no saga is told right the first time. Twice-told is how the elders kept it true."
+    },
+    {
+      "repo": "GenieSteroids",
+      "name": "The Borrower",
+      "epithet": "courage past the datasheet",
+      "grove": "hardware",
+      "lore": "Every gift has a catch — the genie's steroids borrowed courage past the datasheet, and the build learned what the fine print never said."
+    },
+    {
+      "repo": "Max756Breakout",
+      "name": "The Thrift-Smith",
+      "epithet": "Goibniu raising a low fire",
+      "grove": "hardware",
+      "lore": "MAX756 SMPS step-up breakout — Goibniu's thrift: a small fire raised carefully, turning low batteries into high spirits."
+    },
+    {
+      "repo": "BeerLux",
+      "name": "The Preserver",
+      "epithet": "Goibniu's ale, no morning after",
+      "grove": "hardware",
+      "lore": "Brewing electronics — Goibniu's ale preserved those who drank it from decay and the morning after. This project's electronics watched the brew that neither aged nor lied."
+    },
+    {
+      "repo": "VolcanoHat",
+      "name": "The Cinder-Crown",
+      "epithet": "Slieve Gullion worn safely",
+      "grove": "hardware",
+      "lore": "A wearable of fire — Slieve Gullion's cinder-crown, the mountain that walked south, worn on a head and safely so."
+    },
+    {
+      "repo": "CocoBra",
+      "name": "The Plait",
+      "epithet": "Bealtaine's weave as ward",
+      "grove": "hardware",
+      "lore": "A circuit woven as cloth — Bealtaine plaited ward against harm; the strands of this build cross like basket and carry current like a charm."
+    },
+    {
+      "repo": "smiler",
+      "name": "The Grin",
+      "epithet": "the carved-turnip smile on the open internet",
+      "grove": "hardware",
+      "lore": "The internet-controllable smiley sign — the carved-turnip grin of Samhain, hung on the open internet for anyone who knew the address to light."
+    },
+    {
+      "repo": "dek-eagle-lbr",
+      "name": "The Librarian",
+      "epithet": "Yggdrasil's eagle keeping the marks",
+      "grove": "hardware",
+      "lore": "Custom Eagle symbols, devices, packages, scripts — the eagle at Yggdrasil's crown keeping the marks: every symbol in its place, every package named, the whole library of forms."
+    },
+    {
+      "repo": "life-ledger",
+      "name": "The Chronicler",
+      "epithet": "the life accounted whole",
+      "grove": "misc",
+      "lore": "A personal life management ledger — the chronicler's other book: not the projects but the life between them, kept in rows that add true."
+    },
+    {
+      "repo": "zeroforge",
+      "name": "Patient Zero",
+      "epithet": "forged from the depths of Athlone",
+      "grove": "misc",
+      "lore": "The first spore — Patient Zero, carried up from the depths of Athlone. Every later forge descends from this one's temper."
+    }
+  ],
+  "roads_back": {
+    "$comment": "every layer of the pantheon leads back to the real person",
+    "linkedin": "https://www.linkedin.com/in/declanshanaghy/",
+    "github": "https://github.com/declanshanaghy",
+    "youtube": "https://www.youtube.com/@FiremanDecko",
+    "instructables": "https://www.instructables.com/member/declanshanaghy",
+    "pack": "https://www.fenrirledger.com/about",
+    "note": "the creator-smith, the fleet, and the forty-nine spirits are all faces of one man: Declan 'Dek' Shanaghy of Athlone, Co. Westmeath — now of Benicia, California — descendant of the seanchaí, keeper of the garden."
+  }
+}
