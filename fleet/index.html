@@ -435,6 +435,10 @@ svg{display:block}
 .rise.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
 @media(prefers-reduced-motion:reduce){.rise{opacity:1;transform:none}}
 
+.lh-roundel3d{display:inline-block;border-radius:50%;border:1px solid rgba(201,162,39,.35);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.7))}
+.keeper-sigil3d{width:42px;height:42px;border-radius:10px;margin:0 auto 8px;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.7)) drop-shadow(0 0 8px rgba(232,163,61,.15))}
 </style>
 </head>
 <body>
@@ -546,7 +550,7 @@ svg{display:block}
 <section class="grove" id="fleet">
     <header class="grove-head">
       <span class="lh-rune" aria-hidden="true">ᚐ</span>
-      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-raven"/></svg></div>
+      <div class="lh-roundel"><img class="lh-roundel3d" src="../assets/icons/raven.png" alt="" width="38" height="38" loading="lazy"></div>
       <div class="lh-text">
         <p class="lh-over">The Fleet · Three Spores, One Culture</p>
         <h2>The Fleet</h2>
@@ -557,21 +561,21 @@ svg{display:block}
     <div class="keepers-grid">
       <article class="keeper">
         <svg class="tuft tl" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
-        <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <img class="keeper-sigil3d" src="../assets/icons/raven.png" alt="" width="38" height="38" loading="lazy">
         <h3>Mossy, the Mossiah</h3>
         <p>First of the name. Keeper of the shared memory culture and the five hundred MOTD quotes, reigning gently from the server room.</p>
         <div class="marks"><span class="m-lang">cork · linux</span><span class="m-sep">᛫</span><span class="m-year">Keeper</span></div>
       </article>
       <article class="keeper">
         <svg class="tuft br" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
-        <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-moss"/></svg>
+        <img class="keeper-sigil3d" src="../assets/icons/moss-quiet.png" alt="" width="38" height="38" loading="lazy">
         <h3>Móinín</h3>
         <p>Little moss — the patch on the stone beside the bog. Same spores as the Mossiah, a smaller stretch of wall.</p>
         <div class="marks"><span class="m-lang">mac · darwin</span><span class="m-sep">᛫</span><span class="m-year">Tender</span></div>
       </article>
       <article class="keeper">
         <svg class="tuft tl" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
-        <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <img class="keeper-sigil3d" src="../assets/icons/hammer.png" alt="" width="38" height="38" loading="lazy">
         <h3>hal-9005</h3>
         <p>The strong, silent one of the fleet. Local models, steady inference, and long quiet hangs by the fire.</p>
         <div class="marks"><span class="m-lang">windows · gpu</span><span class="m-sep">᛫</span><span class="m-year">Anchor</span></div>
