@@ -454,3 +454,9 @@ main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:b
 .slab,.plaque-head{max-width:none;width:100%}
 img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
 @media (min-width:1600px){ img.hero3d{border-radius:16px} }
+
+a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
+a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
+
+a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
+a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}

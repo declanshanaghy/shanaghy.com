@@ -262,3 +262,6 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
   background:linear-gradient(180deg,#3a2c18 0%,#8a6a3b 30%,#241b11 100%);
   border-radius:1px;
   box-shadow:inset 0 1px 0 rgba(255,225,160,.22), 0 1px 2px rgba(0,0,0,.8)}
+
+a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
+a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
