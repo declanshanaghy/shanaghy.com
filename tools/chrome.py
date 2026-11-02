@@ -49,7 +49,7 @@ def footer(depth):
 
 def pages():
     return [f for f in glob.glob(os.path.join(REPO, "**", "*.html"), recursive=True)
-            if "/.git/" not in f and "_TEMPLATE" not in f]
+            if "/.git/" not in f and "/web/" not in f and "_TEMPLATE" not in f]
 
 def check():
     bad = 0

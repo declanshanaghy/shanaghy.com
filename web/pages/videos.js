@@ -1,17 +1,18 @@
-import { readContent } from "../lib/read";
+import { readContent, readContentCss } from "../lib/read";
 import { ContentPage } from "../lib/ContentPage";
 
-export default function Page({ html }) {
+export default function Page({ html, css }) {
   return (
     <ContentPage
       title="The Films — shanaghy.com"
       description="One hundred and eighty-one reels of FiremanDecko, screened by candlelight."
       here="/videos/"
       html={html}
+      css={css}
     />
   );
 }
 
 export function getStaticProps() {
-  return { props: { html: readContent("videos.html") } };
+  return { props: { html: readContent("videos.html"), css: readContentCss("videos.css") } };
 }
