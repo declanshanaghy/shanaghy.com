@@ -403,3 +403,9 @@ a.card:hover { border-color: var(--green-signal); color: inherit; }
   .hero-heading { font-size: 28px; }
   .hero-actions .btn { width: 100%; text-align: center; }
 }
+.toplinks{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;padding:14px 16px}
+.toplinks .tlink{text-decoration:none;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:#c9b896;opacity:.85}
+.toplinks .tlink:hover{color:#ffbd5e;opacity:1}
+.toplinks .tlink.here{color:#e8a33d;opacity:1;border-bottom:1px solid rgba(232,163,61,.5)}
+.toplinks .ghpill{text-decoration:none;font-size:12px;letter-spacing:1px;color:#d9b56a;border:1px solid rgba(138,106,59,.5);border-radius:10px;padding:4px 12px}
+.toplinks .ghpill:hover{color:#ffbd5e;border-color:rgba(232,163,61,.6)}

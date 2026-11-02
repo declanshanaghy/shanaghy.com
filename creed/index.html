@@ -435,6 +435,11 @@ svg{display:block}
 .rise.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
 @media(prefers-reduced-motion:reduce){.rise{opacity:1;transform:none}}
 
+.trail{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.trail a{display:inline-block;text-decoration:none;font-size:12.5px;letter-spacing:1px;color:var(--gold);
+  padding:7px 16px;border:1px solid rgba(138,106,59,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.55),rgba(10,7,4,.55));transition:color .25s,border-color .25s}
+.trail a:hover{color:var(--amber2);border-color:rgba(232,163,61,.55)}
 </style>
 </head>
 <body>
@@ -537,7 +542,17 @@ svg{display:block}
     <a class="rtab" data-target="../fleet/" href="../fleet/"><span class="rt-rune">ᚐ</span><span class="rt-label">Fleet</span><span class="rt-count">×3</span></a>
     <a class="rtab" data-target="../paths/" href="../paths/"><span class="rt-rune">ᚏ</span><span class="rt-label">Paths</span><span class="rt-count">×3</span></a>
   </div>
-  <div class="toplinks"> <a class="tlink" href="../projects/">Stones</a> <a class="tlink" href="../sessions/">Sessions</a> <a class="tlink" href="../videos/">Films</a> <a class="tlink here" href="../creed/">Creed</a> <a class="ghpill" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">GitHub</a> </div>
+  
+  <div class="toplinks">
+    <a class="tlink" href="../">Garden</a>
+    <a class="tlink" href="../projects/">Stones</a>
+    <a class="tlink" href="../videos/">Films</a>
+    <a class="tlink" href="../sessions/">Sessions</a>
+    <a class="tlink here" href="../creed/">Creed</a>
+    <a class="tlink" href="../fleet/">Fleet</a>
+    <a class="tlink" href="../paths/">Paths</a>
+    <a class="ghpill" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">GitHub</a>
+  </div>
 </nav>
 
 <!-- ═══════════ HERO — ENGRAVED GARDEN SIGNAGE OVER A MOSS-AND-STONE SCENE ═══════════ -->
@@ -611,6 +626,21 @@ svg{display:block}
   </div>
 
   <!-- Two tongues -->
+  
+  <div class="plaque-head rise" id="trail"><div class="pla-roundel">ᚏ</div><div class="pla-text"><p class="over">Where The Paths Cross</p><h2>The Trail</h2></div><span class="pla-rune">ᚏ</span></div>
+  <div class="slab rise">
+    <p class="foot-line">the roads that lead back to the smith:</p>
+    <div class="trail">
+      <a href="https://github.com/declanshanaghy" target="_blank" rel="noopener">the annals · GitHub ↗</a>
+      <a href="https://www.youtube.com/@FiremanDecko" target="_blank" rel="noopener">the reels · FiremanDecko ↗</a>
+      <a href="https://www.instructables.com/member/declanshanaghy/" target="_blank" rel="noopener">the relics · Instructables ↗</a>
+      <a href="https://www.linkedin.com/in/declanshanaghy" target="_blank" rel="noopener">the signature · LinkedIn ↗</a>
+      <a href="../fleet/">the agents · The Fleet</a>
+      <a href="../paths/">the ways · The Paths</a>
+    </div>
+    <p style="margin-top:16px">And the wolf keeps its own country beyond the wall — <em>the wolf's ledger stays the wolf's own, and its country is not yet on any map this garden draws.</em> Some things are kept sacred by being kept unspoken.</p>
+  </div>
+
   <div class="plaque-head rise"><div class="pla-roundel">ᚓ</div><div class="pla-text"><p class="over">Sacred Script — The Elder Tongue</p><h2>Two Tongues</h2></div><span class="pla-rune">ᚑ</span></div>
   <div class="slab rise">
     <p><strong>Ogham</strong>, the elder tongue, cuts every glyph in the garden — the name-row, <strong>SHANAGHY</strong>:</p>
