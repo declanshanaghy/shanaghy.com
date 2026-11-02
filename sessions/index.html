@@ -38,34 +38,50 @@
     padding: 1.1rem 1.3rem;
     margin-bottom: 1.25rem;
   }
-  .card .date { color: var(--amber); font-size: 0.8rem; }
+  .card .tag { color: var(--amber); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
   .card h2 { margin: 0.2rem 0 0.4rem; font-size: 1.05rem; color: var(--green); font-weight: 600; }
   .card h2 a { color: var(--green); }
   .card .blurb { margin: 0 0 0.6rem; color: var(--fg); }
   .card .link { font-size: 0.85rem; color: var(--dim); }
   .card .link a { color: var(--green); }
   .card .link a::after { content: " →"; }
+  .empty { color: var(--dim); font-size: 0.8rem; font-style: italic; }
   footer { margin-top: 3rem; color: var(--dim); font-size: 0.8rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="prompt">ls ~/sessions/</div>
+    <div class="prompt">ls ~/sessions/&lt;project&gt;/</div>
     <h1>shanaghy.com — session transcripts</h1>
-    <div class="sub">published conversations &amp; field notes from the fleet</div>
+    <div class="sub">published conversations &amp; field notes from the fleet, filed by project</div>
   </header>
 
-  <!-- PUBLISHING: add one card per session, newest first -->
+  <!-- PUBLISHING: sessions live in sessions/&lt;project-slug&gt;/, one index per project.
+       Add a card here when a project gets its first session. -->
   <article class="card">
-    <div class="date">2026-11-01</div>
-    <h2><a href="./ballad-of-many-mossys.html">The Ballad of Many Mossys</a></h2>
-    <p class="blurb">How the agents of the fleet got their names — the decree, the Mossiah, and the little moss on the Mac.</p>
-    <div class="link"><a href="./ballad-of-many-mossys.html">read session</a></div>
+    <div class="tag">shell</div>
+    <h2><a href="./mossy-motd/">Mossy MOTD</a></h2>
+    <p class="blurb">Sessions with the 500-quote Irish greeter — lore from the bog.</p>
+    <div class="link"><a href="./mossy-motd/">1 session</a></div>
+  </article>
+
+  <article class="card">
+    <div class="tag">infra</div>
+    <h2><a href="./cork-server/">cork server</a></h2>
+    <p class="blurb">Sessions from the server room — Docker, Portainer, tunnels.</p>
+    <div class="link"><span class="empty">no sessions published yet</span></div>
+  </article>
+
+  <article class="card">
+    <div class="tag">ai</div>
+    <h2><a href="./corkbai-honcho/">corkbai-honcho</a></h2>
+    <p class="blurb">Sessions with the shared memory culture on cork.</p>
+    <div class="link"><span class="empty">no sessions published yet</span></div>
   </article>
 
   <footer>
-    // drop a file in sessions/, add a card here, commit, push.
+    // drop a file in sessions/&lt;project&gt;/, add a card to that project's index, commit, push.
   </footer>
 </div>
 </body>

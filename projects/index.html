@@ -1,91 +1,1258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects — shanaghy.com</title>
-  <meta name="description" content="The project showcase of Declan Shanaghy — infra, shell, AI and web, built on the bog.">
-  <meta property="og:title" content="Projects — shanaghy.com">
-  <meta property="og:description" content="Infra, shell, AI and web — built on the bog, West Cork.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/site.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Declan Shanaghy — The Stone Garden</title>
+<meta name="description" content="The stone garden of Declan Shanaghy — 49 projects gathered in seven groves, plus three keepers self-hosted on the cork server. A candlelit parlour archive from Athlone, Co. Westmeath.">
+<meta property="og:title" content="Declan Shanaghy — The Stone Garden">
+<meta property="og:description" content="A moss-grown archive of 49 stones in seven groves — candlelit, quiet, and rendered whole from a single file.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.shanaghy.com/projects/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0705'/%3E%3Ccircle cx='16' cy='19' r='8' fill='%235f7048'/%3E%3Ccircle cx='12' cy='13' r='2.6' fill='%236e7f57'/%3E%3Ccircle cx='17' cy='11.5' r='2.1' fill='%2377895d'/%3E%3Ccircle cx='21.5' cy='13.5' r='1.6' fill='%236e7f57'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0705; --bg2:#060403;
+  --stone-hi:#241b11; --stone-lo:#120c06; --edge:#3b2d18;
+  --bronze:#8a6a3b; --bronze2:#a97e42;
+  --amber:#e8a33d; --amber2:#ffbd5e;
+  --gold:#d9b56a; --parch:#d8c9a8; --muted:#8a795a; --dim:#5f5138;
+  --moss-hi:#77895d; --moss:#6e7f57; --moss-lo:#5f7048;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{
+  font-family:var(--serif);
+  color:var(--parch);
+  background:
+    radial-gradient(1100px 700px at 50% -140px, rgba(122,82,30,.12), transparent 60%),
+    radial-gradient(1000px 620px at 6% 112%, rgba(95,112,72,.06), transparent 55%),
+    radial-gradient(900px 600px at 88% 108%, rgba(90,60,20,.07), transparent 55%),
+    var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+::selection{background:rgba(232,163,61,.35);color:#fff8e8}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#070503}
+::-webkit-scrollbar-thumb{background:#2e2113;border-radius:6px;border:2px solid #070503}
+::-webkit-scrollbar-thumb:hover{background:#4a3520}
+a{color:inherit}
+svg{display:block}
+
+/* ============ TOPBAR — RUNE TAB STRIP ============ */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  display:flex;align-items:center;gap:16px;
+  padding:9px 18px;
+  background:rgba(10,7,5,.9);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  border-bottom:1px solid rgba(138,106,59,.28);
+  box-shadow:0 8px 26px -14px rgba(0,0,0,.9);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-mark{width:27px;height:27px;color:var(--amber);filter:drop-shadow(0 0 6px rgba(232,163,61,.35))}
+.brand-name{font-size:12.5px;letter-spacing:3.2px;color:var(--gold);font-weight:600}
+.runestrip{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.runestrip::-webkit-scrollbar{display:none}
+.rtab{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:5px 11px;border:1px solid transparent;border-radius:9px;
+  text-decoration:none;transition:background .25s,border-color .25s;flex-shrink:0;
+}
+.rt-rune{font-size:19px;line-height:1.15;color:var(--bronze);transition:color .25s,text-shadow .25s}
+.rt-label{font-size:8.5px;letter-spacing:1.9px;color:#6f6046;text-transform:uppercase;white-space:nowrap}
+.rt-count{font-size:8px;letter-spacing:1px;color:#55492f}
+.rtab:hover .rt-rune,.rtab:focus .rt-rune{color:var(--amber2);text-shadow:0 0 11px rgba(232,163,61,.65)}
+.rtab.active{border-color:rgba(232,163,61,.4);background:rgba(232,163,61,.07)}
+.rtab.active .rt-rune{color:var(--amber2);text-shadow:0 0 13px rgba(232,163,61,.85)}
+.rtab.active .rt-label{color:#a98d5c}
+.toplinks{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.tlink{
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  color:#9b8660;text-decoration:none;text-transform:uppercase;
+  transition:color .25s,text-shadow .25s;
+}
+.tlink:hover,.tlink:focus{color:var(--amber2);text-shadow:0 0 10px rgba(232,163,61,.55)}
+.ghpill{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.8px;
+  color:var(--gold);text-decoration:none;text-transform:uppercase;
+  padding:6px 14px;border:1px solid rgba(138,106,59,.5);border-radius:11px 4px 11px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.6),rgba(10,7,4,.6));
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08),0 4px 10px -5px rgba(0,0,0,.8);
+  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
+}
+.ghpill:hover,.ghpill:focus{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 12px rgba(232,163,61,.6);transform:translateY(-1px)}
+
+/* ============ HERO — HANGING GARDEN SIGN & PARLOUR TABLE ============ */
+.hero{
+  text-align:center;
+  padding:44px 16px 10px;
+  background:
+    radial-gradient(60% 26% at 50% 108%, rgba(95,112,72,.10), transparent 70%),
+    radial-gradient(ellipse 90% 68% at 50% 60%, #171009 0%, #0a0705 62%, #060403 100%);
+}
+.sign-svg{width:min(94vw,640px);height:auto;margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.7))}
+.hero-sub{margin:18px 0 6px;font-size:11.5px;letter-spacing:4.5px;color:#9b8660;text-transform:uppercase}
+.hero-count{font-size:12px;letter-spacing:2.2px;color:#8a795a;margin-bottom:22px}
+.hero-count .sep{color:var(--amber);margin:0 13px;font-size:9px;vertical-align:1.5px;text-shadow:0 0 8px rgba(232,163,61,.5)}
+.table-svg{width:min(94vw,900px);height:auto;margin:0 auto -8px}
+
+/* candle flicker */
+@keyframes flick{
+  0%{transform:scale(1,1) skewX(0)}
+  28%{transform:scale(1.07,1.13) skewX(2.2deg)}
+  52%{transform:scale(.93,.95) skewX(-3deg)}
+  76%{transform:scale(1.06,1.03) skewX(1.6deg)}
+  100%{transform:scale(1,1) skewX(0)}
+}
+@keyframes glowpulse{0%,100%{opacity:.5}50%{opacity:.74}}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.9s ease-in-out infinite}
+.flame.f2{animation-duration:1.35s;animation-delay:-.7s}
+.cglow{animation:glowpulse 3.8s ease-in-out infinite}
+.cglow.g2{animation-duration:4.6s;animation-delay:-2.1s;opacity:.4}
+
+/* ============ THE GARDEN — GROVES ============ */
+.garden{max-width:1180px;margin:0 auto;padding:0 26px 20px}
+.grove{padding:52px 0 12px;position:relative;scroll-margin-top:84px}
+.line-sep{display:flex;justify-content:center;padding:30px 0 4px;color:#5f4a2a;opacity:.85}
+.line-sep svg{width:250px;height:28px}
+
+.grove-head{position:relative;display:flex;align-items:center;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.grove-head>*{position:relative;z-index:1}
+.lh-rune{
+  position:absolute;right:-6px;top:-44px;z-index:0;
+  font-size:200px;line-height:1;color:rgba(217,181,106,.045);
+  pointer-events:none;user-select:none;font-family:var(--serif);
+}
+.lh-roundel{
+  position:relative;
+  width:64px;height:64px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(138,106,59,.45);
+  background:radial-gradient(circle at 38% 30%, #2a1f12, #120c06 78%);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 3px rgba(255,205,130,.07), 0 6px 14px -6px rgba(0,0,0,.8);
+}
+/* moss creeping over the roundel's lower rim */
+.lh-roundel::after{
+  content:"";position:absolute;left:10%;right:10%;bottom:7%;height:30%;
+  border-radius:50%;
+  background:radial-gradient(60% 100% at 50% 100%, rgba(110,127,87,.4), rgba(110,127,87,0) 75%);
+  pointer-events:none;
+}
+.lh-roundel svg{width:38px;height:38px;color:#c9a24a;filter:drop-shadow(0 1px 0 rgba(0,0,0,.8))}
+.lh-text{min-width:200px}
+.lh-over{font-size:10px;letter-spacing:3.4px;color:#8a795a;text-transform:uppercase;margin-bottom:5px}
+.lh-text h2{
+  font-size:27px;font-weight:600;letter-spacing:1px;color:#e2cf9d;
+  text-shadow:0 2px 2px rgba(0,0,0,.85), 0 -1px 0 rgba(255,215,150,.1);
+}
+.lh-lede{font-size:12.5px;font-style:italic;color:#96835f;margin-top:5px;letter-spacing:.3px}
+.lh-plaque{
+  margin-left:auto;display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:9px 18px;
+  border:1px solid rgba(138,106,59,.4);
+  border-radius:14px 4px 14px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.6),rgba(10,7,4,.6));
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.07), inset 0 -6px 10px rgba(0,0,0,.5);
+}
+.pl-rune{font-size:25px;line-height:1.1;color:var(--gold)}
+.pl-count{font-size:9px;letter-spacing:2px;color:#9b8660;text-transform:uppercase}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:26px 22px;position:relative;z-index:1}
+
+/* ============ MOSS-TOPPED GARDEN STONES ============ */
+.stone{
+  position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:30px 20px 15px;
+  text-decoration:none;
+  background:
+    radial-gradient(120% 32% at 50% -10%, rgba(110,127,87,.15), transparent 70%),
+    radial-gradient(88px 50px at 0% 0%, rgba(110,127,87,.14), transparent 72%),
+    radial-gradient(70px 42px at 100% 100%, rgba(98,114,76,.10), transparent 72%),
+    radial-gradient(140% 90% at 32% 0%, rgba(255,190,110,.05), transparent 55%),
+    linear-gradient(180deg,#221a11 0%,#171008 62%,#110b05 100%);
+  border:1px solid var(--edge);
+  box-shadow:
+    inset 0 1px 0 rgba(255,210,140,.07),
+    inset 0 16px 22px rgba(0,0,0,.38),
+    inset 0 -16px 26px rgba(0,0,0,.5),
+    0 10px 20px -12px rgba(0,0,0,.85);
+  transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  overflow:hidden;
+}
+/* moss creeps from the other corners on alternating stones */
+.stone:nth-child(even){
+  background:
+    radial-gradient(120% 32% at 50% -10%, rgba(110,127,87,.15), transparent 70%),
+    radial-gradient(88px 50px at 100% 0%, rgba(110,127,87,.13), transparent 72%),
+    radial-gradient(70px 42px at 0% 100%, rgba(98,114,76,.10), transparent 72%),
+    radial-gradient(140% 90% at 32% 0%, rgba(255,190,110,.05), transparent 55%),
+    linear-gradient(180deg,#221a11 0%,#171008 62%,#110b05 100%);
+}
+.stone:nth-child(4n+1){border-radius:24px 34px 18px 32px / 32px 22px 36px 18px;transform:rotate(-.35deg)}
+.stone:nth-child(4n+2){border-radius:32px 18px 34px 20px / 20px 34px 18px 30px;transform:rotate(.3deg)}
+.stone:nth-child(4n+3){border-radius:18px 32px 22px 34px / 34px 18px 30px 22px;transform:rotate(-.15deg)}
+.stone:nth-child(4n+0){border-radius:34px 22px 30px 18px / 18px 32px 24px 34px;transform:rotate(.25deg)}
+.stone::before{
+  content:"ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ";
+  position:absolute;top:8px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#6d5636;opacity:.55;white-space:nowrap;overflow:hidden;
+  pointer-events:none;
+  transition:color .28s,opacity .28s,text-shadow .28s;
+}
+.stone::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(92% 55% at 50% -8%, rgba(255,180,80,.17), transparent 62%);
+  opacity:0;transition:opacity .3s;
+}
+.stone:hover{
+  transform:translateY(-8px);
+  border-color:rgba(232,163,61,.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,210,140,.12),
+    inset 0 14px 20px rgba(0,0,0,.3),
+    0 28px 44px -14px rgba(0,0,0,.95),
+    0 0 36px -6px rgba(232,163,61,.32);
+}
+.stone:hover::before{color:var(--amber);opacity:.95;text-shadow:0 0 9px rgba(232,163,61,.85)}
+.stone:hover::after{opacity:1}
+.stone:focus-visible{outline:2px solid rgba(232,163,61,.65);outline-offset:3px}
+
+.stone-sigil{
+  width:42px;height:42px;margin-bottom:9px;color:#8a6a3b;opacity:.9;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.75));
+  transition:color .28s,opacity .28s,filter .28s;
+}
+.stone:hover .stone-sigil{color:var(--amber);opacity:1;filter:drop-shadow(0 0 8px rgba(232,163,61,.6))}
+
+.stone h3{
+  font-size:18px;font-weight:600;font-variant-caps:all-small-caps;
+  letter-spacing:.6px;color:#e6d3a3;line-height:1.25;
+  text-shadow:0 2px 1px rgba(0,0,0,.9), 0 -1px 0 rgba(255,205,130,.14);
+  margin-bottom:7px;overflow-wrap:anywhere;
+}
+.stone p{font-size:12.5px;line-height:1.55;color:#a08d68;letter-spacing:.2px}
+.marks{
+  margin-top:auto;padding-top:13px;
+  display:flex;align-items:center;gap:7px;
+  font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
+}
+.m-lang{color:#b08b4f;font-variant-caps:all-small-caps}
+.m-year{color:#9b8660}
+.stone.elder .m-year{color:#6b5c40}
+.m-sep{color:#6d5636;font-size:11px}
+.stone.elder:hover .m-year{color:#9b8660}
+
+.honor{
+  position:absolute;top:11px;right:13px;
+  font-size:8px;letter-spacing:1.8px;font-weight:700;text-transform:uppercase;
+  color:#140d06;padding:3px 8px;
+  background:linear-gradient(180deg,#e9c877,#a97e42);
+  border-radius:7px 3px 7px 3px;
+  box-shadow:0 2px 5px rgba(0,0,0,.6);
+}
+.stone--prized{border-color:rgba(201,162,74,.45)}
+
+/* ============ THE KEEPERS — SELF-HOSTED ============ */
+.keepers-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));
+  gap:36px 28px;max-width:920px;margin:0 auto;position:relative;z-index:1;
+}
+.keeper{
+  position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:34px 22px 56px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 30px),50% 100%,0 calc(100% - 30px));
+  background:
+    radial-gradient(120% 30% at 50% -8%, rgba(110,127,87,.17), transparent 68%),
+    radial-gradient(90px 48px at 0% 0%, rgba(110,127,87,.14), transparent 72%),
+    radial-gradient(140% 80% at 40% 0%, rgba(255,190,110,.06), transparent 55%),
+    linear-gradient(180deg,#261b0f 0%,#171008 70%,#0f0a04 100%);
+  border:1px solid var(--edge);
+  transition:transform .28s ease,filter .28s ease,border-color .28s ease;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.65));
+}
+.keeper::before{
+  content:"ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ";
+  position:absolute;top:9px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#6d5636;opacity:.55;white-space:nowrap;overflow:hidden;
+  pointer-events:none;transition:color .28s,opacity .28s,text-shadow .28s;
+}
+.keeper::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(95% 55% at 50% -8%, rgba(255,180,80,.18), transparent 62%);
+  opacity:0;transition:opacity .3s;
+}
+.keeper:hover{
+  transform:translateY(-7px);
+  border-color:rgba(232,163,61,.5);
+  filter:drop-shadow(0 26px 26px rgba(0,0,0,.85)) drop-shadow(0 0 22px rgba(232,163,61,.28));
+}
+.keeper:hover::before{color:var(--amber);opacity:.95;text-shadow:0 0 9px rgba(232,163,61,.85)}
+.keeper:hover::after{opacity:1}
+.keeper .marks{margin-top:14px;padding-top:0}
+.keeper-sigil{
+  width:46px;height:46px;margin-bottom:11px;color:#8a6a3b;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.9));
+  transition:color .28s,filter .28s;
+}
+.keeper:hover .keeper-sigil{color:var(--amber);filter:drop-shadow(0 0 10px rgba(232,163,61,.65))}
+.keeper h3{
+  font-size:19px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.8px;
+  color:#e6d3a3;margin-bottom:7px;
+  text-shadow:0 2px 1px rgba(0,0,0,.9), 0 -1px 0 rgba(255,205,130,.14);
+}
+.keeper p{font-size:12.5px;line-height:1.55;color:#a08d68}
+/* moss tufts resting on the keeper cards */
+.tuft{
+  position:absolute;width:40px;height:20px;color:#6e7f57;opacity:.8;
+  pointer-events:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6));
+}
+.tuft.tl{top:7px;left:-6px;transform:rotate(-10deg)}
+.tuft.br{bottom:36px;right:-8px;transform:rotate(170deg)}
+
+/* ============ FOOTER ============ */
+.foot{padding:26px 20px 60px;text-align:center}
+.foot-knot{width:250px;height:28px;margin:0 auto 20px;color:#5f4a2a}
+.foot-line{font-size:13px;font-style:italic;color:#96835f;letter-spacing:.5px;margin-bottom:14px}
+.foot-gh{
+  display:inline-block;text-decoration:none;
+  font-size:13px;letter-spacing:1.5px;color:var(--gold);
+  padding:9px 22px;border:1px solid rgba(138,106,59,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.55),rgba(10,7,4,.55));
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08), 0 6px 14px -6px rgba(0,0,0,.8);
+  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
+}
+.foot-gh:hover{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 12px rgba(232,163,61,.6);transform:translateY(-2px)}
+.foot-colophon{margin-top:18px;font-size:10.5px;letter-spacing:1.6px;color:#6f6046;text-transform:uppercase}
+.foot-copy{margin-top:10px;font-size:12.5px;letter-spacing:.8px;color:#9b8660}
+
+/* ============ RESPONSIVE / MOTION ============ */
+@media (max-width:920px){.tlink{display:none}}
+@media (max-width:760px){
+  .rt-label,.rt-count{display:none}
+  .rtab{padding:6px 10px}
+  .lh-rune{display:none}
+  .lh-plaque{margin-left:0}
+  .grove{padding:40px 0 8px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:22px 16px}
+  .hero{padding-top:30px}
+  .hero-sub{font-size:10px;letter-spacing:3px}
+}
+@media (max-width:460px){ .brand-name{display:none} }
+@media (prefers-reduced-motion:reduce){
+  .flame,.cglow{animation:none}
+  *{transition-duration:.01ms!important;scroll-behavior:auto}
+}
+</style>
 </head>
 <body>
 
-  <header class="site-nav">
-    <nav class="site-nav-inner" aria-label="Site">
-      <a class="site-logo" href="../"><span class="dot">&#9679;</span> shanaghy.com</a>
-      <div class="site-nav-links">
-        <a href="./" class="text-green">projects</a>
-        <a href="../sessions/">sessions</a>
-        <a href="../#fleet">fleet</a>
-        <a class="pill" href="https://github.com/declanshanaghy">github</a>
+<!-- ═══════════ SHARED SIGILS & ORNAMENTS (inline SVG symbols) ═══════════ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+
+    <!-- Raven — AI & Agents, the fleet's own bird -->
+    <symbol id="sigil-raven" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 27 Q10 15 22 13 Q31 12 34 18 L43 21 L34 24 Q33 32 26 36 Q20 39 14 38 L19 34 Q13 33 9 27 Z"/>
+        <circle cx="28.5" cy="19" r="1.7" fill="currentColor" stroke="none"/>
+      </g>
+    </symbol>
+
+    <!-- Listening horn — Home Lab & Automation -->
+    <symbol id="sigil-horn" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 40 Q9 24 22 15 Q30 10 37 11 L43 9 L40 17 Q31 19 24 26 Q18 32 18 40 Z"/>
+        <circle cx="13.5" cy="41.5" r="2.4"/>
+        <path d="M44 4 q3 2 4 6 M45 12 q2 1.5 2.5 4" opacity=".7"/>
+      </g>
+    </symbol>
+
+    <!-- Weaver's knot — Web & Extensions -->
+    <symbol id="sigil-web" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 24 L43 24 M24 24 L37.4 37.4 M24 24 L24 43 M24 24 L10.6 37.4 M24 24 L5 24 M24 24 L10.6 10.6 M24 24 L24 5 M24 24 L37.4 10.6" opacity=".85"/>
+        <path d="M35 24 Q30.6 26.8 31.9 31.9 Q26.8 30.6 24 35 Q21.2 30.6 16.1 31.9 Q17.4 26.8 13 24 Q17.4 21.2 16.1 16.1 Q21.2 17.4 24 13 Q26.8 17.4 31.9 16.1 Q30.6 21.2 35 24 Z"/>
+        <path d="M41.5 24 Q34.4 28.3 36.4 36.4 Q28.3 34.4 24 41.5 Q19.7 34.5 11.6 36.4 Q13.6 28.3 6.5 24 Q13.6 19.7 11.6 11.6 Q19.7 13.6 24 6.5 Q28.3 13.6 36.4 11.6 Q34.4 19.7 41.5 24 Z" opacity=".75"/>
+        <path d="M24 19.5 L28.5 24 L24 28.5 L19.5 24 Z"/>
+      </g>
+    </symbol>
+
+    <!-- Carved die — Games & Play -->
+    <symbol id="sigil-die" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9.5" y="9.5" width="29" height="29" rx="7"/>
+        <circle cx="16.5" cy="16.5" r="2.5" fill="currentColor" stroke="none"/>
+        <circle cx="24" cy="24" r="2.5" fill="currentColor" stroke="none"/>
+        <circle cx="31.5" cy="31.5" r="2.5" fill="currentColor" stroke="none"/>
+        <path d="M41 7 q4 2 5 7 M7 41 q-4 -2 -5 -7" opacity=".65"/>
+      </g>
+    </symbol>
+
+    <!-- Claddagh ring — 3D Print & Craft -->
+    <symbol id="sigil-ring" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 12 L17.5 5.5 L21.5 10 L24 4 L26.5 10 L30.5 5.5 L32 12 Q24 9.5 16 12 Z"/>
+        <path d="M24 35 Q15.5 28.5 13.5 22.5 Q12.5 17.5 17 16 Q20.5 15 24 19 Q27.5 15 31 16 Q35.5 17 34.5 22.5 Q32.5 28.5 24 35 Z"/>
+        <path d="M11.5 26 Q9.5 31 14.5 35.5 M36.5 26 Q38.5 31 33.5 35.5"/>
+        <path d="M15 39.5 Q24 44 33 39.5" opacity=".6"/>
+      </g>
+    </symbol>
+
+    <!-- Smith's mallet — Hardware & the elder stones -->
+    <symbol id="sigil-hammer" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="9" width="32" height="11" rx="3"/>
+        <path d="M20.5 20 H27.5 L26.8 36 Q24 38.5 21.2 36 Z"/>
+        <rect x="18" y="36.5" width="12" height="4.5" rx="2.2"/>
+        <path d="M11.5 14.5 H36.5" opacity=".55"/>
+      </g>
+    </symbol>
+
+    <!-- Cauldron — Ledgers & Curiosities -->
+    <symbol id="sigil-cauldron" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 17 Q24 22 39 17"/>
+        <path d="M9 17 Q7 30 16 35 Q24 38.5 32 35 Q41 30 39 17"/>
+        <path d="M17 35 L15 43 M24 36.5 L24 44 M31 35 L33 43"/>
+        <path d="M17 10 Q19 7 17 4 M24 10 Q26 7 24 4 M31 10 Q33 7 31 4" opacity=".7"/>
+      </g>
+    </symbol>
+
+    <!-- Lantern — the keepers, lights that never go out -->
+    <symbol id="sigil-lantern" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="6.5" r="2"/>
+        <path d="M24 8.5 V11"/>
+        <path d="M13 16.5 L24 11 L35 16.5 Z"/>
+        <rect x="14.5" y="16.5" width="19" height="16.5" rx="2"/>
+        <rect x="19" y="20" width="10" height="9.5" rx="1.5"/>
+        <path d="M24 23 C23.2 24.2 23.4 25.4 24 26.4 C24.6 25.4 24.8 24.2 24 23 Z" fill="currentColor" stroke="none"/>
+        <path d="M16.5 33 L15 38 M31.5 33 L33 38 M13.5 38.5 H34.5"/>
+      </g>
+    </symbol>
+
+    <!-- Mossy stone — the fleet's smallest patch of wall -->
+    <symbol id="sigil-moss" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 34 Q8 22 18 15 Q26 9 36 14 Q43 18 41 28 Q40 36 32 39 Q20 42 10 34 Z"/>
+        <path d="M14 17 Q18 12 24 11 M28 11 Q33 12 36 15" opacity=".7"/>
+      </g>
+      <g fill="currentColor" opacity=".8">
+        <circle cx="18" cy="14.5" r="1.4"/><circle cx="24" cy="12.5" r="1.6"/>
+        <circle cx="30" cy="13.5" r="1.4"/><circle cx="34" cy="15.5" r="1.2"/>
+      </g>
+    </symbol>
+
+    <!-- Ledger book — session ephemera, field notes -->
+    <symbol id="sigil-scroll" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 14 Q17 10 10 12 V36 Q17 34 24 38 Q31 34 38 36 V12 Q31 10 24 14 Z"/>
+        <path d="M24 14 V38"/>
+        <path d="M14 19 H20 M14 23.5 H20 M28 19 H34 M28 23.5 H34" opacity=".7"/>
+      </g>
+    </symbol>
+
+    <!-- Moss tuft — a small softness of the garden -->
+    <symbol id="moss-tuft" viewBox="0 0 48 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M8 22 Q7 14 3 10"/>
+        <path d="M13 22 Q13 11 10 6"/>
+        <path d="M18 22 Q19 9 16 4"/>
+        <path d="M23 22 Q22 12 26 7"/>
+        <path d="M28 22 Q30 13 27 8"/>
+        <path d="M33 22 Q32 15 36 11"/>
+        <path d="M38 22 Q39 16 44 13"/>
+      </g>
+      <g fill="currentColor" opacity=".55">
+        <circle cx="7" cy="16" r="1.1"/><circle cx="15" cy="12" r="1.3"/>
+        <circle cx="24" cy="13" r="1.2"/><circle cx="31" cy="16" r="1.1"/>
+        <circle cx="12" cy="19" r="1"/><circle cx="27" cy="19" r="1"/><circle cx="36" cy="19" r="1"/>
+      </g>
+    </symbol>
+
+    <!-- Knotwork divider -->
+    <symbol id="knot-div" viewBox="0 0 220 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 12 H62 M158 12 H220"/>
+        <path d="M70 8 l8 8 M78 8 l-8 8" opacity=".8"/>
+        <path d="M142 8 l8 8 M150 8 l-8 8" opacity=".8"/>
+        <path d="M84 12 l6 -5 6 5 -6 5 Z"/>
+        <path d="M124 12 l6 -5 6 5 -6 5 Z"/>
+        <path d="M110 5 L118 12 L110 19 L102 12 Z"/>
+        <path d="M110 9 L114 12 L110 15 L106 12 Z"/>
+      </g>
+    </symbol>
+
+    <!-- Round game-table brand mark -->
+    <symbol id="mark-table" viewBox="0 0 32 32">
+      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="16" r="13" stroke-width="1.6"/>
+        <circle cx="16" cy="16" r="9" stroke-width="1" stroke-dasharray="2.5 2" opacity=".8"/>
+        <rect x="10.5" y="11" width="6" height="8" rx="1" stroke-width="1.1"/>
+        <rect x="15.5" y="13" width="6" height="8" rx="1" stroke-width="1.1" transform="rotate(9 18.5 17)"/>
+      </g>
+    </symbol>
+
+  </defs>
+</svg>
+
+<!-- ═══════════ TOPBAR — RUNE TAB STRIP ═══════════ -->
+<nav class="topbar" aria-label="The garden">
+  <a class="brand" href="../">
+    <svg class="brand-mark" aria-hidden="true"><use href="#mark-table"/></svg>
+    <span class="brand-name">THE&nbsp;GARDEN</span>
+  </a>
+  <div class="runestrip">
+    <a class="rtab" data-target="#grove-ai" href="#grove-ai"><span class="rt-rune">ᚨ</span><span class="rt-label">Agents</span><span class="rt-count">×6</span></a>
+    <a class="rtab" data-target="#grove-home" href="#grove-home"><span class="rt-rune">ᛖ</span><span class="rt-label">Hearth</span><span class="rt-count">×7</span></a>
+    <a class="rtab" data-target="#grove-web" href="#grove-web"><span class="rt-rune">ᛜ</span><span class="rt-label">Webwork</span><span class="rt-count">×9</span></a>
+    <a class="rtab" data-target="#grove-games" href="#grove-games"><span class="rt-rune">ᛏ</span><span class="rt-label">Games</span><span class="rt-count">×3</span></a>
+    <a class="rtab" data-target="#grove-print" href="#grove-print"><span class="rt-rune">ᚷ</span><span class="rt-label">Craft</span><span class="rt-count">×3</span></a>
+    <a class="rtab" data-target="#grove-hardware" href="#grove-hardware"><span class="rt-rune">ᚦ</span><span class="rt-label">Elders</span><span class="rt-count">×19</span></a>
+    <a class="rtab" data-target="#grove-misc" href="#grove-misc"><span class="rt-rune">ᛚ</span><span class="rt-label">Curio</span><span class="rt-count">×2</span></a>
+    <a class="rtab" data-target="#grove-keepers" href="#grove-keepers"><span class="rt-rune">ᛋ</span><span class="rt-label">Keepers</span><span class="rt-count">×3</span></a>
+  </div>
+  <div class="toplinks">
+    <a class="tlink" href="../">Home</a>
+    <a class="tlink" href="../sessions/">Sessions</a>
+    <a class="tlink" href="../videos/">Videos</a>
+    <a class="ghpill" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO — HANGING GARDEN SIGN & THE ROUND GAME TABLE ═══════════ -->
+<header class="hero">
+
+  <!-- The hanging garden sign -->
+  <svg class="sign-svg" viewBox="0 0 760 205" role="img" aria-label="A hanging garden sign bearing the engraved name Declan Shanaghy, with moss on its corners">
+    <defs>
+      <linearGradient id="gCloth" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#281d10"/>
+        <stop offset="100%" stop-color="#120c07"/>
+      </linearGradient>
+      <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#eed188"/>
+        <stop offset="100%" stop-color="#a97e42"/>
+      </linearGradient>
+      <filter id="fChisel" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="2.5" stdDeviation="1.2" flood-color="#000" flood-opacity="0.85"/>
+      </filter>
+    </defs>
+    <!-- crossbar & finials -->
+    <rect x="26" y="14" width="708" height="7" rx="3.5" fill="#2c2012" stroke="#8a6a3b" stroke-width="1"/>
+    <circle cx="26" cy="17.5" r="6" fill="#a97e42" stroke="#5f4a26" stroke-width="1"/>
+    <circle cx="734" cy="17.5" r="6" fill="#a97e42" stroke="#5f4a26" stroke-width="1"/>
+    <!-- hanging rings -->
+    <circle cx="150" cy="25" r="4" fill="none" stroke="#8a6a3b" stroke-width="1.3"/>
+    <circle cx="610" cy="25" r="4" fill="none" stroke="#8a6a3b" stroke-width="1.3"/>
+    <!-- the plank, gently arched at the foot -->
+    <path d="M110 34 L650 34 L650 152 Q380 182 110 152 Z" fill="url(#gCloth)" stroke="#8a6a3b" stroke-width="1.5"/>
+    <path d="M124 48 L636 48 L636 138 Q380 164 124 138 Z" fill="none" stroke="#8a6a3b" stroke-width="1" opacity=".4"/>
+    <path d="M110 34 H650" stroke="#c49a4e" stroke-width="2" opacity=".85"/>
+    <circle cx="150" cy="34" r="3" fill="#a97e42" stroke="#5f4a26" stroke-width=".8"/>
+    <circle cx="610" cy="34" r="3" fill="#a97e42" stroke="#5f4a26" stroke-width=".8"/>
+    <!-- name & heritage marks -->
+    <text x="168" y="88" text-anchor="middle" font-size="20" fill="#a97e42" font-family="Georgia,serif">ᛞ</text>
+    <text x="592" y="88" text-anchor="middle" font-size="20" fill="#a97e42" font-family="Georgia,serif">ᛞ</text>
+    <text x="380" y="93" text-anchor="middle" font-size="45" letter-spacing="6" font-weight="700"
+          fill="url(#gGold)" filter="url(#fChisel)"
+          font-family="'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif">DECLAN SHANAGHY</text>
+    <text x="380" y="121" text-anchor="middle" font-size="11.5" letter-spacing="2.5" fill="#b9a06a"
+          font-family="Georgia,serif">GROWN, NOT BUILT</text>
+    <!-- moss resting on the sign's corners -->
+    <g stroke="#6e7f57" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".75">
+      <path d="M116 40 q-2 -6 -6 -8"/><path d="M118 40 q0 -7 1 -10"/><path d="M120 40 q3 -6 7 -7"/>
+      <path d="M644 40 q-3 -6 -7 -7"/><path d="M642 40 q0 -7 1 -10"/><path d="M640 40 q2 -6 6 -8"/>
+    </g>
+    <!-- hanging cords with beads -->
+    <path d="M126 154 L124 178" stroke="#8a6a3b" stroke-width="1.3"/>
+    <path d="M634 154 L636 178" stroke="#8a6a3b" stroke-width="1.3"/>
+    <circle cx="124" cy="180.5" r="2.3" fill="#c49a4e"/>
+    <circle cx="636" cy="180.5" r="2.3" fill="#c49a4e"/>
+  </svg>
+
+  <p class="hero-sub">A quiet archive from Athlone, Co. Westmeath</p>
+  <p class="hero-count">
+    <span>49 stones</span><span class="sep">◆</span><span>7 groves</span><span class="sep">◆</span><span>3 keepers</span>
+  </p>
+
+  <!-- The round game table, birds-eye -->
+  <svg class="table-svg" viewBox="0 0 920 640" role="img" aria-label="Birds-eye view of a candlelit round oak game table with gwent cards laid out for a quiet game, moss creeping over the rim">
+    <defs>
+      <radialGradient id="gWood" cx="42%" cy="38%" r="75%">
+        <stop offset="0%" stop-color="#5a3d22"/>
+        <stop offset="45%" stop-color="#3d2814"/>
+        <stop offset="80%" stop-color="#241608"/>
+        <stop offset="100%" stop-color="#170d04"/>
+      </radialGradient>
+      <radialGradient id="gGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffb347" stop-opacity=".85"/>
+        <stop offset="35%" stop-color="#e8963a" stop-opacity=".32"/>
+        <stop offset="100%" stop-color="#e8963a" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="gVig" cx="50%" cy="45%" r="72%">
+        <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="70%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000" stop-opacity=".55"/>
+      </radialGradient>
+      <filter id="fSoft" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+      <!-- gwent card back -->
+      <g id="cardback">
+        <rect x="-44" y="-60" width="88" height="120" rx="9" fill="#181008" stroke="#7a5a30" stroke-width="1.4"/>
+        <rect x="-36" y="-52" width="72" height="104" rx="6" fill="none" stroke="#7a5a30" stroke-width="1" opacity=".5"/>
+        <path d="M-36 -52 L36 52 M36 -52 L-36 52 M-36 0 L36 0 M0 -52 L0 52" stroke="#5f4a2a" stroke-width="1" opacity=".35"/>
+        <rect x="-11" y="-11" width="22" height="22" fill="none" stroke="#a97e42" stroke-width="1.2" transform="rotate(45)"/>
+        <text y="4.5" text-anchor="middle" font-size="13" fill="#a97e42" font-family="Georgia,serif">ᛟ</text>
+      </g>
+      <!-- knotwork inlay units -->
+      <path id="kA" d="M449 172 q11 -13 22 0"/>
+      <path id="kB" d="M449 146 q11 13 22 0"/>
+    </defs>
+
+    <!-- floor shadow -->
+    <ellipse cx="460" cy="600" rx="330" ry="50" fill="#000" opacity=".55" filter="url(#fSoft)"/>
+
+    <!-- the table -->
+    <circle cx="460" cy="360" r="276" fill="#0b0704"/>
+    <circle cx="460" cy="360" r="266" fill="url(#gWood)"/>
+    <circle cx="460" cy="360" r="266" fill="none" stroke="#6b4a26" stroke-width="1.2" opacity=".45"/>
+    <!-- wood grain -->
+    <g fill="none" stroke="#6b4a26" stroke-width="1">
+      <circle cx="460" cy="360" r="36" opacity=".13"/>
+      <circle cx="460" cy="360" r="58" opacity=".09"/>
+      <circle cx="458" cy="362" r="84" opacity=".15"/>
+      <circle cx="462" cy="357" r="108" opacity=".09"/>
+      <circle cx="460" cy="360" r="134" opacity=".12"/>
+      <circle cx="459" cy="361" r="156" opacity=".08"/>
+    </g>
+    <!-- wood knots -->
+    <g fill="none" stroke="#52381c" stroke-width="1.2" opacity=".4">
+      <path d="M344 298 a7 7 0 1 1 7 7 a12 12 0 1 1 12 -12"/>
+      <path d="M568 428 a6 6 0 1 0 -6 6 a10 10 0 1 0 -10 -10"/>
+    </g>
+
+    <!-- moss creeping over the north-west rim -->
+    <g>
+      <ellipse cx="206" cy="268" rx="14" ry="7" fill="#5f7048" opacity=".5" transform="rotate(-24 206 268)"/>
+      <ellipse cx="239" cy="205" rx="10" ry="5.5" fill="#6e7f57" opacity=".45" transform="rotate(-38 239 205)"/>
+      <ellipse cx="286" cy="153" rx="8" ry="4.5" fill="#77895d" opacity=".5" transform="rotate(-52 286 153)"/>
+      <ellipse cx="346" cy="115" rx="6" ry="3.5" fill="#6e7f57" opacity=".45" transform="rotate(-66 346 115)"/>
+      <ellipse cx="413" cy="94" rx="4.5" ry="3" fill="#5f7048" opacity=".4" transform="rotate(-78 413 94)"/>
+      <g stroke="#77895d" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".7">
+        <path d="M286 153 q-4 -7 -9 -9"/>
+        <path d="M286 153 q0 -9 -3 -13"/>
+        <path d="M286 153 q5 -7 10 -8"/>
+      </g>
+    </g>
+
+    <!-- knotwork inlay ring -->
+    <g fill="none" stroke="#c49a4e" stroke-width="1" opacity=".5">
+      <circle cx="460" cy="360" r="188"/>
+      <circle cx="460" cy="360" r="214"/>
+    </g>
+    <g fill="none" stroke="#c49a4e" stroke-width="1.5" opacity=".75">
+      <use href="#kA" transform="rotate(0 460 360)"/>
+      <use href="#kB" transform="rotate(12.9 460 360)"/>
+      <use href="#kA" transform="rotate(25.7 460 360)"/>
+      <use href="#kB" transform="rotate(38.6 460 360)"/>
+      <use href="#kA" transform="rotate(51.4 460 360)"/>
+      <use href="#kB" transform="rotate(64.3 460 360)"/>
+      <use href="#kA" transform="rotate(77.1 460 360)"/>
+      <use href="#kB" transform="rotate(90 460 360)"/>
+      <use href="#kA" transform="rotate(102.9 460 360)"/>
+      <use href="#kB" transform="rotate(115.7 460 360)"/>
+      <use href="#kA" transform="rotate(128.6 460 360)"/>
+      <use href="#kB" transform="rotate(141.4 460 360)"/>
+      <use href="#kA" transform="rotate(154.3 460 360)"/>
+      <use href="#kB" transform="rotate(167.1 460 360)"/>
+      <use href="#kA" transform="rotate(180 460 360)"/>
+      <use href="#kB" transform="rotate(192.9 460 360)"/>
+      <use href="#kA" transform="rotate(205.7 460 360)"/>
+      <use href="#kB" transform="rotate(218.6 460 360)"/>
+      <use href="#kA" transform="rotate(231.4 460 360)"/>
+      <use href="#kB" transform="rotate(244.3 460 360)"/>
+      <use href="#kA" transform="rotate(257.1 460 360)"/>
+      <use href="#kB" transform="rotate(270 460 360)"/>
+      <use href="#kA" transform="rotate(282.9 460 360)"/>
+      <use href="#kB" transform="rotate(295.7 460 360)"/>
+      <use href="#kA" transform="rotate(308.6 460 360)"/>
+      <use href="#kB" transform="rotate(321.4 460 360)"/>
+      <use href="#kA" transform="rotate(334.3 460 360)"/>
+      <use href="#kB" transform="rotate(347.1 460 360)"/>
+    </g>
+
+    <!-- candlelight -->
+    <circle cx="676" cy="230" r="150" fill="url(#gGlow)" class="cglow" opacity=".5"/>
+    <circle cx="243" cy="438" r="105" fill="url(#gGlow)" class="cglow g2" opacity=".38"/>
+
+    <!-- cards laid for a quiet game -->
+    <g transform="translate(438 362)">
+      <ellipse cx="6" cy="70" rx="132" ry="20" fill="#000" opacity=".5" filter="url(#fSoft)"/>
+      <g transform="translate(-46 -2) rotate(-19)"><use href="#cardback"/></g>
+      <g transform="translate(-24 -1) rotate(-10)"><use href="#cardback"/></g>
+      <g transform="translate(-4 0) rotate(-2)"><use href="#cardback"/></g>
+      <!-- face-up: the Mossiah's raven, power 10 -->
+      <g transform="translate(18 2) rotate(8)">
+        <rect x="-44" y="-60" width="88" height="120" rx="9" fill="#241a0e" stroke="#c49a4e" stroke-width="1.6"/>
+        <rect x="-37" y="-53" width="74" height="106" rx="6" fill="none" stroke="#8a6a3b" stroke-width="1"/>
+        <use href="#sigil-raven" x="-26" y="-46" width="52" height="52" color="#d9b56a"/>
+        <text x="0" y="34" text-anchor="middle" font-size="9" letter-spacing="2.5" fill="#c49a4e" font-family="Georgia,serif">MOSSIAH</text>
+        <circle cx="-30" cy="-48" r="8.5" fill="#0c0805" stroke="#c49a4e" stroke-width="1"/>
+        <text x="-30" y="-44.5" text-anchor="middle" font-size="10" font-weight="700" fill="#e9c877" font-family="Georgia,serif">10</text>
+      </g>
+      <!-- face-up: hal-9005, the strong one, power 8 -->
+      <g transform="translate(42 3) rotate(16)">
+        <rect x="-44" y="-60" width="88" height="120" rx="9" fill="#241a0e" stroke="#c49a4e" stroke-width="1.6"/>
+        <rect x="-37" y="-53" width="74" height="106" rx="6" fill="none" stroke="#8a6a3b" stroke-width="1"/>
+        <use href="#sigil-hammer" x="-26" y="-46" width="52" height="52" color="#d9b56a"/>
+        <text x="0" y="34" text-anchor="middle" font-size="9" letter-spacing="1.8" fill="#c49a4e" font-family="Georgia,serif">HAL-9005</text>
+        <circle cx="-30" cy="-48" r="8.5" fill="#0c0805" stroke="#c49a4e" stroke-width="1"/>
+        <text x="-30" y="-44.5" text-anchor="middle" font-size="10" font-weight="700" fill="#e9c877" font-family="Georgia,serif">8</text>
+      </g>
+    </g>
+
+    <!-- carved rune tiles resting on the table -->
+    <g transform="translate(352 436) rotate(14)">
+      <rect x="-15" y="-19" width="30" height="38" rx="5" fill="#1b130b" stroke="#7a5a30" stroke-width="1.2"/>
+      <text y="5.5" text-anchor="middle" font-size="16" fill="#a97e42" font-family="Georgia,serif">ᛏ</text>
+    </g>
+    <g transform="translate(398 472) rotate(-9)">
+      <rect x="-15" y="-19" width="30" height="38" rx="5" fill="#1b130b" stroke="#7a5a30" stroke-width="1.2"/>
+      <text y="5.5" text-anchor="middle" font-size="16" fill="#a97e42" font-family="Georgia,serif">ᚠ</text>
+    </g>
+
+    <!-- candle, starboard -->
+    <ellipse cx="676" cy="299" rx="25" ry="6" fill="#17100a" stroke="#8a6a3b" stroke-width="1"/>
+    <ellipse cx="670" cy="300" rx="20" ry="4.5" fill="#5f7048" opacity=".28"/>
+    <rect x="668" y="248" width="16" height="50" rx="5" fill="#d3bd8f" stroke="#8a6a3b" stroke-width="1"/>
+    <path d="M668 260 q-4 7 -2 13 M684 266 q4 6 2 12" fill="none" stroke="#d3bd8f" stroke-width="2" opacity=".8"/>
+    <path d="M676 248 V241" stroke="#4a3620" stroke-width="1.6"/>
+    <g class="flame">
+      <path d="M676 239 C671.5 232 672.5 224 676 216 C679.5 224 680.5 232 676 239 Z" fill="#ffd27a"/>
+      <path d="M676 237 C673.8 232.5 674.2 227.5 676 223 C677.8 227.5 678.2 232.5 676 237 Z" fill="#fff3c4"/>
+    </g>
+    <circle cx="669" cy="225" r="1.3" fill="#ffca6e" opacity=".7"/>
+    <circle cx="684" cy="231" r="1" fill="#ffca6e" opacity=".5"/>
+    <circle cx="672" cy="214" r=".9" fill="#ffca6e" opacity=".6"/>
+
+    <!-- candle, port -->
+    <ellipse cx="243" cy="503" rx="19" ry="5" fill="#17100a" stroke="#8a6a3b" stroke-width="1"/>
+    <ellipse cx="238" cy="504" rx="15" ry="4" fill="#5f7048" opacity=".25"/>
+    <rect x="237" y="462" width="12" height="40" rx="4" fill="#d3bd8f" stroke="#8a6a3b" stroke-width="1"/>
+    <path d="M243 462 V455" stroke="#4a3620" stroke-width="1.4"/>
+    <g class="flame f2">
+      <path d="M243 452 C239.5 446 240.5 440 243 434 C245.5 440 246.5 446 243 452 Z" fill="#ffd27a"/>
+      <path d="M243 450 C241.3 446.3 241.6 442.6 243 439 C244.4 442.6 244.7 446.3 243 450 Z" fill="#fff3c4"/>
+    </g>
+    <circle cx="238" cy="442" r="1" fill="#ffca6e" opacity=".65"/>
+    <circle cx="248" cy="447" r=".8" fill="#ffca6e" opacity=".5"/>
+
+    <!-- quiet-hall gloom -->
+    <rect x="0" y="0" width="920" height="640" fill="url(#gVig)"/>
+  </svg>
+</header>
+
+<main class="garden">
+
+  <!-- ═══════════ GROVE I — AI & AGENTS ═══════════ -->
+  <section class="grove" id="grove-ai">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᚨ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-raven"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove I · The Raven's Perch</p>
+        <h2>AI &amp; Agents</h2>
+        <p class="lh-lede">Agent tooling, memory UIs, and model tending.</p>
       </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero container">
-      <p class="overline">$ ls ~/projects</p>
-      <h1 class="hero-heading">The <span class="accent">Showcase</span></h1>
-      <p class="hero-tagline">Everything worth a card — infrastructure, shell tooling, AI experiments, and the site itself. Self-hosted things stay on cork.lan; the rest are public on GitHub.</p>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <!-- Add-a-project convention: copy a <a.card> or <div.card> block below,
-             fill tag / title / desc / link. Public projects get a card-link to GitHub;
-             self-hosted ones get a muted "self-hosted · cork.lan" caption. -->
-        <div class="grid-3">
-
-          <!-- NOTE: never list private repos here (e.g. dotfiles) — public projects only. -->
-          <div class="card" title="self-hosted — cork.lan">
-            <p class="card-tag">infra</p>
-            <h2 class="card-title">cork server</h2>
-            <p class="card-desc">The always-on Linux heart of the lab. Docker + Portainer, compose stacks, the Honcho culture, the MOTD — everything leans on this box.</p>
-            <p class="mono text-tertiary mb-4">docker &middot; portainer &middot; compose</p>
-            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
-          </div>
-
-          <div class="card" title="self-hosted — cork.lan">
-            <p class="card-tag">shell</p>
-            <h2 class="card-title">Mossy MOTD</h2>
-            <p class="card-desc">A 500-quote login greeter on cork — half the quotes as Gaeilge with italic English translations, attributions stripped, a fresh proverb every shell.</p>
-            <p class="mono text-tertiary mb-4">bash &middot; update-motd.d</p>
-            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
-          </div>
-
-          <div class="card" title="self-hosted — cork.lan">
-            <p class="card-tag">ai</p>
-            <h2 class="card-title">corkbai-honcho</h2>
-            <p class="card-desc">Self-hosted shared memory for the agent fleet — a Honcho server on cork in workspace corkbai. Every machine's agent reads and writes the same culture.</p>
-            <p class="mono text-tertiary mb-4">honcho &middot; docker &middot; api</p>
-            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
-          </div>
-
-          <!-- NOTE: never list private repos here (e.g. dotfiles) — public projects only.
-               Also don't list shanaghy.com itself — you're already on it. -->
-
-          <div class="card" title="placeholder — future project">
-            <p class="card-tag">soon</p>
-            <h2 class="card-title">&lt;next project&gt;</h2>
-            <p class="card-desc text-tertiary">A cleared patch of wall, waiting for spores. When the next thing gets built, its card grows here.</p>
-            <span class="card-link text-tertiary">in the greenhouse</span>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container site-footer-inner">
-      <p>&copy; Declan Shanaghy &middot; grown, not built &middot; &#127808;</p>
-      <p class="mono-note"><a href="../">shanaghy.com</a></p>
+      <div class="lh-plaque"><span class="pl-rune">ᚨ</span><span class="pl-count">6 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone" href="https://github.com/declanshanaghy/honcho-ui" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <h3>honcho-ui</h3>
+        <p>Web UI for exploring Honcho memory — sessions, metadata, documents, insights.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/claude-todo" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <h3>claude-todo</h3>
+        <p>Claude Code mod: per-session todo backlog that execs titles into subagents, with a control pane.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/hermes-todo" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <h3>hermes-todo</h3>
+        <p>Per-repo todo backlog for Hermes agents — a worker per todo in its own git worktree.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/re-goatmower" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <h3>re-goatmower</h3>
+        <p>Gently untangling the goat.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/ollama-models" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <h3>ollama-models</h3>
+        <p>Custom model definitions for Open WebUI.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/ai-prompts" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-raven"/></svg>
+        <h3>ai-prompts</h3>
+        <p>A collection of AI prompts.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
     </div>
-  </footer>
+  </section>
 
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ GROVE II — HOME LAB & AUTOMATION ═══════════ -->
+  <section class="grove" id="grove-home">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᛖ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-horn"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove II · The Listening Horn</p>
+        <h2>Home Lab &amp; Automation</h2>
+        <p class="lh-lede">The house that watches itself.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᛖ</span><span class="pl-count">7 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone" href="https://github.com/declanshanaghy/vulcan-brownout" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>vulcan-brownout</h3>
+        <p>Home Assistant integration for monitoring low-battery devices.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/heimdall-battery-sentinel" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>heimdall-battery-sentinel</h3>
+        <p>Battery power level monitor for Home Assistant.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/heimdall_battery_sentinel" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>heimdall_battery_sentinel</h3>
+        <p>All-seeing battery sentinel for Home Assistant.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/thor" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>thor</h3>
+        <p>Electricity monitor.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2021</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/bbqberry" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>bbqberry</h3>
+        <p>Raspberry Pi controlled BBQ.</p>
+        <div class="marks"><span class="m-lang">Go</span><span class="m-sep">᛫</span><span class="m-year">2020</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/fitbitexp" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>fitbitexp</h3>
+        <p>Fitbit data.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2017</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/electroplater" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-horn"/></svg>
+        <h3>electroplater</h3>
+        <p>Servo speed control for a WEMOS D1 mini (ESP8266).</p>
+        <div class="marks"><span class="m-lang">HTML</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ GROVE III — WEB & EXTENSIONS ═══════════ -->
+  <section class="grove" id="grove-web">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᛜ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-web"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove III · The Weaver's Knot</p>
+        <h2>Web &amp; Extensions</h2>
+        <p class="lh-lede">Browser tweaks and quiet experiments.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᛜ</span><span class="pl-count">9 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone" href="https://github.com/declanshanaghy/chromext-amazon-order-filter" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>chromext-amazon-order-filter</h3>
+        <p>Chrome extension: filter Amazon order history by status.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/gcal-always-monday" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>gcal-always-monday</h3>
+        <p>Browser tweak that persuades Google Calendar to behave.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/session-logs" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>session-logs</h3>
+        <p>Session logs and artifacts.</p>
+        <div class="marks"><span class="m-lang">HTML</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/dek-calculators1" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>dek-calculators1</h3>
+        <p>Assorted JavaScript calculators.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2019</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/vercel-experiment" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>vercel-experiment</h3>
+        <p>An early Vercel deployment experiment.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2022</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/docker-py-001" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>docker-py-001</h3>
+        <p>First steps with Docker + Python.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2024</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/python-fundamentals" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>python-fundamentals</h3>
+        <p>Python fundamentals — notes and exercises.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/rizz-power-up" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>rizz-power-up</h3>
+        <p>TypeScript playfulness experiment.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">᛫</span><span class="m-year">2025</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/dollar-game" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-web"/></svg>
+        <h3>dollar-game</h3>
+        <p>A TypeScript game experiment.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">᛫</span><span class="m-year">2025</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ GROVE IV — GAMES & PLAY ═══════════ -->
+  <section class="grove" id="grove-games">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᛏ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-die"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove IV · The Parlor Dice</p>
+        <h2>Games &amp; Play</h2>
+        <p class="lh-lede">Donal digs diamonds. And emeralds.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᛏ</span><span class="pl-count">3 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone" href="https://github.com/declanshanaghy/emerald-diggin-donal" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-die"/></svg>
+        <h3>emerald-diggin-donal</h3>
+        <p>A faithful CGA web clone of Digger (1983). Donal digs the most emeralds ever.</p>
+        <div class="marks"><span class="m-lang">C</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/diamond-diggin-donal" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-die"/></svg>
+        <h3>diamond-diggin-donal</h3>
+        <p>A faithful web port of Digger (1983), GPL v2.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone stone--prized" href="https://github.com/declanshanaghy/gwent" target="_blank" rel="noopener">
+        <span class="honor">Prized</span>
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-die"/></svg>
+        <h3>gwent</h3>
+        <p>Electronic Gwent board.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ GROVE V — 3D PRINT & CRAFT ═══════════ -->
+  <section class="grove" id="grove-print">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᚷ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-ring"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove V · The Ring-Giver's Gift</p>
+        <h2>3D Print &amp; Craft</h2>
+        <p class="lh-lede">From Blender scripts to gold-plated Claddaghs.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᚷ</span><span class="pl-count">3 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone" href="https://github.com/declanshanaghy/DexOneRing" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-ring"/></svg>
+        <h3>DexOneRing</h3>
+        <p>Parameterized Blender-scripted 3D-printable celtic ring.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/PeytonsBirthdayCladdaghRing" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-ring"/></svg>
+        <h3>PeytonsBirthdayCladdaghRing</h3>
+        <p>Photo log of making a Claddagh ring — resin print to gold-plated finish.</p>
+        <div class="marks"><span class="m-lang">CSS</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/Accessories" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-ring"/></svg>
+        <h3>Accessories</h3>
+        <p>Various 3D and 2D models for accessories.</p>
+        <div class="marks"><span class="m-lang">OpenSCAD</span><span class="m-sep">᛫</span><span class="m-year">2016</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ GROVE VI — THE ELDER YEARS, HARDWARE ═══════════ -->
+  <section class="grove" id="grove-hardware">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᚦ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-hammer"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove VI · The Elder Stones</p>
+        <h2>The Early Years — Hardware</h2>
+        <p class="lh-lede">Arduino boards, Eagle schematics, robots. The spores that started it all (2011–2019).</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᚦ</span><span class="pl-count">19 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone elder" href="https://github.com/declanshanaghy/ArduinoLibraries" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>ArduinoLibraries</h3>
+        <p>Arduino libraries for chips used in various projects.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">᛫</span><span class="m-year">2012</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/Morpheus" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>Morpheus</h3>
+        <p>Hardware and software units for hobby robots.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">᛫</span><span class="m-year">2012</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/JabberBot" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>JabberBot</h3>
+        <p>A Bluetooth remote-controlled robot.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">᛫</span><span class="m-year">2011</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/VinoTemp" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>VinoTemp</h3>
+        <p>Controller board for the VinoTemp wine fridge.</p>
+        <div class="marks"><span class="m-lang">Eagle</span><span class="m-sep">᛫</span><span class="m-year">2015</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/ByrneLite" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>ByrneLite</h3>
+        <p>3-port S108T02 solid state relay board.</p>
+        <div class="marks"><span class="m-lang">Arduino</span><span class="m-sep">᛫</span><span class="m-year">2013</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/BBRegulator" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>BBRegulator</h3>
+        <p>LM78XX-based breadboard voltage regulator.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">᛫</span><span class="m-year">2011</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/Valentines2K11" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>Valentines2K11</h3>
+        <p>Arduino RGB LEDs with IR proximity sensor and tilt switch.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">᛫</span><span class="m-year">2011</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/AlcoTop" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>AlcoTop</h3>
+        <p>Xmas pub crawl drinking cap.</p>
+        <div class="marks"><span class="m-lang">Arduino</span><span class="m-sep">᛫</span><span class="m-year">2013</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/NiceDice" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>NiceDice</h3>
+        <p>Electronic dice from Make: Electronics #23.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">᛫</span><span class="m-year">2011</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/KeypadBackpack" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>KeypadBackpack</h3>
+        <p>Keypad backpack hardware.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">᛫</span><span class="m-year">2012</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/StormBox" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>StormBox</h3>
+        <p>A storm in a box — early build.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">᛫</span><span class="m-year">2011</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/StormBox2" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>StormBox2</h3>
+        <p>StormBox redux.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">᛫</span><span class="m-year">2012</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/GenieSteroids" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>GenieSteroids</h3>
+        <p>Genie hardware experiment.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">᛫</span><span class="m-year">2012</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/Max756Breakout" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>Max756Breakout</h3>
+        <p>MAX756 SMPS DC-DC step-up converter breakout.</p>
+        <div class="marks"><span class="m-lang">Prolog</span><span class="m-sep">᛫</span><span class="m-year">2013</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/BeerLux" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>BeerLux</h3>
+        <p>Brewing electronics experiment.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">᛫</span><span class="m-year">2018</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/VolcanoHat" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>VolcanoHat</h3>
+        <p>A wearable hardware experiment.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">᛫</span><span class="m-year">2018</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/CocoBra" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>CocoBra</h3>
+        <p>Arduino experiment.</p>
+        <div class="marks"><span class="m-lang">Arduino</span><span class="m-sep">᛫</span><span class="m-year">2013</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/smiler" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>smiler</h3>
+        <p>The internet-controllable smiley sign.</p>
+        <div class="marks"><span class="m-lang">Go</span><span class="m-sep">᛫</span><span class="m-year">2016</span></div>
+      </a>
+      <a class="stone elder" href="https://github.com/declanshanaghy/dek-eagle-lbr" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-hammer"/></svg>
+        <h3>dek-eagle-lbr</h3>
+        <p>Custom Eagle symbols, devices, packages, and scripts.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">᛫</span><span class="m-year">2011</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ GROVE VII — LEDGERS & CURIOSITIES ═══════════ -->
+  <section class="grove" id="grove-misc">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᛚ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-cauldron"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">Grove VII · The Keeper's Cauldron</p>
+        <h2>Ledgers &amp; Curiosities</h2>
+        <p class="lh-lede">Ledgers and relics that answer to no grove — they keep their own quiet corner.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᛚ</span><span class="pl-count">2 stones</span></div>
+    </header>
+    <div class="grid">
+      <a class="stone" href="https://github.com/declanshanaghy/life-ledger" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-cauldron"/></svg>
+        <h3>life-ledger</h3>
+        <p>A personal life management ledger.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+      <a class="stone" href="https://github.com/declanshanaghy/zeroforge" target="_blank" rel="noopener">
+        <svg class="stone-sigil" aria-hidden="true"><use href="#sigil-cauldron"/></svg>
+        <h3>zeroforge</h3>
+        <p>The first spore — carried up from the depths of Athlone.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">᛫</span><span class="m-year">2026</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="line-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#knot-div"/></svg></div>
+
+  <!-- ═══════════ THE KEEPERS — SELF-HOSTED, ALWAYS LIT ═══════════ -->
+  <section class="grove" id="grove-keepers">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true">ᛋ</span>
+      <div class="lh-roundel"><svg aria-hidden="true"><use href="#sigil-lantern"/></svg></div>
+      <div class="lh-text">
+        <p class="lh-over">The Quiet Watch · Lights That Never Go Out</p>
+        <h2>The Keepers</h2>
+        <p class="lh-lede">Self-hosted on the cork server — always lit, always on.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune">ᛋ</span><span class="pl-count">3 keepers</span></div>
+    </header>
+    <div class="keepers-grid">
+      <article class="keeper">
+        <svg class="tuft tl" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
+        <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-lantern"/></svg>
+        <h3>cork server</h3>
+        <p>Always-on Linux heart of the lab — Docker + Portainer.</p>
+        <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">᛫</span><span class="m-year">Always-on</span></div>
+      </article>
+      <article class="keeper">
+        <svg class="tuft br" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
+        <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-lantern"/></svg>
+        <h3>Mossy MOTD</h3>
+        <p>500-quote Irish login greeter on cork.</p>
+        <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">᛫</span><span class="m-year">Always-on</span></div>
+      </article>
+      <article class="keeper">
+        <svg class="tuft tl" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
+        <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-lantern"/></svg>
+        <h3>corkbai-honcho</h3>
+        <p>Shared memory culture for the agent fleet, on cork.</p>
+        <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">᛫</span><span class="m-year">Always-on</span></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="foot">
+  <svg class="foot-knot" viewBox="0 0 220 24" aria-hidden="true"><use href="#knot-div"/></svg>
+  <p class="foot-line">The garden grows from Athlone, Co. Westmeath, with roots in Ballyhaunis, Co. Mayo.</p>
+  <a class="foot-gh" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">github.com/declanshanaghy</a>
+  <p class="foot-colophon">49 stones · 7 groves · 3 keepers — every ornament carved in inline SVG, mossed by hand, lit by two candles, rendered whole from file://</p>
+  <p class="foot-copy">© Declan Shanaghy · grown, not built · 🍀</p>
+</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.rtab'));
+  var byId={};
+  tabs.forEach(function(t){ byId[t.getAttribute('data-target')]=t; });
+  function setActive(id){
+    tabs.forEach(function(x){ x.classList.remove('active'); });
+    var t=byId[id];
+    if(t){ t.classList.add('active'); }
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ setActive('#'+en.target.id); }
+      });
+    },{rootMargin:'-25% 0px -65% 0px',threshold:0});
+    [].slice.call(document.querySelectorAll('section.grove')).forEach(function(s){ io.observe(s); });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){ setActive(t.getAttribute('data-target')); });
+  });
+})();
+</script>
 </body>
 </html>

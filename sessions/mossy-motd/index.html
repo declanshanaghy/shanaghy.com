@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mossy motd · sessions · shanaghy.com</title>
+<style>
+  :root {
+    --bg: #0b0f0c;
+    --fg: #a8c5ad;
+    --green: #62d483;
+    --amber: #e2b93b;
+    --dim: #4a6b50;
+    --card: #101711;
+    --border: #1e2b21;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  header { border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; margin-bottom: 2.5rem; }
+  .prompt { color: var(--green); }
+  .prompt::before { content: "$ "; color: var(--dim); }
+  h1 { margin: 0.5rem 0 0; font-size: 1.4rem; color: var(--green); font-weight: 600; }
+  .sub { color: var(--dim); margin-top: 0.35rem; font-size: 0.85rem; }
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+  .card .date { color: var(--amber); font-size: 0.8rem; }
+  .card h2 { margin: 0.2rem 0 0.4rem; font-size: 1.05rem; color: var(--green); font-weight: 600; }
+  .card h2 a { color: var(--green); }
+  .card .blurb { margin: 0 0 0.6rem; color: var(--fg); }
+  .card .link { font-size: 0.85rem; color: var(--dim); }
+  .card .link a { color: var(--green); }
+  .card .link a::after { content: " →"; }
+  footer { margin-top: 3rem; color: var(--dim); font-size: 0.8rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  footer a { color: var(--dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="prompt">ls ~/sessions/mossy-motd/</div>
+    <h1>Mossy MOTD — sessions</h1>
+    <div class="sub"><a href="../">← all sessions</a></div>
+  </header>
+
+  <!-- PUBLISHING: add one card per session, newest first -->
+  <article class="card">
+    <div class="date">2026-11-01</div>
+    <h2><a href="./ballad-of-many-mossys.html">The Ballad of Many Mossys</a></h2>
+    <p class="blurb">How the agents of the fleet got their names — the decree, the Mossiah, and the little moss on the Mac.</p>
+    <div class="link"><a href="./ballad-of-many-mossys.html">read session</a></div>
+  </article>
+
+  <footer>
+    // drop a file in sessions/mossy-motd/, add a card here, commit, push.
+  </footer>
+</div>
+</body>
+</html>
