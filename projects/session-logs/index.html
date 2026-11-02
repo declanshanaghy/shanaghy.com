@@ -254,7 +254,25 @@ img{display:block}
   .pla-rune{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
+
+.filmplay{position:relative;width:100%;max-width:480px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(201,162,39,.28);background-size:cover;background-position:center;cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);margin:6px 0}
+.filmplay::before{content:"";position:absolute;inset:0;background:rgba(6,4,3,.34)}
+.filmplay::after{content:"";position:absolute;left:50%;top:50%;width:52px;height:52px;transform:translate(-50%,-50%);
+  border-radius:50%;background:radial-gradient(circle at 38% 32%, #ffbd5e, #b97e2e 78%);
+  box-shadow:0 0 22px rgba(232,163,61,.5), inset 0 -4px 10px rgba(0,0,0,.45);transition:transform .25s}
+.filmplay:hover::after{transform:translate(-50%,-50%) scale(1.08)}
+.filmplay iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.film-title{display:block;font-family:var(--mono,monospace);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:#9b8660;margin-top:6px;max-width:480px;text-decoration:none}
+.trail{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.trail a{display:inline-block;text-decoration:none;font-size:12.5px;letter-spacing:1px;color:var(--gold);
+  padding:7px 16px;border:1px solid rgba(138,106,59,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.55),rgba(10,7,4,.55));transition:color .25s,border-color .25s}
+.trail a:hover{color:var(--amber2);border-color:rgba(232,163,61,.55)}
 </style>
+
 </head>
 <body>
 
@@ -286,7 +304,7 @@ img{display:block}
   <span class="ph-rune" aria-hidden="true">ᚔ</span>
   <a class="crumb" href="../">ᚔ back to the groves</a>
   <div class="signage">
-    <img class="ph-icon" src="../../assets/icons/scroll.png" alt="" width="64" height="64">
+    <img class="ph-icon" src="../../assets/icons/projects/session-logs.png" alt="" width="72" height="72">
     <h1>session-logs</h1>
     <p class="ph-grove"><span class="rune">ᚔ</span>Grove III · The Weaver's Knot</p>
   </div>
@@ -318,6 +336,14 @@ img{display:block}
 </main>
 
 <!-- ═══════════ FOOTER ═══════════ -->
+
+  <div class="plaque-head"><div class="pla-roundel">ᚏ</div><div class="pla-text"><p class="over">Where The Paths Cross</p><h2>The Trail</h2></div><span class="pla-rune">ᚏ</span></div>
+  <div class="slab">
+    <p class="foot-line">what pertains, tied by hand:</p>
+    <div class="trail">
+      <a href="https://github.com/declanshanaghy/session-logs" target="_blank" rel="noopener">the repo itself ↗</a>
+    </div>
+  </div>
 <footer class="foot">
   <div class="foot-knot" aria-hidden="true"><svg viewBox="0 0 220 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12 Q30 2 50 12 T90 12 T130 12 T170 12 T210 12"/><circle cx="110" cy="12" r="4.5" stroke-width="1.1"/><path d="M106 12 L110 8 L114 12 L110 16 Z"/></svg></div>
   <p class="foot-line">Copied so the words will not change — ink drying under a small candle.</p>
@@ -328,3 +354,11 @@ img{display:block}
 
 </body>
 </html>
+
+<script>
+(function(){document.addEventListener('click',function(e){
+  var t=e.target.closest('.filmplay');if(!t)return;
+  e.preventDefault();var v=t.getAttribute('data-v');
+  t.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v+'?autoplay=1&rel=0" title="film" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  t.style.cursor='default';
+});})();</script>
