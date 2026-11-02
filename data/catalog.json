@@ -1528,6 +1528,43 @@
           "desc": "Shared Honcho memory culture for the agent fleet, on cork."
         }
       ]
+    },
+    "instructables": {
+      "member": "declanshanaghy",
+      "profile_url": "https://www.instructables.com/member/declanshanaghy/",
+      "joined": "2011-01",
+      "stats": {
+        "instructables": 3,
+        "views": 35912,
+        "favorites": 46,
+        "followers": 6,
+        "medals": [
+          "10K+ Views (bronze)"
+        ]
+      },
+      "bio": "I Make stuff. Use Arduino with DIY manufactured PCBs. Love the precision of CNC, Getting into 3D Printing. Someday I'll have a CNC mill. :-)",
+      "note": "earliest public timestamp in the whole maker record — Jan 2011, same era as the first Arduino repos",
+      "sync": "browser scrape of profile page (no public API)",
+      "instructables": [
+        {
+          "title": "XBox 360 Mini Stand",
+          "url": "https://www.instructables.com/XBox-360-Mini-Stand",
+          "cross_ref": "Accessories",
+          "note": "the printed/crafted accessory stand"
+        },
+        {
+          "title": "JabberBot! the Arduino Robot With an ATMega Brain and Bluetooth Braun!",
+          "url": "https://www.instructables.com/JabberBot-The-Arduino-robot-with-an-ATMega-brain-",
+          "cross_ref": "JabberBot",
+          "note": "the rover's own writeup — pairs with the two YouTube films of it"
+        },
+        {
+          "title": "Analog Keypad Backpack",
+          "url": "https://www.instructables.com/Analog-Keypad-Backpack",
+          "cross_ref": "KeypadBackpack",
+          "note": "the keypad backpack board's build log"
+        }
+      ]
     }
   }
 }
