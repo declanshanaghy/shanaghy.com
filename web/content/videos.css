@@ -317,3 +317,12 @@ img{display:block}
 .brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
 a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
 a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
+
+/* full-bleed responsive layout — override */
+main,.garden,.garden > *,.profile,section.grove,.paths-grid,.keepers-grid,.grid,.vgrid,.slab,.hero{max-width:100%}
+main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:border-box}
+.hero{padding-left:max(16px,4vw);padding-right:max(16px,4vw)}
+.grid,.vgrid,.keepers-grid,.paths-grid{grid-template-columns:repeat(auto-fill,minmax(min(280px,42vw),1fr));width:100%}
+.slab,.plaque-head{max-width:none;width:100%}
+img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
+@media (min-width:1600px){ img.hero3d{border-radius:16px} }

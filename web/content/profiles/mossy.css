@@ -84,3 +84,12 @@ body{font-family:var(--serif);color:var(--parch);background:
 .memory .m-when{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:#7a6a4a;margin-bottom:4px;text-transform:uppercase}
 .memory p{margin:0;font-size:13px;line-height:1.65;color:#b6a37c;font-style:italic}
 .memory p em{color:#cbb086}
+
+/* full-bleed responsive layout — override */
+main,.garden,.garden > *,.profile,section.grove,.paths-grid,.keepers-grid,.grid,.vgrid,.slab,.hero{max-width:100%}
+main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:border-box}
+.hero{padding-left:max(16px,4vw);padding-right:max(16px,4vw)}
+.grid,.vgrid,.keepers-grid,.paths-grid{grid-template-columns:repeat(auto-fill,minmax(min(280px,42vw),1fr));width:100%}
+.slab,.plaque-head{max-width:none;width:100%}
+img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
+@media (min-width:1600px){ img.hero3d{border-radius:16px} }
