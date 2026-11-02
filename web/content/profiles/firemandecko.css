@@ -85,3 +85,11 @@ img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;bor
 
 a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
 a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
+
+.sessionslist{margin-top:8px}
+.sessionslist a{display:block;margin:10px 0;padding:11px 16px;text-decoration:none;
+  background:rgba(10,7,4,.55);border:1px solid rgba(138,106,59,.35);border-radius:8px 2px 8px 2px;
+  color:var(--gold);font-size:13.5px;line-height:1.5;transition:border-color .25s,color .25s}
+.sessionslist a:hover{border-color:rgba(232,163,61,.7);color:var(--amber2)}
+.sessionslist a .s-when{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:#7a6a4a;
+  display:block;margin-bottom:3px;text-transform:uppercase}
