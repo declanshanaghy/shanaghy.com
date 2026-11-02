@@ -44,7 +44,7 @@ def footer(depth):
             '  <a class="foot-gh" href="%s" target="_blank" rel="noopener">'
             'github.com/declanshanaghy</a>\n'
             '  <p class="foot-colophon">\n    %s\n  </p>\n'
-            '  <p class="foot-copy">© Declan Shanaghy · %s · 🍀</p>\n</footer>'
+            '  <p class="foot-copy">The Forge of FiremanDecko · %s · 🍀</p>\n</footer>'
             % (GH, cols, MOTTO))
 
 def pages():
