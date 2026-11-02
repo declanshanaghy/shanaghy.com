@@ -258,6 +258,13 @@ img{display:block}
   filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(232,163,61,.12));
   border-radius:6px;border:1px solid rgba(201,162,39,.3)}
 .brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
+.keeper-page{position:relative}
+.keeper-page h3 a{text-decoration:none;color:inherit}
+.keeper-page h3 a:hover{color:var(--amber2)}
+.sessionlist{list-style:none;margin:10px 0 0;padding:0}
+.sessionlist li{font-size:13.5px;line-height:1.7;color:#b6a37c;margin-bottom:8px}
+.sessionlist li a{color:var(--gold);text-decoration:none}
+.sessionlist li a:hover{color:var(--amber2)}
 </style>
 
 <style>
@@ -313,10 +320,30 @@ img{display:block}
   </div>
 
   <div class="plaque-head"><div class="pla-roundel">ᚔ</div><div class="pla-text"><p class="over">Filed By Project</p><h2>The Beds</h2></div><span class="pla-rune">ᚔ</span></div>
-  <div class="slab">
-    <p><strong><a href="./mossy-motd/">Mossy-motd</a></strong> — the 500-line threshold greeter of cork. <em>1 session:</em> <a href="./mossy-motd/ballad-of-many-mossys.html">A race of many Mossys, one culture, many lives.</a> — how the fleet got its names: the decree, the Mossiah, and the little moss on the Mac.</p>
-    <p><strong><a href="./cork-server/">cork-server</a></strong> — the always-on heart of the lab. <em>No sessions published yet — the bed is turned, waiting for seed.</em></p>
-    <p><strong><a href="./corkbai-honcho/">corkbai-honcho</a></strong> — the shared memory culture on cork. <em>No sessions published yet.</em></p>
+  <div class="keepers-grid">
+    <article class="keeper keeper-page">
+      <img class="keeper-sigil3d" src="../assets/icons/scroll.png" alt="" width="56" height="56" loading="lazy">
+      <h3><a href="./mossy-motd/">Mossy-motd</a></h3>
+      <p>The 500-line threshold greeter of cork. <em>1 session:</em></p>
+      <ul class="sessionlist">
+        <li><a href="./mossy-motd/ballad-of-many-mossys.html">A race of many Mossys, one culture, many lives.</a> — how the fleet got its names: the decree, the Mossiah, and the little moss on the Mac.</li>
+      </ul>
+      <div class="marks"><span class="m-lang">1 session</span><span class="m-sep">᛫</span><span class="m-year">cork</span></div>
+    </article>
+    <article class="keeper keeper-page">
+      <img class="keeper-sigil3d" src="../assets/icons/candle.png" alt="" width="56" height="56" loading="lazy">
+      <h3><a href="./cork-server/">cork-server</a></h3>
+      <p>The always-on heart of the lab.</p>
+      <p><em>No sessions published yet — the bed is turned, waiting for seed.</em></p>
+      <div class="marks"><span class="m-lang">awaiting seed</span><span class="m-sep">᛫</span><span class="m-year">cork</span></div>
+    </article>
+    <article class="keeper keeper-page">
+      <img class="keeper-sigil3d" src="../assets/icons/webknot.png" alt="" width="56" height="56" loading="lazy">
+      <h3><a href="./corkbai-honcho/">corkbai-honcho</a></h3>
+      <p>The shared memory culture on cork.</p>
+      <p><em>No sessions published yet.</em></p>
+      <div class="marks"><span class="m-lang">awaiting seed</span><span class="m-sep">᛫</span><span class="m-year">cork</span></div>
+    </article>
   </div>
 
 </main>
