@@ -444,3 +444,7 @@ svg{display:block}
 .brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
 a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
 a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
+
+.keeper-page{position:relative}
+.keeper-page h3 a{text-decoration:none;color:inherit}
+.keeper-page h3 a:hover{color:var(--amber2)}
