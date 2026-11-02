@@ -384,6 +384,9 @@ img.stone-sigil:hover{filter:drop-shadow(0 0 10px rgba(232,163,61,.5))}
 .stone:hover{border-color:rgba(232,163,61,.45)}
 .stone:hover .stone-sigil{filter:drop-shadow(0 0 10px rgba(232,163,61,.5)) drop-shadow(0 3px 4px rgba(0,0,0,.8))}
 .stone .honor{position:relative;z-index:2}
+.keeper-page{position:relative}
+.keeper-page h3 a{text-decoration:none;color:inherit}
+.keeper-page h3 a:hover{color:var(--amber2)}
 </style>
 </head>
 <body>
@@ -1320,24 +1323,24 @@ img.stone-sigil:hover{filter:drop-shadow(0 0 10px rgba(232,163,61,.5))}
       <div class="lh-plaque"><span class="pl-rune">ᚑ</span><span class="pl-count">3 keepers</span></div>
     </header>
     <div class="keepers-grid">
-      <article class="keeper">
+      <article class="keeper keeper-page"><a class="stone-link" href="./cork-server/" aria-label="cork-server"></a>
         <svg class="tuft tl" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
         <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-lantern"/></svg>
-        <h3>cork server</h3>
+        <h3><a href="./cork-server/">cork server</a></h3>
         <p>Always-on Linux heart of the lab — Docker + Portainer.</p>
         <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">᛫</span><span class="m-year">Always-on</span></div>
       </article>
-      <article class="keeper">
+      <article class="keeper keeper-page"><a class="stone-link" href="./mossy-motd/" aria-label="mossy-motd"></a>
         <svg class="tuft br" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
         <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-lantern"/></svg>
-        <h3>Mossy MOTD</h3>
+        <h3><a href="./mossy-motd/">Mossy MOTD</a></h3>
         <p>500-quote Irish login greeter on cork.</p>
         <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">᛫</span><span class="m-year">Always-on</span></div>
       </article>
-      <article class="keeper">
+      <article class="keeper keeper-page"><a class="stone-link" href="./corkbai-honcho/" aria-label="corkbai-honcho"></a>
         <svg class="tuft tl" viewBox="0 0 48 24" aria-hidden="true"><use href="#moss-tuft"/></svg>
         <svg class="keeper-sigil" aria-hidden="true"><use href="#sigil-lantern"/></svg>
-        <h3>corkbai-honcho</h3>
+        <h3><a href="./corkbai-honcho/">corkbai-honcho</a></h3>
         <p>Shared memory culture for the agent fleet, on cork.</p>
         <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">᛫</span><span class="m-year">Always-on</span></div>
       </article>
