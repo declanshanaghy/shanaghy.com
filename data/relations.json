@@ -1,0 +1,999 @@
+{
+  "$comment": "Video↔repo relations v2. kind=direct: video OF the repo itself. kind=parallel: colloquial gaming kin — no dedicated gaming section exists; every game clip is planted beside its parallel repo in the garden. family: family album (not gaming, no repo). Arcade catch-all: untamed worlds drain to the digger's field (diamond-diggin-donal).",
+  "updated": "2026-11-02",
+  "ties": [
+    {
+      "video": "3WIOhHJPuko",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "gjvlCGmthA4",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "-24i-qpZYj4",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "ifeBhGhiBD4",
+      "repo": "JabberBot",
+      "kind": "parallel",
+      "reason": "the robot hound pack — distant kin of the bluetooth rover"
+    },
+    {
+      "video": "izj8oXt28hY",
+      "repo": "JabberBot",
+      "kind": "parallel",
+      "reason": "the robot hound pack — distant kin of the bluetooth rover"
+    },
+    {
+      "video": "GYyntpH6f8o",
+      "repo": "JabberBot",
+      "kind": "parallel",
+      "reason": "the robot hound pack — distant kin of the bluetooth rover"
+    },
+    {
+      "video": "z-7XnZhmjCo",
+      "repo": "DexOneRing",
+      "kind": "direct",
+      "reason": "the ring lineage — Blender-scripted, printed, gold-laid"
+    },
+    {
+      "video": "aOczOnAUEYQ",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "squad tactics — the same art of command"
+    },
+    {
+      "video": "PD9k_SBWn3s",
+      "repo": "DexOneRing",
+      "kind": "direct",
+      "reason": "the stand the rings rest on"
+    },
+    {
+      "video": "hzsMFnewrwQ",
+      "repo": "gwent",
+      "kind": "direct",
+      "reason": "GPT-4o vs Claude at the Gwent board — the electronic board's native game"
+    },
+    {
+      "video": "btpzOCC0cJQ",
+      "repo": "PeytonsBirthdayCladdaghRing",
+      "kind": "parallel",
+      "reason": "the medieval forge — the blacksmith's craft the Claddagh echoes"
+    },
+    {
+      "video": "UbP2sg3-I_M",
+      "repo": "claude-todo",
+      "kind": "direct",
+      "reason": "Claude Code in its native habitat — the mod's own toolchain"
+    },
+    {
+      "video": "aO-MLA-AD_k",
+      "repo": "thor",
+      "kind": "parallel",
+      "reason": "the meters that watch the storm — engines and power under the instrument panel"
+    },
+    {
+      "video": "eNSclMuK_GQ",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "eq730Ru4K5E",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "m3ldYEHNVTo",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "LdZ4LDKNyWk",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "qPPXLXyunaQ",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "PgKGdfbwNXE",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "-5KNKAKSl9A",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "J9hpYAfjawk",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "BPlj96arWmw",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "r5nxHlgWDW8",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "otEpHflgxFQ",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "xBrdqh1dfOA",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "iuhmNkk8E9A",
+      "repo": "electroplater",
+      "kind": "parallel",
+      "reason": "the steady hand at the stick — kin of the servo's precision"
+    },
+    {
+      "video": "FPdY6PpUVjo",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "0HhhbQnP4VU",
+      "repo": "electroplater",
+      "kind": "parallel",
+      "reason": "the steady hand at the stick — kin of the servo's precision"
+    },
+    {
+      "video": "U7FasrzvN7o",
+      "repo": "electroplater",
+      "kind": "parallel",
+      "reason": "the steady hand at the stick — kin of the servo's precision"
+    },
+    {
+      "video": "2mKD8cjdWkQ",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "1PpJAmwAodg",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "mRJUrLD8w9Y",
+      "repo": "dollar-game",
+      "kind": "direct",
+      "reason": "the dollar game itself"
+    },
+    {
+      "video": "UQT-Zayxlgk",
+      "repo": "vulcan-brownout",
+      "kind": "parallel",
+      "reason": "Vulcan's fire — the mortar-lines and the forge share a god"
+    },
+    {
+      "video": "2EJ9W2nhR-A",
+      "repo": "PeytonsBirthdayCladdaghRing",
+      "kind": "parallel",
+      "reason": "the medieval forge — the blacksmith's craft the Claddagh echoes"
+    },
+    {
+      "video": "02vH173bbho",
+      "repo": "PeytonsBirthdayCladdaghRing",
+      "kind": "parallel",
+      "reason": "the medieval forge — the blacksmith's craft the Claddagh echoes"
+    },
+    {
+      "video": "_E-DlTVHfkc",
+      "repo": "PeytonsBirthdayCladdaghRing",
+      "kind": "parallel",
+      "reason": "the medieval forge — the blacksmith's craft the Claddagh echoes"
+    },
+    {
+      "video": "AsEQbkCPQ0w",
+      "repo": "thor",
+      "kind": "parallel",
+      "reason": "the meters that watch the storm — engines and power under the instrument panel"
+    },
+    {
+      "video": "O0uqcAFNTjQ",
+      "repo": "thor",
+      "kind": "parallel",
+      "reason": "the meters that watch the storm — engines and power under the instrument panel"
+    },
+    {
+      "video": "X1PoQRsriQE",
+      "repo": "vulcan-brownout",
+      "kind": "parallel",
+      "reason": "Vulcan's fire — the mortar-lines and the forge share a god"
+    },
+    {
+      "video": "hSVRuUCGSMs",
+      "repo": "vulcan-brownout",
+      "kind": "parallel",
+      "reason": "Vulcan's fire — the mortar-lines and the forge share a god"
+    },
+    {
+      "video": "g3YzQI8xdFg",
+      "repo": "vulcan-brownout",
+      "kind": "parallel",
+      "reason": "Vulcan's fire — the mortar-lines and the forge share a god"
+    },
+    {
+      "video": "VI0OdEv5XtY",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "cSmBk2IR6Dk",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "vns97rKZJnw",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "PRLaMAL66KA",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "ztZJcLxDCtY",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "7uPCtSMbycE",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "QAqkLUQNIkk",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "YKKT4K91CmQ",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "oHl5xv-Ce8M",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "jLBh12xej_I",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "zNtPEQbu2ZI",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "v0A0n19gHIs",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "w4QNBwkvMMk",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "7dSQkaoWbo0",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "_ZI6pABjoaY",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "EExYvFdU-YE",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "KTLW3HqpM7g",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "0IMHLRCZRA4",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "5xtA9HRfu0U",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "SxiP-qF5j1Q",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "SgZR9NVFGL4",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "I8TJY-csCmU",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "O2VjFTJFLr4",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "jIQ1MdyiFFE",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "Uw7MpG-dy8Q",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "60sgtxrIS0c",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "j7CCcY3_PAA",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "3YciTLaEoyM",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "79V1zMS9YYU",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "9pc4hvxYPOY",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "-zST_jWaJ5U",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "Wpl8NyUUjL8",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "xMyv9PjLwX4",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "5c9Z0xp7DJ4",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "EwJOWDE3BQE",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "_4r0zCMYF14",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "OnUXFxbFjfE",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "Mp2IE3_-Zhg",
+      "repo": "hermes-todo",
+      "kind": "parallel",
+      "reason": "a worker per todo, dropped from orbit like a diver — friendly fire included"
+    },
+    {
+      "video": "11djQSXVWb0",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "BBAxxf7fhfk",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "IsdpAfwRxbU",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "mtffs2WckHc",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "-3ucgelGA08",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "ljX86h1xks0",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "zQ-MIfatu9c",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "SiWX0cjh2aU",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "YaDfsRd1jxs",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "NqTcxf5IAmE",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "zhFJWAh-CPw",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "TnBXnJpnnZg",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "IM3Q6IygcWQ",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "DD78qRCHeik",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "9kiPzrYYVeA",
+      "repo": "claude-todo",
+      "kind": "parallel",
+      "reason": "the party command — directing companions is the mod's native tongue; every todo execs into its own subagent"
+    },
+    {
+      "video": "PamxeuhTHWE",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "fen3PgxO_ZI",
+      "repo": "dollar-game",
+      "kind": "parallel",
+      "reason": "turn-based artillery — the same tabletop"
+    },
+    {
+      "video": "A4FGet2bric",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "tGp4Rorpp_8",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "iDouDjeCfLc",
+      "repo": "dollar-game",
+      "kind": "parallel",
+      "reason": "turn-based artillery — the same tabletop"
+    },
+    {
+      "video": "9Cr1eBKVHag",
+      "repo": "dollar-game",
+      "kind": "parallel",
+      "reason": "turn-based artillery — the same tabletop"
+    },
+    {
+      "video": "RFbQ5Td5wcA",
+      "repo": "dollar-game",
+      "kind": "parallel",
+      "reason": "turn-based artillery — the same tabletop"
+    },
+    {
+      "video": "KBKuDFs26zU",
+      "repo": "ai-prompts",
+      "kind": "parallel",
+      "reason": "the spellbook — every prompt an incantation"
+    },
+    {
+      "video": "HIsIs1xqgxA",
+      "repo": "ai-prompts",
+      "kind": "parallel",
+      "reason": "the spellbook — every prompt an incantation"
+    },
+    {
+      "video": "VrzSNRNc__k",
+      "repo": "ai-prompts",
+      "kind": "parallel",
+      "reason": "the spellbook — every prompt an incantation"
+    },
+    {
+      "video": "8T-Txpymi8I",
+      "repo": "ai-prompts",
+      "kind": "parallel",
+      "reason": "the spellbook — every prompt an incantation"
+    },
+    {
+      "video": "e0bKMUtTBp4",
+      "repo": "ai-prompts",
+      "kind": "parallel",
+      "reason": "the spellbook — every prompt an incantation"
+    },
+    {
+      "video": "ooVfNkFcE7E",
+      "repo": "ai-prompts",
+      "kind": "parallel",
+      "reason": "the spellbook — every prompt an incantation"
+    },
+    {
+      "video": "rI8gmLwHtqE",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "PPbffqA9bv0",
+      "repo": "bbqberry",
+      "kind": "direct",
+      "reason": "the fireside sensor — the smoker's watcher"
+    },
+    {
+      "video": "ddpxsGAdlP8",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "BRt1SfwfgTk",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "bsBfwbmNLmU",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "0J-w6u1Jftc",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "-yf8Etqh6E4",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "b7vZDCrTVW0",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "L7wWOFNBir8",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "8ItlGC3J0jo",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "3kZ4jbgv9d0",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "hCcNxRqM6J4",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "-BI9K4jb6m0",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "MJg4tkSTZ64",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "NNTbTwchJYE",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "eDmROgIPxA0",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "32CZQNpBODA",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "rAP6_pZl9jY",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "u9IpB5VDibA",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "rNTWuWcbRz4",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "dQ381qJoDjQ",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "pxsPIIcfEkw",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "ZCyQQPYoAGg",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "1O4ebN_Ir_A",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "-bl70CptD8Q",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "n86MCqxJ3Rk",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "EHmHn36vJdI",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "MMagGd02M1Q",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "mrn0EEVfS7M",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "X9LLQRqX-Q8",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "s4ImSWOtnlY",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "M_1j3xEbHiI",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "TPCrkiwpGTk",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "_y0_DXR7sbo",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "aF-jYzHE-EM",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "4WDBh_YaXyQ",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "1OTAFltn10A",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "dXs-L1hVLZ4",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "QE9MU3IUnQ4",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "4hKY6c3G2CU",
+      "repo": "DexOneRing",
+      "kind": "parallel",
+      "reason": "the Norse rings — Draupnir and the smiths' myth, worn on the hand"
+    },
+    {
+      "video": "kwLbSXgyxTg",
+      "repo": "bbqberry",
+      "kind": "direct",
+      "reason": "the fireside sensor — the smoker's watcher"
+    },
+    {
+      "video": "RXZF7VJ8H7o",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "n-7zxS_wU2M",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "0GXlyoUV2Ok",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "LTFK-scikEE",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "bC57uWzX4oM",
+      "repo": "Accessories",
+      "kind": "direct",
+      "reason": "the printed contraptions — Maker Faire machines and backyard rocketry"
+    },
+    {
+      "video": "VT21Buuk5fs",
+      "repo": "Accessories",
+      "kind": "direct",
+      "reason": "the printed contraptions — Maker Faire machines and backyard rocketry"
+    },
+    {
+      "video": "O8rvpBaZmcM",
+      "repo": "ArduinoLibraries",
+      "kind": "direct",
+      "reason": "LED-driver scars — where the libraries were forged"
+    },
+    {
+      "video": "Gt9737HwKhg",
+      "repo": "Accessories",
+      "kind": "direct",
+      "reason": "the printed contraptions — Maker Faire machines and backyard rocketry"
+    },
+    {
+      "video": "eX-u6IVkrF0",
+      "repo": "JabberBot",
+      "kind": "direct",
+      "reason": "the rover itself — ATMega brain, bluetooth braun"
+    },
+    {
+      "video": "v0SGPrVQB-E",
+      "repo": "JabberBot",
+      "kind": "direct",
+      "reason": "the rover itself — ATMega brain, bluetooth braun"
+    },
+    {
+      "video": "kIxaZmKXHPU",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    },
+    {
+      "video": "Wg0N4HWaE8M",
+      "repo": "Accessories",
+      "kind": "direct",
+      "reason": "the printed contraptions — Maker Faire machines and backyard rocketry"
+    },
+    {
+      "video": "_ttGYyv5g14",
+      "repo": "Accessories",
+      "kind": "direct",
+      "reason": "the printed contraptions — Maker Faire machines and backyard rocketry"
+    },
+    {
+      "video": "5o1TtvsShLM",
+      "repo": "diamond-diggin-donal",
+      "kind": "parallel",
+      "reason": "the garden arcade — every untamed world drains to the digger's field"
+    }
+  ],
+  "family_album": [
+    "jBe4Ss_mtrw",
+    "4YEqtFZZZ4c",
+    "IYqxUCamc-c",
+    "3VnyBmhmte0",
+    "DM83UsmmmDg",
+    "V7lOn6MF8VI",
+    "jo3phorVIiA",
+    "ZGQ5uhVly20",
+    "DDo6sxSLxa4",
+    "eo312TZM34U",
+    "CPbuyvbP6AY",
+    "TzsSk_dvKJ4",
+    "XzWpO-ITJvc",
+    "ttAkcCb8ECg",
+    "Tm-oAjtgMt8",
+    "iT6B78ann3Y",
+    "Bt3yeGCOhEU",
+    "KAVFYCRjRU0",
+    "Q6my-vpb1b8"
+  ]
+}
