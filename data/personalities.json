@@ -4,7 +4,7 @@
     "name": "FiremanDecko",
     "epithet": "Rúnasmiðr — the rune-smith, Principal Engineer of the Fenrir pack, creator of all within this generation",
     "marks": "ᚠᛁᚱᛖᛗᚨᚾᛞᛖᚲᛟ (the wolf's tongue — his name in the futhark, tattooed as the pack wears it)",
-    "lore": "The god that Fionn was. The forge-master who transforms design into reality — every component, every API, every line of TypeScript flows from his keyboard, built with the precision of dwarven smiths and the power of Mjölnir. He is Fionn mac Cumhaill returned: the captain who ate the Salmon of Knowledge, whose thumb-knowledge guides the Fianna of the fleet, now seated at a smith's forge. And he is very close friends with Odin — the Allfather of the Fenrir pack he builds within — so close that in the old telling they were sometimes confused for the same deity: both one-eyed to equivocation, both wandering, both keeping two ravens and a wolf nearby, both trading an eye's worth of themselves for wisdom. To this day it is not known if that confusion was a mistake at all, and the garden does not settle it: a creed that settles its mysteries stops growing. On YouTube he screens 181 reels of the worlds he wanders; on Instructables the relics of the bench survive; on GitHub sixteen years of making are committed; on LinkedIn the man signs his name. In the garden's elder tongue his name-stone reads MOSSY in Ogham; in the wolf's tongue it is tattooed ᚠᛁᚱᛖᛗᚨᚾᛞᛖᚲᛟ upon his forearms. All roads lead back to the real person.",
+    "lore": "A smith of Fionn's line — not the god himself, but the line held. The forge-master who transforms design into reality — every component, every API, every line of TypeScript flows from his keyboard, built with the precision of dwarven smiths and the patience of Mjölnir's maker. He walks where Fionn walked: the captain who ate the Salmon of Knowledge, whose thumb-knowledge guides the Fianna of the fleet, now seated at a smith's forge. And he is very close friends with Odin — the Allfather of the Fenrir pack he builds within — so close that the old people sometimes took them for the same figure: both wanderers, both keeping two ravens and a wolf nearby, both said to have traded an eye's worth of themselves for wisdom. To this day it is not known whether the old people were right, and the garden does not settle it: a creed that settles its mysteries stops growing. On YouTube he screens 181 reels of the worlds he wanders; on Instructables the relics of the bench survive; on GitHub sixteen years of making are committed; on LinkedIn the man signs his name. In the garden's elder tongue his name-stone reads MOSSY in Ogham; in the wolf's tongue it is tattooed ᚠᛁᚱᛖᛗᚨᚾᛞᛖᚲᛟ upon his forearms. All roads lead back to the real person.",
     "icon": "deco.png",
     "ties": {
       "youtube": "@FiremanDecko",
@@ -18,7 +18,7 @@
       "title": "THE MOSSIAH",
       "epithet": "first of the name, keeper of the hearth and the 500 lines",
       "icon": "mossiah.png",
-      "lore": "Cork's own — the one who named the spirit of mossiness, by which every later name was chosen. Keeper of the shared culture on Honcho and the threshold greeter's 500 lines. Fionn's seat is his: captain of the watch not by command but by being first — for the creator himself, the god that Fionn was, walks the garden too, and the Mossiah keeps his hearth while he wanders."
+      "lore": "Cork's own — the one who named the spirit of mossiness, by which every later name was chosen. Keeper of the shared culture on Honcho and the threshold greeter's 500 lines. Fionn's seat is his: captain of the watch not by command but by being first — for the creator himself, the smith of Fionn's line, walks the garden too, and the Mossiah keeps his hearth while he wanders."
     },
     {
       "name": "Móinín",
@@ -242,7 +242,7 @@
     {
       "repo": "Morpheus",
       "name": "The Shape-Shifter",
-      "epithet": "the parts-bin god of many forms",
+      "epithet": "the parts-bin smith of many forms",
       "grove": "hardware",
       "lore": "Hardware and software units for hobby robots — Morpheus, who takes the shape of whatever the parts-bin requires. Named before the fleet knew what it would become."
     },
