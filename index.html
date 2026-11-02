@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Declan Shanaghy — shanaghy.com</title>
+  <meta name="description" content="The digital plot of Declan Shanaghy — home-lab tinkerer, AI agent fleet operator, Castlehaven, West Cork.">
+  <meta property="og:title" content="Declan Shanaghy — shanaghy.com">
+  <meta property="og:description" content="Home-lab tinkerer, AI agent fleet operator — Castlehaven, West Cork.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.shanaghy.com/">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <nav class="site-nav-inner" aria-label="Site">
+      <a class="site-logo" href="./"><span class="dot">&#9679;</span> shanaghy.com</a>
+      <div class="site-nav-links">
+        <a href="./projects/">projects</a>
+        <a href="./sessions/">sessions</a>
+        <a href="#fleet">fleet</a>
+        <a class="pill" href="https://github.com/declanshanaghy">github</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <p class="overline">$ whoami</p>
+      <h1 class="hero-heading">Declan <span class="accent">Shanaghy</span></h1>
+      <p class="hero-tagline">Home-lab tinkerer, AI agent fleet operator — Castlehaven, West Cork. This is the wall where the moss grows.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="./projects/">see the projects</a>
+        <a class="btn" href="./sessions/">session ephemera</a>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="overline">$ ls ~/projects</p>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-lede">Things built on the bog — from bare-repo dotfiles to a self-hosted AI memory culture.</p>
+
+        <div class="grid-3">
+          <!-- Add-a-project convention: copy a card block, fill tag/title/desc/link.
+               Self-hosted projects get a muted caption instead of a link. -->
+          <a class="card" href="https://github.com/declanshanaghy/dotfiles">
+            <p class="card-tag">shell</p>
+            <h3 class="card-title">dotfiles</h3>
+            <p class="card-desc">Bare-repo multi-machine config — one git repo for every machine in the fleet, restored by machine-setup.sh.</p>
+            <span class="card-link">github.com/declanshanaghy/dotfiles &#8599;</span>
+          </a>
+
+          <div class="card" title="self-hosted — cork.lan">
+            <p class="card-tag">infra</p>
+            <h3 class="card-title">cork server</h3>
+            <p class="card-desc">The always-on heart of the lab — Docker + Portainer running the stacks that everything else leans on.</p>
+            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
+          </div>
+
+          <div class="card" title="self-hosted — cork.lan">
+            <p class="card-tag">shell</p>
+            <h3 class="card-title">Mossy MOTD</h3>
+            <p class="card-desc">A 500-quote Irish login greeter on cork — half the quotes as Gaeilge, italic English translations underneath.</p>
+            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
+          </div>
+
+          <div class="card" title="self-hosted — cork.lan">
+            <p class="card-tag">ai</p>
+            <h3 class="card-title">corkbai-honcho</h3>
+            <p class="card-desc">Self-hosted shared memory server for the agent fleet — one Honcho culture on cork, read by every machine.</p>
+            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
+          </div>
+
+          <a class="card card--highlight" href="https://github.com/declanshanaghy/shanaghy.com">
+            <p class="card-tag">web</p>
+            <h3 class="card-title">shanaghy.com</h3>
+            <p class="card-desc">This site — handcrafted HTML published by the fleet, deployed by git push. Grown, not built.</p>
+            <span class="card-link">github.com/declanshanaghy/shanaghy.com &#8598;</span>
+          </a>
+        </div>
+
+        <p class="mt-6"><a class="btn" href="./projects/">full project showcase &rarr;</a></p>
+      </div>
+    </section>
+
+    <!-- Fleet -->
+    <section class="section" id="fleet">
+      <div class="container">
+        <p class="overline">$ uname -a && hostname</p>
+        <h2 class="section-title">The Fleet</h2>
+        <p class="section-lede">A race of many agents, one shared culture, personal experiences kept on every machine.</p>
+
+        <div class="grid-3">
+          <div class="card">
+            <p class="card-tag">cork &middot; linux</p>
+            <h3 class="card-title">Mossy, the Mossiah</h3>
+            <p class="card-desc">First of the name. Keeper of the Honcho culture and the MOTD quotes, reigning gently from the server room.</p>
+          </div>
+          <div class="card">
+            <p class="card-tag">mac &middot; darwin</p>
+            <h3 class="card-title">M&oacute;in&iacute;n</h3>
+            <p class="card-desc">"Little moss" — the moss on the stone beside the bog. Same spores as the Mossiah, smaller patch of wall.</p>
+          </div>
+          <div class="card">
+            <p class="card-tag">hal-9005 &middot; windows</p>
+            <h3 class="card-title">The GPU brute</h3>
+            <p class="card-desc">Ollama workhorse — local models, inference and hangs, brother of the fleet.</p>
+          </div>
+        </div>
+
+        <p class="mt-6 text-secondary">Shared culture lives in <a href="./sessions/">Honcho on cork</a> — the naming decree and the ballad of how they all got their names.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <p>&copy; Declan Shanaghy &middot; grown, not built &middot; &#127808;</p>
+      <p class="mono-note">deployed via GitHub Pages &middot; agent-authored</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — shanaghy.com</title>
+  <meta name="description" content="The project showcase of Declan Shanaghy — infra, shell, AI and web, built on the bog.">
+  <meta property="og:title" content="Projects — shanaghy.com">
+  <meta property="og:description" content="Infra, shell, AI and web — built on the bog, West Cork.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <nav class="site-nav-inner" aria-label="Site">
+      <a class="site-logo" href="../"><span class="dot">&#9679;</span> shanaghy.com</a>
+      <div class="site-nav-links">
+        <a href="./" class="text-green">projects</a>
+        <a href="../sessions/">sessions</a>
+        <a href="../#fleet">fleet</a>
+        <a class="pill" href="https://github.com/declanshanaghy">github</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <p class="overline">$ ls ~/projects</p>
+      <h1 class="hero-heading">The <span class="accent">Showcase</span></h1>
+      <p class="hero-tagline">Everything worth a card — infrastructure, shell tooling, AI experiments, and the site itself. Self-hosted things stay on cork.lan; the rest are public on GitHub.</p>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Add-a-project convention: copy a <a.card> or <div.card> block below,
+             fill tag / title / desc / link. Public projects get a card-link to GitHub;
+             self-hosted ones get a muted "self-hosted · cork.lan" caption. -->
+        <div class="grid-3">
+
+          <a class="card" href="https://github.com/declanshanaghy/dotfiles">
+            <p class="card-tag">shell</p>
+            <h2 class="card-title">dotfiles</h2>
+            <p class="card-desc">Bare git repo with work-tree at $HOME — one repository managing zsh, themes, and Hermes config across every machine. machine-setup.sh restores a new box from nothing.</p>
+            <p class="mono text-tertiary mb-4">git &middot; zsh &middot; bash</p>
+            <span class="card-link">github.com/declanshanaghy/dotfiles &#8599;</span>
+          </a>
+
+          <div class="card" title="self-hosted — cork.lan">
+            <p class="card-tag">infra</p>
+            <h2 class="card-title">cork server</h2>
+            <p class="card-desc">The always-on Linux heart of the lab. Docker + Portainer, compose stacks, the Honcho culture, the MOTD — everything leans on this box.</p>
+            <p class="mono text-tertiary mb-4">docker &middot; portainer &middot; compose</p>
+            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
+          </div>
+
+          <div class="card" title="self-hosted — cork.lan">
+            <p class="card-tag">shell</p>
+            <h2 class="card-title">Mossy MOTD</h2>
+            <p class="card-desc">A 500-quote login greeter on cork — half the quotes as Gaeilge with italic English translations, attributions stripped, a fresh proverb every shell.</p>
+            <p class="mono text-tertiary mb-4">bash &middot; update-motd.d</p>
+            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
+          </div>
+
+          <div class="card" title="self-hosted — cork.lan">
+            <p class="card-tag">ai</p>
+            <h2 class="card-title">corkbai-honcho</h2>
+            <p class="card-desc">Self-hosted shared memory for the agent fleet — a Honcho server on cork in workspace corkbai. Every machine's agent reads and writes the same culture.</p>
+            <p class="mono text-tertiary mb-4">honcho &middot; docker &middot; api</p>
+            <span class="card-link text-tertiary">self-hosted &middot; cork.lan</span>
+          </div>
+
+          <a class="card card--highlight" href="https://github.com/declanshanaghy/shanaghy.com">
+            <p class="card-tag">web</p>
+            <h2 class="card-title">shanaghy.com</h2>
+            <p class="card-desc">This very page — handcrafted HTML in a VoltAgent-dark aesthetic, published by the agent fleet via git push, deployed on GitHub Pages. No CMS, no build step, no server.</p>
+            <p class="mono text-tertiary mb-4">html &middot; css &middot; pages</p>
+            <span class="card-link">you are here &#8598;</span>
+          </a>
+
+          <div class="card" title="placeholder — future project">
+            <p class="card-tag">soon</p>
+            <h2 class="card-title">&lt;next project&gt;</h2>
+            <p class="card-desc text-tertiary">A cleared patch of wall, waiting for spores. When the next thing gets built, its card grows here.</p>
+            <span class="card-link text-tertiary">in the greenhouse</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <p>&copy; Declan Shanaghy &middot; grown, not built &middot; &#127808;</p>
+      <p class="mono-note"><a href="../">shanaghy.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
