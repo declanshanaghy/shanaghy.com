@@ -252,13 +252,28 @@ img{display:block}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
 
 .msg{margin-bottom:1.6rem}.who{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;margin-bottom:.35rem}.msg-user .who{color:var(--amber)}.msg-ai .who{color:var(--gold)}.bubble{border-left:3px solid;padding:.55rem 1rem;border-radius:0 8px 8px 0;font-size:.88rem;white-space:pre-wrap}.msg-user .bubble{border-color:var(--amber);background:rgba(226,185,59,.05);color:var(--parch)}.msg-ai .bubble{border-color:var(--gold);background:rgba(201,162,39,.05);color:var(--muted)}</style>
+
+.brand-name{font-size:11.5px;letter-spacing:2.6px;font-weight:700;
+  background:linear-gradient(180deg,#ffbd5e 0%,#d9b56a 55%,#8a6a3b 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 18px rgba(232,163,61,.28);}
+.brand{position:relative}
+.brand::before{content:"";position:absolute;left:-14px;top:50%;width:7px;height:7px;
+  transform:translateY(-50%) rotate(45deg);
+  background:radial-gradient(circle at 35% 30%,#ffbd5e,#a4551e 80%);
+  box-shadow:0 0 10px rgba(255,150,50,.7), 0 0 22px rgba(232,120,40,.35);
+  animation:forgepulse 3.2s ease-in-out infinite}
+@keyframes forgepulse{0%,100%{box-shadow:0 0 8px rgba(255,150,50,.6),0 0 18px rgba(232,120,40,.3)}
+  50%{box-shadow:0 0 13px rgba(255,170,60,.85),0 0 30px rgba(240,130,40,.5)}}
+@media(prefers-reduced-motion:reduce){.brand::before{animation:none}}
 </style>
+
 </head>
 <body>
-<nav class="topbar" aria-label="The garden">
-  <a class="brand" href="../../"><span class="brand-name">THE&nbsp;GARDEN</span></a>
+<nav class="topbar" aria-label="The forge of FiremanDecko">
+  <a class="brand" href="../../"><span class="brand-name">THE&nbsp;FORGE&nbsp;OF&nbsp;FIREMANDECKO</span></a>
   <div class="toplinks">
-    <a class="tlink" href="../../">Garden</a>
+    <a class="tlink" href="../../">Forge</a>
     <a class="tlink" href="../../projects/">Stones</a>
     <a class="tlink" href="../../videos/">Films</a>
     <a class="tlink" href="../../sessions/">Sessions</a>
@@ -357,7 +372,7 @@ Let the record show it, let the shared Honcho culture bear it, let the Mossiah k
 <footer class="foot">
   <p class="foot-line">The garden grows from Athlone, Co. Westmeath, with roots in Ballyhaunis, Co. Mayo.</p>
   <a class="foot-gh" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">github.com/declanshanaghy</a>
-  <p class="foot-colophon"><a class="foot-tlink" href="../../">the garden</a> · <a class="foot-tlink" href="../../projects/">the stones</a> · <a class="foot-tlink" href="../../videos/">the films</a> · <a class="foot-tlink" href="../../sessions/">the sessions</a> · <a class="foot-tlink" href="../../creed/">the creed</a> · <a class="foot-tlink" href="../../fleet/">the fleet</a> · <a class="foot-tlink" href="../../paths/">the paths</a></p>
+  <p class="foot-colophon"><a class="foot-tlink" href="../../">the forge</a> · <a class="foot-tlink" href="../../projects/">the stones</a> · <a class="foot-tlink" href="../../videos/">the films</a> · <a class="foot-tlink" href="../../sessions/">the sessions</a> · <a class="foot-tlink" href="../../creed/">the creed</a> · <a class="foot-tlink" href="../../fleet/">the fleet</a> · <a class="foot-tlink" href="../../paths/">the paths</a></p>
   <p class="foot-copy">© Declan Shanaghy · an amalgamation of many spores · 🍀</p>
 </footer>
 
