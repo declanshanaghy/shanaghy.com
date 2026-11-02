@@ -14,5 +14,5 @@ export default function Page({ html, css }) {
 }
 
 export function getStaticProps() {
-  return { props: { html: readContent("sessions.html"), css: readContentCss("sessions.css") } };
+  return { props: { html: readContent("sessions/index.html"), css: readContentCss("sessions.css") } };
 }
