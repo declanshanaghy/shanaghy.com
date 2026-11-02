@@ -4,16 +4,27 @@ import { readContent, readContentCss } from "../../lib/read";
 import { ContentPage } from "../../lib/ContentPage";
 
 function listSessionRoutes() {
-  // walks content/sessions/**: [slug] dirs -> /[slug]/, .html files -> /[name].html
+  // walks content/sessions/**: bed dirs -> /[bed]/, session subdirs -> /[bed]/[session]/,
+  // stray .html files at any level -> /[bed]/[file]
   const base = path.join(process.cwd(), "content", "sessions");
   const routes = [];
   for (const d of fs.readdirSync(base, { withFileTypes: true })) {
-    if (d.isDirectory()) {
-      if (fs.existsSync(path.join(base, d.name, "index.html")))
-        routes.push({ segs: [d.name], file: `sessions/${d.name}/index.html` });
-      for (const f2 of fs.readdirSync(path.join(base, d.name))) {
-        if (f2.endsWith(".html") && f2 !== "index.html")
-          routes.push({ segs: [d.name, f2], file: `sessions/${d.name}/${f2}` });
+    if (!d.isDirectory()) continue;
+    const bed = d.name;
+    if (fs.existsSync(path.join(base, bed, "index.html")))
+      routes.push({ segs: [bed], file: `sessions/${bed}/index.html` });
+    const bedBase = path.join(base, bed);
+    for (const e of fs.readdirSync(bedBase, { withFileTypes: true })) {
+      if (e.isFile() && e.name.endsWith(".html") && e.name !== "index.html")
+        routes.push({ segs: [bed, e.name], file: `sessions/${bed}/${e.name}` });
+      if (e.isDirectory()) {
+        const sub = path.join(bedBase, e.name);
+        if (fs.existsSync(path.join(sub, "index.html")))
+          routes.push({ segs: [bed, e.name], file: `sessions/${bed}/${e.name}/index.html` });
+        for (const f3 of fs.readdirSync(sub)) {
+          if (f3.endsWith(".html") && f3 !== "index.html")
+            routes.push({ segs: [bed, e.name, f3], file: `sessions/${bed}/${e.name}/${f3}` });
+        }
       }
     }
   }
