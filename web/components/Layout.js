@@ -1,70 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
-
-
-const NAV = [
-  ["Forge", "/"],
-  ["Stones", "/projects/"],
-  ["Films", "/videos/"],
-  ["Sessions", "/sessions/"],
-  ["Creed", "/creed/"],
-  ["Fleet", "/fleet/"],
-  ["Paths", "/paths/"],
-];
-
-export function Header({ here }) {
-  return (
-    <nav className="topbar" aria-label="The forge of FiremanDecko">
-      <a className="brand" href="/">
-        <img
-          className="brand-logo"
-          src="/assets/icons/forge-logo.png"
-          alt="The Forge of FiremanDecko"
-          width={160}
-          height={40}
-          loading="lazy"
-        />
-      </a>
-      <div className="toplinks">
-        {NAV.map(([label, href]) => (
-          <a key={href} className={"tlink" + (here === href ? " here" : "")} href={href}>
-            {label}
-          </a>
-        ))}
-      </div>
-    </nav>
-  );
-}
-
-export function Footer() {
-  return (
-    <footer className="foot">
-      <p className="foot-line">
-        The garden grows from Athlone, Co. Westmeath, with roots in Ballyhaunis, Co. Mayo.
-      </p>
-      <a
-        className="foot-gh"
-        href="https://github.com/declanshanaghy"
-        target="_blank"
-        rel="noopener"
-      >
-        github.com/declanshanaghy
-      </a>
-      <p className="foot-colophon">
-        {NAV.map(([label, href]) => (
-          <React.Fragment key={href}>
-            <a className="foot-tlink" href={href}>
-              the {label.toLowerCase()}
-            </a>{" "}
-          </React.Fragment>
-        ))}
-      </p>
-      <p className="foot-copy">© Declan Shanaghy · an amalgamation of many spores · 🍀</p>
-    </footer>
-  );
-}
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Layout({ title, description, here, children }) {
+  useEffect(() => {
+    // scroll-reveal: .rise elements fade in as they enter the viewport
+    const els = document.querySelectorAll(".rise");
+    if (!els.length) return;
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((e) => e.classList.add("in"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    els.forEach((e, i) => {
+      e.style.transitionDelay = (i % 4) * 60 + "ms";
+      io.observe(e);
+    });
+    return () => io.disconnect();
+  }, []);
+
+  // film click-to-play embeds
+  useEffect(() => {
+    const onClick = (e) => {
+      const t = e.target.closest(".filmplay");
+      if (!t) return;
+      e.preventDefault();
+      const v = t.getAttribute("data-v");
+      t.innerHTML =
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + v +
+        '?autoplay=1&rel=0" title="film" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+      t.style.cursor = "default";
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   return (
     <>
       <Head>
@@ -78,6 +59,9 @@ export default function Layout({ title, description, here, children }) {
       <Footer />
       <style jsx global>{`
         html { scroll-behavior: smooth; color-scheme: dark; }
+        .rise { opacity: 0; transform: translateY(16px); }
+        .rise.in { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
+        @media (prefers-reduced-motion: reduce) { .rise { opacity: 1 !important; transform: none !important; } }
       `}</style>
     </>
   );
