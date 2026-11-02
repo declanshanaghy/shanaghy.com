@@ -251,7 +251,11 @@ img{display:block}
 }
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
 
-.msg{margin-bottom:1.6rem}.who{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;margin-bottom:.35rem}.msg-user .who{color:var(--amber)}.msg-ai .who{color:var(--gold)}.bubble{border-left:3px solid;padding:.55rem 1rem;border-radius:0 8px 8px 0;font-size:.88rem;white-space:pre-wrap}.msg-user .bubble{border-color:var(--amber);background:rgba(226,185,59,.05);color:var(--parch)}.msg-ai .bubble{border-color:var(--gold);background:rgba(201,162,39,.05);color:var(--muted)}</style>
+.msg{margin-bottom:1.6rem}.who{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;margin-bottom:.35rem}.msg-user .who{color:var(--amber)}.msg-ai .who{color:var(--gold)}.bubble{border-left:3px solid;padding:.55rem 1rem;border-radius:0 8px 8px 0;font-size:.88rem;white-space:pre-wrap}.msg-user .bubble{border-color:var(--amber);background:rgba(226,185,59,.05);color:var(--parch)}.msg-ai .bubble{border-color:var(--gold);background:rgba(201,162,39,.05);color:var(--muted)}.brand-logo{display:block;height:40px;width:auto;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(232,163,61,.12));
+  border-radius:6px;border:1px solid rgba(201,162,39,.3)}
+.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
+</style>
 
 <style>
 .brand-name{font-size:11.5px;letter-spacing:2.6px;font-weight:700;
@@ -269,7 +273,7 @@ img{display:block}
 </head>
 <body>
 <nav class="topbar" aria-label="The forge of FiremanDecko">
-  <a class="brand" href="../../"><span class="brand-name">THE&nbsp;FORGE&nbsp;OF&nbsp;FIREMANDECKO</span></a>
+  <a class="brand" href="../../"><img class="brand-logo" src="../../assets/icons/forge-logo.png" alt="The Forge of FiremanDecko" width="160" height="40" loading="lazy"></a>
   <div class="toplinks">
     <a class="tlink" href="../../">Forge</a>
     <a class="tlink" href="../../projects/">Stones</a>

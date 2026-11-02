@@ -451,6 +451,10 @@ svg{display:block}
   background:linear-gradient(180deg,#3a2c18 0%,#8a6a3b 30%,#241b11 100%);
   border-radius:1px;
   box-shadow:inset 0 1px 0 rgba(255,225,160,.22), 0 1px 2px rgba(0,0,0,.8)}
+.brand-logo{display:block;height:40px;width:auto;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(232,163,61,.12));
+  border-radius:6px;border:1px solid rgba(201,162,39,.3)}
+.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
 </style>
 
 </head>
@@ -545,7 +549,7 @@ svg{display:block}
 
 <!-- ═══════════ TOPBAR — RUNE TAB STRIP ═══════════ -->
 <nav class="topbar" aria-label="The forge of FiremanDecko">
-  <a class="brand" href="../"><span class="brand-name">THE&nbsp;FORGE&nbsp;OF&nbsp;FIREMANDECKO</span></a>
+  <a class="brand" href="../"><img class="brand-logo" src="../assets/icons/forge-logo.png" alt="The Forge of FiremanDecko" width="160" height="40" loading="lazy"></a>
   <div class="toplinks">
     <a class="tlink" href="../">Forge</a>
     <a class="tlink" href="../projects/">Stones</a>
