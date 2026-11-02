@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Declan Shanaghy — gcal-always-monday · Web & Extensions</title>
+<meta name="description" content="A browser tweak that persuades Google Calendar every day is Monday — Manannán's mist, folded politely flat.">
+<meta property="og:title" content="Declan Shanaghy — gcal-always-monday">
+<meta property="og:description" content="A browser tweak that persuades Google Calendar every day is Monday — Manannán's mist, folded politely flat.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.shanaghy.com/projects/gcal-always-monday/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0705'/%3E%3Ccircle cx='16' cy='19' r='8' fill='%235f7048'/%3E%3Ccircle cx='12' cy='13' r='2.6' fill='%236e7f57'/%3E%3Ccircle cx='17' cy='11.5' r='2.1' fill='%2377895d'/%3E%3Ccircle cx='21.5' cy='13.5' r='1.6' fill='%236e7f57'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0705; --bg2:#060403;
+  --stone-hi:#241b11; --stone-lo:#120c06; --edge:#3b2d18;
+  --bronze:#8a6a3b; --bronze2:#a97e42;
+  --amber:#e8a33d; --amber2:#ffbd5e;
+  --gold:#d9b56a; --parch:#d8c9a8; --muted:#8a795a; --dim:#5f5138;
+  --moss-hi:#77895d; --moss:#6e7f57; --moss-lo:#5f7048;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{
+  font-family:var(--serif); color:var(--parch);
+  background:
+    radial-gradient(1100px 700px at 50% -140px, rgba(122,82,30,.12), transparent 60%),
+    radial-gradient(1000px 620px at 6% 112%, rgba(95,112,72,.06), transparent 55%),
+    radial-gradient(900px 600px at 88% 108%, rgba(90,60,20,.07), transparent 55%),
+    var(--bg);
+  min-height:100vh; overflow-x:hidden;
+}
+::selection{background:rgba(232,163,61,.35);color:#fff8e8}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#070503}
+::-webkit-scrollbar-thumb{background:#2e2113;border-radius:6px;border:2px solid #070503}
+::-webkit-scrollbar-thumb:hover{background:#4a3520}
+a{color:inherit}
+svg{display:block}
+img{display:block}
+
+/* ---- topbar (same rune-tab strip as the garden) ---- */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  display:flex;align-items:center;gap:16px;
+  padding:9px 18px;
+  background:rgba(10,7,5,.9);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  border-bottom:1px solid rgba(138,106,59,.28);
+  box-shadow:0 8px 26px -14px rgba(0,0,0,.9);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-mark{width:27px;height:27px;color:var(--amber);filter:drop-shadow(0 0 6px rgba(232,163,61,.35))}
+.brand-name{font-size:12.5px;letter-spacing:3.2px;color:var(--gold);font-weight:600}
+.runestrip{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.runestrip::-webkit-scrollbar{display:none}
+.rtab{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:5px 11px;border:1px solid transparent;border-radius:9px;
+  text-decoration:none;transition:background .25s,border-color .25s;flex-shrink:0;
+}
+.rt-rune{font-size:19px;line-height:1.15;color:var(--bronze);transition:color .25s,text-shadow .25s}
+.rt-label{font-size:8.5px;letter-spacing:1.9px;color:#6f6046;text-transform:uppercase;white-space:nowrap}
+.rt-count{font-size:8px;letter-spacing:1px;color:#55492f}
+.rtab:hover .rt-rune,.rtab:focus .rt-rune{color:var(--amber2);text-shadow:0 0 11px rgba(232,163,61,.65)}
+.rtab.here{border-color:rgba(232,163,61,.4);background:rgba(232,163,61,.07)}
+.rtab.here .rt-rune{color:var(--amber2);text-shadow:0 0 13px rgba(232,163,61,.85)}
+.rtab.here .rt-label{color:#a98d5c}
+.toplinks{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.tlink{
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  color:#9b8660;text-decoration:none;text-transform:uppercase;
+  transition:color .25s,text-shadow .25s;
+}
+.tlink:hover,.tlink:focus{color:var(--amber2);text-shadow:0 0 10px rgba(232,163,61,.55)}
+.ghpill{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.8px;
+  color:var(--gold);text-decoration:none;text-transform:uppercase;
+  padding:6px 14px;border:1px solid rgba(138,106,59,.5);border-radius:11px 4px 11px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.6),rgba(10,7,4,.6));
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08),0 4px 10px -5px rgba(0,0,0,.8);
+  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
+}
+.ghpill:hover,.ghpill:focus{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 12px rgba(232,163,61,.6);transform:translateY(-1px)}
+
+/* ---- engraved page header ---- */
+.page-head{
+  position:relative;text-align:center;
+  padding:46px 18px 30px;
+  background:
+    radial-gradient(60% 26% at 50% 108%, rgba(95,112,72,.10), transparent 70%),
+    radial-gradient(ellipse 90% 68% at 50% 60%, #171009 0%, #0a0705 62%, #060403 100%);
+  overflow:hidden;
+}
+.ph-rune{
+  position:absolute;top:-30px;right:2%;
+  font-size:190px;line-height:1;color:rgba(217,181,106,.05);
+  pointer-events:none;user-select:none;font-family:var(--serif);
+}
+.crumb{
+  display:inline-block;margin-bottom:16px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;
+  color:#9b8660;text-decoration:none;
+  padding:5px 14px;border:1px solid rgba(138,106,59,.4);border-radius:9px 3px 9px 3px;
+  background:linear-gradient(180deg,rgba(42,30,16,.6),rgba(10,7,4,.6));
+  transition:color .25s,border-color .25s,text-shadow .25s;
+}
+.crumb:hover{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 10px rgba(232,163,61,.5)}
+.signage{
+  position:relative;display:inline-block;
+  padding:26px 44px 30px;
+  background:linear-gradient(180deg,#2a1e12 0%,#1a130a 74%,#120c07 100%);
+  border:1px solid rgba(138,106,59,.5);
+  border-radius:22px 30px 18px 28px / 28px 20px 30px 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,210,140,.1),
+    inset 0 14px 22px rgba(0,0,0,.42),
+    inset 0 -14px 24px rgba(0,0,0,.5),
+    0 22px 40px -18px rgba(0,0,0,.9);
+}
+.signage::after{
+  content:"";position:absolute;left:8%;right:8%;bottom:6%;height:26%;
+  border-radius:50%;
+  background:radial-gradient(60% 100% at 50% 100%, rgba(110,127,87,.4), rgba(110,127,87,0) 75%);
+  pointer-events:none;
+}
+.signage::before{
+  content:"ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ";
+  position:absolute;top:9px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#6d5636;opacity:.55;white-space:nowrap;overflow:hidden;pointer-events:none;
+}
+.ph-icon{
+  width:64px;height:64px;margin:0 auto 10px;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(232,163,61,.18));
+}
+.signage h1{
+  font-size:clamp(21px,4.4vw,34px);font-weight:600;
+  font-variant-caps:all-small-caps;letter-spacing:1.2px;color:#e8d5a4;
+  text-shadow:0 2px 2px rgba(0,0,0,.9), 0 -1px 0 rgba(255,215,150,.14), 0 0 26px rgba(232,163,61,.14);
+  overflow-wrap:anywhere;
+}
+.ph-grove{
+  margin-top:9px;font-size:10.5px;letter-spacing:3.2px;color:#9b8660;text-transform:uppercase;
+}
+.ph-grove .rune{color:var(--amber2);text-shadow:0 0 9px rgba(232,163,61,.55);margin-right:4px}
+.ph-marks{
+  margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+}
+.m-lang{color:#b08b4f;font-variant-caps:all-small-caps}
+.m-year{color:#9b8660}
+.m-sep{color:#6d5636;font-size:12px}
+
+/* ---- sections ---- */
+.page{max-width:860px;margin:0 auto;padding:6px 24px 26px}
+.cutline{display:flex;justify-content:center;padding:14px 0 2px;color:#5f4a2a;opacity:.85}
+.cutline svg{width:220px;height:24px}
+.plaque-head{display:flex;align-items:center;gap:16px;margin:26px 0 14px}
+.pla-roundel{
+  width:52px;height:52px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(138,106,59,.45);
+  background:radial-gradient(circle at 38% 30%, #2a1f12, #120c06 78%);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 3px rgba(255,205,130,.07), 0 6px 14px -6px rgba(0,0,0,.8);
+  font-size:22px;color:var(--gold);
+}
+.pla-roundel::after{
+  content:"";position:absolute;
+}
+.pla-text .over{font-size:9.5px;letter-spacing:3px;color:#8a795a;text-transform:uppercase;margin-bottom:3px}
+.pla-text h2{
+  font-size:22px;font-weight:600;letter-spacing:.8px;color:#e2cf9d;
+  text-shadow:0 2px 2px rgba(0,0,0,.85), 0 -1px 0 rgba(255,215,150,.1);
+}
+.pla-rune{margin-left:auto;font-size:34px;line-height:1;color:rgba(217,181,106,.16);pointer-events:none}
+.slab{
+  position:relative;
+  padding:26px 30px 24px;
+  background:
+    radial-gradient(120% 32% at 50% -10%, rgba(110,127,87,.15), transparent 70%),
+    radial-gradient(88px 50px at 0% 0%, rgba(110,127,87,.14), transparent 72%),
+    radial-gradient(70px 42px at 100% 100%, rgba(98,114,76,.10), transparent 72%),
+    radial-gradient(140% 90% at 32% 0%, rgba(255,190,110,.05), transparent 55%),
+    linear-gradient(180deg,#221a11 0%,#171008 62%,#110b05 100%);
+  border:1px solid var(--edge);
+  border-radius:26px 34px 20px 32px / 32px 22px 36px 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,210,140,.07),
+    inset 0 16px 22px rgba(0,0,0,.38),
+    inset 0 -16px 26px rgba(0,0,0,.5),
+    0 10px 20px -12px rgba(0,0,0,.85);
+}
+.slab::before{
+  content:"ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ";
+  position:absolute;top:9px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#6d5636;opacity:.55;white-space:nowrap;overflow:hidden;pointer-events:none;
+}
+.slab p{font-size:14.5px;line-height:1.75;color:#b6a37c;letter-spacing:.2px}
+.slab p + p{margin-top:13px}
+.slab em{color:#cbb086;font-style:italic}
+.slab .drop{
+  float:left;font-size:46px;line-height:.92;margin:4px 10px 0 0;color:var(--amber2);
+  text-shadow:0 2px 3px rgba(0,0,0,.85), 0 0 16px rgba(232,163,61,.35);
+}
+.mossline{margin-top:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase}
+.mossline a{color:#b08b4f;text-decoration:none;border-bottom:1px dotted rgba(138,106,59,.55);transition:color .25s,text-shadow .25s}
+.mossline a:hover,.mossline a:focus{color:var(--amber2);text-shadow:0 0 9px rgba(232,163,61,.5)}
+
+/* ---- films ---- */
+.onfilm{
+  margin-top:14px;display:flex;align-items:center;flex-wrap:wrap;gap:14px;
+}
+.onfilm-label{font-size:8.5px;letter-spacing:1.9px;text-transform:uppercase;color:#8a795a}
+.onfilm a{
+  display:block;border-radius:7px 3px 7px 3px;overflow:hidden;border:1px solid #2c2113;
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08), 0 4px 9px -5px rgba(0,0,0,.8);
+  transition:border-color .28s;text-decoration:none;
+}
+.onfilm a:hover{border-color:rgba(232,163,61,.6)}
+.onfilm img{display:block;width:150px;height:84px;object-fit:cover;filter:brightness(.82) saturate(.92);transition:filter .3s}
+.onfilm a:hover img{filter:brightness(1.04) saturate(1.05)}
+.film-note{margin-top:10px;font-size:12px;font-style:italic;color:#96835f}
+
+/* ---- footer ---- */
+.foot{padding:26px 20px 60px;text-align:center}
+.foot-knot{width:220px;height:24px;margin:0 auto 20px;color:#5f4a2a}
+.foot-line{font-size:13px;font-style:italic;color:#96835f;letter-spacing:.5px;margin-bottom:14px}
+.foot-gh{
+  display:inline-block;text-decoration:none;
+  font-size:13px;letter-spacing:1.5px;color:var(--gold);
+  padding:9px 22px;border:1px solid rgba(138,106,59,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(42,30,16,.55),rgba(10,7,4,.55));
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08), 0 6px 14px -6px rgba(0,0,0,.8);
+  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
+}
+.foot-gh:hover{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 12px rgba(232,163,61,.6);transform:translateY(-2px)}
+.foot-colophon{margin-top:18px;font-size:10.5px;letter-spacing:1.6px;color:#6f6046;text-transform:uppercase}
+.foot-copy{margin-top:10px;font-size:12.5px;letter-spacing:.8px;color:#9b8660}
+
+@media (max-width:920px){.tlink{display:none}}
+@media (max-width:760px){
+  .rt-label,.rt-count{display:none}
+  .rtab{padding:6px 10px}
+  .ph-rune{display:none}
+  .signage{padding:22px 22px 26px}
+  .slab{padding:24px 20px 22px}
+  .pla-rune{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="The garden">
+  <a class="brand" href="../">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13" stroke-width="1.6"/><circle cx="16" cy="16" r="9" stroke-width="1" stroke-dasharray="2.5 2" opacity=".8"/><rect x="10.5" y="11" width="6" height="8" rx="1" stroke-width="1.1"/><rect x="15.5" y="13" width="6" height="8" rx="1" stroke-width="1.1" transform="rotate(9 18.5 17)"/></g></svg>
+    <span class="brand-name">THE&nbsp;GARDEN</span>
+  </a>
+  <div class="runestrip">
+    <a class="rtab" href="../#grove-ai"><span class="rt-rune">ᚨ</span><span class="rt-label">Agents</span><span class="rt-count">×6</span></a>
+    <a class="rtab" href="../#grove-home"><span class="rt-rune">ᛖ</span><span class="rt-label">Hearth</span><span class="rt-count">×7</span></a>
+    <a class="rtab here" href="../#grove-web"><span class="rt-rune">ᛜ</span><span class="rt-label">Webwork</span><span class="rt-count">×9</span></a>
+    <a class="rtab" href="../#grove-games"><span class="rt-rune">ᛏ</span><span class="rt-label">Games</span><span class="rt-count">×3</span></a>
+    <a class="rtab" href="../#grove-print"><span class="rt-rune">ᚷ</span><span class="rt-label">Craft</span><span class="rt-count">×3</span></a>
+    <a class="rtab" href="../#grove-hardware"><span class="rt-rune">ᚦ</span><span class="rt-label">Elders</span><span class="rt-count">×19</span></a>
+    <a class="rtab" href="../#grove-misc"><span class="rt-rune">ᛚ</span><span class="rt-label">Curio</span><span class="rt-count">×2</span></a>
+    <a class="rtab" href="../#grove-keepers"><span class="rt-rune">ᛋ</span><span class="rt-label">Keepers</span><span class="rt-count">×3</span></a>
+  </div>
+  <div class="toplinks">
+    <a class="tlink" href="../">Home</a>
+    <a class="tlink" href="../sessions/">Sessions</a>
+    <a class="tlink" href="../videos/">Videos</a>
+    <a class="ghpill" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+
+<!-- ═══════════ ENGRAVED HEADER — THE STONE'S OWN SIGNAGE ═══════════ -->
+<header class="page-head">
+  <span class="ph-rune" aria-hidden="true">ᛜ</span>
+  <a class="crumb" href="../">ᛜ back to the groves</a>
+  <div class="signage">
+    <img class="ph-icon" src="../assets/icons/moon.png" alt="" width="64" height="64">
+    <h1>gcal-always-monday</h1>
+    <p class="ph-grove"><span class="rune">ᛜ</span>Grove III · The Weaver's Knot</p>
+  </div>
+  <div class="ph-marks">
+    <span class="m-lang">JavaScript</span><span class="m-sep">᛫</span><span class="m-year">2026</span>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="cutline" aria-hidden="true"><svg viewBox="0 0 220 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12 Q30 2 50 12 T90 12 T130 12 T170 12 T210 12"/><circle cx="110" cy="12" r="4.5" stroke-width="1.1"/><path d="M106 12 L110 8 L114 12 L110 16 Z"/></svg></div>
+
+  <!-- ═══════════ WHAT IT IS ═══════════ -->
+  <div class="plaque-head"><div class="pla-roundel">ᛜ</div><div class="pla-text"><p class="over">The Plain Facts, Carved</p><h2>What It Is</h2></div><span class="pla-rune">ᛜ</span></div>
+  <div class="slab">
+    A browser tweak that persuades Google Calendar that every day is Monday.
+
+    It is a small piece of JavaScript — a userscript or extension layer — that adjusts the calendar's notion of which day it is showing, so the week presents itself the way the wearer of the tweak would rather see it: beginning, always, at the first day.
+
+    It exists as a tiny act of domestic sovereignty over an interface that insists the week starts where the corporation says it starts. No server is involved, nothing is sent anywhere; the fold is made entirely on the client, in the browser, between the site and the eye.
+  </div>
+
+  <!-- ═══════════ THE BUILD STORY ═══════════ -->
+  <div class="plaque-head"><div class="pla-roundel">ᛚ</div><div class="pla-text"><p class="over">Told in the Seanchaí Tradition</p><h2>The Build Story</h2></div><span class="pla-rune">ᛚ</span></div>
+  <div class="slab">
+    <p><span class="drop">M</span>anannán mac Lir rides the mist at the edges of the world, and where the mist folds, the mornings fold with it — the traveler on the strand never knows which dawn he is walking into, and the sea is under no obligation to tell him. It is the oldest trick in the western islands, and the gentlest. The calendar of the age had no such courtesy: it marched its seven days in a straight grey line and named the start of them without asking anyone. So the garden's weatherworker borrowed the god's method in miniature — not storm, not enchantment of any guest, only a small mist folded politely over the page, so that every day the eye opens on is the first day, and the week is always at its beginning. The monks of old cursed Manannán for it; the calendar never even noticed.</p>
+  </div>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="foot">
+  <div class="foot-knot" aria-hidden="true"><svg viewBox="0 0 220 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12 Q30 2 50 12 T90 12 T130 12 T170 12 T210 12"/><circle cx="110" cy="12" r="4.5" stroke-width="1.1"/><path d="M106 12 L110 8 L114 12 L110 16 Z"/></svg></div>
+  <p class="foot-line">A small mist, folded flat — the week begins whenever you say it does.</p>
+  <a class="foot-gh" href="https://github.com/declanshanaghy/gcal-always-monday" target="_blank" rel="noopener">github.com/declanshanaghy/gcal-always-monday</a>
+  <p class="foot-colophon">a stone of Grove III · The Weaver's Knot · mossed by hand · rendered whole from file://</p>
+  <p class="foot-copy">© Declan Shanaghy · an amalgamation · 🍀</p>
+</footer>
+
+</body>
+</html>
