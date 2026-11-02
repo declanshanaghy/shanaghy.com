@@ -34,7 +34,7 @@ export default function Footer() {
           </React.Fragment>
         ))}
       </p>
-      <p className="foot-copy">© Declan Shanaghy · an amalgamation of many spores · 🍀</p>
+      <p className="foot-copy">© FiremanDecko · an amalgamation of many spores · 🍀</p>
     </footer>
   );
 }
