@@ -18,7 +18,7 @@ export default function Header({ here }) {
         <img
           className="brand-logo"
           src="/assets/icons/forge-logo.png"
-          alt="The Forge of FiremanDecko"
+          alt="The name of the forge, in ogham carved on mossy stone"
           width={160}
           height={40}
           loading="lazy"
