@@ -1,16 +1,5 @@
 import React from "react";
 
-const NAV = [
-  ["Forge", "/"],
-  ["Stones", "/projects/"],
-  ["Sites", "/sites/"],
-  ["Films", "/videos/"],
-  ["Sessions", "/sessions/"],
-  ["Creed", "/creed/"],
-  ["Fleet", "/fleet/"],
-  ["Paths", "/paths/"],
-];
-
 export default function Footer() {
   return (
     <footer className="foot">
@@ -26,15 +15,6 @@ export default function Footer() {
       >
         github.com/declanshanaghy
       </a>
-      <p className="foot-colophon">
-        {NAV.map(([label, href]) => (
-          <React.Fragment key={href}>
-            <a className="foot-tlink" href={href}>
-              the {label.toLowerCase()}
-            </a>{" "}
-          </React.Fragment>
-        ))}
-      </p>
       <p className="foot-copy">The Forge of FiremanDecko · an amalgamation of many spores · 🍀</p>
     </footer>
   );

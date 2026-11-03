@@ -3,11 +3,11 @@ import React from "react";
 const NAV = [
   ["Forge", "/"],
   ["Stones", "/projects/"],
-  ["Sites", "/sites/"],
-  ["Films", "/videos/"],
-  ["Sessions", "/sessions/"],
+  ["RingForts", "/sites/"],
+  ["Towers", "/videos/"],
+  ["Ballads", "/sessions/"],
   ["Creed", "/creed/"],
-  ["Fleet", "/fleet/"],
+  ["Garden", "/garden/"],
   ["Paths", "/paths/"],
 ];
 

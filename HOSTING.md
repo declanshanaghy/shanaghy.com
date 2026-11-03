@@ -15,7 +15,7 @@ is the entire CMS: GitHub Actions builds, GitHub Pages serves.
       content/              page bodies (creed, laws, profiles, projects,
                             sessions, sites, videos, index…)
         garden.json         the living garden's souls — every entity the
-                            /fleet/ scene displays; grown, not drawn
+                            /garden/ scene displays; grown, not drawn
       pages/                one route per page; owns title + meta description
       public/              shipped verbatim into the build output
         CNAME               shanaghy.com — must match the Pages setting
@@ -27,7 +27,7 @@ is the entire CMS: GitHub Actions builds, GitHub Pages serves.
     scripts/gen_sitemap.py  regenerates web/public/sitemap.xml + robots.txt
                             from web/pages + web/content; run when routes change
     scripts/gen_garden.py   renders the living-garden scene SVG between the
-                            garden-scene markers in web/content/fleet.html
+                            garden-scene markers in web/content/garden.html
                             from web/content/garden.json; run when souls change
     HOSTING.md              this doc
 

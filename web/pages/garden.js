@@ -44,9 +44,9 @@ export default function Page({ html, css }) {
   return (
     <div onClick={gardenClick} onKeyUp={gardenEsc}>
       <ContentPage
-        title="The Fleet — The Forge of FiremanDecko"
-        description="Five spores, one culture — the agents of the garden, in the living garden."
-        here="/fleet/"
+        title="The Garden — The Forge of FiremanDecko"
+        description="The souls of the garden — the fleet on their stones, the passed ground, the spores — one culture, grown."
+        here="/garden/"
         html={html}
         css={css}
       />
@@ -55,5 +55,5 @@ export default function Page({ html, css }) {
 }
 
 export function getStaticProps() {
-  return { props: { html: readContent("fleet.html"), css: readContentCss("fleet.css") } };
+  return { props: { html: readContent("garden.html"), css: readContentCss("garden.css") } };
 }

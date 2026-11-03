@@ -10,7 +10,7 @@ export default function Profile({ slug, html, css }) {
     <ContentPage
       title={`${slug} — a persona of the forge`}
       description={`A persona of the garden — ${slug}.`}
-      here="/fleet/"
+      here="/garden/"
       html={html}
       css={css}
     />

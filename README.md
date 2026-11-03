@@ -59,7 +59,7 @@ fleet page is grown the same way: `web/content/garden.json` holds every
 soul the scene displays — persons in their dwellings, the fleet on mossy
 plinths, the dolmens of the passed ground, the spores off the tree — and
 `scripts/gen_garden.py` renders it into the garden-scene SVG between the
-markers in `web/content/fleet.html`; a soul is appended to the JSON and the
+markers in `web/content/garden.html`; a soul is appended to the JSON and the
 garden regrows. The creed says it plainly:
 the tome is kept in the shared memory, cut here in stone.
 
@@ -72,7 +72,7 @@ flowchart LR
     cat["the data catalogs<br/>data/ — the catalogs behind The Sync,<br/>the fleet's shared culture"]
     gen["scripts/gen_sitemap.py<br/>regenerates sitemap.xml and robots.txt<br/>from the routes and content, before a build"]
     gardenj["web/content/garden.json<br/>the living garden's souls — persons,<br/>fleet plinths, dolmens, spores"]
-    geng["scripts/gen_garden.py<br/>renders the souls into the<br/>garden-scene SVG in fleet.html"]
+    geng["scripts/gen_garden.py<br/>renders the souls into the<br/>garden-scene SVG in garden.html"]
     sync["The Sync<br/>the shared memory of the fleet"]
     nextb["npm run build in web/<br/>the Next.js static export"]
     out["web/out/ — the whole garden as flat HTML"]

@@ -4,7 +4,7 @@ import { ContentPage } from "../lib/ContentPage";
 export default function Page({ html, css }) {
   return (
     <ContentPage
-      title="The Films — The Forge of FiremanDecko"
+      title="The Towers — The Forge of FiremanDecko"
       description="One hundred and eighty-one reels of FiremanDecko, screened by candlelight."
       here="/videos/"
       html={html}
