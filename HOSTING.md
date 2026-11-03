@@ -142,7 +142,7 @@ One-time ground setup (gcloud, already stood):
       --project=fenrir-ledger-prod
     gcloud iam workload-identity-pools providers create-oidc shanaghy-com \
       --workload-identity-pool=github-actions --location=global \
-      --issuer-url="https://token.actions.githubusercontent.com" \
+      --issuer-uri="https://token.actions.githubusercontent.com" \
       --attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository" \
       --attribute-condition="assertion.repository == 'declanshanaghy/shanaghy.com'" \
       --project=fenrir-ledger-prod
