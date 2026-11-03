@@ -16,7 +16,7 @@ ground beside the fenrir-ledger halls.
 
     web/                    the garden — everything below ships
       content/              page bodies (creed, laws, profiles, projects,
-                            sessions, sites, videos, index…)
+                            sessions, sites, towers, index…)
         garden.json         the living garden's souls — every entity the
                             /garden/ scene displays; grown, not drawn
       pages/                one route per page; owns title + meta description
@@ -35,7 +35,7 @@ ground beside the fenrir-ledger halls.
     .github/workflows/deploy.yml      the Pages pipeline — canonical www
     .github/workflows/deploy-gke.yml  the GKE pipeline — image build, push,
                             and roll on every merge to main
-    data/                   catalogs for The Sync (projects, videos, profiles)
+    data/                   catalogs for The Sync (projects, towers, profiles)
                             + towers-photos.json — the private Google Photos
                             albums' manifest (grove + piece lore, Google ids)
     scripts/gen_sitemap.py  regenerates web/public/sitemap.xml + robots.txt
@@ -49,7 +49,7 @@ ground beside the fenrir-ledger halls.
                             Library API no longer reads private libraries),
                             downloads thumbs to web/public/assets/towers/,
                             renders groves between the towers-photos markers
-                            in videos.html; OAuth creds live in ~/.hermes/,
+                            in towers.html; OAuth creds live in ~/.hermes/,
                             never in the repo
     HOSTING.md              this doc
 
