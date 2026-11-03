@@ -6,7 +6,7 @@ export default function Page({ html, css }) {
     <ContentPage
       title="The Towers — The Forge of FiremanDecko"
       description="One hundred and eighty-one reels and the smith's own picked stills, screened by candlelight."
-      here="/videos/"
+      here="/towers/"
       html={html}
       css={css}
     />
@@ -14,5 +14,5 @@ export default function Page({ html, css }) {
 }
 
 export function getStaticProps() {
-  return { props: { html: readContent("videos.html"), css: readContentCss("videos.css") } };
+  return { props: { html: readContent("towers.html"), css: readContentCss("towers.css") } };
 }
