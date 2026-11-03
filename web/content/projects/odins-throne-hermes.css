@@ -284,3 +284,21 @@ main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:b
 .slab,.plaque-head{max-width:none;width:100%}
 img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
 @media (min-width:1600px){ img.hero3d{border-radius:16px} }
+
+/* ---- preview gallery ---- */
+.throne-gallery{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,42vw),1fr));gap:14px}
+.throne-gallery figure{margin:0}
+.throne-gallery .thr-lead{grid-column:1/-1}
+.throne-gallery img{
+  width:100%;height:auto;display:block;
+  border-radius:10px 4px 10px 4px;border:1px solid #2c2113;
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08), 0 8px 18px -10px rgba(0,0,0,.85);
+  filter:brightness(.92) saturate(.95);
+  transition:border-color .28s, filter .3s;
+}
+.throne-gallery figure:hover img,.throne-gallery figure:focus-within img{border-color:rgba(232,163,61,.55);filter:brightness(1.02) saturate(1.03)}
+.throne-gallery figcaption{
+  margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.4px;
+  text-transform:uppercase;color:#8a795a;text-align:center;
+}
+@media (max-width:760px){.throne-gallery{grid-template-columns:1fr}.throne-gallery .thr-lead{grid-column:auto}}
