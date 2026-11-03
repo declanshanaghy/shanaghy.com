@@ -1,0 +1,9 @@
+# the garden's ground on the cluster — one namespace, one service,
+# alongside the fenrir-ledger halls
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: shanaghy-garden
+  labels:
+    app.kubernetes.io/name: shanaghy-garden
+    app.kubernetes.io/part-of: shanaghy.com

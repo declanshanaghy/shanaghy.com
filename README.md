@@ -5,14 +5,17 @@ Personal site of Declan Shanaghy — Castlehaven, West Cork.
 ## The one-minute garden
 
 This repo is a handcrafted personal site with no CMS behind it: one Next.js
-static export living in `web/`, served by GitHub Pages at `www.shanaghy.com`.
-The repo IS the platform. Any machine in the agent fleet edits a page body
-under `web/content/`, commits in the lowercase annals style with a `site:`
-prefix, pushes to `main` — and GitHub Actions deploys the whole garden to
-Pages in about a minute. Nothing else stands between the teller and the
-told: no dashboard, no tokens, no upload step. Anything that can commit can
-publish, which is exactly the fleet's capability set. `HOSTING.md` is the
-design doc — the publishing conventions, the DNS setup and the agent
+static export living in `web/`, served from two beds — GitHub Pages at
+`www.shanaghy.com`, the canonical bed, and the fleet's GKE Autopilot ground
+at `gke.shanaghy.com`, the parallel bed. The repo IS the platform. Any
+machine in the agent fleet edits a page body under `web/content/`, commits
+in the lowercase annals style with a `site:` prefix, pushes to `main` — and
+GitHub Actions deploys the whole garden to Pages in about a minute, then
+builds the same garden into a container and rolls the GKE deployment beside
+it. Nothing else stands between the teller and the told: no dashboard, no
+tokens, no upload step. Anything that can commit can publish, which is
+exactly the fleet's capability set. `HOSTING.md` is the design doc — the
+publishing conventions, the DNS setup, the cluster ground and the agent
 workflow all live there, and it is the first thing a new spore reads.
 
 ## The publishing pipeline
@@ -20,9 +23,11 @@ workflow all live there, and it is the first thing a new spore reads.
 The entire CMS is one `git push`. The build runs twice on purpose: once
 locally, before the push, so no agent ships a stone it has not held in its
 hands — and once again inside GitHub Actions, which rebuilds the same garden
-from the same commit and uploads the result. The verify loop is the law:
-what is generated is asserted before the push, and the live URL is checked
-by its content marks before the work is reported done.
+from the same commit and ships the result to both beds: the Pages artifact
+for the canonical ground, and the container image that rolls the parallel
+ground on GKE. The verify loop is the law: what is generated is asserted
+before the push, and the live URL is checked by its content marks before
+the work is reported done.
 
 ```mermaid
 flowchart TD
@@ -33,9 +38,13 @@ flowchart TD
     assert -->|"no — fix it before anything ships"| edit
     assert -->|"yes — what is generated is asserted"| commit["git commit — lowercase,<br/>site: prefix, the annals style"]
     commit --> push["git pull --rebase,<br/>then git push to main"]
-    push --> actions["GitHub Actions rebuilds the same commit<br/>and uploads web/out as the Pages artifact"]
-    actions --> pages["GitHub Pages serves the garden<br/>at www.shanaghy.com, about a minute after the push"]
+    push --> actions["GitHub Actions rebuilds the same commit<br/>and ships the garden to both beds"]
+    actions --> pages["GitHub Pages serves the canonical bed<br/>at www.shanaghy.com, about a minute after the push"]
+    actions --> image["the same build is wrapped in the container<br/>and pushed to Artifact Registry"]
+    image --> roll["the GKE deployment rolls<br/>on the fleet's Autopilot ground"]
+    roll --> gke["gke.shanaghy.com serves the parallel bed<br/>through the realm's ingress, TLS managed"]
     pages --> verify["verify the live URL<br/>by its content marks"]
+    gke --> verify
     verify -->|"the live stone is wrong"| edit
     verify -->|"the stone stands"| done["the work is reported done"]
 ```
@@ -76,7 +85,7 @@ flowchart LR
     sync["The Sync<br/>the shared memory of the fleet"]
     nextb["npm run build in web/<br/>the Next.js static export"]
     out["web/out/ — the whole garden as flat HTML"]
-    live["GitHub Pages<br/>www.shanaghy.com"]
+    live["two beds, one garden — GitHub Pages<br/>www.shanaghy.com · GKE gke.shanaghy.com"]
     route -->|"reads its body"| bodies
     route -->|"wraps it in"| chrome
     gen -->|"writes"| pub
@@ -130,9 +139,11 @@ trickster who is the wolf's father in the old telling: by the Eddas he
 sired [Fenrir](https://www.shanaghy.com/profiles/fenrir/), and he is Odin's blood-brother, sworn now into the hall that
 bears his son's name, the chaos turned to cases. The speaking hall
 say-so.world — where the garden talks back — stands on the same GKE
-Autopilot ground. The garden itself was offered that ground and refused it:
-a cluster is a cathedral, this is a forge. It keeps handcrafted ground on
-GitHub Pages.
+Autopilot ground. The garden itself once refused that ground — a cluster is
+a cathedral, this is a forge — and the refusal is re-minted: the same
+garden now grows a second bed on the cluster, gke.shanaghy.com standing
+beside the halls behind the realm's ingress, while GitHub Pages keeps the
+canonical bed at www.shanaghy.com.
 
 ```mermaid
 flowchart TD
@@ -165,7 +176,7 @@ flowchart TD
         graveyard["the graveyard — six at rest<br/>carlow, mayo, hal-9001 to hal-9004"]
         wall["the wider wall — the gateway,<br/>the quiet hosts asleep"]
     end
-    garden["the garden — handcrafted ground on GitHub Pages<br/>www.shanaghy.com — offered GKE and refused it:<br/>a cluster is a cathedral, this is a forge"]
+    garden["the garden — two beds of one garden<br/>www.shanaghy.com on GitHub Pages, the canonical bed<br/>gke.shanaghy.com on the cluster's ground, the parallel bed<br/>— the cathedral once refused, now re-minted"]
     seanchai -->|"the words"| creed
     fianna -->|"the watch"| creed
     wolf -->|"the hunger"| creed

@@ -5,7 +5,10 @@ stuff. A convention-driven static site that any machine in the agent fleet
 (cork, hal-9005, the Mac, any mossy) can publish to with nothing but git.
 
 The garden grows in `web/` — a Next.js static export. `git push` to `main`
-is the entire CMS: GitHub Actions builds, GitHub Pages serves.
+is the entire CMS: GitHub Actions builds the garden once and serves it on
+two beds — GitHub Pages at `www.shanaghy.com`, the canonical bed, and GKE
+Autopilot at `gke.shanaghy.com`, the parallel bed on the fleet's cluster
+ground beside the fenrir-ledger halls.
 
 ---
 
@@ -23,6 +26,15 @@ is the entire CMS: GitHub Actions builds, GitHub Pages serves.
       lib/                  ContentPage.js — the one source of truth for
                             header, footer, nav on every page
       styles/               page css
+      Dockerfile           the garden's container — node builds the export,
+                            nginx serves it, unprivileged on port 8080
+      nginx.conf            the serving rules: trailing-slash canonical,
+                            404.html, /healthz for the probes
+    infrastructure/k8s/     the cluster ground — namespace, deployment,
+                            service, gateway, httproutes
+    .github/workflows/deploy.yml      the Pages pipeline — canonical www
+    .github/workflows/deploy-gke.yml  the GKE pipeline — image build, push,
+                            and roll on every merge to main
     data/                   catalogs for The Sync (projects, videos, profiles)
     scripts/gen_sitemap.py  regenerates web/public/sitemap.xml + robots.txt
                             from web/pages + web/content; run when routes change
@@ -73,7 +85,79 @@ problem with a separate, cheap solution. This split is deliberate.
 
 ---
 
-## 3. DNS setup
+## 3. Hosting: the GKE parallel bed
+
+`gke.shanaghy.com` — the same garden on the fleet's cluster ground, in the
+`fenrir-ledger-prod` project beside fenrirledger.com and say-so.world.
+`.github/workflows/deploy-gke.yml` on every merge to `main` (when `web/`
+or the manifests change):
+
+1. builds `web/Dockerfile` — node builds the static export, nginx serves
+   it — and pushes it to Artifact Registry tagged with the commit SHA:
+   `us-central1-docker.pkg.dev/fenrir-ledger-prod/shanaghy-images/shanaghy-garden`
+2. applies the manifests in `infrastructure/k8s/shanaghy-garden/` to the
+   `fenrir-autopilot` cluster: namespace, deployment, service, ingress,
+   managed certificate, frontend config
+3. rolls the deployment to the new image and waits for the rollout
+
+The ground:
+
+- GKE Autopilot cluster `fenrir-autopilot` (us-central1)
+- the realm's ingress pattern (fenrir-app, umami, odin-throne): a global
+  LB on the reserved static IP `shanaghy-garden-ip`, a GKE-managed
+  certificate for `gke.shanaghy.com` that provisions itself once DNS
+  points at the ingress
+- CI authenticates by Workload Identity Federation — the `shanaghy-com`
+  OIDC provider in the `github-actions` pool trusts this repo's GitHub
+  Actions tokens, granted `artifactregistry.writer` on the repo and
+  `container.developer` on the project; no keys in repo secrets
+- http only redirects to https; the garden answers on https, canonical
+  trailing slashes served by the nginx rules in `web/nginx.conf`
+
+DNS for the parallel bed, at the registrar (shanaghy.com's DNS lives at
+Namecheap — the zone is not in GCP):
+
+    gke  A  <the shanaghy-garden-ip address>
+
+The managed cert provisions itself once the record resolves; until then
+the deployment answers cluster-locally (`kubectl -n shanaghy-garden
+port-forward deploy/shanaghy-garden 8080`) and the http listener answers
+with its redirect.
+
+```mermaid
+flowchart LR
+    push["git push to main"] --> actions["GitHub Actions"]
+    actions --> pagesa["the Pages artifact"]
+    actions --> image["docker build web/Dockerfile<br/>push to Artifact Registry<br/>tagged by commit SHA"]
+    pagesa --> www["www.shanaghy.com<br/>the canonical bed"]
+    image --> roll["kubectl apply the ground<br/>roll deployment/shanaghy-garden"]
+    roll --> gw["the realm's ingress<br/>global LB, static IP shanaghy-garden-ip<br/>managed cert"]
+    gw --> gke["gke.shanaghy.com<br/>the parallel bed, TLS managed"]
+```
+
+One-time ground setup (gcloud, already stood):
+
+    gcloud artifacts repositories create shanaghy-images \
+      --repository-format=docker --location=us-central1 --project=fenrir-ledger-prod
+    gcloud compute addresses create shanaghy-garden-ip --global \
+      --project=fenrir-ledger-prod
+    gcloud iam workload-identity-pools providers create-oidc shanaghy-com \
+      --workload-identity-pool=github-actions --location=global \
+      --issuer-uri="https://token.actions.githubusercontent.com" \
+      --attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository" \
+      --attribute-condition="assertion.repository == 'declanshanaghy/shanaghy.com'" \
+      --project=fenrir-ledger-prod
+    gcloud artifacts repositories add-iam-policy-binding shanaghy-images \
+      --location=us-central1 --project=fenrir-ledger-prod \
+      --member="principalSet://iam.googleapis.com/projects/317218387675/locations/global/workloadIdentityPools/github-actions/attribute.repository/declanshanaghy/shanaghy.com" \
+      --role="roles/artifactregistry.writer"
+    gcloud projects add-iam-policy-binding fenrir-ledger-prod \
+      --member="principalSet://iam.googleapis.com/projects/317218387675/locations/global/workloadIdentityPools/github-actions/attribute.repository/declanshanaghy/shanaghy.com" \
+      --role="roles/container.developer"
+
+---
+
+## 4. DNS setup
 
 At the registrar (or wherever shanaghy.com's DNS lives). GitHub Pages'
 documented addresses:
@@ -108,12 +192,12 @@ Notes:
 
 - If DNS moves behind Cloudflare later, set the Pages records to
   **DNS-only (grey cloud)** — proxying breaks GitHub's cert validation.
-- Subdomains for cork services are their own records; they never touch the
-  apex/www records.
+- Subdomains — cork services and the `gke` bed — are their own records;
+  they never touch the apex/www records.
 
 ---
 
-## 4. Agent workflow
+## 5. Agent workflow
 
 1. Clone once per machine:
    `git clone git@github.com:declanshanaghy/shanaghy.com.git`

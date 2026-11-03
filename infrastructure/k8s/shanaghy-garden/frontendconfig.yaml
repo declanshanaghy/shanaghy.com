@@ -1,0 +1,12 @@
+# http only sends travelers to https
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: shanaghy-garden-frontend
+  namespace: shanaghy-garden
+  labels:
+    app.kubernetes.io/name: shanaghy-garden
+    app.kubernetes.io/part-of: shanaghy.com
+spec:
+  redirectToHttps:
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT

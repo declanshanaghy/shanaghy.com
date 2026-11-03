@@ -1,0 +1,93 @@
+# the garden's second bed — build the image, stand it on the cluster.
+# GitHub Pages (deploy.yml) keeps the canonical www.shanaghy.com; this
+# rolls the parallel ground at gke.shanaghy.com on every merge to main.
+name: deploy the garden to gke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "web/**"
+      - "infrastructure/k8s/**"
+      - ".github/workflows/deploy-gke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: gke
+  cancel-in-progress: false
+
+env:
+  GCP_PROJECT_ID: fenrir-ledger-prod
+  GCP_REGION: us-central1
+  AR_HOST: us-central1-docker.pkg.dev
+  AR_REPO: shanaghy-images
+  IMAGE: shanaghy-garden
+  CLUSTER: fenrir-autopilot
+
+jobs:
+  build-push:
+    name: build and push the garden image
+    runs-on: ubuntu-latest
+    outputs:
+      image_ref: ${{ steps.push.outputs.image_ref }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: authenticate to gcp
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: projects/317218387675/locations/global/workloadIdentityPools/github-actions/providers/shanaghy-com
+          project_id: fenrir-ledger-prod
+
+      - name: set up gcloud
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: build and push the image
+        id: push
+        working-directory: web
+        run: |
+          gcloud auth configure-docker "${{ env.AR_HOST }}" --quiet
+          IMAGE_REF="${AR_HOST}/${GCP_PROJECT_ID}/${AR_REPO}/${IMAGE}:${GITHUB_SHA}"
+          docker build -t "${IMAGE_REF}" .
+          docker push "${IMAGE_REF}"
+          echo "image_ref=${IMAGE_REF}" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    name: stand the garden on the cluster
+    needs: build-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: authenticate to gcp
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: projects/317218387675/locations/global/workloadIdentityPools/github-actions/providers/shanaghy-com
+          project_id: fenrir-ledger-prod
+
+      - name: set up gcloud
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: get cluster credentials
+        uses: google-github-actions/get-gke-credentials@v3
+        with:
+          cluster_name: fenrir-autopilot
+          location: us-central1
+          project_id: fenrir-ledger-prod
+
+      - name: stand the garden's ground
+        run: |
+          kubectl apply -f infrastructure/k8s/shanaghy-garden/00-namespace.yaml
+          kubectl apply -R -f infrastructure/k8s/shanaghy-garden/
+
+      - name: roll the deployment
+        run: |
+          kubectl -n shanaghy-garden set image deployment/shanaghy-garden \
+            garden="${{ needs.build-push.outputs.image_ref }}"
+          kubectl -n shanaghy-garden rollout status deployment/shanaghy-garden --timeout=300s

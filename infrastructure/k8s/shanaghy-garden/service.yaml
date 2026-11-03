@@ -1,0 +1,21 @@
+# the garden's door inside the cluster — the ingress routes to it over NEGs,
+# as Autopilot requires
+apiVersion: v1
+kind: Service
+metadata:
+  name: shanaghy-garden
+  namespace: shanaghy-garden
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+  labels:
+    app.kubernetes.io/name: shanaghy-garden
+    app.kubernetes.io/component: site
+    app.kubernetes.io/part-of: shanaghy.com
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: shanaghy-garden
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
