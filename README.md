@@ -53,7 +53,7 @@ flowchart TD
 
 Four layers grow the garden, and each owns one thing. The content layer is
 `web/content/` — the page bodies as plain HTML fragments: the index, creed,
-fleet, sites, paths and videos pages, and the trees of law pages, profiles,
+fleet, sites, paths and towers pages, and the trees of law pages, profiles,
 project stones and session beds. The route layer is `web/pages/` — one route
 file per page, owning the title and the meta description, reading its body
 from the content layer. The shared chrome is `web/lib/` — ContentPage.js is
@@ -80,7 +80,7 @@ one picking session per album — the smith opens the pickerUri, searches
 the album, selects its pieces — and the script pulls the picked items
 (OAuth token outside the repo, thumbnails land in
 `web/public/assets/towers/`) and renders the groves between the
-towers-photos markers in `web/content/videos.html`; an album is appended
+towers-photos markers in `web/content/towers.html`; an album is appended
 to the JSON, its pieces picked, and the grove regrows. The creed says it
 plainly:
 the tome is kept in the shared memory, cut here in stone.
@@ -236,7 +236,7 @@ flowchart LR
     fleetp["fleet — the five spores<br/>and the wider realm"]
     sitesp["sites — nine halls beyond the garden"]
     pathsp["paths — the ways through"]
-    videosp["videos — the reels"]
+    videosp["towers — the reels"]
     projp["projects — the gallery"]
     sessp["sessions — the beds' index"]
     lawsC["the law pages — 14<br/>the Mossy Dekalogue, cut in stone"]
