@@ -4,7 +4,7 @@ import { ContentPage } from "../lib/ContentPage";
 export default function Page({ html, css }) {
   return (
     <ContentPage
-      title="The Creed — shanaghy.com"
+      title="The Creed — The Forge of FiremanDecko"
       description="The three strands of the garden: seanchaí, Fianna, Fenrir — the commandments, the rites, the two tongues."
       here="/creed/"
       html={html}

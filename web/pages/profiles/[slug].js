@@ -8,7 +8,7 @@ const SLUGS = fs.readdirSync(path.join(process.cwd(), "content", "profiles")).fi
 export default function Profile({ slug, html, css }) {
   return (
     <ContentPage
-      title={`${slug} — a persona of shanaghy.com`}
+      title={`${slug} — a persona of the forge`}
       description={`A persona of the garden — ${slug}.`}
       here="/fleet/"
       html={html}

@@ -4,7 +4,7 @@ import { ContentPage } from "../lib/ContentPage";
 export default function Page({ html, css }) {
   return (
     <ContentPage
-      title="The Fleet — shanaghy.com"
+      title="The Fleet — The Forge of FiremanDecko"
       description="Three spores, one culture — the agents of the garden."
       here="/fleet/"
       html={html}

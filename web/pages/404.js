@@ -4,7 +4,7 @@ import { ContentPage } from "../lib/ContentPage";
 export default function NotFound({ html, css }) {
   return (
     <ContentPage
-      title="404 — shanaghy.com"
+      title="404 — The Forge of FiremanDecko"
       description="A lost stone in the garden — nothing grows here."
       html={html}
       css={css}

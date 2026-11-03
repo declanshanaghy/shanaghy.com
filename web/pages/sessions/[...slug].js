@@ -36,7 +36,7 @@ const SESSIONS = listSessionRoutes();
 export default function SessionPage({ html, css }) {
   return (
     <ContentPage
-      title="A session of the garden — shanaghy.com"
+      title="A session of the garden — The Forge of FiremanDecko"
       description="Notes from the runemaster's forge-floor — a session filed by project."
       here="/sessions/"
       html={html}
