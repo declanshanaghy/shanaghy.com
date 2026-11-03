@@ -5,7 +5,7 @@ export default function Page({ html, css }) {
   return (
     <ContentPage
       title="The Towers — The Forge of FiremanDecko"
-      description="One hundred and eighty-one reels of FiremanDecko, screened by candlelight."
+      description="One hundred and eighty-one reels and the smith's own picked stills, screened by candlelight."
       here="/videos/"
       html={html}
       css={css}

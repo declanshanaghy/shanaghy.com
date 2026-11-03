@@ -36,11 +36,21 @@ ground beside the fenrir-ledger halls.
     .github/workflows/deploy-gke.yml  the GKE pipeline — image build, push,
                             and roll on every merge to main
     data/                   catalogs for The Sync (projects, videos, profiles)
+                            + towers-photos.json — the private Google Photos
+                            albums' manifest (grove + piece lore, Google ids)
     scripts/gen_sitemap.py  regenerates web/public/sitemap.xml + robots.txt
                             from web/pages + web/content; run when routes change
     scripts/gen_garden.py   renders the living-garden scene SVG between the
                             garden-scene markers in web/content/garden.html
                             from web/content/garden.json; run when souls change
+    scripts/sync_towers_photos.py
+                            draws the Towers' second source: drives the Photos
+                            Picker API (a pick session per album — Google's
+                            Library API no longer reads private libraries),
+                            downloads thumbs to web/public/assets/towers/,
+                            renders groves between the towers-photos markers
+                            in videos.html; OAuth creds live in ~/.hermes/,
+                            never in the repo
     HOSTING.md              this doc
 
 There is no second static layer. If a file isn't under `web/`, `data/`, or

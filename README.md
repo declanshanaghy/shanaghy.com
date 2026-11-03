@@ -69,7 +69,20 @@ soul the scene displays — persons in their dwellings, the fleet on mossy
 plinths, the dolmens of the passed ground, the spores off the tree — and
 `scripts/gen_garden.py` renders it into the garden-scene SVG between the
 markers in `web/content/garden.html`; a soul is appended to the JSON and the
-garden regrows. The creed says it plainly:
+garden regrows. The Towers page grew a second source the same way:
+`data/towers-photos.json` is the manifest of the smith's private Google
+Photos albums — one grove per album, stills and reels intermingled but
+declared, each piece carrying its lore — and
+`scripts/sync_towers_photos.py` draws the well through the **Photos
+Picker API** (since April 2025 Google's Library API reads only
+app-created content; the picker is the only road into a private library):
+one picking session per album — the smith opens the pickerUri, searches
+the album, selects its pieces — and the script pulls the picked items
+(OAuth token outside the repo, thumbnails land in
+`web/public/assets/towers/`) and renders the groves between the
+towers-photos markers in `web/content/videos.html`; an album is appended
+to the JSON, its pieces picked, and the grove regrows. The creed says it
+plainly:
 the tome is kept in the shared memory, cut here in stone.
 
 ```mermaid
@@ -91,6 +104,10 @@ flowchart LR
     gen -->|"writes"| pub
     gardenj -->|"read by"| geng
     geng -.->|"regrows between markers"| bodies
+    towersj["data/towers-photos.json<br/>the private albums' manifest —<br/>grove and piece lore, the Google ids"]
+    syncp["scripts/sync_towers_photos.py<br/>drives the Photos Picker API:<br/>a pick session per album, downloads<br/>thumbs, renders the groves"]
+    towersj -->|"read by"| syncp
+    syncp -.->|"regrows between markers"| bodies
     nextb -->|"gathers the routes"| route
     nextb -->|"copies verbatim"| pub
     nextb --> out
