@@ -27,6 +27,8 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: github pages custom 404
+        run: cp web/out/404/index.html web/out/404.html
       - name: nojekyll
         run: touch web/out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
