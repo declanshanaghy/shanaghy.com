@@ -14,6 +14,8 @@ is the entire CMS: GitHub Actions builds, GitHub Pages serves.
     web/                    the garden — everything below ships
       content/              page bodies (creed, laws, profiles, projects,
                             sessions, sites, videos, index…)
+        garden.json         the living garden's souls — every entity the
+                            /fleet/ scene displays; grown, not drawn
       pages/                one route per page; owns title + meta description
       public/              shipped verbatim into the build output
         CNAME               shanaghy.com — must match the Pages setting
@@ -23,7 +25,10 @@ is the entire CMS: GitHub Actions builds, GitHub Pages serves.
       styles/               page css
     data/                   catalogs for The Sync (projects, videos, profiles)
     scripts/gen_sitemap.py  regenerates web/public/sitemap.xml + robots.txt
-                            from web/pages + web/content; run before building
+                            from web/pages + web/content; run when routes change
+    scripts/gen_garden.py   renders the living-garden scene SVG between the
+                            garden-scene markers in web/content/fleet.html
+                            from web/content/garden.json; run when souls change
     HOSTING.md              this doc
 
 There is no second static layer. If a file isn't under `web/`, `data/`, or

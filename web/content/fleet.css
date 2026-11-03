@@ -286,6 +286,74 @@ svg{display:block}
   text-shadow:0 2px 1px rgba(0,0,0,.9), 0 -1px 0 rgba(255,205,130,.14);
 }
 .keeper p{font-size:12.5px;line-height:1.55;color:#a08d68}
+/* ---- the living garden: interactive scene ---- */
+.g-ent image{transition:filter .3s;cursor:pointer}
+.g-ent:hover image{filter:drop-shadow(0 0 10px rgba(232,163,61,.65)) brightness(1.1)}
+.g-pop{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(4,2,1,.74)}
+.g-pop.open{display:flex}
+.gp-card{
+  width:75vw;max-width:1150px;max-height:75vh;overflow-y:auto;position:relative;
+  background:
+    radial-gradient(120% 40% at 50% -10%, rgba(110,127,87,.13), transparent 70%),
+    linear-gradient(180deg,#221a11 0%,#171008 62%,#110b05 100%);
+  border:1px solid rgba(138,106,59,.55);border-radius:26px;
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.09), 0 30px 80px -20px rgba(0,0,0,.95);
+  padding:42px 48px 38px;
+}
+.gp-close{
+  position:absolute;top:16px;right:20px;width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(138,106,59,.55);background:rgba(10,7,4,.5);color:#d9b56a;
+  font-size:20px;line-height:1;cursor:pointer;transition:color .25s,border-color .25s;
+}
+.gp-close:hover{color:#ffbd5e;border-color:rgba(232,163,61,.7)}
+.gp-head{display:flex;gap:26px;align-items:center;border-bottom:1px solid rgba(138,106,59,.35);padding-bottom:24px}
+.gp-icon{width:136px;height:136px;flex-shrink:0;filter:drop-shadow(0 12px 26px rgba(0,0,0,.8))}
+.gp-name{font-size:31px;font-weight:600;letter-spacing:.5px;color:#e2cf9d;text-shadow:0 2px 2px rgba(0,0,0,.85)}
+.gp-epithet{margin-top:6px;font-size:14.5px;font-style:italic;color:#b6a37c}
+.gp-marks{margin-top:18px;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#b08b4f}
+.gp-bio{margin-top:16px;font-size:16px;line-height:1.85;color:#c2ad82;max-width:74ch}
+.gp-links{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+.gp-links a{
+  display:inline-block;text-decoration:none;font-size:13px;letter-spacing:1.2px;
+  color:var(--gold,#d9b56a);padding:10px 22px;border:1px solid rgba(138,106,59,.5);
+  border-radius:12px 4px 12px 4px;background:linear-gradient(180deg,rgba(42,30,16,.55),rgba(10,7,4,.55));
+  box-shadow:inset 0 1px 0 rgba(255,210,140,.08);transition:color .25s,border-color .25s,text-shadow .25s;
+}
+.gp-links a:hover{color:#ffbd5e;border-color:rgba(232,163,61,.6);text-shadow:0 0 12px rgba(232,163,61,.6)}
+.gp-links .gp-full{color:#e8cd8a;border-color:rgba(232,163,61,.5)}
+@media (max-width:720px){.gp-head{flex-direction:column;text-align:center}.gp-card{padding:30px 22px}}
+.garden-slab{padding:22px 26px 20px}
+.g-canon{font-size:14.5px;line-height:1.75;color:#c2ad82;letter-spacing:.2px;margin:0 0 12px}
+.g-canon em{color:#cbb086}
+.garden-scene{display:block;width:100%;height:auto;border-radius:14px}
+.g-ent{cursor:pointer}
+.garden-scene .g-label text{
+  font-family:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  font-size:13.5px;fill:#e8cd8a;letter-spacing:.4px;
+  paint-order:stroke;stroke:#0a0705;stroke-width:4px;stroke-linejoin:round;
+}
+.garden-scene .g-label{opacity:0;transition:opacity .3s;text-decoration:none}
+.g-ent:hover .g-label,.g-ent:focus-within .g-label,.g-ent:focus-visible .g-label{opacity:1}
+.g-stone path{transition:filter .3s}
+.g-stone:hover path{filter:drop-shadow(0 0 9px rgba(232,163,61,.55))}
+.g-dolmen path,.g-dolmen rect{transition:filter .3s}
+.g-dolmen:hover path,.g-dolmen:hover rect{filter:drop-shadow(0 0 8px rgba(217,181,106,.4))}
+.g-tree{cursor:help}
+.g-tree:hover circle{filter:drop-shadow(0 0 12px rgba(119,137,93,.5))}
+.garden-scene .g-hit{fill:transparent;pointer-events:all}
+@keyframes sporedriftA{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-8px)}50%{transform:translate(18px,4px)}75%{transform:translate(6px,10px)}}
+@keyframes sporedriftB{0%,100%{transform:translate(0,0)}30%{transform:translate(-12px,7px)}60%{transform:translate(-6px,-12px)}}
+.g-spore{transform-box:fill-box;animation:sporedriftA 11s ease-in-out infinite}
+.g-spore.s2{animation-duration:14s;animation-delay:-4s;animation-name:sporedriftB}
+.g-spore.s3{animation-duration:9s;animation-delay:-2s}
+.g-spore.s4{animation-duration:16s;animation-delay:-7s;animation-name:sporedriftB}
+.g-spore.s5{animation-duration:12s;animation-delay:-5s}
+.g-spore.s6{animation-duration:15s;animation-delay:-3s;animation-name:sporedriftB}
+.g-spore.s7{animation-duration:10s;animation-delay:-6s}
+.g-spore.s8{animation-duration:13s;animation-delay:-8s;animation-name:sporedriftB}
+.g-sporelayer:hover .g-spore circle:first-child{filter:drop-shadow(0 0 7px rgba(255,189,94,.85))}
+@media (prefers-reduced-motion:reduce){.g-spore{animation:none}}
+
 /* moss tufts resting on the keeper cards */
 .tuft{
   position:absolute;width:40px;height:20px;color:#6e7f57;opacity:.8;
