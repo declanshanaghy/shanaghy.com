@@ -1,0 +1,6 @@
+# pack wiring — local-only (the pack is a private repo; never committed to this public repo)
+.claude/
+infrastructure/k8s/agents
+
+# macOS
+.DS_Store
