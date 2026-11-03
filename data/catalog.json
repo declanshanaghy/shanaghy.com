@@ -1544,7 +1544,7 @@
           "status": "live",
           "kind": "GKE Autopilot",
           "desc": "Break free from fee traps — the rewards-optimizer's churn tracker. The wolf's own hall, where the chronicles are kept.",
-          "kin": ["/sessions/fenrir-ledger/", "/profiles/fenrir/", "/creed/#strand-fenrir"],
+          "kin": ["/sessions/fenrir-ledger/", "/profiles/fenrir/", "/profiles/odin/", "/creed/#strand-fenrir"],
           "shot": "/assets/icons/sites/fenrir-ledger.jpg",
           "note": "the hall is public; the annals behind it stay vaulted"
         },
@@ -1554,9 +1554,9 @@
           "status": "live",
           "kind": "GKE Autopilot",
           "desc": "A voice-first language-practice companion — speak, be heard, get better. The speaking hall.",
-          "kin": [],
+          "kin": ["/creed/#strand-fionn", "/laws/no-files-on-disk/"],
           "shot": "/assets/icons/sites/say-so.jpg",
-          "note": "no stone in the garden — the hall stands on its own ground"
+          "note": "no stone in the garden — the hall stands on its own ground; its kin are strands and laws, never stones"
         },
         {
           "name": "Dollar Game",

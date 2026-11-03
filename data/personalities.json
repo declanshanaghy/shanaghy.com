@@ -378,6 +378,20 @@
       "epithet": "forged from the depths of Athlone",
       "grove": "misc",
       "lore": "The first spore — Patient Zero, carried up from the depths of Athlone. Every later forge descends from this one's temper."
+    },
+    {
+      "repo": "fenrir-ledger",
+      "name": "The Fee-Breaker",
+      "epithet": "old hunger, new arithmetic",
+      "grove": "web",
+      "lore": "The rewards optimizer that watches the churn — the wolf's own hall, the Norse line keeping the far watch in the Futhark's tongue on ground no one owns. The hall is public; the annals behind it stay vaulted. Named in the Dekalogue — the way of managed stores — and its sagas live in the chronicles bed."
+    },
+    {
+      "repo": "say-so",
+      "name": "The Twelfth Book",
+      "epithet": "the tongue test, held at distance",
+      "grove": "web",
+      "lore": "A voice-first language-practice companion — speak, be heard, get better. The band's oldest gate held far: no one joined the Fianna without the twelve books of poetry whole in the head, and the hall trains that tongue still. No stone in the garden; its kin are strands and laws. The hall stands on its own ground."
     }
   ],
   "roads_back": {
