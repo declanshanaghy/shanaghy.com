@@ -1,10 +1,6 @@
-# pack wiring — scripts and agent config from private pack repo; not committed to this public repo
-.claude/agents/
-.claude/settings.json
-.claude/settings.local.json
-.claude/pack/**/*.sh
-.claude/pack/**/Makefile
-infrastructure/k8s/agents/*.sh
+# pack wiring — local-only (the pack is a private repo; never committed to this public repo)
+.claude/
+infrastructure/k8s/agents
 
 # macOS
 .DS_Store
