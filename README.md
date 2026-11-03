@@ -42,7 +42,7 @@ flowchart TD
     actions --> pages["GitHub Pages serves the canonical bed<br/>at www.shanaghy.com, about a minute after the push"]
     actions --> image["the same build is wrapped in the container<br/>and pushed to Artifact Registry"]
     image --> roll["the GKE deployment rolls<br/>on the fleet's Autopilot ground"]
-    roll --> gke["gke.shanaghy.com serves the parallel bed<br/>through the realm's gateway, TLS managed"]
+    roll --> gke["gke.shanaghy.com serves the parallel bed<br/>through the realm's ingress, TLS managed"]
     pages --> verify["verify the live URL<br/>by its content marks"]
     gke --> verify
     verify -->|"the live stone is wrong"| edit
@@ -142,7 +142,7 @@ say-so.world — where the garden talks back — stands on the same GKE
 Autopilot ground. The garden itself once refused that ground — a cluster is
 a cathedral, this is a forge — and the refusal is re-minted: the same
 garden now grows a second bed on the cluster, gke.shanaghy.com standing
-beside the halls on the realm's gateway, while GitHub Pages keeps the
+beside the halls behind the realm's ingress, while GitHub Pages keeps the
 canonical bed at www.shanaghy.com.
 
 ```mermaid

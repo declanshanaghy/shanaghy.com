@@ -1,0 +1,14 @@
+# the parallel ground's cert — GKE provisions and renews it for the domain;
+# it goes active once the registrar record points the name at the ingress:
+#   gke.shanaghy.com  A  <shanaghy-garden-ip>
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: shanaghy-garden-cert
+  namespace: shanaghy-garden
+  labels:
+    app.kubernetes.io/name: shanaghy-garden
+    app.kubernetes.io/part-of: shanaghy.com
+spec:
+  domains:
+    - gke.shanaghy.com

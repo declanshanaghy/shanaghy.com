@@ -96,16 +96,17 @@ or the manifests change):
    it — and pushes it to Artifact Registry tagged with the commit SHA:
    `us-central1-docker.pkg.dev/fenrir-ledger-prod/shanaghy-images/shanaghy-garden`
 2. applies the manifests in `infrastructure/k8s/shanaghy-garden/` to the
-   `fenrir-autopilot` cluster: namespace, deployment, service, gateway,
-   httproutes
+   `fenrir-autopilot` cluster: namespace, deployment, service, ingress,
+   managed certificate, frontend config
 3. rolls the deployment to the new image and waits for the rollout
 
 The ground:
 
 - GKE Autopilot cluster `fenrir-autopilot` (us-central1)
-- a global static IP `shanaghy-garden-ip` fronts the
-  `gke-l7-global-external-managed` gateway; GKE auto-provisions the
-  managed TLS cert for the route's hostname once DNS points at the gateway
+- the realm's ingress pattern (fenrir-app, umami, odin-throne): a global
+  LB on the reserved static IP `shanaghy-garden-ip`, a GKE-managed
+  certificate for `gke.shanaghy.com` that provisions itself once DNS
+  points at the ingress
 - CI authenticates by Workload Identity Federation — the `shanaghy-com`
   OIDC provider in the `github-actions` pool trusts this repo's GitHub
   Actions tokens, granted `artifactregistry.writer` on the repo and
@@ -130,7 +131,7 @@ flowchart LR
     actions --> image["docker build web/Dockerfile<br/>push to Artifact Registry<br/>tagged by commit SHA"]
     pagesa --> www["www.shanaghy.com<br/>the canonical bed"]
     image --> roll["kubectl apply the ground<br/>roll deployment/shanaghy-garden"]
-    roll --> gw["the realm's gateway<br/>gke-l7-global-external-managed<br/>static IP shanaghy-garden-ip"]
+    roll --> gw["the realm's ingress<br/>global LB, static IP shanaghy-garden-ip<br/>managed cert"]
     gw --> gke["gke.shanaghy.com<br/>the parallel bed, TLS managed"]
 ```
 
