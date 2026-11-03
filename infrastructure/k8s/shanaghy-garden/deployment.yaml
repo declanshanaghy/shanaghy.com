@@ -23,9 +23,9 @@ spec:
     spec:
       containers:
         - name: garden
-          # CI stamps the digest tag of the merge commit on every roll;
-          # this value is the last known standing garden
-          image: us-central1-docker.pkg.dev/fenrir-ledger-prod/shanaghy-images/shanaghy-garden:pending-first-build
+          # CI stamps the commit SHA tag on every roll; this value is the
+          # last known standing garden
+          image: us-central1-docker.pkg.dev/fenrir-ledger-prod/shanaghy-images/shanaghy-garden:b1873a2525ab731b412469d87a9e90db3ac1aa80
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

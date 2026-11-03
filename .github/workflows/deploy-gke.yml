@@ -5,9 +5,7 @@ name: deploy the garden to gke
 
 on:
   push:
-    # main is the standing trigger; the issue branch stands the ground up
-    # the first time and is removed before the merge
-    branches: [main, fix/issue-8-deploy-shanaghy-via-gke]
+    branches: [main]
     paths:
       - "web/**"
       - "infrastructure/k8s/**"
