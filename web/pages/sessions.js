@@ -4,8 +4,8 @@ import { ContentPage } from "../lib/ContentPage";
 export default function Page({ html, css }) {
   return (
     <ContentPage
-      title="The Sessions — The Forge of FiremanDecko"
-      description="Notes from the runemaster's forge-floor — sessions filed by project."
+      title="The Ballads — The Forge of FiremanDecko"
+      description="Notes from the runemaster's forge-floor — ballads filed by project."
       here="/sessions/"
       html={html}
       css={css}

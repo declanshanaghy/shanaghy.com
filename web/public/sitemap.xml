@@ -20,6 +20,7 @@
   <url><loc>https://www.shanaghy.com/paths/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/backup-keeper/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/carlow/</loc></url>
+  <url><loc>https://www.shanaghy.com/profiles/cork/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/cyclone-vacuum/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/fenrir/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/fionn/</loc></url>
@@ -33,8 +34,8 @@
   <url><loc>https://www.shanaghy.com/profiles/hal-9003/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/hal-9004/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/hal-9005/</loc></url>
-  <url><loc>https://www.shanaghy.com/profiles/harry-os/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/heimdall/</loc></url>
+  <url><loc>https://www.shanaghy.com/profiles/home-assistant-lan/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/loki/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/luna/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/mayo/</loc></url>
@@ -49,6 +50,7 @@
   <url><loc>https://www.shanaghy.com/profiles/seanchan/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/the-daykeeper/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/unifi-gateway/</loc></url>
+  <url><loc>https://www.shanaghy.com/profiles/wall-stones/</loc></url>
   <url><loc>https://www.shanaghy.com/profiles/zigbee2mqtt/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/Accessories/</loc></url>
@@ -110,6 +112,7 @@
   <url><loc>https://www.shanaghy.com/sessions/fenrir-ledger</loc></url>
   <url><loc>https://www.shanaghy.com/sessions/mossy-motd</loc></url>
   <url><loc>https://www.shanaghy.com/sessions/mossy-motd/ballad-of-many-mossys</loc></url>
+  <url><loc>https://www.shanaghy.com/sessions/mossy-motd/the-tome-and-the-teller</loc></url>
   <url><loc>https://www.shanaghy.com/sites/</loc></url>
   <url><loc>https://www.shanaghy.com/videos/</loc></url>
 </urlset>
