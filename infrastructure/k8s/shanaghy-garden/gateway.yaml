@@ -1,0 +1,31 @@
+# the parallel ground's front door — the realm's gateway pattern (say-so,
+# mytruthfinder): global external managed LB on the reserved static IP,
+# TLS auto-provisioned by GKE for the HTTPRoute hostname once DNS points
+#   gke.shanaghy.com  A  <shanaghy-garden-ip>
+# at the registrar
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: shanaghy-garden
+  namespace: shanaghy-garden
+  labels:
+    app.kubernetes.io/name: shanaghy-garden
+    app.kubernetes.io/part-of: shanaghy.com
+spec:
+  gatewayClassName: gke-l7-global-external-managed
+  addresses:
+    - type: NamedAddress
+      value: shanaghy-garden-ip
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: https
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: Same
