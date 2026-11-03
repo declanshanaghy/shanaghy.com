@@ -5,7 +5,7 @@ export default function Page({ html, css }) {
   return (
     <ContentPage
       title="The Creed — The Forge of FiremanDecko"
-      description="The three strands of the garden: seanchaí, Fianna, Fenrir — the commandments, the rites, the two tongues."
+      description="The three strands of the garden: seanchaí, Fianna, Fenrir — the Mossy Dekalogue, the rites, the two tongues."
       here="/creed/"
       html={html}
       css={css}

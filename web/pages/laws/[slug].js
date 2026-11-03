@@ -11,7 +11,7 @@ export default function Law({ slug, html, css }) {
   return (
     <ContentPage
       title={`${slug} — a law of the garden`}
-      description={`A law of the Mossy Decalogue — ${slug}.`}
+      description={`A law of the Mossy Dekalogue — ${slug}.`}
       here="/creed/"
       html={html}
       css={css}
