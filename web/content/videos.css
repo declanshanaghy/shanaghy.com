@@ -34,50 +34,6 @@ a{color:inherit}
 svg{display:block}
 img{display:block}
 
-/* canonical chrome — shared by generated pages (tools/chrome.py) */
-.topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
-  gap:10px 18px;padding:14px 22px;
-  background:linear-gradient(180deg,rgba(10,7,4,.92),rgba(6,4,3,.88));
-  border-bottom:1px solid rgba(138,106,59,.35)}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;position:relative}
-.brand-logo{display:block;height:40px;width:auto;
-  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(232,163,61,.12));
-  border-radius:6px;border:1px solid rgba(201,162,39,.3)}
-.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
-.brand::before{content:"";position:absolute;left:-13px;top:50%;width:9px;height:6px;
-  transform:translateY(-50%);
-  background:linear-gradient(180deg,#3a2c18 0%,#8a6a3b 30%,#241b11 100%);
-  border-radius:1px;
-  box-shadow:inset 0 1px 0 rgba(255,225,160,.22), 0 1px 2px rgba(0,0,0,.8)}
-.runestrip{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
-.runestrip::-webkit-scrollbar{display:none}
-.rtab{
-  display:flex;flex-direction:column;align-items:center;gap:1px;
-  padding:5px 11px;border:1px solid transparent;border-radius:9px;
-  text-decoration:none;transition:background .25s,border-color .25s;flex-shrink:0;
-}
-.rt-rune{font-size:19px;line-height:1.15;color:var(--bronze);transition:color .25s,text-shadow .25s}
-.rt-label{font-size:8.5px;letter-spacing:1.9px;color:#6f6046;text-transform:uppercase;white-space:nowrap}
-.rt-count{font-size:8px;letter-spacing:1px;color:#55492f}
-.rtab:hover .rt-rune,.rtab:focus .rt-rune{color:var(--amber2);text-shadow:0 0 11px rgba(232,163,61,.65)}
-.rtab.active{border-color:rgba(232,163,61,.4);background:rgba(232,163,61,.07)}
-.rtab.active .rt-rune{color:var(--amber2);text-shadow:0 0 13px rgba(232,163,61,.85)}
-.rtab.active .rt-label{color:#a98d5c}
-.toplinks{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
-.tlink{text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;
-  color:#c9b896;opacity:.85;transition:color .25s,opacity .25s}
-.tlink:hover{color:#ffbd5e;opacity:1}
-.tlink.here{color:#e8a33d;opacity:1;border-bottom:1px solid rgba(232,163,61,.5)}
-.ghpill{
-  font-family:var(--mono);font-size:11px;letter-spacing:1.8px;
-  color:var(--gold);text-decoration:none;text-transform:uppercase;
-  padding:6px 14px;border:1px solid rgba(138,106,59,.5);border-radius:11px 4px 11px 4px;
-  background:linear-gradient(180deg,rgba(42,30,16,.6),rgba(10,7,4,.6));
-  box-shadow:inset 0 1px 0 rgba(255,210,140,.08),0 4px 10px -5px rgba(0,0,0,.8);
-  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
-}
-.ghpill:hover,.ghpill:focus{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 12px rgba(232,163,61,.6);transform:translateY(-1px)}
-
 /* ============ HERO — THE CANDLELIT PARLOR ============ */
 .hero{
   text-align:center;
@@ -254,21 +210,6 @@ img{display:block}
 .m-views{color:#9b8660}
 .m-sep{color:#6d5636;font-size:11px}
 
-/* ============ FOOTER ============ */
-.foot{padding:26px 20px 60px;text-align:center}
-.foot-knot{width:250px;height:28px;margin:0 auto 20px;color:#5f4a2a}
-.foot-line{font-size:13px;font-style:italic;color:#96835f;letter-spacing:.5px;margin-bottom:14px}
-.foot-gh{
-  display:inline-block;text-decoration:none;
-  font-size:13px;letter-spacing:1.5px;color:var(--gold);
-  padding:9px 22px;border:1px solid rgba(138,106,59,.45);border-radius:12px 4px 12px 4px;
-  background:linear-gradient(180deg,rgba(42,30,16,.55),rgba(10,7,4,.55));
-  box-shadow:inset 0 1px 0 rgba(255,210,140,.08), 0 6px 14px -6px rgba(0,0,0,.8);
-  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
-}
-.foot-gh:hover{color:var(--amber2);border-color:rgba(232,163,61,.55);text-shadow:0 0 12px rgba(232,163,61,.6);transform:translateY(-2px)}
-.foot-copy{margin-top:18px;font-size:12.5px;letter-spacing:.8px;color:#9b8660}
-
 /* ============ RESPONSIVE / MOTION ============ */
 @media (max-width:920px){
   .vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -285,6 +226,7 @@ img{display:block}
 @media (max-width:620px){
   .vgrid{grid-template-columns:1fr}
 }
+
 @media (prefers-reduced-motion:reduce){
   .flame,.cglow{animation:none}
   *{transition-duration:.01ms!important;scroll-behavior:auto}
@@ -299,20 +241,6 @@ img{display:block}
 .vparallel a:hover,.vparallel a:focus{color:var(--amber2);text-shadow:0 0 9px rgba(232,163,61,.5)}
 .vstone h3 a{color:inherit;text-decoration:none}
 
-.brand-name{font-size:11.5px;letter-spacing:2.6px;font-weight:700;
-  background:linear-gradient(180deg,#e8cd8a 0%,#b08c4f 48%,#d9b56a 52%,#7a5c33 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  text-shadow:0 1px 0 rgba(255,235,190,.14), 0 -1px 0 rgba(0,0,0,.55);}
-.brand{position:relative}
-.brand::before{content:"";position:absolute;left:-13px;top:50%;width:9px;height:6px;
-  transform:translateY(-50%);
-  background:linear-gradient(180deg,#3a2c18 0%,#8a6a3b 30%,#241b11 100%);
-  border-radius:1px;
-  box-shadow:inset 0 1px 0 rgba(255,225,160,.22), 0 1px 2px rgba(0,0,0,.8)}
-.brand-logo{display:block;height:40px;width:auto;
-  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(232,163,61,.12));
-  border-radius:6px;border:1px solid rgba(201,162,39,.3)}
-.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(232,163,61,.3))}
 a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
 a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
 
@@ -324,9 +252,3 @@ main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:b
 .slab,.plaque-head{max-width:none;width:100%}
 img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
 @media (min-width:1600px){ img.hero3d{border-radius:16px} }
-
-a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
-a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
-
-a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(217,181,106,.4)}
-a.persona:hover{color:var(--amber2);border-bottom-color:rgba(232,163,61,.7)}
