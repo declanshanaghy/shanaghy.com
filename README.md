@@ -118,9 +118,10 @@ Mossiah's ground — the linux stone of the server room, the Honcho bed —
 joins the fleet as the first named ground. Beyond the fleet stand the
 passed ground — carlow the first ground, mayo the root ground, and
 hal-9001 through hal-9004, the quiet line the gate stands on — and the
-wider wall, where heimdall watches the realm, the quiet hosts sleep, and
-the wall's stones — the realm's own access points and switches — carry
-every whisper.
+wider wall, where heimdall watches the realm, the quiet hosts sleep, the
+wall's stones — the realm's own access points and switches — carry
+every whisper, the Cloud Key keeps the realm's console, and a stranger
+at .211 answers one door, name unspoken.
 
 The Norse line works in the wolf's hall: fenrirledger.com, the ledger that
 bears the wolf's name, standing on GKE Autopilot with Odin the all-father,
@@ -277,7 +278,7 @@ flowchart LR
 
 ### The kin pills
 
-Within the profiles the binding is person to person: seventy-six
+Within the profiles the binding is person to person: eighty-two
 profile-to-profile links in all, the kin pills. The strand-bearers bind
 along their lines — the seanchaí to the tellers, Fionn to the Fianna and
 the salmon, the wolf to his father Loki, to Odin, to Freya, to the binding
@@ -327,6 +328,8 @@ flowchart LR
         zigbee["zigbee2mqtt"]
         quiet["quiet-hosts"]
         stones["wall-stones"]
+        cloudkey["cloud-key"]
+        thestranger["the-stranger"]
     end
     subgraph bogG["the passed ground"]
         carlow["carlow"]
@@ -383,6 +386,11 @@ flowchart LR
     quiet --> unifi
     stones --> unifi
     stones --> quiet
+    unifi <--> cloudkey
+    cloudkey --> stones
+    thestranger --> unifi
+    thestranger --> quiet
+    thestranger --> homeassistantlan
     corkg["cork — the Mossiah's ground"]
     corkg --> mossy2
     corkg --> heimdall
