@@ -1,0 +1,57 @@
+# agent sandbox job — dispatched by infrastructure/k8s/agents/dispatch-job.sh
+# envsubst vars: PACK_NAMESPACE PACK_PROJECT PACK_REPO_URL PACK_IMAGE PACK_SECRET_NAME
+# dispatch vars (double-brace, substituted by dispatch-job.sh):
+#   IMAGE_TAG  JOB_NAME  ISSUE_NUMBER  ISSUE_TITLE  HERMES_SECRET_CONFIG
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{JOB_NAME}}"
+  namespace: ${PACK_NAMESPACE}
+  labels:
+    app.kubernetes.io/name: agent-sandbox
+    app.kubernetes.io/part-of: ${PACK_PROJECT}
+  annotations:
+    pack/issue: "{{ISSUE_NUMBER}}"
+    pack/title: "{{ISSUE_TITLE}}"
+    pack/repo: ${PACK_REPO_URL}
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: agent-sandbox
+        app.kubernetes.io/part-of: ${PACK_PROJECT}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: agent
+          image: "${PACK_IMAGE}:{{IMAGE_TAG}}"
+          env:
+            - name: PACK_NAMESPACE
+              value: ${PACK_NAMESPACE}
+            - name: PACK_PROJECT
+              value: ${PACK_PROJECT}
+            - name: PACK_REPO_URL
+              value: ${PACK_REPO_URL}
+            - name: PACK_SECRET_NAME
+              value: ${PACK_SECRET_NAME}
+            - name: GH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ${PACK_SECRET_NAME}
+                  key: gh-token
+            # Gemini API key for image generation (law heroes, garden art)
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ${PACK_SECRET_NAME}
+                  key: gemini-api-key
+            # {{HERMES_SECRET_CONFIG}}
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: "2"
+              memory: 4Gi
