@@ -22,7 +22,7 @@ export default function Footer() {
         className="foot-gh"
         href="https://github.com/declanshanaghy"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         github.com/declanshanaghy
       </a>
