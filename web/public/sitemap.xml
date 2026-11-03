@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.shanaghy.com/</loc></url>
   <url><loc>https://www.shanaghy.com/creed/</loc></url>
-  <url><loc>https://www.shanaghy.com/garden/</loc></url>
   <url><loc>https://www.shanaghy.com/laws/approved-service-languages/</loc></url>
   <url><loc>https://www.shanaghy.com/laws/delegated-is-verified/</loc></url>
   <url><loc>https://www.shanaghy.com/laws/each-its-own-name/</loc></url>
@@ -97,6 +96,7 @@
   <url><loc>https://www.shanaghy.com/projects/honcho-ui/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/life-ledger/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/mossy-motd/</loc></url>
+  <url><loc>https://www.shanaghy.com/projects/odins-throne/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/ollama-models/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/python-fundamentals/</loc></url>
   <url><loc>https://www.shanaghy.com/projects/re-goatmower/</loc></url>

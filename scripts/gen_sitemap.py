@@ -25,7 +25,7 @@ pages_dir = os.path.join(WEB, "pages")
 for f in sorted(os.listdir(pages_dir)):
     if f.endswith(".js") and not f.startswith("_"):
         name = f[:-3]
-        if name in ("index", "404"):
+        if name in ("index", "404", "garden"):
             continue
         urls.append(f"{BASE}/{name}/")
 

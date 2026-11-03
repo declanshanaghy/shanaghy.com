@@ -112,11 +112,11 @@
     },
     {
       "name": "Loki", "href": "/profiles/loki/", "icon": "/assets/icons/wolf-coins.png",
-      "epithet": "Son of the Wolf — at the castle gate",
+      "epithet": "Father of the Wolf — at the castle gate",
       "marks": "the ledger · the cases",
       "bio": "The QA trickster — the breaking before the breaking, so it never happens by accident.",
       "x": 800, "y": 266, "size": 28,
-      "label": ["Loki · son of the Wolf", 800, 234]
+      "label": ["Loki · father of the Wolf", 800, 234]
     },
     {
       "name": "Carlow", "href": "/profiles/carlow/", "icon": "/assets/icons/cauldron.png",

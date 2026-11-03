@@ -1,13 +1,12 @@
 import React from "react";
 
 const NAV = [
-  ["Forge", "/"],
+  ["Garden", "/"],
+  ["Creed", "/creed/"],
   ["Stones", "/projects/"],
   ["RingForts", "/sites/"],
   ["Towers", "/videos/"],
   ["Ballads", "/sessions/"],
-  ["Creed", "/creed/"],
-  ["Garden", "/garden/"],
   ["Paths", "/paths/"],
 ];
 
