@@ -234,7 +234,7 @@ flowchart LR
     idx["index — the front door"]
     creed["creed — the hub<br/>three strands, the Dekalogue, the rites"]
     fleetp["fleet — the five spores<br/>and the wider realm"]
-    sitesp["sites — nine halls beyond the garden"]
+    sitesp["sites — ten halls beyond the garden"]
     pathsp["paths — the ways through"]
     videosp["videos — the reels"]
     projp["projects — the gallery"]

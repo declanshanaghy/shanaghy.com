@@ -406,6 +406,8 @@ svg{display:block}
 .hall-status:has(.lit) .hall-life{text-shadow:0 0 8px rgba(232,163,61,.4)}
 .candle-dot.quiet{background:#4a3d26;box-shadow:none;opacity:.75}
 .hall-status:has(.quiet) .hall-life{color:#6d5636}
+.candle-dot.raising{background:#8a6a33;box-shadow:none;opacity:.6}
+.hall-status:has(.raising) .hall-life{color:#8a6d33}
 .candle-dot.hearth{
   background:radial-gradient(circle at 35% 30%, #9fb37a, #5f7048);
   box-shadow:0 0 9px rgba(110,127,87,.7), 0 0 15px rgba(110,127,87,.3);
