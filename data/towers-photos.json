@@ -1,0 +1,189 @@
+{
+  "albums": [
+    {
+      "title": "The Ringmaker's Bench",
+      "slug": "ringmakers-bench",
+      "grove_title": "The Ringmaker's Bench",
+      "lede": "Picked from the smith's own Google Photos — the ring's making and the wandering around it, stills declared among the reels.",
+      "rune": "ᚉ",
+      "icon": "/assets/icons/ring.png",
+      "tab": "Bench",
+      "session": {
+        "id": "d5758cc1-75c3-436e-968b-0a712c9231f8",
+        "picked_at": "2026-11-03T06:23:43Z"
+      },
+      "items": [
+        {
+          "id": "APKdHlSdID7XSHaK71_VWO_wzpvCI7wHntUX0tAlrvlJX7dgQdKEHqNCtn8iuueY4XWwE0pvJynwv6jaUztRQft94E3Y4HC_yA",
+          "type": "photo",
+          "filename": "20260912_191137.jpg",
+          "created": "2026-09-13T02:11:38.301Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "A knotwork pendant held up to the room's coloured lights — crown over heart, ringed in the endless knot.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlSdID7XSHaK71_VWO_wzpvCI7wHntUX0tAlrvlJX7dgQdKEHqNCtn8iuueY4XWwE0pvJynwv6jaUztRQft94E3Y4HC_yA.jpg"
+        },
+        {
+          "id": "APKdHlQZXWNlTMwELrCJhMTkD5Ab-zc_nmcDQK7HfwQgDpWusMHvClyCMlNJHee-rw0L_kbXCaG9NPePn_oEorHgq-nxbXUa-A",
+          "type": "photo",
+          "filename": "20260905_225613.jpg",
+          "created": "2026-09-06T05:56:13.076Z",
+          "width": "1336",
+          "height": "1143",
+          "lore": "A dark band cut in runes — the old script worn on the thumb.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlQZXWNlTMwELrCJhMTkD5Ab-zc_nmcDQK7HfwQgDpWusMHvClyCMlNJHee-rw0L_kbXCaG9NPePn_oEorHgq-nxbXUa-A.jpg"
+        },
+        {
+          "id": "APKdHlTIOmhXlhTwBPtoi7volXzc_vxpox_NFfEpUSf3Nhba6K1Rv68yOO2boI667dLDopCESdRX0QkA4BisS7yPelIQSL1xOg",
+          "type": "photo",
+          "filename": "20260903_183807.jpg",
+          "created": "2026-09-04T01:38:08.035Z",
+          "width": "2383",
+          "height": "1251",
+          "lore": "Four Claddaghs on one hand, gold and silver alternating — a whole hand of hands, hearts and crowns.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlTIOmhXlhTwBPtoi7volXzc_vxpox_NFfEpUSf3Nhba6K1Rv68yOO2boI667dLDopCESdRX0QkA4BisS7yPelIQSL1xOg.jpg"
+        },
+        {
+          "id": "APKdHlR-VAGj5BQOWotLHR050LruZkOCKj85KzUzMu6gsfzObofieFoMqptZhJNBYICc5CZ11G5noPEvNcostZwSeywV_RK91Q",
+          "type": "photo",
+          "filename": "20260903_173128.jpg",
+          "created": "2026-09-04T00:31:28.091Z",
+          "width": "1997",
+          "height": "1354",
+          "lore": "A gold and a silver side by side on white — the pair as they left the bench.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlR-VAGj5BQOWotLHR050LruZkOCKj85KzUzMu6gsfzObofieFoMqptZhJNBYICc5CZ11G5noPEvNcostZwSeywV_RK91Q.jpg"
+        },
+        {
+          "id": "APKdHlR5lIcIYHkDD9DkZqiHQz_-g0Ex_QGUIPYKh0ZHSRFnVUb96a8vDL3o5Ue5Z_pVrecOYcT7GipA3WKF0l7HpZAN6O_qGA",
+          "type": "photo",
+          "filename": "20260903_172841.jpg",
+          "created": "2026-09-04T00:28:41.094Z",
+          "width": "1289",
+          "height": "1052",
+          "lore": "The Claddagh in silver — friendship, love, loyalty, heart turned home.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlR5lIcIYHkDD9DkZqiHQz_-g0Ex_QGUIPYKh0ZHSRFnVUb96a8vDL3o5Ue5Z_pVrecOYcT7GipA3WKF0l7HpZAN6O_qGA.jpg"
+        },
+        {
+          "id": "APKdHlTI-MmJHws2m8qAyPbaau031RqHlzeQ2VMoAIx7aZTZGuOf2pILPCfhuIEZIRfG-5hCrPtZ6ZRaG7kJ4NVtQxMVGC0_dA",
+          "type": "photo",
+          "filename": "20260902_171527.jpg",
+          "created": "2026-09-03T00:15:28.151Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "Two gold Claddaghs in the sun, love worn heart-inward.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlTI-MmJHws2m8qAyPbaau031RqHlzeQ2VMoAIx7aZTZGuOf2pILPCfhuIEZIRfG-5hCrPtZ6ZRaG7kJ4NVtQxMVGC0_dA.jpg"
+        },
+        {
+          "id": "APKdHlRRHFbPyWq63qgi9moUQ7vkbPHBeedz2NpLGvD8sRLrDzlVITyHt9xaNVnfqMsxZhhEVUVUNJiYCY24xazLoYc3VinUQQ",
+          "type": "photo",
+          "filename": "20260902_163752.jpg",
+          "created": "2026-09-02T23:37:52.848Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "Bright Nickel: two rings baptised in the green, the current doing the polishing.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlRRHFbPyWq63qgi9moUQ7vkbPHBeedz2NpLGvD8sRLrDzlVITyHt9xaNVnfqMsxZhhEVUVUNJiYCY24xazLoYc3VinUQQ.jpg"
+        },
+        {
+          "id": "APKdHlTAuwa1Gj4Abx2E5A0HJ3DSfpeaO5A-ZNr16TtpQP0rUjYhvUxDB7JjfN5F4CTfJINxF7CMbv-BgyeXiihuJ-gaGTVshw",
+          "type": "photo",
+          "filename": "20260825_141842.jpg",
+          "created": "2026-08-25T21:18:42.576Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "Purple resin ringed in white knotwork, fresh from the pour — gloved hand, glittered knuckles.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlTAuwa1Gj4Abx2E5A0HJ3DSfpeaO5A-ZNr16TtpQP0rUjYhvUxDB7JjfN5F4CTfJINxF7CMbv-BgyeXiihuJ-gaGTVshw.jpg"
+        },
+        {
+          "id": "APKdHlR7tMuvYr57Jzmnxlw3H2D8-ooo4jaaZJgaW8mknMog5-MrdBVNrXYUhPiCPkpGr9teGCJgjPNNvHcEWQSieO8Y2HDgOQ",
+          "type": "photo",
+          "filename": "133d2ed699745bec5f4b40ded5578e910a6973324cead60933eab7b1a493ff35.png",
+          "created": "2026-08-22T21:06:40.002Z",
+          "width": "953",
+          "height": "440",
+          "lore": "A DeLorean on a German road — stainless steel that never did need roads.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlR7tMuvYr57Jzmnxlw3H2D8-ooo4jaaZJgaW8mknMog5-MrdBVNrXYUhPiCPkpGr9teGCJgjPNNvHcEWQSieO8Y2HDgOQ.jpg"
+        },
+        {
+          "id": "APKdHlTGGotwvbjY-nXiTVBozlL3tdFDmswwzqGrPU4hUsM5ZbCFTV0hzwN2k6daLXSUNe0CjtB2Ulrw0L_0KNy0so6p_dOdDg",
+          "type": "photo",
+          "filename": "20260812_004351.jpg",
+          "created": "2026-08-12T07:43:52.019Z",
+          "width": "1065",
+          "height": "998",
+          "lore": "The gold Claddagh on a working hand — hammered, kept.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlTGGotwvbjY-nXiTVBozlL3tdFDmswwzqGrPU4hUsM5ZbCFTV0hzwN2k6daLXSUNe0CjtB2Ulrw0L_0KNy0so6p_dOdDg.jpg"
+        },
+        {
+          "id": "APKdHlRfzHxyaPmefj1P2FPSGLblTL1fmAtVC0LcXIA5MXwd5G5Eyk9nixUUFp7uJKGbALKw2STXjCycKk0rTRJyovC_sh9ukA",
+          "type": "photo",
+          "filename": "20260720_142741.jpg",
+          "created": "2026-07-20T19:27:42.299Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "A pack that wears its pins — Free Derry on the one side, Alba on the other.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlRfzHxyaPmefj1P2FPSGLblTL1fmAtVC0LcXIA5MXwd5G5Eyk9nixUUFp7uJKGbALKw2STXjCycKk0rTRJyovC_sh9ukA.jpg"
+        },
+        {
+          "id": "APKdHlS8g-zorrh1Fwm_1nFgQs0W7d5LOx_4TPWLxwMD1yc_MH__OAEvDg8akQEwFh_cDDnlmVXgCdIBshQ75cQAm2Nmly8j0g",
+          "type": "photo",
+          "filename": "20260719_173407.jpg",
+          "created": "2026-07-19T22:34:08.475Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "C:\\>486.exe — the DOS prompt never died, it just moved into the barcade under the neon.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlS8g-zorrh1Fwm_1nFgQs0W7d5LOx_4TPWLxwMD1yc_MH__OAEvDg8akQEwFh_cDDnlmVXgCdIBshQ75cQAm2Nmly8j0g.jpg"
+        },
+        {
+          "id": "APKdHlSlA6RPXWbD9YKPbTVXMnxKbBHbnNxbs_DxsHcznm33kR0hgut4ltC3jx1N3AOuiF8hHr_PD7Gi7VwiOitKoc0RqhDftQ",
+          "type": "photo",
+          "filename": "20260719_143059.jpg",
+          "created": "2026-07-19T19:31:00.008Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "Old cutlery laid out on older wood — ornate forks and shears from a drawer that remembers better tables.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlSlA6RPXWbD9YKPbTVXMnxKbBHbnNxbs_DxsHcznm33kR0hgut4ltC3jx1N3AOuiF8hHr_PD7Gi7VwiOitKoc0RqhDftQ.jpg"
+        },
+        {
+          "id": "APKdHlQv-Khund-szYN8ojTWCeoBtV-s4HevZ_VKCWDryWk-OIsRXFXopyCK-fHfHtuOsjvzr0nvrJZ12s0dcRL6heKQzi9dOA",
+          "type": "photo",
+          "filename": "20260713_221421.jpg",
+          "created": "2026-07-14T05:14:21.061Z",
+          "width": "948",
+          "height": "968",
+          "lore": "The silver Claddagh worn and scuffed — hands, heart, crown, carried every day.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlQv-Khund-szYN8ojTWCeoBtV-s4HevZ_VKCWDryWk-OIsRXFXopyCK-fHfHtuOsjvzr0nvrJZ12s0dcRL6heKQzi9dOA.jpg"
+        },
+        {
+          "id": "APKdHlTegbI6tSg1F7guGPuAUtfQF9GMTYIbDfibGX2Oe8rCRqHtJWzjhRsBV8gblRlbY5mvhqaVoeZLv5vo7fGXF4iOJIuo9A",
+          "type": "photo",
+          "filename": "20260706_152538.jpg",
+          "created": "2026-07-06T22:25:38.498Z",
+          "width": "8160",
+          "height": "3768",
+          "lore": "A wolf that grew antlers, printed and patina'd — the bench's own small god caught mid-stalk on the cutting mat.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlTegbI6tSg1F7guGPuAUtfQF9GMTYIbDfibGX2Oe8rCRqHtJWzjhRsBV8gblRlbY5mvhqaVoeZLv5vo7fGXF4iOJIuo9A.jpg"
+        },
+        {
+          "id": "APKdHlRcjL4rGXng-BT0JGsDEbUisfURia9dhrizkuS1hv3VUtx_ZsT31iC1jEmrfzMDQ1K3h8MrVksb8hYiEANpJ3fEsV9OXg",
+          "type": "photo",
+          "filename": "20260629_161744~2.jpg",
+          "created": "2026-06-29T14:17:45Z",
+          "width": "1832",
+          "height": "1848",
+          "lore": "Copernicus keeps his back to the cloth halls and his eye on the sky, St Mary's towers standing over him.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlRcjL4rGXng-BT0JGsDEbUisfURia9dhrizkuS1hv3VUtx_ZsT31iC1jEmrfzMDQ1K3h8MrVksb8hYiEANpJ3fEsV9OXg.jpg"
+        },
+        {
+          "id": "APKdHlT8TUQmS1lRstnYHzxMOjJ6oz-RMR-Fl0oLGeOAvPq0MgF4AfXAZ6zwXu4jxh0wyE8vtkPkAIhGQ2Ng3vOsQ-sN-odL2A",
+          "type": "photo",
+          "filename": "20260627_140101.jpg",
+          "created": "2026-06-27T12:01:02.186Z",
+          "width": "4000",
+          "height": "1848",
+          "lore": "A bronze gnome of Wrocław points up at the plaque — even the small folk of the Polish streets keep their own signs.",
+          "thumb": "/assets/towers/ringmakers-bench/APKdHlT8TUQmS1lRstnYHzxMOjJ6oz-RMR-Fl0oLGeOAvPq0MgF4AfXAZ6zwXu4jxh0wyE8vtkPkAIhGQ2Ng3vOsQ-sN-odL2A.jpg"
+        }
+      ]
+    }
+  ]
+}
