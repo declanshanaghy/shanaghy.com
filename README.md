@@ -63,13 +63,13 @@ and the assets, copied verbatim into the build. Two things stand beside the
 garden rather than inside it: the data catalogs in `data/`, the catalogs
 behind The Sync where the fleet's shared culture lives first; and
 `scripts/gen_sitemap.py`, which regenerates the sitemap and robots from the
-routes and the content tree before every build. The living garden on the
-fleet page is grown the same way: `web/content/garden.json` holds every
-soul the scene displays — persons in their dwellings, the fleet on mossy
-plinths, the dolmens of the passed ground, the spores off the tree — and
-`scripts/gen_garden.py` renders it into the garden-scene SVG between the
-markers in `web/content/garden.html`; a soul is appended to the JSON and the
-garden regrows. The Towers page grew a second source the same way:
+routes and the content tree before every build. The living garden is the front page and is grown the same way:
+`web/content/garden.json` holds every soul the scene displays — persons
+in their dwellings, the fleet on mossy plinths, the dolmens of the passed
+ground, the spores off the tree — and `scripts/gen_garden.py` renders it
+into the garden-scene SVG between the markers in `web/content/index.html`;
+a soul is appended to the JSON and the garden regrows. `/garden/`
+meta-refreshes to `/`. The Towers page grew a second source the same way:
 `data/towers-photos.json` is the manifest of the smith's private Google
 Photos albums — one grove per album, stills and reels intermingled but
 declared, each piece carrying its lore — and
@@ -94,7 +94,7 @@ flowchart LR
     cat["the data catalogs<br/>data/ — the catalogs behind The Sync,<br/>the fleet's shared culture"]
     gen["scripts/gen_sitemap.py<br/>regenerates sitemap.xml and robots.txt<br/>from the routes and content, before a build"]
     gardenj["web/content/garden.json<br/>the living garden's souls — persons,<br/>fleet plinths, dolmens, spores"]
-    geng["scripts/gen_garden.py<br/>renders the souls into the<br/>garden-scene SVG in garden.html"]
+    geng["scripts/gen_garden.py<br/>renders the souls into the<br/>garden-scene SVG in index.html"]
     sync["The Sync<br/>the shared memory of the fleet"]
     nextb["npm run build in web/<br/>the Next.js static export"]
     out["web/out/ — the whole garden as flat HTML"]

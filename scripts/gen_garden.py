@@ -27,7 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 WEB = os.path.join(ROOT, "web")
 GARDEN = os.path.join(WEB, "content", "garden.json")
-FLEET = os.path.join(WEB, "content", "garden.html")
+FLEET = os.path.join(WEB, "content", "index.html")
 PUBLIC = os.path.join(WEB, "public")
 
 MARK_START = ("<!-- garden-scene:start — rendered by scripts/gen_garden.py from "
@@ -157,7 +157,7 @@ def main():
     print(f"the garden regrew: {len(g['entities'])} souls overlaid on the painted world, "
           f"{len(g['spores']['motes'])} spores drifting")
     print(f"scene spliced into {os.path.relpath(FLEET, ROOT)} between the markers")
-    print("verify: cd web && npm ci && npm run build, then grep 'garden-scene' web/out/garden/index.html")
+    print("verify: cd web && npm ci && npm run build, then grep 'garden-scene' web/out/index.html")
 
 
 if __name__ == "__main__":
