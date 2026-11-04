@@ -99,16 +99,16 @@
       "epithet": "the Seer of Fates — on the wall",
       "marks": "the ledger · the brief",
       "bio": "The design oracle — the brief before every making.",
-      "x": 816, "y": 212, "size": 28,
-      "label": ["Freya · the Seer of Fates", 816, 180]
+      "x": 846, "y": 216, "size": 28,
+      "label": ["Freya · the Seer of Fates", 846, 184]
     },
     {
       "name": "Luna", "href": "/profiles/luna/", "icon": "/assets/icons/webknot.png",
       "epithet": "the Shaper of Worlds — on the wall",
       "marks": "the ledger · the shape",
       "bio": "The wireframe moon — the form before the forms.",
-      "x": 846, "y": 216, "size": 28,
-      "label": ["Luna · the Shaper", 846, 184]
+      "x": 816, "y": 212, "size": 28,
+      "label": ["Luna · the Shaper", 816, 180]
     },
     {
       "name": "Loki", "href": "/profiles/loki/", "icon": "/assets/icons/wolf-coins.png",
