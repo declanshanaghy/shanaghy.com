@@ -58,7 +58,10 @@ project stones and session beds. The route layer is `web/pages/` — one route
 file per page, owning the title and the meta description, reading its body
 from the content layer. The shared chrome is `web/lib/` — ContentPage.js is
 the one source of truth for the header, footer and nav wrapped around every
-page. The public layer is `web/public/` — the CNAME, robots.txt, sitemap.xml
+page but the front door: `/` passes `bare` and opens straight onto the living
+garden — no header, no hero — with the scene's popovers (name, epithet, marks,
+then the full telling on the soul's own page) and the telling at the bottom as
+the only wayfinding. The public layer is `web/public/` — the CNAME, robots.txt, sitemap.xml
 and the assets, copied verbatim into the build. Two things stand beside the
 garden rather than inside it: the data catalogs in `data/`, the catalogs
 behind The Sync where the fleet's shared culture lives first; and
@@ -89,7 +92,7 @@ the tome is kept in the shared memory, cut here in stone.
 flowchart LR
     bodies["the content layer<br/>web/content/ — page bodies as plain<br/>HTML fragments, 112 pages in all"]
     route["the route layer<br/>web/pages/ — one route per page,<br/>owns the title and the meta description"]
-    chrome["the shared chrome<br/>web/lib/ — ContentPage.js, the one<br/>source of truth for header, footer, nav"]
+    chrome["the shared chrome<br/>web/lib/ — ContentPage.js, the one<br/>source of truth for header, footer, nav —<br/>except the bare front door"]
     pub["the public layer<br/>web/public/ — CNAME, robots.txt,<br/>sitemap.xml, assets — shipped verbatim"]
     cat["the data catalogs<br/>data/ — the catalogs behind The Sync,<br/>the fleet's shared culture"]
     gen["scripts/gen_sitemap.py<br/>regenerates sitemap.xml and robots.txt<br/>from the routes and content, before a build"]

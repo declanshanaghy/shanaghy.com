@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout({ title, description, here, children }) {
+export default function Layout({ title, description, here, children, bare }) {
   useEffect(() => {
     // scroll-reveal: .rise elements fade in as they enter the viewport
     const els = document.querySelectorAll(".rise");
@@ -54,7 +54,7 @@ export default function Layout({ title, description, here, children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
-      <Header here={here} />
+      {bare ? null : <Header here={here} />}
       {children}
       <Footer />
       <style jsx global>{`
