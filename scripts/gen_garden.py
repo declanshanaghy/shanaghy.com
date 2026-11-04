@@ -2,9 +2,10 @@
 """gen_garden.py — render the living garden from its JSON definition.
 
 The garden is defined in web/content/garden.json: the painted world (the
-backdrop image — ringfort, tree of life, mainistir, peat fire, bog pool,
-Fenrir's castle, plinths, dolmens, sky) plus every soul of the garden as an
-overlay entity with its coordinates and card. This script renders that
+backdrop image — the ringfort-workshop with its forge aglow, the tree of
+life, the mainistir, the peat fire, the bog pool, Fenrir's castle, the
+mossy foreground stones, the mist-veiled dolmens, sky) plus every soul of
+the garden as an overlay entity with its coordinates and card. This script renders that
 definition as the garden-scene SVG — the backdrop <image> with the souls'
 icons placed on their stones — and splices it into web/content/garden.html
 between the garden-scene markers. The scene is never hand-tended: a soul is
