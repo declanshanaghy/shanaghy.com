@@ -43,7 +43,6 @@ export default function Page({ html, css }) {
         title="FiremanDecko — an amalgamation of many spores"
         description="Home-lab tinkerer, AI agent fleet operator — Athlone, Co. Westmeath. A moss-grown stone garden of projects, agents, and session ephemera."
         here="/"
-        bare
         html={html}
         css={css}
       />
