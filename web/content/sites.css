@@ -426,6 +426,9 @@ svg{display:block}
 /* the hall's telling */
 .hall p{font-size:12.5px;line-height:1.55;color:#a08d68}
 .hall-quip{margin-top:9px;font-style:italic;color:#96835f;font-size:12px;letter-spacing:.2px}
+/* the hall's raising — newest-raised halls stand first */
+.hall-since{margin-top:7px;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;color:#6d5636;text-transform:uppercase}
+.hall-since time{color:inherit}
 
 /* kin pills — the stones these halls descend from */
 .hall-kin{
