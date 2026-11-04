@@ -1,6 +1,6 @@
 {
   "$comment": "shanaghy.com content catalog — the source of truth for what's published on the site. Sync: gh api for github, yt-dlp for youtube (commands in .sync). Presented in the spirit of mossy.",
-  "updated": "2026-11-02",
+  "updated": "2026-11-04",
   "sources": {
     "github": {
       "user": "declanshanaghy",
@@ -1534,108 +1534,130 @@
       "policy": [
         "sites only — the hall, never the private annals behind it",
         "shanaghy.com itself gets no card (no self-reference)",
-        "sleeping halls stay listed, honestly marked"
+        "sleeping halls stay listed, honestly marked",
+        "halls stand newest-raised first — `since` is the hall's first raising, the repo's birth"
       ],
       "sync": "per site: curl -skL -o /dev/null -w '%{http_code} <url>' --max-time 12 <url> — 200 = live, 000 = the door is quiet",
       "items": [
         {
-          "name": "Fenrir Ledger",
-          "url": "https://www.fenrirledger.com",
+          "name": "Odin's Throne",
+          "url": "https://odins-throne.shanaghy.com",
           "status": "live",
-          "kind": "GKE Autopilot",
-          "desc": "Break free from fee traps — the rewards-optimizer's churn tracker. The wolf's own hall, where the chronicles are kept.",
-          "kin": ["/sessions/fenrir-ledger/", "/profiles/fenrir/", "/profiles/odin/", "/creed/#strand-fenrir"],
-          "shot": "/assets/icons/sites/fenrir-ledger.jpg",
-          "note": "the hall is public; the annals behind it stay vaulted"
-        },
-        {
-          "name": "SaySo",
-          "url": "https://say-so.world",
-          "status": "live",
-          "kind": "GKE Autopilot",
-          "desc": "A voice-first language-practice companion — speak, be heard, get better. The speaking hall.",
-          "kin": ["/creed/#strand-fionn", "/laws/no-files-on-disk/"],
-          "shot": "/assets/icons/sites/say-so.jpg",
-          "note": "no stone in the garden — the hall stands on its own ground; its kin are strands and laws, never stones"
-        },
-        {
-          "name": "Dollar Game",
-          "url": "https://dollar-game.firemandecko.com",
-          "status": "sleeping",
-          "kind": "AWS CloudFront era",
-          "desc": "Graph theory as a game — the cosmic counting house of the C0sm1c D0ll4r.",
-          "kin": ["/projects/dollar-game/"],
-          "repo": "dollar-game",
+          "kind": "GKE Autopilot + Hermes plugin",
+          "since": "2026-11-03",
+          "desc": "Hlidskjalf, the high seat — the pack's watchtower for its dispatched agents: every sandbox job listed, every session streamed, every verdict read aloud.",
+          "kin": [
+            "/projects/odins-throne/",
+            "/creed/#strand-fionn",
+            "/profiles/odin/"
+          ],
+          "repo": "odins-throne-hermes",
           "shot": null,
-          "icon": "/assets/icons/projects/dollar-game.png",
-          "note": "the road's DNS has gone quiet; the stone remains"
-        },
-        {
-          "name": "Rizz Power-Up",
-          "url": "https://rizz-power-up.firemandecko.com",
-          "status": "sleeping",
-          "kind": "vaporwave PWA",
-          "desc": "A vaporwave charisma simulator — tap the button, raise the rizz, read the quotes.",
-          "kin": ["/projects/rizz-power-up/"],
-          "repo": "rizz-power-up",
-          "shot": null,
-          "icon": "/assets/icons/projects/rizz-power-up.png",
-          "note": "same road, same sleep — sigma mode was initiated, the domain was not renewed"
-        },
-        {
-          "name": "Gwent Companion",
-          "url": null,
-          "status": "hearthside",
-          "kind": "Raspberry Pi + RFID",
-          "desc": "The electronic gwent board — a Pi companion that keeps the scores of the physical card game. It serves its keep on the home network, not the public road.",
-          "kin": ["/projects/gwent/"],
-          "repo": "gwent",
-          "shot": null,
-          "icon": "/assets/icons/projects/gwent.png",
-          "note": "no public door — the bouncer is an RFID reader"
-        },
-        {
-          "name": "LLM Wiki",
-          "url": "https://llmwiki.app",
-          "status": "live",
-          "kind": "web app",
-          "desc": "The open wiki of the large language models — upload the books, connect a Claude, and it writes the wiki.",
-          "kin": [],
-          "shot": "/assets/icons/sites/llmwiki.jpg",
-          "note": "beyond the groves — no stone yet"
-        },
-        {
-          "name": "Diamond Diggin' Donal",
-          "url": "https://declanshanaghy.github.io/diamond-diggin-donal/",
-          "status": "live",
-          "kind": "GitHub Pages",
-          "desc": "A faithful web port of Digger (1983) — Donal digs. The garden arcade's diamond wing.",
-          "kin": ["/projects/diamond-diggin-donal/"],
-          "repo": "diamond-diggin-donal",
-          "shot": "/assets/icons/sites/diamond-diggin-donal.jpg",
-          "note": "the garden arcade"
+          "icon": "/assets/icons/projects/odins-throne.png",
+          "note": "the ground is sworn; the gate keeps the pairing"
         },
         {
           "name": "Emerald Diggin' Donal",
           "url": "https://declanshanaghy.github.io/emerald-diggin-donal/",
           "status": "live",
           "kind": "GitHub Pages",
+          "since": "2026-06-12",
           "desc": "The CGA clone of Digger — Donal digs the most emeralds ever. The arcade's emerald wing.",
-          "kin": ["/projects/emerald-diggin-donal/"],
+          "kin": [
+            "/projects/emerald-diggin-donal/"
+          ],
           "repo": "emerald-diggin-donal",
           "shot": "/assets/icons/sites/emerald-diggin-donal.jpg",
           "note": "same digger, greener gems"
         },
         {
-          "name": "Vercel Experiment",
-          "url": "https://vercel-experiment-weld.vercel.app",
+          "name": "Diamond Diggin' Donal",
+          "url": "https://declanshanaghy.github.io/diamond-diggin-donal/",
           "status": "live",
-          "kind": "Vercel seedling",
-          "desc": "A Next.js seedling bench — planted to learn the Vercel ground.",
-          "kin": ["/projects/vercel-experiment/"],
-          "repo": "vercel-experiment",
-          "shot": "/assets/icons/sites/vercel-experiment.jpg",
-          "note": "still mostly scaffold — every garden starts somewhere"
+          "kind": "GitHub Pages",
+          "since": "2026-06-12",
+          "desc": "A faithful web port of Digger (1983) — Donal digs. The garden arcade's diamond wing.",
+          "kin": [
+            "/projects/diamond-diggin-donal/"
+          ],
+          "repo": "diamond-diggin-donal",
+          "shot": "/assets/icons/sites/diamond-diggin-donal.jpg",
+          "note": "the garden arcade"
+        },
+        {
+          "name": "SaySo",
+          "url": "https://say-so.world",
+          "status": "live",
+          "kind": "GKE Autopilot",
+          "since": "2026-04-06",
+          "desc": "A voice-first language-practice companion — speak, be heard, get better. The speaking hall.",
+          "kin": [
+            "/creed/#strand-fionn",
+            "/laws/no-files-on-disk/"
+          ],
+          "shot": "/assets/icons/sites/say-so.jpg",
+          "note": "no stone in the garden — the hall stands on its own ground; its kin are strands and laws, never stones"
+        },
+        {
+          "name": "Fenrir Ledger",
+          "url": "https://www.fenrirledger.com",
+          "status": "live",
+          "kind": "GKE Autopilot",
+          "since": "2026-02-22",
+          "desc": "Break free from fee traps — the rewards-optimizer's churn tracker. The wolf's own hall, where the chronicles are kept.",
+          "kin": [
+            "/sessions/fenrir-ledger/",
+            "/profiles/fenrir/",
+            "/profiles/odin/",
+            "/creed/#strand-fenrir"
+          ],
+          "shot": "/assets/icons/sites/fenrir-ledger.jpg",
+          "note": "the hall is public; the annals behind it stay vaulted"
+        },
+        {
+          "name": "Rizz Power-Up",
+          "url": "https://rizz-power-up.firemandecko.com",
+          "status": "sleeping",
+          "kind": "vaporwave PWA",
+          "since": "2025-05-05",
+          "desc": "A vaporwave charisma simulator — tap the button, raise the rizz, read the quotes.",
+          "kin": [
+            "/projects/rizz-power-up/"
+          ],
+          "repo": "rizz-power-up",
+          "shot": null,
+          "icon": "/assets/icons/projects/rizz-power-up.png",
+          "note": "same road, same sleep — sigma mode was initiated, the domain was not renewed"
+        },
+        {
+          "name": "Dollar Game",
+          "url": "https://dollar-game.firemandecko.com",
+          "status": "sleeping",
+          "kind": "AWS CloudFront era",
+          "since": "2025-05-03",
+          "desc": "Graph theory as a game — the cosmic counting house of the C0sm1c D0ll4r.",
+          "kin": [
+            "/projects/dollar-game/"
+          ],
+          "repo": "dollar-game",
+          "shot": null,
+          "icon": "/assets/icons/projects/dollar-game.png",
+          "note": "the road's DNS has gone quiet; the stone remains"
+        },
+        {
+          "name": "Gwent Companion",
+          "url": null,
+          "status": "hearthside",
+          "kind": "Raspberry Pi + RFID",
+          "since": "2020-05-11",
+          "desc": "The electronic gwent board — a Pi companion that keeps the scores of the physical card game. It serves its keep on the home network, not the public road.",
+          "kin": [
+            "/projects/gwent/"
+          ],
+          "repo": "gwent",
+          "shot": null,
+          "icon": "/assets/icons/projects/gwent.png",
+          "note": "no public door — the bouncer is an RFID reader"
         }
       ]
     },
