@@ -43,7 +43,7 @@ def esc(s):
 # ── the garden's materials ───────────────────────────────────────────────────
 
 DEFS = """<defs>
-          <radialGradient id="sporeG" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffe9b8"/><stop offset="0.55" stop-color="#e8a33d" stop-opacity=".85"/><stop offset="1" stop-color="#e8a33d" stop-opacity="0"/></radialGradient>
+          <radialGradient id="sporeG" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#effbee"/><stop offset="0.55" stop-color="#a9e6c3" stop-opacity=".85"/><stop offset="1" stop-color="#a9e6c3" stop-opacity="0"/></radialGradient>
           <radialGradient id="glowAmber" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffbd5e" stop-opacity=".5"/><stop offset="0.55" stop-color="#e8a33d" stop-opacity=".18"/><stop offset="1" stop-color="#e8a33d" stop-opacity="0"/></radialGradient>
           <filter id="fxSoft" x="-40%" y="-40%" width="180%" height="180%">
             <feGaussianBlur stdDeviation="2.2"/>
