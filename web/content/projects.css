@@ -626,3 +626,77 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
     linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
     radial-gradient(150% 90% at 12% 0%, rgba(230,242,232,.09), transparent 55%);
 }
+
+/* ============ THE BANNER STONES — SHOWCASE BAND (issue #277) ============ */
+.showcase{padding:52px 0 12px;position:relative;scroll-margin-top:84px}
+.showcase .plaque-head{display:flex;align-items:center;gap:16px;margin:0 0 14px;flex-wrap:wrap}
+.showcase .pla-roundel{
+  width:52px;height:52px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;color:#a9c98a;
+  border:1px solid rgba(99,224,160,.45);
+  background:radial-gradient(circle at 38% 30%, #1c3f2c, #060d09 78%);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 4px rgba(169,230,195,.08), 0 6px 14px -6px rgba(0,0,0,.8);
+}
+.showcase .pla-text p.over{font-size:10px;letter-spacing:3.4px;color:#9aa189;text-transform:uppercase;margin-bottom:5px}
+.showcase .pla-text h2{
+  font-size:27px;font-weight:600;letter-spacing:1px;color:#f3faf1;
+  text-shadow:0 2px 2px rgba(0,0,0,.85), 0 -1px 0 rgba(169,230,195,.1);
+}
+.showcase .pla-count{
+  margin-left:auto;font-size:9px;letter-spacing:2px;color:#8ba389;text-transform:uppercase;
+  padding:9px 18px;border:1px solid rgba(99,224,160,.4);border-radius:14px 4px 14px 4px;
+  background:linear-gradient(180deg,rgba(28,63,44,.5),rgba(6,13,9,.6));
+}
+.showcase-lede{font-size:12.5px;font-style:italic;color:#93a891;letter-spacing:.3px;margin:0 0 30px}
+.showcase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:34px 28px;position:relative;z-index:1;align-items:start}
+
+/* the promoted plaques: stone chrome, but larger, with a head row and a gallery strip */
+.showcase-plaque{padding:34px 24px 24px;text-align:left;align-items:stretch}
+.showcase-plaque .stone-sigil{flex-shrink:0;margin-bottom:0}
+.showcase-head-row{display:flex;gap:16px;align-items:flex-start;justify-content:flex-start;width:100%;padding:0 4px}
+.showcase-info{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.showcase-info h3{margin-bottom:0;text-align:left}
+.showcase-info .stone-story{text-align:left}
+.showcase-info .marks{margin-top:0;padding-top:0;align-self:flex-start;min-height:44px}
+.showcase-info .m-gh{display:inline-flex;align-items:center;min-height:44px}
+.showcase-info h3 a{color:inherit;text-decoration:none}
+.showcase-info h3 a:hover,.showcase-info h3 a:focus{color:var(--amber2)}
+/* the gallery strip: full-width beneath each plaque's head row */
+.showcase-gallery{
+  display:flex;gap:12px;width:100%;margin-top:16px;
+  overflow-x:auto;overflow-y:hidden;
+  padding:10px 4px 12px;position:relative;z-index:2;
+  scrollbar-width:thin;
+}
+.showcase-gallery figure{
+  flex:0 0 auto;margin:0;width:340px;
+  border:1px solid #122a1e;border-radius:12px 5px 12px 5px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(28,63,44,.4),rgba(6,13,9,.55));
+  box-shadow:inset 0 1px 0 rgba(169,230,195,.08), 0 8px 18px -12px rgba(0,0,0,.9);
+}
+.showcase-gallery img{display:block;width:100%;height:300px;object-fit:contain;filter:brightness(.9) saturate(.95);transition:filter .3s}
+.showcase-gallery figure:hover img{filter:brightness(1.04) saturate(1.05)}
+.showcase-gallery figcaption{
+  padding:7px 10px;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
+  color:#9aa189;font-family:var(--mono);text-align:center;
+}
+/* a right-edge fade so the peeking tile reads as a strip, not a cut */
+.showcase-gallery::after{
+  content:"";position:sticky;right:0;flex:0 0 22px;margin-left:-22px;pointer-events:none;
+  background:linear-gradient(90deg,rgba(7,10,8,0),rgba(7,10,8,.92));
+}
+/* tall portrait sights sit in a narrower frame so they do not stretch the strip */
+.showcase-gallery figure.narrow{width:190px}
+/* the 512px throne shots stay crisp: cap tiles at 420px */
+.showcase-gallery figure{width:min(420px,72vw)}
+
+/* under 1024px: the band stacks clean, no page overflow at 320px */
+@media (max-width:1024px){
+  .showcase{padding:40px 0 8px;scroll-margin-top:144px}
+  .showcase-grid{grid-template-columns:1fr;gap:28px}
+  .showcase-head-row{flex-direction:column}
+  .showcase-gallery figure{width:min(420px,calc(100vw - 64px));min-width:240px}
+  .showcase-gallery img{height:220px}
+  .showcase .pla-count{margin-left:0}
+}
