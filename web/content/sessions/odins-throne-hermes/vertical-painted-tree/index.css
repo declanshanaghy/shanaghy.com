@@ -149,7 +149,7 @@ img{display:block}
 }
 .signage h1{
   font-size:clamp(21px,4.4vw,34px);font-weight:600;
-  font-variant-caps:all-small-caps;letter-spacing:1.2px;color:#d9ead6;
+  font-variant-caps:all-small-caps;letter-spacing:1.2px;color:#e6f2e8;
   text-shadow:0 2px 2px rgba(0,0,0,.9), 0 -1px 0 rgba(230,242,232,.14), 0 0 26px rgba(169,230,195,.14);
   overflow-wrap:anywhere;
 }

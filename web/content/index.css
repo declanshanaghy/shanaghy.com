@@ -563,7 +563,7 @@ a.persona:hover{color:var(--lume2);border-bottom-color:rgba(169,230,195,.7)}
 .gp-links{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
 .gp-links a{
   display:inline-block;text-decoration:none;font-size:13px;letter-spacing:1.2px;
-  color:var(--silver,#b7cdb9);padding:10px 22px;border:1px solid rgba(45,90,66,.6);
+  color:var(--silver,#e6f2e8);padding:10px 22px;border:1px solid rgba(45,90,66,.6);
   border-radius:12px 4px 12px 4px;background:linear-gradient(180deg,rgba(18,42,30,.55),rgba(6,13,9,.55));
   box-shadow:inset 0 1px 0 rgba(169,230,195,.08);transition:color .25s,border-color .25s,text-shadow .25s;
 }
@@ -581,8 +581,8 @@ a.persona:hover{color:var(--lume2);border-bottom-color:rgba(169,230,195,.7)}
 .g-ent:hover .g-shadow{opacity:.45}
 .garden-scene .g-label text{
   font-family:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
-  font-size:13.5px;fill:#dcecd9;letter-spacing:.4px;
-  paint-order:stroke;stroke:#070a08;stroke-width:4px;stroke-linejoin:round;
+  font-size:13.5px;fill:#f3faf1;letter-spacing:.4px;
+  paint-order:stroke;stroke:#060d09;stroke-width:4px;stroke-linejoin:round;
 }
 .garden-scene .g-label{opacity:0;transition:opacity .3s;text-decoration:none}
 .g-ent:hover .g-label,.g-ent:focus-within .g-label,.g-ent:focus-visible .g-label{opacity:1}
@@ -817,7 +817,7 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
   .c-brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
   .c-brand img{height:30px;width:auto;border-radius:5px;border:1px solid rgba(45,90,66,.4);
     filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 9px rgba(99,224,160,.14))}
-  .c-here{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8fae8c;
+  .c-here{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8ba389;
     padding-left:10px;border-left:1px solid rgba(45,90,66,.45)}
 
   /* ── 2 · the compact buttons  (one system, every control) ─────────────── */
@@ -870,8 +870,8 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
   .c-plate:nth-child(10n+7){--cap:var(--mosscap8)}.c-plate:nth-child(10n+8){--cap:var(--mosscap9)}
   .c-plate:nth-child(10n+9){--cap:var(--mosscap10)}.c-plate:nth-child(10n+0){--cap:var(--mosscap1)}
   .c-plate .c-np-rune{font-family:'Noto Sans Ogham',var(--mono);font-size:18px;line-height:1;color:var(--moss)}
-  .c-plate .c-np-name{font-size:16px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.5px;color:#d9ead6}
-  .c-plate .c-np-about{font-size:11px;letter-spacing:.3px;color:#8ca089}
+  .c-plate .c-np-name{font-size:16px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.5px;color:#e6f2e8}
+  .c-plate .c-np-about{font-size:11px;letter-spacing:.3px;color:#9aa189}
   .c-plate:active{transform:scale(.985)}
   /* the current page's plate is lume-glowed AT REST — never reveal-on-hover */
   .c-plate.here{border-color:rgba(169,230,195,.5);
@@ -945,7 +945,7 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
   .c-roll-head .c-rh-count{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;
     color:#8ba389;text-transform:uppercase}
   .c-roll-group{padding:6px 0 3px}
-  .c-roll-group .c-rg-label{padding:0 13px 6px;font-size:9.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8fae8c}
+  .c-roll-group .c-rg-label{padding:0 13px 6px;font-size:9.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8ba389}
   .c-roll-group .c-rg-label .c-rg-rune{font-family:'Noto Sans Ogham';color:var(--moss);margin-right:6px}
   .c-roll{display:flex;gap:8px;overflow-x:auto;padding:2px 13px 5px;-webkit-overflow-scrolling:touch;
     scroll-snap-type:x proximity;scrollbar-width:none}
@@ -1003,7 +1003,7 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
     filter:drop-shadow(0 2px 4px rgba(0,0,0,.7)) drop-shadow(0 0 7px rgba(169,230,195,.14))}
   .c-keeper-id{min-width:0;flex:1}
   .c-keeper h3{font-size:17px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.6px;
-    color:#d9ead6;text-shadow:0 2px 1px rgba(0,0,0,.9)}
+    color:#e6f2e8;text-shadow:0 2px 1px rgba(0,0,0,.9)}
   .c-keeper h3 a{text-decoration:none;color:inherit}
   .c-statrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:3px;
     font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:#a3c79b}
@@ -1029,7 +1029,7 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
   .c-tel img{width:30px;height:30px;border-radius:8px;flex-shrink:0;
     filter:drop-shadow(0 2px 3px rgba(0,0,0,.7)) drop-shadow(0 0 7px rgba(169,230,195,.15))}
   .c-tel .c-tel-txt{display:flex;flex-direction:column;line-height:1.15;min-width:0}
-  .c-tel .c-tel-name{font-size:14.5px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.4px;color:#d9ead6}
+  .c-tel .c-tel-name{font-size:14.5px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.4px;color:#e6f2e8}
   .c-tel .c-tel-sub{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#7f9a7c}
   .c-tel:active{border-color:rgba(169,230,195,.55)}
   .c-tel:focus-visible{outline:2px solid rgba(169,230,195,.6);outline-offset:2px}
