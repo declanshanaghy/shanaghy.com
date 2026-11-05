@@ -53,6 +53,7 @@ export default function Layout({ title, description, here, children, bare }) {
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="alternate" type="application/atom+xml" title="The Ballads" href="/feed.xml" />
       </Head>
       {bare ? null : <Header here={here} />}
       {children}

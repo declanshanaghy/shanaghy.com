@@ -269,9 +269,9 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(99,224,160,.7)}
 
 
 .brand-name{font-size:11.5px;letter-spacing:2.6px;font-weight:700;
-  background:linear-gradient(180deg,#e6f2e8 0%,#5e9478 48%,#d9b56a 52%,#3d6b52 100%);
+  background:linear-gradient(180deg,#e6f2e8 0%,#5e9478 48%,#e6f2e8 52%,#3d6b52 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  text-shadow:0 1px 0 rgba(255,235,190,.14), 0 -1px 0 rgba(0,0,0,.55);}
+  text-shadow:0 1px 0 rgba(226,244,232,.14), 0 -1px 0 rgba(0,0,0,.55);}
 .brand{position:relative}
 .brand::before{content:"";position:absolute;left:-13px;top:50%;width:9px;height:6px;
   transform:translateY(-50%);
