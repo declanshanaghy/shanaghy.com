@@ -321,3 +321,44 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
 .marks figcaption a{color:var(--gold);text-decoration:none;border-bottom:1px dotted rgba(183,205,185,.4)}
 .marks figcaption a:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
 @media (max-width:640px){.marks{grid-template-columns:1fr}}
+
+/* ═══ the broadsheet: the runemaster's page as a newspaper, two columns with a rule ═══ */
+.paper{display:grid;grid-template-columns:1.15fr 1fr;gap:0 40px;margin:2px 0 4px}
+.pcol{min-width:0}
+.pcol + .pcol{border-left:1px solid rgba(126,151,100,.28);padding-left:40px}
+.paper .pcol-head{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 8px;padding:0 0 7px;border-bottom:1px solid rgba(126,151,100,.35);
+  position:relative;clear:both}
+.paper .pcol-head + .pcol-head{margin-top:0}
+.paper .pcol .pcol-head{margin-top:20px}
+.paper .pcol .pcol-head:first-child{margin-top:0}
+.paper p{font-size:14.5px;line-height:1.75;color:#b0c4ab;margin:0 0 12px}
+.paper .lede::first-letter{font-size:3em;line-height:.82;float:left;color:var(--gold);
+  padding:5px 9px 0 0;font-weight:600}
+.paper .forge{padding:9px 0 10px;margin:0;border-bottom:1px dotted rgba(126,151,100,.3)}
+.paper .forge:last-of-type{border-bottom:none}
+.paper .forge b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:3px}
+.paper .forge span{font-size:13.5px;line-height:1.6;color:#b0c4ab}
+@media (max-width:900px){
+  .paper{grid-template-columns:1fr;gap:0}
+  .pcol + .pcol{border-left:none;padding-left:0;margin-top:22px;
+    border-top:1px solid rgba(126,151,100,.28);padding-top:18px}
+  .paper .lede::first-letter{font-size:2.6em}
+}
+
+/* ═══ the quiet paths: links in the telling wear no bright thread ═══
+   internal links inherit the prose with a faint dotted stitch;
+   external links dim a shade below it; hover alone wakes the amber */
+.paper p a{text-decoration:none;color:inherit;
+  border-bottom:1px dotted rgba(140,160,137,.42);
+  transition:color .25s,border-color .25s}
+.paper p a:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.75)}
+.paper p a.persona{color:inherit}
+.paper p a[href^="http"]{color:#98a694;border-bottom-color:rgba(110,127,87,.42)}
+.paper p a[href^="http"]:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.75)}
+/* the vitals too: quiet golds in the statrow */
+.statrow .stat a{text-decoration:none;color:inherit;
+  border-bottom:1px dotted rgba(140,160,137,.42);transition:color .25s,border-color .25s}
+.statrow .stat a:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.75)}
+.statrow .stat a[href^="http"]{color:#98a694;border-bottom-color:rgba(110,127,87,.42)}
