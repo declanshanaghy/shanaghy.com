@@ -4,8 +4,8 @@
    lift that page's content wrapper above the stage (see the contract below).
    The painted scene itself lives in /assets/js/bog-scene.js, mounted once
    site-wide by the Layout chrome; the page only supplies the four
-   aria-hidden decorative divs (bog-grainfx, bog-vign, bog-bloom, and
-   #bog-stage wrapping <canvas id="bog-scene">).
+   aria-hidden decorative divs: the grainfx, vign and bloom overlays,
+   and the stage div wrapping the bog-scene canvas.
    STACKING CONTRACT:
    - the fixed stage sits at z-index 0 (the page's living ground);
    - page content wrappers ride above it via position:relative;z-index:1;
