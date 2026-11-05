@@ -81,7 +81,46 @@ test("paths.css pastes the canonical block and lifts the wrapper above the stage
   assert.match(page, /main\.garden\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
 });
 
-/* ── integration: the BUILT pages ─────────────────────────────────────── */
+/* ── unit: the /laws/delegated-is-verified/ port (issue #144) ─────────── */
+
+test("delegated-is-verified.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/laws/delegated-is-verified.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+});
+
+test("delegated-is-verified.html keeps its original content marks", () => {
+  const html = read("content/laws/delegated-is-verified.html");
+  assert.ok(html.includes("Law 10 · Delegated, Therefore Verified"));
+  assert.ok(html.includes("What is delegated is verified."));
+  assert.ok(html.includes("back to the Dekalogue"));
+});
+
+test("delegated-is-verified.css pastes the backdrop block and lifts the riders above the stage", () => {
+  const page = read("content/laws/delegated-is-verified.css");
+  for (const sel of ["#bog-grainfx", ".bog-vign", ".bog-bloom", "#bog-stage", "#bog-scene"]) {
+    assert.ok(page.includes(sel), `${sel} rule present`);
+  }
+  assert.match(page, /#bog-stage\{position:fixed/, "the stage is the fixed ground at z-index 0");
+  assert.match(page, /#bog-scene\{[^}]*filter:blur\(3px\)/s, "canvas keeps its depth-of-field blur");
+  assert.match(page, /#bog-scene\{[^}]*transform:scale\(1\.014\)/s, "overscan hides the blur rim");
+  assert.match(
+    page, /@media\(prefers-reduced-motion:reduce\)\{#bog-stage\{box-shadow:none\}\}/,
+    "reduced-motion guard"
+  );
+  assert.match(
+    page, /img\.hero3d,\.profile-head,\.slab,\.backrow\{position:relative;z-index:1\}/,
+    "every rider of this flat page stacks above the stage"
+  );
+});
+
+/* ── integration: the BUILT pages ─────────────────────────────── */
 
 function built(name) {
   const p = path.join(root, "out", name);
@@ -104,6 +143,15 @@ test("built paths page: the port proves the whole path end to end", { skip: !bui
   assert.ok(html.includes("The three strands (seanchaí, Fianna, Fenrir)"));
   assert.ok(html.includes("the Dekalogue"));
   assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1);
+});
+
+test("built delegated-is-verified page: the port proves the whole path end to end", { skip: !built("laws/delegated-is-verified/index.html") && "run npm run build first" }, () => {
+  const html = built("laws/delegated-is-verified/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.ok(html.includes("Law 10 · Delegated, Therefore Verified"), "the law's own mark survives the port");
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
 });
 
 test("built scene asset is served from the public tree", { skip: !built("index.html") && "run npm run build first" }, () => {
