@@ -1,230 +1,412 @@
-<div class="plaque-head rise"><div class="pla-roundel">ᚠ</div><div class="pla-text"><p class="over">Sessions Of The Pack</p><h2>The Chronicles of the Fenrir Ledger</h2></div><span class="pla-rune">ᛟ</span></div>
-<p class="rise">The sagas of the forge, as told in the ledger's own hall — <a href="https://www.fenrirledger.com/chronicles" target="_blank" rel="noopener noreferrer">fenrirledger.com/chronicles</a>. Each session carved into the record, as the skalds once carved runes into stone. The garden keeps a snippet of each; the full telling lives in the pack's hall.</p>
-<p class="rise">The hall itself is charted among the garden's wider roads — <a href="/sites/#hall-fenrir-ledger">visit the hall</a>.</p>
-<div class="keepers-grid rise">
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/agent-issue-1036-step1-firemandecko-28367630" target="_blank" rel="noopener noreferrer" aria-label="FiremanDecko Report: Issue #1036"></a>
-      <p class="v-when">Agent · March 16, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/agent-issue-1036-step1-firemandecko-28367630" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #1036</a></h3>
-      <p class="stone-story">Agent execution report — FiremanDecko on Issue #1036, Step 1. 107 turns, 73 tool calls.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+<!-- ═══ SVG SPRITE: carved geometry + the fires ═══ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- the ten runes of the forge futhark ᚠ ᛁ ᚱ ᛖ ᛗ ᚨ ᚾ ᛞ ᛖ ᚲ ᛟ, drawn in stroke geometry over a 64×100 stave -->
+    <path id="rf" d="M22,6 L22,94 M22,30 L54,8 M22,58 L54,36"/>
+    <path id="ri" d="M32,6 L32,94"/>
+    <path id="rr" d="M22,6 L22,94 M22,6 L54,32 L22,58 M54,32 L54,94"/>
+    <path id="re" d="M20,14 L20,94 M20,14 L36,76 L52,14 M52,14 L52,94"/>
+    <path id="rm" d="M20,6 L20,94 M20,6 L36,42 L52,6 M52,6 L52,94"/>
+    <path id="ra" d="M22,6 L22,94 M22,10 L54,26 M22,38 L54,54"/>
+    <path id="rn" d="M22,6 L22,94 M22,6 L52,94"/>
+    <path id="rd" d="M20,6 L44,6 L32,50 Z M20,94 L44,94 L32,50 Z"/>
+    <path id="rk" d="M54,6 L22,52 L54,96"/>
+    <path id="ro" d="M32,6 L52,42 L32,70 L12,42 Z M32,70 L16,94 M32,70 L48,94"/>
+
+    <!-- Gleipnir knot: the impossible ribbon, lemniscate cut in stone -->
+    <path id="gleipnir" d="M46,40 C46,14 96,10 108,36 C118,58 148,64 158,42 C168,20 138,4 116,16 C104,24 92,40 76,48 C58,58 34,54 34,40 C34,26 56,22 74,32 C88,40 100,54 118,58 C142,64 162,54 162,42"/>
+
+    <linearGradient id="flameGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#a3562a"/>
+      <stop offset="45%" stop-color="#e8a33d"/>
+      <stop offset="100%" stop-color="#ffd9a0"/>
+    </linearGradient>
+    <linearGradient id="ironGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a4b34"/>
+      <stop offset="100%" stop-color="#141c14"/>
+    </linearGradient>
+  </defs>
+
+  <!-- torch: sconce + flame, the hall's warmth -->
+  <symbol id="torch" viewBox="0 0 32 112">
+    <rect x="13" y="52" width="6" height="52" rx="2" fill="url(#ironGrad)" stroke="#20301f" stroke-width="1"/>
+    <rect x="6" y="100" width="20" height="7" rx="2" fill="url(#ironGrad)" stroke="#20301f" stroke-width="1"/>
+    <circle cx="16" cy="49" r="6" fill="url(#ironGrad)" stroke="#20301f" stroke-width="1"/>
+    <path class="flame" d="M16,6 C25,22 24,34 16,46 C8,34 7,22 16,6 Z" fill="url(#flameGrad)" opacity=".96"/>
+    <path class="flame" d="M16,22 C20,30 20,38 16,45 C12,38 12,30 16,22 Z" fill="#ffe6bd" opacity=".85"/>
+  </symbol>
+
+  <!-- a small hall flame for month marks -->
+  <symbol id="tinyflame" viewBox="0 0 24 44">
+    <path d="M12,3 C19,18 18,30 12,41 C6,30 5,18 12,3 Z" fill="url(#flameGrad)" opacity=".95"/>
+    <path d="M12,18 C15,26 15,33 12,40 C9,33 9,26 12,18 Z" fill="#ffe6bd" opacity=".85"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO — the gateway of the hall ═══ -->
+<header class="hero">
+  <div class="moon-disc" aria-hidden="true"></div>
+  <div class="torch-glow w" aria-hidden="true"></div>
+  <div class="torch-glow e" aria-hidden="true"></div>
+  <svg class="torch w" aria-hidden="true"><use href="#torch"/></svg>
+  <svg class="torch e" aria-hidden="true"><use href="#torch"/></svg>
+
+  <div class="wrap">
+    <p class="eyebrow rise">Sessions Of The Pack<span class="dot">᛫</span>The Hall Of The Fenrir Ledger</p>
+
+    <div class="tablet rise" role="img" aria-label="A stone tablet carved with the forge's name in futhark runes">
+      <svg class="rune-tablet" viewBox="0 0 676 116" aria-hidden="true">
+        <g class="carve" transform="translate(6,6)"><use class="rim" href="#rf"/><use class="cut" href="#rf"/></g>
+        <g class="carve" transform="translate(66,6)"><use class="rim" href="#ri"/><use class="cut" href="#ri"/></g>
+        <g class="carve" transform="translate(126,6)"><use class="rim" href="#rr"/><use class="cut" href="#rr"/></g>
+        <g class="carve" transform="translate(186,6)"><use class="rim" href="#re"/><use class="cut" href="#re"/></g>
+        <g class="carve" transform="translate(246,6)"><use class="rim" href="#rm"/><use class="cut" href="#rm"/></g>
+        <g class="carve" transform="translate(306,6)"><use class="rim" href="#ra"/><use class="cut" href="#ra"/></g>
+        <g class="carve" transform="translate(366,6)"><use class="rim" href="#rn"/><use class="cut" href="#rn"/></g>
+        <g class="carve" transform="translate(426,6)"><use class="rim" href="#rd"/><use class="cut" href="#rd"/></g>
+        <g class="carve" transform="translate(486,6)"><use class="rim" href="#re"/><use class="cut" href="#re"/></g>
+        <g class="carve" transform="translate(546,6)"><use class="rim" href="#rk"/><use class="cut" href="#rk"/></g>
+        <g class="carve" transform="translate(606,6)"><use class="rim" href="#ro"/><use class="cut" href="#ro"/></g>
+      </svg>
+      <span class="tablet-cap"><span class="rune">ᚠᛁᚱᛖᛗᚨᚾᛞᛖᚲᛟ</span> — the forge, cut in futhark</span>
+    </div>
+
+    <h1 class="rv">The Chronicles of the <span class="lume">Fenrir Ledger</span></h1>
+
+    <p class="hero-lead rise">The sagas of the forge, as told in the ledger's own hall — <a href="https://www.fenrirledger.com/chronicles" target="_blank" rel="noopener noreferrer">fenrirledger.com/chronicles</a>. Each session carved into the record, as the skalds once carved runes into stone. The garden keeps a snippet of each; the full telling lives in the pack's hall. The hall itself is charted among the garden's wider roads — <a href="/sites/#hall-fenrir-ledger">visit the hall</a>.</p>
+
+    <div class="tallies rise" role="list">
+      <div class="tally" role="listitem"><b>32</b><span>chronicles</span></div>
+      <div class="tally" role="listitem"><b>4</b><span>agent tablets</span></div>
+      <div class="tally" role="listitem"><b>28</b><span>session sagas</span></div>
+      <div class="tally" role="listitem"><b>4</b><span>moons · Feb–May 2026</span></div>
+    </div>
+
+    <p class="cue rise">Descend into the hall</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ═══ THE SAGA SPINE — the moons of the ledger ═══ -->
+  <nav class="railwrap rise" aria-label="The moons of the ledger">
+    <div class="rail">
+      <a class="stop" href="#moon-feb"><span class="stop-medal" aria-hidden="true">ᚠ</span><span class="stop-txt"><span class="stop-name">February</span><span class="stop-n">5 chronicles</span></span></a>
+      <a class="stop" href="#moon-mar"><span class="stop-medal" aria-hidden="true">ᛗ</span><span class="stop-txt"><span class="stop-name">March</span><span class="stop-n">24 chronicles</span></span></a>
+      <span class="stop silent"><span class="stop-medal" aria-hidden="true">᛫</span><span class="stop-txt"><span class="stop-name">April</span><span class="stop-n">the hall fell silent</span></span></span>
+      <a class="stop" href="#moon-may"><span class="stop-medal" aria-hidden="true">ᛟ</span><span class="stop-txt"><span class="stop-name">May</span><span class="stop-n">3 chronicles · still burning</span></span></a>
+    </div>
+  </nav>
+
+  <!-- ═══ LEGEND + FILTER ═══ -->
+  <div class="hallbar rise">
+    <div class="legend">
+      <span class="lg"><span class="r">ᚨ</span>agent tablet</span>
+      <span class="lg"><span class="r">ᛖ</span>session saga</span>
+      <span class="lg"><span class="candle" aria-hidden="true"></span>still burning</span>
+    </div>
+  </div>
+
+  <!-- ═══ THE SAGA — 32 chronicles, grouped by moon, caps cycling all ten ═══ -->
+  <section class="saga" aria-label="The chronicles of the Fenrir Ledger">
+
+    <header class="moon-head rise" id="moon-feb">
+      <span class="mh-medal" aria-hidden="true">ᚠ</span>
+      <h3 class="mh-name">February<span class="yr">2026</span></h3>
+      <span class="mh-count">5 chronicles</span>
+      <svg class="mh-torch" aria-hidden="true"><use href="#tinyflame"/></svg>
+    </header>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">February 27, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/the-wolf-signs-in-valhalla-opens" target="_blank" rel="noopener noreferrer">The Wolf Signs In &amp; Valhalla Opens</a></h3>
+      <p class="c-story">A session chronicle of The Wolf Signs In &amp; Valhalla Opens.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/the-wolf-signs-in-valhalla-opens" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/agent-issue-2296-step1-firemandecko-b3cc27cb" target="_blank" rel="noopener noreferrer" aria-label="FiremanDecko Report: Issue #2296"></a>
-      <p class="v-when">Agent · May 24, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/agent-issue-2296-step1-firemandecko-b3cc27cb" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #2296</a></h3>
-      <p class="stone-story">Agent execution report — FiremanDecko on Issue #2296, Step 1. 177 turns, 96 tool calls.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">February 26, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/breaking-the-gleipnir" target="_blank" rel="noopener noreferrer">Breaking the Gleipnir</a></h3>
+      <p class="c-story">A session chronicle of Breaking the <a class="persona" href="/profiles/gleipnir/">Gleipnir</a>.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/breaking-the-gleipnir" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/agent-issue-800-firemandecko-readme-redesign" target="_blank" rel="noopener noreferrer" aria-label="FiremanDecko Report: Issue #800"></a>
-      <p class="v-when">Agent · March 14, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/agent-issue-800-firemandecko-readme-redesign" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #800</a></h3>
-      <p class="stone-story">Agent execution report — FiremanDecko on Issue #800, Step 1. 65 turns, 32 tool calls.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">February 26, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/cat-easter-egg" target="_blank" rel="noopener noreferrer">Cat&#x27;s Footfall &amp; The Silent Sync</a></h3>
+      <p class="c-story">A session chronicle of Cat&#x27;s Footfall &amp; The Silent Sync.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/cat-easter-egg" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/agent-issue-839-step1-firemandecko-08287a1f" target="_blank" rel="noopener noreferrer" aria-label="FiremanDecko Report: Issue #839"></a>
-      <p class="v-when">Agent · March 14, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/agent-issue-839-step1-firemandecko-08287a1f" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #839</a></h3>
-      <p class="stone-story">Agent execution report — FiremanDecko on Issue #839, Step 1. 123 turns, 45 tool calls.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">February 26, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/vercel-wrangling" target="_blank" rel="noopener noreferrer">Vercel Wrangling &amp; the README Forge</a></h3>
+      <p class="c-story">A session chronicle of Vercel Wrangling &amp; the README Forge.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/vercel-wrangling" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/analytics-and-caching" target="_blank" rel="noopener noreferrer" aria-label="Forges of Sight and Speed"></a>
-      <p class="v-when">Session · May 23, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/analytics-and-caching" target="_blank" rel="noopener noreferrer">Forges of Sight and Speed</a></h3>
-      <p class="stone-story">Two forges lit in one watch — one to see every footstep on the path, one to warm every stone before the traveler arrives.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">February 25, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/wireframes-modals" target="_blank" rel="noopener noreferrer">Wireframes &amp; Modals — The Forging Record</a></h3>
+      <p class="c-story">Wireframes &amp; Modals — The Forging Record — a session chronicle from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger forge.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/wireframes-modals" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/auto-complete" target="_blank" rel="noopener noreferrer" aria-label="The Tireless Watch"></a>
-      <p class="v-when">Session · March 7, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/auto-complete" target="_blank" rel="noopener noreferrer">The Tireless Watch</a></h3>
-      <p class="stone-story">An Autonomous Sentinel Guards the Forge — a session chronicle from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger forge.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <div class="moon-silent rise"><span class="dots" aria-hidden="true">᛫ ᛫ ᛫</span>April 2026 — no chronicles carved; the hall kept its fire banked and the wolf slept.</div>
+
+    <header class="moon-head rise" id="moon-mar">
+      <span class="mh-medal" aria-hidden="true">ᛗ</span>
+      <h3 class="mh-name">March<span class="yr">2026</span></h3>
+      <span class="mh-count">24 chronicles</span>
+      <svg class="mh-torch" aria-hidden="true"><use href="#tinyflame"/></svg>
+    </header>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 21, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/fuckin-animals" target="_blank" rel="noopener noreferrer">The Stale Assertion &amp; The Purge</a></h3>
+      <p class="c-story">A phantom 4th argument broke CI, odins-spear tests were purged, and agents learned to trust exit codes instead of parsing ANSI escape sequences like animals.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/fuckin-animals" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/brain-slug" target="_blank" rel="noopener noreferrer" aria-label="The Brain Slug Extraction"></a>
-      <p class="v-when">Session · March 6, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/brain-slug" target="_blank" rel="noopener noreferrer">The Brain Slug Extraction</a></h3>
-      <p class="stone-story">A session chronicle of The Brain Slug Extraction.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 19, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/fuckin-loki" target="_blank" rel="noopener noreferrer">The Wolf Who Named Himself</a></h3>
+      <p class="c-story">Helm ownership conflicts slain, overlapping test suites unmasked, and <a class="persona" href="/profiles/loki/">Loki</a> finally forbidden from signing his own name into the code he was supposed to guard.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/fuckin-loki" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/breaking-the-gleipnir" target="_blank" rel="noopener noreferrer" aria-label="Breaking the Gleipnir"></a>
-      <p class="v-when">Session · February 26, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/breaking-the-gleipnir" target="_blank" rel="noopener noreferrer">Breaking the Gleipnir</a></h3>
-      <p class="stone-story">A session chronicle of Breaking the <a class="persona" href="/profiles/gleipnir/">Gleipnir</a>.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 17, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/flukey-fuck" target="_blank" rel="noopener noreferrer">The Bootstrap Betrayal</a></h3>
+      <p class="c-story">A blank page in production — traced through browser forensics, cluster logs, and git archaeology to a Helm migration that silently downgraded a load balancer timeout from 3600s to 30s.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/flukey-fuck" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/cat-easter-egg" target="_blank" rel="noopener noreferrer" aria-label="Cat&#x27;s Footfall &amp; The Silent Sync"></a>
-      <p class="v-when">Session · February 26, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/cat-easter-egg" target="_blank" rel="noopener noreferrer">Cat&#x27;s Footfall &amp; The Silent Sync</a></h3>
-      <p class="stone-story">A session chronicle of Cat&#x27;s Footfall &amp; The Silent Sync.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron agent rise" data-type="agent">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᚨ</span>Agent tablet</span><span class="c-date">March 16, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/agent-issue-1036-step1-firemandecko-28367630" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #1036</a></h3>
+      <p class="c-story">Agent execution report — FiremanDecko on Issue #1036, Step 1.</p>
+      <div class="c-stats" aria-label="Forge tallies"><span class="stat"><b>107</b>turns</span><span class="stat"><b>73</b>tool calls</span></div>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/agent-issue-1036-step1-firemandecko-28367630" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/depot-integration-issues" target="_blank" rel="noopener noreferrer" aria-label="Depot Integration — The Wolf&#x27;s Grievances"></a>
-      <p class="v-when">Session · March 6, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/depot-integration-issues" target="_blank" rel="noopener noreferrer">Depot Integration — The Wolf&#x27;s Grievances</a></h3>
-      <p class="stone-story">Pain points and feature requests for Depot Claude integration, from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger engineering team.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 15, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/firing-session" target="_blank" rel="noopener noreferrer">The Firing Line</a></h3>
+      <p class="c-story">Analytics silenced, chains advanced, three PRs merged, <a class="persona" href="/profiles/loki/">Loki</a> unleashed thrice, Norse tablets ordained for glory, and the Odin portrait renewed.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/firing-session" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/fireman-decko-issue-656" target="_blank" rel="noopener noreferrer" aria-label="The Hosting Hunt"></a>
-      <p class="v-when">Session · March 13, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/fireman-decko-issue-656" target="_blank" rel="noopener noreferrer">The Hosting Hunt</a></h3>
-      <p class="stone-story">FiremanDecko investigates seven hosting alternatives to Vercel, weighing cost against deployment volume to find the cheapest path for <a class="persona" href="/profiles/fenrir/">Fenrir</a>&#x27;s relentless CI pipeline.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron agent rise" data-type="agent">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᚨ</span>Agent tablet</span><span class="c-date">March 14, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/agent-issue-800-firemandecko-readme-redesign" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #800</a></h3>
+      <p class="c-story">Agent execution report — FiremanDecko on Issue #800, Step 1.</p>
+      <div class="c-stats" aria-label="Forge tallies"><span class="stat"><b>65</b>turns</span><span class="stat"><b>32</b>tool calls</span></div>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/agent-issue-800-firemandecko-readme-redesign" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/firing-session" target="_blank" rel="noopener noreferrer" aria-label="The Firing Line"></a>
-      <p class="v-when">Session · March 15, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/firing-session" target="_blank" rel="noopener noreferrer">The Firing Line</a></h3>
-      <p class="stone-story">Analytics silenced, chains advanced, three PRs merged, <a class="persona" href="/profiles/loki/">Loki</a> unleashed thrice, Norse tablets ordained for glory, and the Odin portrait renewed.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron agent rise" data-type="agent">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᚨ</span>Agent tablet</span><span class="c-date">March 14, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/agent-issue-839-step1-firemandecko-08287a1f" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #839</a></h3>
+      <p class="c-story">Agent execution report — FiremanDecko on Issue #839, Step 1.</p>
+      <div class="c-stats" aria-label="Forge tallies"><span class="stat"><b>123</b>turns</span><span class="stat"><b>45</b>tool calls</span></div>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/agent-issue-839-step1-firemandecko-08287a1f" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/flukey-fuck" target="_blank" rel="noopener noreferrer" aria-label="The Bootstrap Betrayal"></a>
-      <p class="v-when">Session · March 17, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/flukey-fuck" target="_blank" rel="noopener noreferrer">The Bootstrap Betrayal</a></h3>
-      <p class="stone-story">A blank page in production — traced through browser forensics, cluster logs, and git archaeology to a Helm migration that silently downgraded a load balancer timeout from 3600s to 30s.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 13, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/fireman-decko-issue-656" target="_blank" rel="noopener noreferrer">The Hosting Hunt</a></h3>
+      <p class="c-story">FiremanDecko investigates seven hosting alternatives to Vercel, weighing cost against deployment volume to find the cheapest path for <a class="persona" href="/profiles/fenrir/">Fenrir</a>&#x27;s relentless CI pipeline.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/fireman-decko-issue-656" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/fuckin-animals" target="_blank" rel="noopener noreferrer" aria-label="The Stale Assertion &amp; The Purge"></a>
-      <p class="v-when">Session · March 21, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/fuckin-animals" target="_blank" rel="noopener noreferrer">The Stale Assertion &amp; The Purge</a></h3>
-      <p class="stone-story">A phantom 4th argument broke CI, odins-spear tests were purged, and agents learned to trust exit codes instead of parsing ANSI escape sequences like animals.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 13, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/lean-wolfhkr1" target="_blank" rel="noopener noreferrer">The Pack Runs Lean</a></h3>
+      <p class="c-story">Eight chains dispatched in forty minutes — merges, bouncebacks, a research revision, a war room console filed, and the pack-status oracle fixed when Done items blinded the wolf.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/lean-wolfhkr1" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/fuckin-loki" target="_blank" rel="noopener noreferrer" aria-label="The Wolf Who Named Himself"></a>
-      <p class="v-when">Session · March 19, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/fuckin-loki" target="_blank" rel="noopener noreferrer">The Wolf Who Named Himself</a></h3>
-      <p class="stone-story">Helm ownership conflicts slain, overlapping test suites unmasked, and <a class="persona" href="/profiles/loki/">Loki</a> finally forbidden from signing his own name into the code he was supposed to guard.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 13, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/sorting-shit-out" target="_blank" rel="noopener noreferrer">The Great Unmooring</a></h3>
+      <p class="c-story">Odin decrees the migration from Vercel and Depot to GKE Autopilot — research dispatched, platform chosen, GCP provisioned, agents fired in parallel.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/sorting-shit-out" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/heimdall-feeds-the-pups" target="_blank" rel="noopener noreferrer" aria-label="Heimdall Feeds the Pups"></a>
-      <p class="v-when">Session · March 10, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/heimdall-feeds-the-pups" target="_blank" rel="noopener noreferrer">Heimdall Feeds the Pups</a></h3>
-      <p class="stone-story">The Bifrost guardian&#x27;s pen test bore seven remediation chains — six <a class="persona" href="/profiles/loki/">Loki</a> verdicts fell swift, the seventh demanded the orchestrator&#x27;s own hand.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 12, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/migration-nation" target="_blank" rel="noopener noreferrer">Migration Nation</a></h3>
+      <p class="c-story">The pack planned its exodus from Depot — research reviewed, four migration issues forged, wolves dispatched, and the war room ledger sealed in chronicle.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/migration-nation" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/lean-wolf" target="_blank" rel="noopener noreferrer" aria-label="The Lean Wolf"></a>
-      <p class="v-when">Session · March 6, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/lean-wolf" target="_blank" rel="noopener noreferrer">The Lean Wolf</a></h3>
-      <p class="stone-story">Context Diet &amp; Template Extraction — The Shedding — a session chronicle from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger forge.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 10, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/heimdall-feeds-the-pups" target="_blank" rel="noopener noreferrer">Heimdall Feeds the Pups</a></h3>
+      <p class="c-story">The Bifrost guardian&#x27;s pen test bore seven remediation chains — six <a class="persona" href="/profiles/loki/">Loki</a> verdicts fell swift, the seventh demanded the orchestrator&#x27;s own hand.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/heimdall-feeds-the-pups" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/lean-wolfhkr1" target="_blank" rel="noopener noreferrer" aria-label="The Pack Runs Lean"></a>
-      <p class="v-when">Session · March 13, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/lean-wolfhkr1" target="_blank" rel="noopener noreferrer">The Pack Runs Lean</a></h3>
-      <p class="stone-story">Eight chains dispatched in forty minutes — merges, bouncebacks, a research revision, a war room console filed, and the pack-status oracle fixed when Done items blinded the wolf.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 10, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/playwright-test-massacre" target="_blank" rel="noopener noreferrer">The Playwright Massacre</a></h3>
+      <p class="c-story">537 Playwright tests fell in a single CI run — a route restructuring left the test suite pointing at ghosts, and the war room mobilized to hunt them all down.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/playwright-test-massacre" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/leaner-pups" target="_blank" rel="noopener noreferrer" aria-label="Leaner Pups — Measuring and Taming the Token Hunger"></a>
-      <p class="v-when">Session · March 8, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/leaner-pups" target="_blank" rel="noopener noreferrer">Leaner Pups — Measuring and Taming the Token Hunger</a></h3>
-      <p class="stone-story">A session chronicle of Leaner Pups — Measuring and Taming the Token Hunger.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 9, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/lockdown" target="_blank" rel="noopener noreferrer">Lockdown — Heimdall Hunts the Bifrost</a></h3>
+      <p class="c-story">When Vercel rate limits blocked production, we fixed the pipeline, then unleashed <a class="persona" href="/profiles/heimdall/">Heimdall</a> for a full black-box penetration test across four parallel Depot sandboxes.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/lockdown" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/lockdown" target="_blank" rel="noopener noreferrer" aria-label="Lockdown — Heimdall Hunts the Bifrost"></a>
-      <p class="v-when">Session · March 9, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/lockdown" target="_blank" rel="noopener noreferrer">Lockdown — Heimdall Hunts the Bifrost</a></h3>
-      <p class="stone-story">When Vercel rate limits blocked production, we fixed the pipeline, then unleashed <a class="persona" href="/profiles/heimdall/">Heimdall</a> for a full black-box penetration test across four parallel Depot sandboxes.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 8, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/leaner-pups" target="_blank" rel="noopener noreferrer">Leaner Pups — Measuring and Taming the Token Hunger</a></h3>
+      <p class="c-story">A session chronicle of Leaner Pups — Measuring and Taming the Token Hunger.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/leaner-pups" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/marketing-massacre" target="_blank" rel="noopener noreferrer" aria-label="The Marketing Massacre"></a>
-      <p class="v-when">Session · May 4, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/marketing-massacre" target="_blank" rel="noopener noreferrer">The Marketing Massacre</a></h3>
-      <p class="stone-story">A surface-level reckoning — Odin walked through every page of the marketing site and named what no longer earned its keep. Tools, tests, hero images, newsletters, broken filters — all purged.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 7, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/auto-complete" target="_blank" rel="noopener noreferrer">The Tireless Watch</a></h3>
+      <p class="c-story">An Autonomous Sentinel Guards the Forge — a session chronicle from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger forge.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/auto-complete" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/migration-nation" target="_blank" rel="noopener noreferrer" aria-label="Migration Nation"></a>
-      <p class="v-when">Session · March 12, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/migration-nation" target="_blank" rel="noopener noreferrer">Migration Nation</a></h3>
-      <p class="stone-story">The pack planned its exodus from Depot — research reviewed, four migration issues forged, wolves dispatched, and the war room ledger sealed in chronicle.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 7, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/no-dependencies" target="_blank" rel="noopener noreferrer">No Dependencies</a></h3>
+      <p class="c-story">A session chronicle of No Dependencies.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/no-dependencies" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/moshing-them-home" target="_blank" rel="noopener noreferrer" aria-label="Moshing Them Home"></a>
-      <p class="v-when">Session · March 5, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/moshing-them-home" target="_blank" rel="noopener noreferrer">Moshing Them Home</a></h3>
-      <p class="stone-story">A session chronicle of Moshing Them Home.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 6, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/brain-slug" target="_blank" rel="noopener noreferrer">The Brain Slug Extraction</a></h3>
+      <p class="c-story">A session chronicle of The Brain Slug Extraction.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/brain-slug" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/no-dependencies" target="_blank" rel="noopener noreferrer" aria-label="No Dependencies"></a>
-      <p class="v-when">Session · March 7, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/no-dependencies" target="_blank" rel="noopener noreferrer">No Dependencies</a></h3>
-      <p class="stone-story">A session chronicle of No Dependencies.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 6, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/depot-integration-issues" target="_blank" rel="noopener noreferrer">Depot Integration — The Wolf&#x27;s Grievances</a></h3>
+      <p class="c-story">Pain points and feature requests for Depot Claude integration, from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger engineering team.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/depot-integration-issues" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/playwright-test-massacre" target="_blank" rel="noopener noreferrer" aria-label="The Playwright Massacre"></a>
-      <p class="v-when">Session · March 10, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/playwright-test-massacre" target="_blank" rel="noopener noreferrer">The Playwright Massacre</a></h3>
-      <p class="stone-story">537 Playwright tests fell in a single CI run — a route restructuring left the test suite pointing at ghosts, and the war room mobilized to hunt them all down.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 6, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/lean-wolf" target="_blank" rel="noopener noreferrer">The Lean Wolf</a></h3>
+      <p class="c-story">Context Diet &amp; Template Extraction — The Shedding — a session chronicle from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger forge.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/lean-wolf" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/qa-partner" target="_blank" rel="noopener noreferrer" aria-label="The Quality Hunt"></a>
-      <p class="v-when">Session · March 6, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/qa-partner" target="_blank" rel="noopener noreferrer">The Quality Hunt</a></h3>
-      <p class="stone-story">A session chronicle of The Quality Hunt.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 6, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/qa-partner" target="_blank" rel="noopener noreferrer">The Quality Hunt</a></h3>
+      <p class="c-story">A session chronicle of The Quality Hunt.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/qa-partner" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/sorting-shit-out" target="_blank" rel="noopener noreferrer" aria-label="The Great Unmooring"></a>
-      <p class="v-when">Session · March 13, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/sorting-shit-out" target="_blank" rel="noopener noreferrer">The Great Unmooring</a></h3>
-      <p class="stone-story">Odin decrees the migration from Vercel and Depot to GKE Autopilot — research dispatched, platform chosen, GCP provisioned, agents fired in parallel.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 5, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/moshing-them-home" target="_blank" rel="noopener noreferrer">Moshing Them Home</a></h3>
+      <p class="c-story">A session chronicle of Moshing Them Home.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/moshing-them-home" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/super-wolf" target="_blank" rel="noopener noreferrer" aria-label="The Super Wolf — Pack Coordination"></a>
-      <p class="v-when">Session · March 1, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/super-wolf" target="_blank" rel="noopener noreferrer">The Super Wolf — Pack Coordination</a></h3>
-      <p class="stone-story">A session chronicle of The Super Wolf — Pack Coordination.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 5, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/whats-chore-loki-readme-pr117-1" target="_blank" rel="noopener noreferrer">The Long March — Specs to Hooks</a></h3>
+      <p class="c-story">A session chronicle of The Long March — Specs to Hooks.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/whats-chore-loki-readme-pr117-1" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/the-wolf-signs-in-valhalla-opens" target="_blank" rel="noopener noreferrer" aria-label="The Wolf Signs In &amp; Valhalla Opens"></a>
-      <p class="v-when">Session · February 27, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/the-wolf-signs-in-valhalla-opens" target="_blank" rel="noopener noreferrer">The Wolf Signs In &amp; Valhalla Opens</a></h3>
-      <p class="stone-story">A session chronicle of The Wolf Signs In &amp; Valhalla Opens.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">March 1, 2026</span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/super-wolf" target="_blank" rel="noopener noreferrer">The Super Wolf — Pack Coordination</a></h3>
+      <p class="c-story">A session chronicle of The Super Wolf — Pack Coordination.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/super-wolf" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/vercel-wrangling" target="_blank" rel="noopener noreferrer" aria-label="Vercel Wrangling &amp; the README Forge"></a>
-      <p class="v-when">Session · February 26, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/vercel-wrangling" target="_blank" rel="noopener noreferrer">Vercel Wrangling &amp; the README Forge</a></h3>
-      <p class="stone-story">A session chronicle of Vercel Wrangling &amp; the README Forge.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <header class="moon-head rise" id="moon-may">
+      <span class="mh-medal" aria-hidden="true">ᛟ</span>
+      <h3 class="mh-name">May<span class="yr">2026</span></h3>
+      <span class="mh-count">3 chronicles · still burning</span>
+      <svg class="mh-torch" aria-hidden="true"><use href="#tinyflame"/></svg>
+    </header>
+
+    <article class="chron agent rise" data-type="agent">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᚨ</span>Agent tablet</span><span class="c-date">May 24, 2026</span><span class="c-candle" role="img" aria-label="still burning — the newest moon"></span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/agent-issue-2296-step1-firemandecko-b3cc27cb" target="_blank" rel="noopener noreferrer">FiremanDecko Report: Issue #2296</a></h3>
+      <p class="c-story">Agent execution report — FiremanDecko on Issue #2296, Step 1.</p>
+      <div class="c-stats" aria-label="Forge tallies"><span class="stat"><b>177</b>turns</span><span class="stat"><b>96</b>tool calls</span></div>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/agent-issue-2296-step1-firemandecko-b3cc27cb" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/whats-chore-loki-readme-pr117-1" target="_blank" rel="noopener noreferrer" aria-label="The Long March — Specs to Hooks"></a>
-      <p class="v-when">Session · March 5, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/whats-chore-loki-readme-pr117-1" target="_blank" rel="noopener noreferrer">The Long March — Specs to Hooks</a></h3>
-      <p class="stone-story">A session chronicle of The Long March — Specs to Hooks.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">May 23, 2026</span><span class="c-candle" role="img" aria-label="still burning — the newest moon"></span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/analytics-and-caching" target="_blank" rel="noopener noreferrer">Forges of Sight and Speed</a></h3>
+      <p class="c-story">Two forges lit in one watch — one to see every footstep on the path, one to warm every stone before the traveler arrives.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/analytics-and-caching" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
-    <article class="vstone keeper-page chron-card">
-      <a class="stone-link" href="https://www.fenrirledger.com/chronicles/wireframes-modals" target="_blank" rel="noopener noreferrer" aria-label="Wireframes &amp; Modals — The Forging Record"></a>
-      <p class="v-when">Session · February 25, 2026</p>
-      <h3><a href="https://www.fenrirledger.com/chronicles/wireframes-modals" target="_blank" rel="noopener noreferrer">Wireframes &amp; Modals — The Forging Record</a></h3>
-      <p class="stone-story">Wireframes &amp; Modals — The Forging Record — a session chronicle from the <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger forge.</p>
-      <div class="marks"><span class="m-lang">the ledger</span><span class="m-sep">᛫</span><span class="m-year">chronicle</span></div>
+
+    <article class="chron saga rise" data-type="saga">
+      <header class="c-top"><span class="c-type"><span class="c-rune">ᛖ</span>Session saga</span><span class="c-date">May 4, 2026</span><span class="c-candle" role="img" aria-label="still burning — the newest moon"></span></header>
+      <h3 class="c-title"><a href="https://www.fenrirledger.com/chronicles/marketing-massacre" target="_blank" rel="noopener noreferrer">The Marketing Massacre</a></h3>
+      <p class="c-story">A surface-level reckoning — Odin walked through every page of the marketing site and named what no longer earned its keep. Tools, tests, hero images, newsletters, broken filters — all purged.</p>
+      <div class="c-marks">the ledger<span class="c-sep">᛫</span>chronicle</div>
+      <a class="card-hit" href="https://www.fenrirledger.com/chronicles/marketing-massacre" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"></a>
     </article>
+
+  </section>
+
+  <!-- ═══ THE GLEIPNIR KNOT — closing the hall ═══ -->
+  <div class="knot-div rise" aria-hidden="true">
+    <svg class="knot" viewBox="0 0 200 84">
+      <g><use class="rim" href="#gleipnir"/><use class="cut" href="#gleipnir"/></g>
+    </svg>
+    <span class="knot-cap">the gleipnir holds — 32 chronicles bound in the record</span>
+  </div>
+  <p class="closing rise">So the record stands: thirty-two chronicles, four moons, one wolf.</p>
+
+  <p class="backrow rise">
+    <a href="/sessions/">ᚔ back to the ballad garden</a>
+    <span class="sep">·</span>
+    <a href="https://www.fenrirledger.com/chronicles" target="_blank" rel="noopener noreferrer">the full chronicles, in their own hall</a>
+  </p>
 </div>
-<p class="backrow" style="margin-top:22px"><a href="/sessions/">ᚔ back to the ballad garden</a> · <a href="https://www.fenrirledger.com/chronicles" target="_blank" rel="noopener noreferrer">the full chronicles, in their own hall</a></p>

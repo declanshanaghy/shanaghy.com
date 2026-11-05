@@ -1,3 +1,8 @@
+/* ═══ THE CHRONICLES OF THE FENRIR LEDGER — the torchlit hall ═══
+   Redesigned 2026-11-04 from Luna's approved prototype: moon rail, month march,
+   forged agent tablets vs rune-stone sagas, candles on the newest moon, Gleipnir closing.
+   Chrome (topbar/foot) rules and the moss-caps paste at EOF are this page's own, kept as-is. */
+
 
 
 @font-face{font-family:'Noto Sans Ogham';src:url('/assets/fonts/NotoSansOgham-Regular.ttf') format('truetype');font-display:swap;}
@@ -14,16 +19,35 @@
   --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
   --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,'Liberation Mono',monospace;
 }
+
+/* ---- page vars (moonlit palette; NO ambers — fire only, and fire lives in the flames) ---- */
+:root{
+  --bg:#070a08; --bg2:#040705;
+  --stone-hi:#1a231a; --stone-lo:#0d130d; --edge:#2f3d2e;
+  --moss-hi:#94ac78; --moss:#7e9764; --moss-lo:#687f51;
+  --lume:#a9e6c3; --lume2:#c9f2d9; --moon:#dcecd9; --silver:#b7cdb9;
+  --parch:#c9dcc7; --muted:#8ca089; --dim:#5e7160;
+  /* fire — the one sanctioned warmth (torches, candles, embers) */
+  --flame:#ffbd5e; --flame2:#e8a33d; --ember:#a3562a;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;color-scheme:dark}
+html{scroll-behavior:smooth;color-scheme:dark;-webkit-text-size-adjust:100%}
 body{
   font-family:var(--serif); color:var(--parch);
   background:
-    radial-gradient(1100px 700px at 50% -140px, rgba(120,150,124,.12), transparent 60%),
-    radial-gradient(1000px 620px at 6% 112%, rgba(95,112,72,.06), transparent 55%),
-    radial-gradient(900px 600px at 88% 108%, rgba(80,105,90,.07), transparent 55%),
+    radial-gradient(1200px 720px at 50% -180px, rgba(120,150,124,.14), transparent 62%),
+    radial-gradient(1000px 640px at 4% 116%, rgba(95,112,72,.06), transparent 55%),
+    radial-gradient(900px 620px at 92% 108%, rgba(80,105,90,.07), transparent 55%),
     var(--bg);
-  min-height:100vh; overflow-x:hidden;
+  min-height:100vh; overflow-x:hidden; position:relative;
+}
+/* hall atmosphere: faint vault-rubble grain over the whole page */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:var(--grain);
+  opacity:.5;mix-blend-mode:screen;
 }
 ::selection{background:rgba(169,230,195,.35);color:#f2fbf0}
 ::-webkit-scrollbar{width:11px}
@@ -33,6 +57,8 @@ body{
 a{color:inherit}
 svg{display:block}
 img{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
 
 /* ---- topbar (same rune-tab strip as the garden) ---- */
 .topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 18px;padding:14px 22px;background:linear-gradient(180deg,rgba(7,10,8,.92),rgba(4,7,5,.88));border-bottom:1px solid rgba(126,151,100,.35)}
@@ -70,161 +96,6 @@ img{display:block}
 }
 .ghpill:hover,.ghpill:focus{color:var(--amber2);border-color:rgba(169,230,195,.55);text-shadow:0 0 12px rgba(169,230,195,.6);transform:translateY(-1px)}
 
-/* ---- engraved page header ---- */
-.page-head{
-  position:relative;text-align:center;
-  padding:46px 18px 30px;
-  background:
-    radial-gradient(60% 26% at 50% 108%, rgba(95,112,72,.10), transparent 70%),
-    radial-gradient(ellipse 90% 68% at 50% 60%, #121a12 0%, #070a08 62%, #040705 100%);
-  overflow:hidden;
-}
-.ph-rune{
-  position:absolute;top:-30px;right:2%;
-  font-size:190px;line-height:1;color:rgba(183,205,185,.05);
-  pointer-events:none;user-select:none;font-family:var(--serif);
-}
-.crumb{
-  display:inline-block;margin-bottom:16px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;
-  color:#8ba389;text-decoration:none;
-  padding:5px 14px;border:1px solid rgba(126,151,100,.4);border-radius:9px 3px 9px 3px;
-  background:linear-gradient(180deg,rgba(26,35,26,.6),rgba(7,10,8,.6));
-  transition:color .25s,border-color .25s,text-shadow .25s;
-}
-.crumb:hover{color:var(--amber2);border-color:rgba(169,230,195,.55);text-shadow:0 0 10px rgba(169,230,195,.5)}
-.signage{
-  --cap:var(--mosscap9);
-  position:relative;display:inline-block;
-  padding:26px 44px 30px;
-  background:
-    var(--grain),
-    var(--cap),
-    var(--mottle),
-    linear-gradient(180deg,#19221a 0%,#121a12 62%,#0c120c 100%);
-  border:1px solid rgba(126,151,100,.5);
-  border-radius:22px 30px 18px 28px / 28px 20px 30px 16px;
-  box-shadow:
-    inset 0 1px 0 rgba(214,236,222,.1),
-    inset 0 14px 22px rgba(0,0,0,.42),
-    inset 0 -14px 24px rgba(0,0,0,.5),
-    0 22px 40px -18px rgba(0,0,0,.9);
-}
-.signage::after{
-  content:"";position:absolute;left:8%;right:8%;bottom:6%;height:26%;
-  border-radius:50%;
-  background:radial-gradient(60% 100% at 50% 100%, rgba(110,127,87,.4), rgba(110,127,87,0) 75%);
-  pointer-events:none;
-}
-.signage::before{
-  content:"ᚄᚆᚐᚅᚐᚌᚆᚔ";
-  position:absolute;top:9px;left:0;right:0;
-  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
-  color:#46583f;opacity:.55;white-space:nowrap;overflow:hidden;pointer-events:none;
-}
-.ph-icon{
-  width:64px;height:64px;margin:0 auto 10px;
-  filter:drop-shadow(0 3px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(169,230,195,.18));
-}
-.signage h1{
-  font-size:clamp(21px,4.4vw,34px);font-weight:600;
-  font-variant-caps:all-small-caps;letter-spacing:1.2px;color:#dcecd9;
-  text-shadow:0 2px 2px rgba(0,0,0,.9), 0 -1px 0 rgba(216,236,222,.14), 0 0 26px rgba(169,230,195,.14);
-  overflow-wrap:anywhere;
-}
-.ph-grove{
-  margin-top:9px;font-size:10.5px;letter-spacing:3.2px;color:#8ba389;text-transform:uppercase;
-}
-.ph-grove .rune{color:var(--amber2);text-shadow:0 0 9px rgba(169,230,195,.55);margin-right:4px}
-.ph-marks{
-  margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;
-  font-size:11px;letter-spacing:2px;text-transform:uppercase;
-}
-.m-lang{color:#a3c79b;font-variant-caps:all-small-caps}
-.m-year{color:#8ba389}
-.m-sep{color:#46583f;font-size:12px}
-
-/* ---- sections ---- */
-.page{max-width:860px;margin:0 auto;padding:6px 24px 26px}
-.cutline{display:flex;justify-content:center;padding:14px 0 2px;color:#4a5f45;opacity:.85}
-.cutline svg{width:220px;height:24px}
-.plaque-head{display:flex;align-items:center;gap:16px;margin:26px 0 14px}
-.pla-roundel{
-  width:52px;height:52px;flex-shrink:0;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(126,151,100,.45);
-  background:radial-gradient(circle at 38% 30%, #26301f, #0d130d 78%);
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 3px rgba(214,236,222,.07), 0 6px 14px -6px rgba(0,0,0,.8);
-  font-size:22px;color:var(--gold);
-}
-.pla-roundel::after{
-  content:"";position:absolute;
-}
-.pla-text .over{font-size:9.5px;letter-spacing:3px;color:#8ca089;text-transform:uppercase;margin-bottom:3px}
-.pla-text h2{
-  font-size:22px;font-weight:600;letter-spacing:.8px;color:#dcecd9;
-  text-shadow:0 2px 2px rgba(0,0,0,.85), 0 -1px 0 rgba(216,236,222,.1);
-}
-.pla-rune{margin-left:auto;font-size:34px;line-height:1;color:rgba(183,205,185,.16);pointer-events:none}
-.slab{
-  --cap:var(--mosscap2);
-  position:relative;
-  padding:26px 30px 24px;
-  background:
-    var(--grain),
-    var(--cap),
-    radial-gradient(70px 42px at 100% 100%, rgba(98,114,76,.10), transparent 72%),
-    var(--mottle),
-    linear-gradient(180deg,#19221a 0%,#121a12 62%,#0c120c 100%);
-  border:1px solid var(--edge);
-  border-radius:26px 34px 20px 32px / 32px 22px 36px 18px;
-  box-shadow:
-    inset 0 1px 0 rgba(214,236,222,.07),
-    inset 0 16px 22px rgba(0,0,0,.38),
-    inset 0 -16px 26px rgba(0,0,0,.5),
-    0 10px 20px -12px rgba(0,0,0,.85);
-}
-.slab::before{
-  content:"ᚄᚆᚐᚅᚐᚌᚆᚔ";
-  position:absolute;top:9px;left:0;right:0;
-  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
-  color:#46583f;opacity:.55;white-space:nowrap;overflow:hidden;pointer-events:none;
-}
-.slab p{font-size:14.5px;line-height:1.75;color:#b0c4ab;letter-spacing:.2px}
-.slab p + p{margin-top:13px}
-.slab em{color:#c4d6c0;font-style:italic}
-.slab .drop{
-  float:left;font-size:46px;line-height:.92;margin:4px 10px 0 0;color:var(--amber2);
-  text-shadow:0 2px 3px rgba(0,0,0,.85), 0 0 16px rgba(169,230,195,.35);
-}
-.mossline{margin-top:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase}
-.mossline a{color:#a3c79b;text-decoration:none;border-bottom:1px dotted rgba(126,151,100,.55);transition:color .25s,text-shadow .25s}
-.mossline a:hover,.mossline a:focus{color:var(--amber2);text-shadow:0 0 9px rgba(169,230,195,.5)}
-
-/* ---- films ---- */
-.onfilm{
-  --cap:var(--mosscap5);
-  margin-top:14px;display:flex;align-items:center;flex-wrap:wrap;gap:14px;
-  padding:16px 18px 14px;
-  background:
-    var(--grain),
-    var(--cap),
-    var(--mottle),
-    linear-gradient(180deg,#19221a 0%,#121a12 62%,#0c120c 100%);
-  border:1px solid var(--edge);
-  border-radius:16px 22px 14px 20px / 20px 14px 24px 16px;
-}
-.onfilm-label{font-size:8.5px;letter-spacing:1.9px;text-transform:uppercase;color:#8ca089}
-.onfilm a{
-  display:block;border-radius:7px 3px 7px 3px;overflow:hidden;border:1px solid #243223;
-  box-shadow:inset 0 1px 0 rgba(214,236,222,.08), 0 4px 9px -5px rgba(0,0,0,.8);
-  transition:border-color .28s;text-decoration:none;
-}
-.onfilm a:hover{border-color:rgba(169,230,195,.6)}
-.onfilm img{display:block;width:150px;height:84px;object-fit:cover;filter:brightness(.82) saturate(.92);transition:filter .3s}
-.onfilm a:hover img{filter:brightness(1.04) saturate(1.05)}
-.film-note{margin-top:10px;font-size:12px;font-style:italic;color:#93a891}
-
 /* ---- footer ---- */
 .foot{padding:26px 20px 60px;text-align:center}
 .foot-knot{width:220px;height:24px;margin:0 auto 20px;color:#4a5f45}
@@ -244,12 +115,8 @@ img{display:block}
 @media (max-width:760px){
   .rt-label,.rt-count{display:none}
   .rtab{padding:6px 10px}
-  .ph-rune{display:none}
-  .signage{padding:22px 22px 26px}
-  .slab{padding:24px 20px 22px}
-  .pla-rune{display:none}
 }
-@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
+
 .brand-logo{display:block;height:40px;width:auto;
   filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(169,230,195,.12));
   border-radius:6px;border:1px solid rgba(169,230,195,.3)}
@@ -269,12 +136,268 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
   border-radius:1px;
   box-shadow:inset 0 1px 0 rgba(226,244,232,.22), 0 1px 2px rgba(0,0,0,.8)}
 
-.chron-card .v-when{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:#8ca089;text-transform:uppercase;margin:0 0 6px}
-.chron-card h3 a{text-decoration:none;color:var(--gold)}
-.chron-card h3 a:hover{color:var(--amber2)}
-a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(183,205,185,.4)}
-a.persona:hover{color:var(--amber2)}
+/* ═══ HERO — the gateway of the hall ═══ */
+.hero{position:relative;overflow:hidden;padding:70px 0 46px;text-align:center;
+  background:
+    radial-gradient(62% 40% at 50% 118%, rgba(95,112,72,.12), transparent 70%),
+    radial-gradient(ellipse 96% 72% at 50% 44%, #121a12 0%, #070a08 64%, #040705 100%);
+}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:120px;background:linear-gradient(180deg,transparent,rgba(4,7,5,.7));pointer-events:none}
+/* the moon — the source of all this light */
+.moon-disc{position:absolute;top:-96px;left:50%;transform:translateX(-50%);width:340px;height:340px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%, rgba(220,236,217,.10), rgba(199,220,200,.04) 42%, transparent 68%);
+  filter:blur(2px);animation:moonbreath 12s ease-in-out infinite}
+@keyframes moonbreath{0%,100%{opacity:.85}50%{opacity:1}}
+/* torches flanking the gateway — the sanctioned warmth */
+.torch{position:absolute;top:52px;width:32px;height:112px;pointer-events:none;z-index:2}
+.torch.w{left:4%} .torch.e{right:4%}
+.torch .flame{transform-origin:50% 92%;animation:flicker 3.4s ease-in-out infinite}
+.torch.e .flame{animation-delay:1.1s}
+@keyframes flicker{0%,100%{transform:scale(1) rotate(-1deg);opacity:.95}30%{transform:scale(1.06) rotate(1.5deg);opacity:1}60%{transform:scale(.97) rotate(-1.5deg);opacity:.9}}
+.torch-glow{position:absolute;top:26px;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle, rgba(255,190,110,.16), rgba(255,190,110,.05) 42%, transparent 68%);
+  animation:glowpulse 5s ease-in-out infinite}
+.torch-glow.w{left:calc(4% - 114px)} .torch-glow.e{right:calc(4% - 114px);animation-delay:1.4s}
+@keyframes glowpulse{0%,100%{opacity:.8}50%{opacity:1}}
 
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:3.4px;text-transform:uppercase;color:#8ba389;margin-bottom:18px}
+.eyebrow .dot{color:var(--moss);margin:0 8px}
+.hero h1{font-size:clamp(26px,4.6vw,50px);font-weight:600;font-variant-caps:all-small-caps;letter-spacing:1.4px;color:#dcecd9;line-height:1.04;
+  text-shadow:0 2px 2px rgba(0,0,0,.9), 0 -1px 0 rgba(216,236,222,.15), 0 0 34px rgba(169,230,195,.16);overflow-wrap:anywhere}
+.hero h1 .lume{color:var(--lume2);text-shadow:0 0 24px rgba(169,230,195,.5)}
+
+/* the carved futhark tablet — hand-built from stroke geometry */
+.tablet{position:relative;display:inline-block;margin:26px auto 8px;padding:20px 22px 16px;max-width:92%;
+  background-image:var(--grain),var(--mosscap9),var(--mottle),
+    linear-gradient(180deg,#19221a 0%,#121a12 62%,#0c120c 100%);
+  border:1px solid rgba(126,151,100,.5);
+  border-radius:20px 26px 16px 24px / 24px 18px 28px 16px;
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.1), inset 0 14px 22px rgba(0,0,0,.44), inset 0 -14px 24px rgba(0,0,0,.52), 0 24px 44px -20px rgba(0,0,0,.9), 0 0 60px -20px rgba(169,230,195,.18);
+}
+.rune-tablet{width:min(660px,72vw);height:auto}
+/* hand-carved runes: a moss rim (the raised edge) + a dark groove whose top-left lip catches torchlight */
+.rune-tablet .rim{fill:none;stroke:#48603f;stroke-width:9.5;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.rune-tablet .cut{fill:none;stroke:#020503;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(1.2px -1.4px 0 rgba(169,230,195,.72)) drop-shadow(-1px 1px 0 rgba(0,0,0,.9))}
+.tablet-cap{display:block;margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8ba389}
+.tablet-cap .rune{color:var(--lume2);text-shadow:0 0 10px rgba(169,230,195,.5)}
+
+.hero-lead{max-width:660px;margin:22px auto 0;font-size:15.5px;line-height:1.72;color:#b0c4ab}
+.hero-lead a{color:#a3c79b;text-decoration:none;border-bottom:1px dotted rgba(126,151,100,.6);transition:color .25s,text-shadow .25s,border-color .25s}
+.hero-lead a:hover,.hero-lead a:focus-visible{color:var(--lume2);text-shadow:0 0 10px rgba(169,230,195,.5);border-bottom-color:rgba(169,230,195,.7);outline:none}
+
+/* the ledger's tallies, chiselled into the base of the plaque */
+.tallies{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;margin:28px auto 0;max-width:760px;
+  border:1px solid rgba(126,151,100,.34);border-radius:14px 20px 12px 18px / 18px 12px 22px 14px;
+  background-image:var(--grain),var(--mosscap7),var(--mottle),linear-gradient(180deg,#141c14,#0c120c);
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.07), inset 0 10px 18px rgba(0,0,0,.4), 0 12px 24px -16px rgba(0,0,0,.9)}
+.tally{flex:1 1 130px;padding:15px 12px 14px;text-align:center;position:relative}
+.tally + .tally::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:linear-gradient(180deg,transparent,rgba(126,151,100,.45),transparent)}
+.tally b{display:block;font-family:var(--mono);font-size:24px;font-weight:600;color:var(--lume2);letter-spacing:1px;text-shadow:0 0 18px rgba(169,230,195,.4)}
+.tally span{display:block;margin-top:4px;font-size:9.5px;letter-spacing:2.2px;text-transform:uppercase;color:#8ba389}
+.cue{margin:30px auto 0;font-family:var(--mono);font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#5e7160}
+.cue::after{content:"";display:block;width:1px;height:26px;margin:10px auto 0;background:linear-gradient(180deg,rgba(126,151,100,.7),transparent);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.35;transform:translateY(-3px)}50%{opacity:1;transform:translateY(3px)}}
+
+/* ═══ MOON RAIL — the saga spine at a glance ═══ */
+.railwrap{position:relative;z-index:1;padding:26px 0 4px}
+.rail{display:flex;align-items:stretch;gap:0;position:relative;
+  border:1px solid rgba(126,151,100,.3);border-radius:16px 22px 14px 20px / 20px 14px 24px 16px;
+  background-image:var(--grain),var(--mosscap4),var(--mottle),linear-gradient(180deg,#131b13,#0a0f0a);
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.06), inset 0 12px 20px rgba(0,0,0,.42)}
+.rail::before{content:"";position:absolute;left:6%;right:6%;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(126,151,100,.5),rgba(126,151,100,.5),transparent);z-index:0}
+.stop{flex:1 1 0;display:flex;align-items:center;gap:12px;text-decoration:none;padding:16px 16px;position:relative;z-index:1;transition:background .3s}
+.stop:hover,.stop:focus-visible{background:rgba(169,230,195,.05);outline:none}
+.stop + .stop::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:linear-gradient(180deg,transparent,rgba(126,151,100,.4),transparent)}
+.stop-medal{flex-shrink:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(126,151,100,.5);background:radial-gradient(circle at 38% 30%, #26301f, #0d130d 78%);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 3px rgba(214,236,222,.07), 0 6px 12px -6px rgba(0,0,0,.8);
+  font-size:19px;color:#c9f2d9;text-shadow:0 0 10px rgba(169,230,195,.5)}
+.stop-txt{min-width:0}
+.stop-name{display:block;font-size:14px;letter-spacing:.6px;color:#dcecd9;font-variant-caps:all-small-caps}
+.stop-n{display:block;margin-top:2px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;color:#8ba389}
+.stop.silent .stop-medal{color:#4a5f45;text-shadow:none;border-color:rgba(126,151,100,.22)}
+.stop.silent .stop-name{color:#7e8f77}
+
+/* ═══ HALL BAR — legend (the type filter lives only in the prototype: content pages run no JS) ═══ */
+.hallbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin:34px 0 6px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.lg{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#9db598}
+.lg .r{color:var(--lume2);font-size:13px;text-shadow:0 0 9px rgba(169,230,195,.5)}
+.lg .candle{width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,#ffbd5e,rgba(232,163,61,.2));box-shadow:0 0 9px 2px rgba(255,150,60,.5)}
+
+/* ═══ THE SAGA GRID ═══ */
+.saga{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:14px 0 0;align-items:stretch}
+.moon-head{grid-column:1/-1;display:flex;align-items:center;gap:16px;margin:34px 0 4px;padding-top:24px;border-top:1px solid rgba(126,151,100,.22)}
+.moon-head:first-child{margin-top:8px;border-top:none;padding-top:0}
+.mh-medal{flex-shrink:0;width:56px;height:56px;border-radius:14px 20px 12px 18px / 18px 12px 22px 14px;display:grid;place-items:center;
+  border:1px solid rgba(126,151,100,.5);background-image:var(--grain),var(--mosscap5),var(--mottle),linear-gradient(180deg,#26301f,#0d130d);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 3px rgba(214,236,222,.07), 0 8px 14px -8px rgba(0,0,0,.85);
+  font-size:24px;color:#c9f2d9;text-shadow:0 0 12px rgba(169,230,195,.55)}
+.mh-name{font-size:clamp(20px,3vw,28px);font-weight:600;font-variant-caps:all-small-caps;letter-spacing:1px;color:#dcecd9;text-shadow:0 2px 2px rgba(0,0,0,.85)}
+.mh-name .yr{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:#8ba389;font-variant-caps:normal;margin-left:8px}
+.mh-count{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#8ba389}
+.mh-torch{width:22px;height:40px;flex-shrink:0}
+.moon-silent{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:18px 0 2px;padding:14px 18px;font-size:14px;font-style:italic;color:#93a891;
+  border:1px dashed rgba(126,151,100,.28);border-radius:14px 20px 12px 18px / 18px 12px 22px 14px;background:rgba(10,15,10,.4)}
+.moon-silent .dots{font-family:var(--mono);letter-spacing:4px;color:#4a5f45;font-style:normal}
+
+/* ═══ THE CARDS ═══ */
+.chron{
+  --cap:var(--mosscap1);
+  position:relative;display:flex;flex-direction:column;gap:11px;
+  padding:20px 20px 15px;
+  background-image:var(--grain),var(--cap),var(--mottle),linear-gradient(180deg,#19221a 0%,#121a12 62%,#0c120c 100%);
+  border:1px solid var(--edge);
+  border-radius:18px 24px 16px 22px / 22px 16px 26px 18px;
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.07), inset 0 14px 20px rgba(0,0,0,.4), inset 0 -14px 22px rgba(0,0,0,.5), 0 12px 22px -14px rgba(0,0,0,.9);
+  transition:transform .34s cubic-bezier(.2,.7,.3,1), border-color .34s, box-shadow .34s;
+  overflow:hidden;
+}
+/* ── MOSS-CAP WIRING — the ten silhouettes cycle across the saga, offset by the page hash.
+      Prototype uses nth-of-type (the month <header>s sit between the cards, so a plain
+      nth-child offset would drift). index.css hash = sum("index.css") % 10 + 1 = 2 → off 2.
+      On the repo port (a flat 32-card grid) this becomes the canonical nth-child(10n+k). ── */
+.saga > article.chron:nth-of-type(10n+1){--cap:var(--mosscap3)}
+.saga > article.chron:nth-of-type(10n+2){--cap:var(--mosscap4)}
+.saga > article.chron:nth-of-type(10n+3){--cap:var(--mosscap5)}
+.saga > article.chron:nth-of-type(10n+4){--cap:var(--mosscap6)}
+.saga > article.chron:nth-of-type(10n+5){--cap:var(--mosscap7)}
+.saga > article.chron:nth-of-type(10n+6){--cap:var(--mosscap8)}
+.saga > article.chron:nth-of-type(10n+7){--cap:var(--mosscap9)}
+.saga > article.chron:nth-of-type(10n+8){--cap:var(--mosscap10)}
+.saga > article.chron:nth-of-type(10n+9){--cap:var(--mosscap1)}
+.saga > article.chron:nth-of-type(10n+0){--cap:var(--mosscap2)}
+/* the torch-catch sheen, warmed only faintly */
+.chron::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(120% 60% at 50% -12%, rgba(216,236,222,.10), transparent 60%)}
+.chron:hover{transform:translateY(-4px);border-color:rgba(169,230,195,.48);
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.12), inset 0 14px 20px rgba(0,0,0,.4), inset 0 -14px 22px rgba(0,0,0,.5), 0 20px 34px -16px rgba(0,0,0,.95), 0 0 26px -6px rgba(169,230,195,.22)}
+.chron:hover::after{opacity:1}
+.card-hit{position:absolute;inset:0;z-index:1;border-radius:inherit}
+
+/* forge tablet (agent reports) — chiselled, metallic, stats-bearing */
+.chron.agent{border-radius:11px 15px 10px 14px / 14px 10px 16px 12px;
+  border-color:rgba(140,168,120,.4);
+  background-image:var(--grain),
+    linear-gradient(180deg, rgba(60,81,56,.5), rgba(30,42,30,.2) 40%, rgba(0,0,0,0) 70%),
+    var(--cap),var(--mottle),
+    linear-gradient(180deg,#182319 0%,#101a11 60%,#090f0a 100%);
+}
+.chron.agent::before{content:"";position:absolute;left:14px;right:14px;top:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(169,230,195,.5),transparent)}
+.chron.agent .c-type{color:#b8dcae}
+/* rune stone (session sagas) — organic, weathered */
+.chron.saga::before{content:"";position:absolute;left:24px;right:24px;bottom:0;height:26%;pointer-events:none;
+  background:radial-gradient(60% 100% at 50% 100%, rgba(110,127,87,.22), transparent 74%)}
+
+
+.c-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:relative;z-index:2}
+.c-type{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.9px;text-transform:uppercase;color:#a3c79b;
+  padding:4px 10px;border:1px solid rgba(126,151,100,.4);border-radius:9px 3px 9px 3px;background:linear-gradient(180deg,rgba(26,35,26,.7),rgba(7,10,8,.5))}
+.c-type .c-rune{color:var(--lume2);font-size:12px;text-shadow:0 0 8px rgba(169,230,195,.55)}
+.chron.agent .c-type{border-radius:3px 8px 3px 8px;border-color:rgba(169,230,195,.42)}
+.c-date{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8ca089;white-space:nowrap}
+.c-candle{width:9px;height:9px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle at 50% 40%, #ffd9a0, #ffbd5e 45%, rgba(232,163,61,.35));
+  box-shadow:0 0 10px 2px rgba(255,150,60,.5), 0 0 20px 4px rgba(232,163,61,.22);animation:flicker 3.8s ease-in-out infinite}
+.c-title{font-size:16.5px;line-height:1.28;font-weight:600;position:relative;z-index:2;letter-spacing:.2px}
+.c-title a{text-decoration:none;color:#c9e0c4;transition:color .25s,text-shadow .25s}
+.c-title a:hover,.c-title a:focus-visible{color:var(--lume2);text-shadow:0 0 14px rgba(169,230,195,.45);outline:none}
+.c-story{font-size:13.5px;line-height:1.66;color:#a7bba3;position:relative;z-index:2}
+.chron.agent .c-story{color:#aec9a6}
+.c-story a.persona{position:relative;z-index:2;text-decoration:none;color:#c9e0c4;border-bottom:1px dotted rgba(183,205,185,.45);transition:color .25s,border-color .25s}
+.c-story a.persona:hover{color:var(--lume2);border-bottom-color:rgba(169,230,195,.7)}
+.c-stats{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:2}
+.stat{font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#c2d4c2;
+  padding:6px 11px;border:1px solid rgba(126,151,100,.36);border-radius:8px 3px 8px 3px;
+  background:linear-gradient(180deg,rgba(20,28,20,.85),rgba(6,9,6,.85));
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.08), inset 0 -6px 12px rgba(0,0,0,.45)}
+.stat b{color:var(--lume2);font-weight:600;margin-right:4px;text-shadow:0 0 10px rgba(169,230,195,.4)}
+.c-marks{margin-top:auto;padding-top:6px;font-family:var(--mono);font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:#5e7160;position:relative;z-index:2}
+.c-marks .c-sep{color:#3f5138;margin:0 6px}
+
+/* ═══ KNOT DIVIDER + CLOSING ═══ */
+.knot-div{display:flex;flex-direction:column;align-items:center;gap:12px;margin:52px auto 8px;color:#4a5f45}
+.knot{width:180px;height:66px}
+.knot .rim,.foot-knot .rim{fill:none;stroke:#3d5438;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.45}
+.knot .cut,.foot-knot .cut{fill:none;stroke:#030604;stroke-width:4.6;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(1px -1px 0 rgba(169,230,195,.55)) drop-shadow(-1px 1px 0 rgba(0,0,0,.85))}
+.knot-cap{font-family:var(--mono);font-size:9.5px;letter-spacing:2.4px;text-transform:uppercase;color:#5e7160;text-align:center}
+.closing{max-width:680px;margin:8px auto 0;text-align:center;font-size:14.5px;line-height:1.74;color:#a7bba3}
+.closing a{color:#a3c79b;text-decoration:none;border-bottom:1px dotted rgba(126,151,100,.6);transition:color .25s,text-shadow .25s}
+.closing a:hover,.closing a:focus-visible{color:var(--lume2);text-shadow:0 0 10px rgba(169,230,195,.5);outline:none}
+
+.backrow{margin-top:26px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase}
+.backrow a{color:#a3c79b;text-decoration:none;border-bottom:1px dotted rgba(126,151,100,.5);transition:color .25s,text-shadow .25s}
+.backrow a:hover,.backrow a:focus-visible{color:var(--lume2);text-shadow:0 0 10px rgba(169,230,195,.5);outline:none}
+.backrow .sep{color:#3f5138;margin:0 12px}
+
+/* ═══ COMPACT / MOBILE — a compact variant of EVERY element type ═══ */
+@media (max-width:1000px){ .saga{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  /* topbar compact */
+  .topbar{padding:11px 14px;gap:8px 12px}
+  .brand-logo{height:34px}
+  .toplinks{gap:6px 12px;width:100%;justify-content:flex-start}
+  .tlink{font-size:12px;letter-spacing:1.4px;padding:8px 0;min-height:44px;display:inline-flex;align-items:center}
+  /* hero compact */
+  .hero{padding:44px 0 34px}
+  .torch{width:24px;height:82px;top:38px}.torch.w{left:2%}.torch.e{right:2%}
+  .torch-glow{display:none}
+  .moon-disc{width:250px;height:250px;top:-80px}
+  .eyebrow{font-size:9.5px;letter-spacing:2.4px;margin-bottom:12px}
+  .hero h1{font-size:clamp(26px,8.4vw,34px)}
+  .tablet{padding:15px 14px 12px;margin-top:20px;max-width:100%}
+  .rune-tablet{width:100%}
+  .hero-lead{font-size:16px;line-height:1.72;margin-top:18px}
+  .tallies{max-width:100%}
+  .tally{flex:1 1 44%;padding:13px 8px 12px}
+  .tally b{font-size:20px}
+  /* rail compact — swipeable */
+  .rail{overflow-x:auto;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .rail::before{display:none}
+  .stop{flex:0 0 auto;min-width:150px;min-height:56px;padding:14px 14px}
+  .stop-medal{width:38px;height:38px;font-size:17px}
+  .stop-name{font-size:15px}
+  /* halls bar compact */
+  .hallbar{margin:26px 0 4px;gap:12px}
+  .lg{font-size:10.5px}
+  /* saga compact — single column */
+  .saga{grid-template-columns:1fr;gap:14px}
+  .moon-head{gap:12px;margin:28px 0 2px;padding-top:20px}
+  .mh-medal{width:46px;height:46px;font-size:20px}
+  .moon-head .mh-count{width:100%;margin-left:58px;order:5}
+  .mh-torch{display:none}
+  .moon-silent{font-size:15px;line-height:1.6;padding:13px 15px}
+  /* card compact — touch floor on the whole card, prose ≥16px */
+  .chron{padding:18px 16px 14px;gap:10px}
+  .chron .card-hit{min-height:44px}
+  .c-type{font-size:10px;letter-spacing:1.6px;padding:5px 10px;min-height:30px}
+  .c-date{font-size:10px}
+  .c-title{font-size:19px;line-height:1.26}
+  .c-title a{display:inline-block;padding:2px 0}
+  .c-story{font-size:16px;line-height:1.6}
+  .stat{font-size:11px;padding:8px 12px;min-height:40px;display:inline-flex;align-items:center}
+  .c-marks{font-size:9.5px}
+  /* closing + foot compact */
+  .knot-div{margin:38px auto 4px}
+  .closing{font-size:16px;line-height:1.7}
+  .backrow{font-size:11px;letter-spacing:1px;line-height:2.1}
+  .backrow .sep{display:block;height:0;overflow:hidden;margin:0}
+  .backrow a{display:inline-block;min-height:44px;padding:10px 0}
+  .foot{padding:32px 16px 56px}
+  .foot-gh{min-height:44px;padding:12px 20px}
+  .foot-line{font-size:14px}
+}
+@media (max-width:380px){ .saga{grid-template-columns:1fr} .stop{min-width:132px} }
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+}
 
 /* ═══ the ten moss caps — canonical block, source of truth: web/styles/moss-caps.css ═══ */
 :root{
