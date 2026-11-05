@@ -356,7 +356,11 @@ img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;bor
   margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.4px;
   text-transform:uppercase;color:#9aa189;text-align:center;
 }
-@media (max-width:760px){.throne-gallery{grid-template-columns:1fr}.throne-gallery .thr-lead{grid-column:auto}}
+/* the lead sight is near-square · a taller lead than the 16/10 crop */
+.throne-gallery .thr-lead img{aspect-ratio:1278/1242;max-width:600px;margin-inline:auto}
+/* the portrait sights · hall tree and desktop dock stand taller than wide */
+.throne-gallery .thr-portrait img{aspect-ratio:10/16}
+@media (max-width:760px){.throne-gallery{grid-template-columns:1fr}.throne-gallery .thr-lead{grid-column:auto}.throne-gallery .thr-lead img{max-width:none}}
 
 /* ═══ the bog at full moon — canonical block, source of truth: web/styles/bog-at-full-moon.css ═══ */
 /* ═══ the bog at full moon — canonical block, source of truth: web/styles/bog-at-full-moon.css ═══ */
