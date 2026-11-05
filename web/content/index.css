@@ -144,16 +144,34 @@ svg{display:block}
   filter:blur(1px);
 }
 
-/* ── bog canvas: the front-door atmospheric scene ───────────────── */
+/* ── bog canvas: the flowing ground of the WHOLE garden ───────────
+   Decree 2026-11-04 (round 2): "ensure the top image floats behind the
+   entire page content all the way while scrolling" — the stage is now a
+   FIXED full-viewport backdrop: the painted bog never scrolls away, every
+   grove grows over the same living ground from the top of the page to the
+   last wayfinding stone. The canvas sky carries NO moon of its own (the
+   garden painting's own moon stays the page's one moon), and the painted
+   buffer caps just past one viewport (see index.js resize) — exactly the
+   stage's fixed height, so there is no seam and no fade. */
+/* the old 120px sky-band reservation is struck (decree 2026-11-04: "big
+   gap at the top") — the fixed stage needs no reserved band above the
+   garden; the grove's own 52px rhythm keeps the breathing room */
+#garden-vista{position:relative}
+#garden-vista>*{position:relative;z-index:1}
 #bog-stage{
-  position:relative;width:100%;aspect-ratio:1000/560;overflow:hidden;
-  background:#040a07;pointer-events:none;
-  border-top:1px solid rgba(99,224,160,.1);
-  border-bottom:1px solid rgba(99,224,160,.14);
-  box-shadow:inset 0 0 120px rgba(2,6,4,.9),0 30px 70px -40px rgba(0,0,0,1);
+  position:fixed;top:0;left:0;width:100vw;height:100vh;height:100dvh;
+  overflow:hidden;z-index:0;
+  background:#020604;pointer-events:none;
+  box-shadow:inset 0 0 120px rgba(2,6,4,.9);
 }
 #bog-scene{
   display:block;position:absolute;inset:0;width:100%;height:100%;
+  /* decree 2026-11-04: the flowing bog sits far behind the garden, so it
+     carries a slight depth-of-field blur — the foreground (painting, cards)
+     stays sharp. The overscan hides the blur's rim fringe against the
+     stage's own dark ground; #bog-stage clips the overhang. */
+  filter:blur(3px);
+  transform:scale(1.014);
 }
 @media(prefers-reduced-motion:reduce){#bog-stage{box-shadow:none}}
 
@@ -582,9 +600,13 @@ a.persona:hover{color:var(--lume2);border-bottom-color:rgba(169,230,195,.7)}
 .gp-links a:hover{color:var(--lume2);border-color:rgba(169,230,195,.6);text-shadow:0 0 12px rgba(169,230,195,.6)}
 .gp-links .gp-full{color:#d5eeda;border-color:rgba(169,230,195,.5)}
 @media (max-width:720px){.gp-head{flex-direction:column;text-align:center}.gp-card{padding:30px 22px}}
-.garden-slab{padding:22px 26px 20px}
-.garden-hero{margin:14px 0 4px}
-.garden-hero .g-invite{text-align:center;font-style:italic;color:#93a891;font-size:12.5px;letter-spacing:.4px;margin:13px 0 2px}
+/* decree 2026-11-04: "move the garden up, less padding or whatever above
+   it" — the garden grove rides flush under the nav, the invite tightens,
+   and the slab's top padding thins so the painting starts immediately */
+#garden{padding-top:0}
+.garden-slab{padding:8px 26px 16px}
+.garden-hero{margin:0 0 2px}
+.garden-hero .g-invite{text-align:center;font-style:italic;color:#93a891;font-size:12.5px;letter-spacing:.4px;margin:0}
 .g-canon{font-size:14.5px;line-height:1.75;color:#b8c9b3;letter-spacing:.2px;margin:0 0 12px}
 .g-canon em{color:#cfe0c8}
 .garden-scene{display:block;width:100%;height:auto;border-radius:14px}
