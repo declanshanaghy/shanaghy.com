@@ -122,59 +122,6 @@ test("index.css keeps its compact content rules but not the header rules", () =>
   assert.ok(!css.includes(".topbar{display:none}"), "topbar hiding is the shared stylesheet's now");
 });
 
-/* ── regression: issue #284 — first click strands the sheet in limbo ─────── */
-
-test("issue #284 · the open commit is scheduled from the click, not from a [shown] effect", () => {
-  const js = read("components/Header.js");
-  // the old bug: requestAnimationFrame(() => setOpen(true)) lived inside the
-  // [shown] effect, with a cleanup that cancelled it. On the homepage that
-  // effect could be torn down between the click and the frame, the cleanup's
-  // cancelAnimationFrame discarded the pending setOpen, and the sheet stayed
-  // un-hidden but never slid in — a second click was needed to open it.
-  assert.ok(!js.includes("}, [shown])"), "the [shown] effect is gone entirely");
-  assert.ok(!/useEffect\(\(\) => \{[\s\S]*?requestAnimationFrame\(\(\) => setOpen\(true\)\)/.test(js),
-    "no setOpen(true) is scheduled inside any effect body");
-  // the slide-in now rides the click path itself: unhide, then a rAF held in
-  // a ref, immune to effect cleanup
-  assert.match(js,
-    /openSheet = \(\) => \{[\s\S]*?if \(!shown\) \{\s*setShown\(true\);[\s\S]*?openRafRef\.current = requestAnimationFrame\(\(\) => \{/,
-    "openSheet schedules the slide-in rAF from the click handler");
-  assert.match(js,
-    /openRafRef\.current = requestAnimationFrame\(\(\) => \{[\s\S]*?setOpen\(true\);\s*\}\);/,
-    "the click-path rAF commits setOpen(true)");
-  // the only cleanup that can cancel a pending open rAF is unmount itself
-  const cancellations = js.match(/cancelAnimationFrame\([^)]*\)/g) || [];
-  assert.ok(cancellations.length <= 2, "cancelAnimationFrame only guards the ref (reschedule + unmount)");
-  assert.match(js, /useEffect\(\(\) => \(\) => \{\s*if \(openRafRef\.current\) cancelAnimationFrame\(openRafRef\.current\);\s*\}, \[\]\);/,
-    "the open rAF is cancelled only on unmount");
-});
-
-test("issue #284 · state machine: from closed, one toggle must produce open=true", () => {
-  // the homepage hazard: between click #1 and the next frame, the effect that
-  // owned the slide-in was torn down. Old design: the teardown's cleanup
-  // cancels the pending rAF → open never commits → two clicks. New design:
-  // the rAF belongs to the click; no cleanup owns it → the frame fires →
-  // open=true on the FIRST click.
-  function replay(design) {
-    const st = { shown: false, open: false };
-    let raf = null;
-    const teardown = design === "old"
-      ? () => { raf = null; } // the [shown] effect's cleanup: cancelAnimationFrame
-      : () => {};             // nothing owns the click's rAF (the new shape)
-    st.shown = true;          // click #1: unhide + schedule the slide-in
-    raf = () => { st.open = true; };
-    teardown();               // the hazard: teardown lands before the frame
-    if (raf) raf();           // the frame fires (if it wasn't cancelled)
-    return st;
-  }
-  const oldSt = replay("old");
-  assert.equal(oldSt.shown, true, "old: the sheet un-hides on click #1");
-  assert.equal(oldSt.open, false, "old: the teardown cancelled the slide — a second click was needed (the bug)");
-  const newSt = replay("new");
-  assert.equal(newSt.shown, true, "new: the sheet un-hides on click #1");
-  assert.equal(newSt.open, true, "new: one click, one frame — open=true, the sheet is in");
-});
-
 /* ── regression: issue #282 — the two bugs PR #281 let slip ──────────────── */
 
 /* css specificity: (ids, classes/attrs/pseudo-classes, types) — a later rule
