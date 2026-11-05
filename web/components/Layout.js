@@ -3,7 +3,12 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout({ title, description, here, children, bare }) {
+const SITE_URL = "https://www.shanaghy.com";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/icons/hero-garden.png`;
+
+export default function Layout({ title, description, image, url, here, children, bare }) {
+  const ogImage = image || DEFAULT_OG_IMAGE;
+  const ogUrl = url ? `${SITE_URL}${url}` : SITE_URL;
   useEffect(() => {
     // scroll-reveal: .rise elements fade in as they enter the viewport
     const els = document.querySelectorAll(".rise");
@@ -53,6 +58,15 @@ export default function Layout({ title, description, here, children, bare }) {
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={ogUrl} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
       </Head>
       {bare ? null : <Header here={here} />}
       {children}
