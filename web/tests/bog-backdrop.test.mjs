@@ -81,6 +81,33 @@ test("paths.css pastes the canonical block and lifts the wrapper above the stage
   assert.match(page, /main\.garden\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
 });
 
+/* ── unit: the /laws/handcrafted-over-platform/ port (issue #147) ──────── */
+
+test("handcrafted-over-platform.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/laws/handcrafted-over-platform.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+});
+
+test("handcrafted-over-platform.html keeps its original content marks", () => {
+  const html = read("content/laws/handcrafted-over-platform.html");
+  assert.ok(html.includes("Law 6 · Handcrafted Over Platform"));
+});
+
+test("handcrafted-over-platform.css pastes the canonical block and lifts the page body above the stage", () => {
+  const page = read("content/laws/handcrafted-over-platform.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: stage is the fixed ground");
+  assert.match(page, /img\.hero3d,\.profile-head,\.slab,\.backrow\{position:relative;z-index:1\}/, "page body blocks stack above the stage");
+});
+
 /* ── integration: the BUILT pages ─────────────────────────────────────── */
 
 function built(name) {
@@ -103,6 +130,15 @@ test("built paths page: the port proves the whole path end to end", { skip: !bui
   }
   assert.ok(html.includes("The three strands (seanchaí, Fianna, Fenrir)"));
   assert.ok(html.includes("the Dekalogue"));
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1);
+});
+
+test("built handcrafted-over-platform page: the port proves the whole path end to end", { skip: !built("laws/handcrafted-over-platform/index.html") && "run npm run build first" }, () => {
+  const html = built("laws/handcrafted-over-platform/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.ok(html.includes("Law 6 · Handcrafted Over Platform"));
   assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1);
 });
 
