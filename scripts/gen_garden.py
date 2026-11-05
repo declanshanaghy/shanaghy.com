@@ -29,11 +29,14 @@ ROOT = os.path.dirname(HERE)
 WEB = os.path.join(ROOT, "web")
 GARDEN = os.path.join(WEB, "content", "garden.json")
 FLEET = os.path.join(WEB, "content", "index.html")
+INDEX_JS = os.path.join(WEB, "pages", "index.js")
 PUBLIC = os.path.join(WEB, "public")
 
 MARK_START = ("<!-- garden-scene:start — rendered by scripts/gen_garden.py from "
               "web/content/garden.json; hands off between the markers -->")
 MARK_END = "<!-- garden-scene:end -->"
+SOULS_START = "/* souls-registry:start — rendered by scripts/gen_garden.py; hands off between the markers */"
+SOULS_END = "/* souls-registry:end */"
 
 
 def esc(s):
@@ -53,14 +56,43 @@ DEFS = """<defs>
 
 # ── small builders ──────────────────────────────────────────────────────────
 
-def card(e):
+def slug_of(href):
+    """the soul's slug — the last leg of its profile route (/profiles/<slug>/)."""
+    return href.strip("/").split("/")[-1]
+
+
+def card(e, kin_index):
     """the popover's data card — the page's click handler reads these off any [data-pop]."""
-    return (" data-pop=\"1\""
-            f' data-name="{esc(e["name"])}"'
-            f' data-epithet="{esc(e["epithet"])}"'
-            f' data-marks="{esc(e["marks"])}"'
-            f' data-bio="{esc(e["bio"])}"'
-            f' data-icon="{esc(e["icon"])}"')
+    kin = []
+    for s in e.get("kin", []):
+        k = kin_index.get(s)
+        if k:
+            kin.append({"n": k["name"], "h": k["href"]})
+    out = (" data-pop=\"1\""
+           f' data-name="{esc(e["name"])}"'
+           f' data-epithet="{esc(e["epithet"])}"'
+           f' data-marks="{esc(e["marks"])}"'
+           f' data-bio="{esc(e["bio"])}"'
+           f' data-icon="{esc(e["icon"])}"')
+    if kin:
+        out += f' data-kin="{esc(json.dumps(kin, ensure_ascii=False))}"'
+    return out
+
+
+def souls_registry(g):
+    """the compact layer's SOULS map, re-minted from the same JSON so the two
+    card layers can never drift apart (bio b + kin slugs k now ride along)."""
+    entries = []
+    for e in g["entities"]:
+        entries.append(
+            f'"{slug_of(e["href"])}":{{"n":{json.dumps(e["name"], ensure_ascii=False)},'
+            f'"e":{json.dumps(e["epithet"], ensure_ascii=False)},'
+            f'"m":{json.dumps(e["marks"], ensure_ascii=False)},'
+            f'"i":{json.dumps(os.path.basename(e["icon"]), ensure_ascii=False)},'
+            f'"h":{json.dumps(e["href"], ensure_ascii=False)},'
+            f'"b":{json.dumps(e["bio"], ensure_ascii=False)},'
+            f'"k":{json.dumps(e.get("kin", []), ensure_ascii=False)}}}')
+    return "var SOULS = {" + ",".join(entries) + "};"
 
 
 def label_at(text, x, y):
@@ -76,12 +108,12 @@ def image_art(icon, cx, cy, size):
             f'class="g-shadow"/>')
 
 
-def soul(e):
+def soul(e, kin_index):
     """one clickable soul: its icon overlaid on the painted world + its label,
     wrapped in its own card. The shadow ellipse grounds it on the stone."""
     t, lx, ly = e["label"]
     art = image_art(e["icon"], e["x"], e["y"], e["size"])
-    return (f'<a href="{esc(e["href"])}" class="g-ent"{card(e)}>'
+    return (f'<a href="{esc(e["href"])}" class="g-ent"{card(e, kin_index)}>'
             f'{art}{label_at(t, lx, ly)}</a>')
 
 
@@ -99,6 +131,7 @@ def spores_layer(s):
 def render(g):
     w, h = g["scene"]["width"], g["scene"]["height"]
     b = g["backdrop"]
+    kin_index = {slug_of(e["href"]): e for e in g["entities"]}
     parts = [
         f'<svg class="garden-scene" viewBox="0 0 {w} {h}" role="img" aria-label="{esc(b["aria"])}">',
         DEFS,
@@ -106,7 +139,7 @@ def render(g):
         f'width="{w}" height="{h}" preserveAspectRatio="none"/>',
     ]
     for e in g["entities"]:
-        parts.append(soul(e))
+        parts.append(soul(e, kin_index))
     parts.append('<!-- the spore spirits, drifting from the tree through all life -->')
     parts.append(spores_layer(g["spores"]))
     parts.append("</svg>")
@@ -117,6 +150,7 @@ def validate(g):
     need = ("name", "href", "icon", "epithet", "marks", "bio", "x", "y", "size", "label")
     missing = []
     w, h = g["scene"]["width"], g["scene"]["height"]
+    slugs = {slug_of(e["href"]) for e in g["entities"]}
     for e in g["entities"]:
         for k in need:
             if k not in e or e[k] in ("", None):
@@ -126,6 +160,9 @@ def validate(g):
         icon = e["icon"]
         if icon and not os.path.exists(os.path.join(PUBLIC, icon.lstrip("/"))):
             missing.append(f'{e["name"]}: icon {icon} not found in web/public')
+        for s in e.get("kin", []):
+            if s not in slugs:
+                missing.append(f'{e["name"]}: kin "{s}" is not a soul in the garden')
     backdrop = os.path.join(PUBLIC, g["backdrop"]["image"].lstrip("/"))
     if not os.path.exists(backdrop):
         missing.append(f'backdrop {g["backdrop"]["image"]} not found in web/public')
@@ -149,15 +186,27 @@ def splice(text, scene):
     return text[:i] + MARK_START + "\n      " + scene + "\n      " + MARK_END + text[j:]
 
 
+def splice_souls(text, registry):
+    """rewrite the compact layer's SOULS registry between its markers."""
+    if SOULS_START not in text or SOULS_END not in text:
+        sys.exit("web/pages/index.js: no souls-registry markers — nowhere to seat the souls")
+    i = text.index(SOULS_START) + len(SOULS_START)
+    j = text.index(SOULS_END)
+    return text[:i] + "\n    " + registry + "\n    " + text[j:]
+
+
 def main():
     g = json.load(open(GARDEN, encoding="utf-8"))
     validate(g)
     scene = render(g)
     text = open(FLEET, encoding="utf-8").read()
     open(FLEET, "w", encoding="utf-8").write(splice(text, scene))
+    js = open(INDEX_JS, encoding="utf-8").read()
+    open(INDEX_JS, "w", encoding="utf-8").write(splice_souls(js, souls_registry(g)))
     print(f"the garden regrew: {len(g['entities'])} souls overlaid on the painted world, "
           f"{len(g['spores']['motes'])} spores drifting")
     print(f"scene spliced into {os.path.relpath(FLEET, ROOT)} between the markers")
+    print(f"souls registry re-minted in {os.path.relpath(INDEX_JS, ROOT)} between the markers")
     print("verify: cd web && npm ci && npm run build, then grep 'garden-scene' web/out/index.html")
 
 
