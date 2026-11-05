@@ -1,0 +1,32 @@
+# the parallel ground's front door — global LB on the reserved static IP,
+# managed cert attached, http redirected to https
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shanaghy-garden
+  namespace: shanaghy-garden
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: shanaghy-garden-ip
+    networking.gke.io/managed-certificates: shanaghy-garden-cert
+    cloud.google.com/frontend-config: '{"name": "shanaghy-garden-frontend"}'
+  labels:
+    app.kubernetes.io/name: shanaghy-garden
+    app.kubernetes.io/part-of: shanaghy.com
+spec:
+  defaultBackend:
+    service:
+      name: shanaghy-garden
+      port:
+        number: 80
+  rules:
+    - host: gke.shanaghy.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shanaghy-garden
+                port:
+                  number: 80
