@@ -1112,3 +1112,5 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
   .c-navsheet,.c-sheet,.c-scrim,.c-stage{transition-duration:.01ms}
   .c-tag{transition:none}
 }
+
+@media(prefers-reduced-motion:reduce){.brand:hover,.brand:focus-visible,.foot-gh:hover,.foot-gh:focus-visible,.ghpill:hover,.ghpill:focus,.keeper:hover,.rtab:hover,.rtab:focus,.stone:hover,.tlink:hover{transform:none}}

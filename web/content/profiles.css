@@ -359,3 +359,5 @@ svg{display:block}
     linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
     radial-gradient(150% 90% at 12% 0%, rgba(216,236,222,.09), transparent 55%);
 }
+
+@media(prefers-reduced-motion:reduce){.foot-gh:hover,.soul:hover{transform:none}}
