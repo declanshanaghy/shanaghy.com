@@ -356,7 +356,14 @@ img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;bor
   margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.4px;
   text-transform:uppercase;color:#9aa189;text-align:center;
 }
-@media (max-width:760px){.throne-gallery{grid-template-columns:1fr}.throne-gallery .thr-lead{grid-column:auto}}
+/* every sight is a living door · the anchor holds the image whole */
+.throne-gallery figure a{display:block}
+/* the lead sight is the hall at watch · near 16/10, the default crop keeps it */
+/* the pane sights · the plugin panes stand near-square, taller than the 16/10 crop */
+.throne-gallery .thr-pane img{aspect-ratio:10/9;max-width:480px;margin-inline:auto}
+/* the road sight · the hall on a phone stands tall */
+.throne-gallery .thr-road img{aspect-ratio:780/1688;max-width:360px;margin-inline:auto}
+@media (max-width:760px){.throne-gallery{grid-template-columns:1fr}.throne-gallery .thr-lead{grid-column:auto}.throne-gallery .thr-lead img,.throne-gallery .thr-pane img,.throne-gallery .thr-road img{max-width:none}}
 
 /* ═══ the bog at full moon — canonical block, source of truth: web/styles/bog-at-full-moon.css ═══ */
 /* ═══ the bog at full moon — canonical block, source of truth: web/styles/bog-at-full-moon.css ═══ */
