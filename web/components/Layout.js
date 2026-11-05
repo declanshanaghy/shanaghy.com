@@ -58,6 +58,10 @@ export default function Layout({ title, description, here, children, bare }) {
       {bare ? null : <Header here={here} />}
       {children}
       <Footer />
+      {/* the shared bog scene, mounted once for every page (issue #141);
+          the script self-guards, so pages without the #bog-stage divs
+          no-op cheaply */}
+      <script src="/assets/js/bog-scene.js"></script>
       <style jsx global>{`
         html { scroll-behavior: smooth; color-scheme: dark; }
         .rise { opacity: 0; transform: translateY(16px); }
