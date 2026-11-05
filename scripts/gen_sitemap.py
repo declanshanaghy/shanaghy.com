@@ -29,6 +29,12 @@ for f in sorted(os.listdir(pages_dir)):
             continue
         urls.append(f"{BASE}/{name}/")
 
+# ── directory index routes: web/pages/<name>/index.js → /<name>/ ───────────
+for d in sorted(os.listdir(pages_dir)):
+    dp = os.path.join(pages_dir, d)
+    if os.path.isdir(dp) and os.path.isfile(os.path.join(dp, "index.js")):
+        urls.append(f"{BASE}/{d}/")
+
 # ── projects: from routes.json (the extractor's source of truth) ───────────
 routes = json.load(open(os.path.join(CONTENT, "routes.json")))
 for slug in sorted(routes.get("projects", [])):
@@ -52,7 +58,7 @@ for dirpath, _dirnames, filenames in os.walk(sess):
         rel = os.path.relpath(os.path.join(dirpath, f), CONTENT)
         if f == "index.html":
             rel = os.path.dirname(rel)
-        urls.append(f"{BASE}/{rel.replace(os.sep, '/')}")
+        urls.append(f"{BASE}/{rel.replace(os.sep, '/')}/")
 
 # ── dedupe + emit ──────────────────────────────────────────────────────────
 urls = sorted(set(urls))
