@@ -4,8 +4,8 @@ const NAV = [
   ["Garden", "/"],
   ["Creed", "/creed/"],
   ["Stones", "/projects/"],
-  ["RingForts", "/sites/"],
-  ["Towers", "/videos/"],
+  ["RingForts", "/ringforts/"],
+  ["Towers", "/towers/"],
   ["Ballads", "/sessions/"],
   ["Na Tuatha", "/profiles/"],
 ];
