@@ -17,11 +17,14 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
@@ -49,9 +52,19 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: verify the garden is alive (200 expected)
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.deployment.outputs.page_url }}")
+          if [ "$STATUS" != "200" ]; then
+            echo "post-deploy smoke check failed: expected 200, got ${STATUS}"
+            exit 1
+          fi
+          echo "garden is alive: ${STATUS}"
