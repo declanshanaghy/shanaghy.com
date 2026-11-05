@@ -29,6 +29,10 @@ jobs:
         run: |
           python3 scripts/gen_sitemap.py
           python3 scripts/gen_feed.py
+      - name: install pillow for image optimization
+        run: pip install Pillow
+      - name: optimize images (png -> webp, max-dim 512, q80)
+        run: python3 web/scripts/optimize_images.py
       - name: build the forge
         working-directory: web
         run: |
