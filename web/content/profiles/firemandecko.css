@@ -321,3 +321,5 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
 .marks figcaption a{color:var(--gold);text-decoration:none;border-bottom:1px dotted rgba(183,205,185,.4)}
 .marks figcaption a:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
 @media (max-width:640px){.marks{grid-template-columns:1fr}}
+
+@media(prefers-reduced-motion:reduce){.brand:hover,.brand:focus-visible,.tlink:hover{transform:none}}

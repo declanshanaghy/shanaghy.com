@@ -491,3 +491,5 @@ img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;bor
 
 a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(183,205,185,.4)}
 a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
+
+@media(prefers-reduced-motion:reduce){.brand:hover,.brand:focus-visible,.foot-gh:hover,.ghpill:hover,.ghpill:focus,.rtab:hover,.rtab:focus,.tlink:hover{transform:none}}

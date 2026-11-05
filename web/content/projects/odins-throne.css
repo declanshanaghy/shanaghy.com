@@ -520,3 +520,5 @@ img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;bor
     linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
     radial-gradient(150% 90% at 12% 0%, rgba(230,242,232,.09), transparent 55%);
 }
+
+@media(prefers-reduced-motion:reduce){.brand:hover,.brand:focus-visible,.foot-gh:hover,.ghpill:hover,.ghpill:focus,.rtab:hover,.rtab:focus{transform:none}}
