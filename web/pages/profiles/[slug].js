@@ -5,12 +5,12 @@ import { ContentPage } from "../../lib/ContentPage";
 
 const SLUGS = fs.readdirSync(path.join(process.cwd(), "content", "profiles")).filter((f) => f.endsWith(".html")).map((f) => f.replace(/\.html$/, ""));
 
-export default function Profile({ slug, html, css }) {
+export default function Profile({ slug, name, html, css }) {
   return (
     <ContentPage
-      title={`${slug} — a persona of the forge`}
-      description={`A persona of the garden — ${slug}.`}
-      here="/garden/"
+      title={`${name} — a persona of the forge`}
+      description={`A persona of the garden — ${name}.`}
+      here="/profiles/"
       html={html}
       css={css}
     />
@@ -22,5 +22,9 @@ export function getStaticPaths() {
 }
 
 export function getStaticProps({ params }) {
-  return { props: { slug: params.slug, html: readContent(`profiles/${params.slug}.html`), css: readContentCss(`profiles/${params.slug}.css`) } };
+  const html = readContent(`profiles/${params.slug}.html`);
+  const name = (html.match(/<h1 class="profile-name">([\s\S]*?)<\/h1>/) || [null, params.slug])[1]
+    .replace(/<[^>]+>/g, "")
+    .trim();
+  return { props: { slug: params.slug, name, html, css: readContentCss(`profiles/${params.slug}.css`) } };
 }

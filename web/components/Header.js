@@ -3,12 +3,11 @@ import React from "react";
 const NAV = [
   ["Garden", "/"],
   ["Creed", "/creed/"],
-  ["Ogham", "/ogham/"],
   ["Stones", "/projects/"],
   ["RingForts", "/sites/"],
   ["Towers", "/videos/"],
   ["Ballads", "/sessions/"],
-  ["Paths", "/paths/"],
+  ["Na Tuatha", "/profiles/"],
 ];
 
 export default function Header({ here }) {

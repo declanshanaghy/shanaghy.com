@@ -53,7 +53,7 @@ flowchart TD
 
 Four layers grow the garden, and each owns one thing. The content layer is
 `web/content/` — the page bodies as plain HTML fragments: the index, creed, ogham,
-fleet, sites, paths and videos pages, and the trees of law pages, profiles,
+profiles hub, sites, paths and videos pages, and the trees of law pages, profiles,
 project stones and session beds. The route layer is `web/pages/` — one route
 file per page, owning the title and the meta description, reading its body
 from the content layer. The shared chrome is `web/lib/` — ContentPage.js is
@@ -522,7 +522,7 @@ delivering the full v3 contract — a linear-scaling SVG scene (the whole
 900×480 painting, never cropped), invisible 48px hit-target layer, two-tap
 AIM interaction (first tap names the soul; second tap opens the bottom
 sheet), Soul Roll (a horizontal chip strip of all 20 souls in three groups),
-compact keeper cards, path-sheet (all eight paths), bottom sheet (HALF
+compact keeper cards, path-sheet (all seven paths), bottom sheet (HALF
 detail + "the full telling →"), and optional pinch-zoom (1×–4×,
 spring-back). Every compact rule lives inside `@media (max-width:1024px)`;
 every `:hover` behavior lives under a `(hover:hover)` guard so touch devices

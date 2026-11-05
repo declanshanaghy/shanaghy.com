@@ -1,0 +1,361 @@
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   profiles.css — the soul roll (the /profiles/ hub)
+   canonical chrome + one moss-capped grid; page hash 8 (sum(utf8 'profiles'))
+   ═══════════════════════════════════════════════════════════════════════ */
+@font-face{font-family:'Noto Sans Ogham';src:url('/assets/fonts/NotoSansOgham-Regular.ttf') format('truetype');font-display:swap;}
+.rt-rune,.rune,.ph-rune,.ph-grove,.pla-roundel,.pla-rune,.lh-rune{font-family:'Noto Sans Ogham',var(--mono,monospace);}
+:root{
+  --bg:#070a08; --bg2:#040705;
+  --stone-hi:#1a231a; --stone-lo:#0d130d; --edge:#2f3d2e;
+  --bronze:#7e9764; --bronze2:#94ac78;
+  --amber:#a9e6c3; --amber2:#c9f2d9;
+  --gold:#b7cdb9; --parch:#c9dcc7; --muted:#8ca089; --dim:#5e7160;
+  --moss-hi:#77895d; --moss:#6e7f57; --moss-lo:#5f7048;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{
+  font-family:var(--serif);
+  color:var(--parch);
+  background:
+    radial-gradient(1100px 700px at 50% -140px, rgba(120,150,124,.12), transparent 60%),
+    radial-gradient(1000px 620px at 6% 112%, rgba(95,112,72,.06), transparent 55%),
+    radial-gradient(900px 600px at 88% 108%, rgba(120,150,124,.07), transparent 55%),
+    var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+::selection{background:rgba(169,230,195,.35);color:#f2fbf0}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#050805}
+::-webkit-scrollbar-thumb{background:#243223;border-radius:6px;border:2px solid #050805}
+::-webkit-scrollbar-thumb:hover{background:#3c5138}
+a{color:inherit}
+svg{display:block}
+.topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  gap:10px 18px;padding:14px 22px;
+  background:linear-gradient(180deg,rgba(7,10,8,.92),rgba(4,7,5,.88));
+  border-bottom:1px solid rgba(126,151,100,.35)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;position:relative}
+.brand-logo{display:block;height:40px;width:auto;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(169,230,195,.12));
+  border-radius:6px;border:1px solid rgba(169,230,195,.3)}
+.brand::before{content:"";position:absolute;left:-13px;top:50%;width:9px;height:6px;
+  transform:translateY(-50%);
+  background:linear-gradient(180deg,#2f3d2e 0%,#7e9764 30%,#1a231a 100%);
+  border-radius:1px;
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.22), 0 1px 2px rgba(0,0,0,.8)}
+.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(169,230,195,.3))}
+.runestrip{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.runestrip::-webkit-scrollbar{display:none}
+.rtab{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:5px 11px;border:1px solid transparent;border-radius:9px;
+  text-decoration:none;transition:background .25s,border-color .25s;flex-shrink:0;
+}
+.rt-rune{font-size:19px;line-height:1.15;color:var(--bronze);transition:color .25s,text-shadow .25s}
+.rt-label{font-size:8.5px;letter-spacing:1.9px;color:#6e8166;text-transform:uppercase;white-space:nowrap}
+.rt-count{font-size:8px;letter-spacing:1px;color:#4d5f47}
+.toplinks{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.tlink{text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:#c2d4c2;opacity:.85;transition:color .25s,opacity .25s}
+.tlink:hover{color:#c9f2d9;opacity:1}
+.tlink.here{color:#a9e6c3;opacity:1;border-bottom:1px solid rgba(169,230,195,.5)}
+.foot{padding:26px 20px 60px;text-align:center}
+.foot-knot{width:250px;height:28px;margin:0 auto 20px;color:#4a5f45}
+.foot-line{font-size:13px;font-style:italic;color:#93a891;letter-spacing:.5px;margin-bottom:14px}
+.foot-gh{
+  display:inline-block;text-decoration:none;
+  font-size:13px;letter-spacing:1.5px;color:var(--gold);
+  padding:9px 22px;border:1px solid rgba(126,151,100,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(26,35,26,.55),rgba(7,10,8,.55));
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.08), 0 6px 14px -6px rgba(0,0,0,.8);
+  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
+}
+.foot-gh:hover{color:var(--amber2);border-color:rgba(169,230,195,.55);text-shadow:0 0 12px rgba(169,230,195,.6);transform:translateY(-2px)}
+.foot-copy{margin-top:18px;font-size:12.5px;letter-spacing:.8px;color:#8ba389}
+
+/* ============ THE SOUL ROLL ============ */
+.roll{max-width:1180px;margin:0 auto;padding:34px 22px 46px;position:relative;z-index:1}
+.roll-head{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;
+  border:1px solid rgba(126,151,100,.4);border-radius:14px 4px 14px 4px;
+  background:linear-gradient(180deg,rgba(26,35,26,.6),rgba(7,10,8,.6));
+  box-shadow:inset 0 1px 0 rgba(214,236,222,.07), inset 0 -6px 10px rgba(0,0,0,.5)}
+.roll-rune{font-size:24px;line-height:1.1;color:var(--gold)}
+.roll-count{font-size:9px;letter-spacing:2px;color:#8ba389;text-transform:uppercase}
+.roll-title{margin:26px 0 10px;font-size:clamp(26px,4vw,40px);font-weight:600;letter-spacing:.5px;color:var(--amber)}
+.roll-lede{max-width:720px;margin:0 0 30px;font-size:14.5px;line-height:1.65;color:var(--muted);font-style:italic}
+.roll-lede a{color:var(--amber);text-decoration:none;border-bottom:1px dotted rgba(169,230,195,.4)}
+.roll-lede a:hover{color:#c9f2d9;border-bottom-color:rgba(169,230,195,.8)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:26px 22px;position:relative;z-index:1}
+
+/* ============ MOSS-TOPPED SOUL CARDS ============ */
+.soul{
+  --cap:var(--mosscap10);
+  position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:30px 20px 15px;
+  text-decoration:none;
+  background:
+    var(--grain),
+    var(--cap),
+    radial-gradient(70px 42px at 100% 100%, rgba(98,114,76,.10), transparent 72%),
+    var(--mottle),
+    linear-gradient(180deg,#19221a 0%,#121a12 62%,#0c120c 100%);
+  border:1px solid var(--edge);
+  box-shadow:
+    inset 0 1px 0 rgba(214,236,222,.07),
+    inset 0 16px 22px rgba(0,0,0,.38),
+    inset 0 -16px 26px rgba(0,0,0,.5),
+    0 10px 20px -12px rgba(0,0,0,.85);
+  transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  overflow:hidden;
+}
+/* the ten moss caps, cycled across the stones (page hash 9) */
+.soul:nth-child(10n+1){--cap:var(--mosscap10)}
+.soul:nth-child(10n+2){--cap:var(--mosscap1)}
+.soul:nth-child(10n+3){--cap:var(--mosscap2)}
+.soul:nth-child(10n+4){--cap:var(--mosscap3)}
+.soul:nth-child(10n+5){--cap:var(--mosscap4)}
+.soul:nth-child(10n+6){--cap:var(--mosscap5)}
+.soul:nth-child(10n+7){--cap:var(--mosscap6)}
+.soul:nth-child(10n+8){--cap:var(--mosscap7)}
+.soul:nth-child(10n+9){--cap:var(--mosscap8)}
+.soul:nth-child(10n+0){--cap:var(--mosscap9)}
+.soul:nth-child(4n+1){border-radius:24px 34px 18px 32px / 32px 22px 36px 18px;transform:rotate(-.35deg)}
+.soul:nth-child(4n+2){border-radius:32px 18px 34px 20px / 20px 34px 18px 30px;transform:rotate(.3deg)}
+.soul:nth-child(4n+3){border-radius:18px 32px 22px 34px / 34px 18px 30px 22px;transform:rotate(-.15deg)}
+.soul:nth-child(4n+0){border-radius:34px 22px 30px 18px / 18px 32px 24px 34px;transform:rotate(.25deg)}
+.soul::before{
+  content:"ᚄᚆᚐᚅᚐᚌᚆᚔ";
+  position:absolute;top:8px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#46583f;opacity:.55;white-space:nowrap;overflow:hidden;
+  pointer-events:none;
+  transition:color .28s,opacity .28s,text-shadow .28s;
+}
+.soul::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(92% 55% at 50% -8%, rgba(198,240,216,.17), transparent 62%);
+  opacity:0;transition:opacity .3s;
+}
+.soul:hover{
+  transform:translateY(-8px);
+  border-color:rgba(169,230,195,.55);
+  box-shadow:
+    inset 0 1px 0 rgba(214,236,222,.12),
+    inset 0 14px 20px rgba(0,0,0,.3),
+    0 28px 44px -14px rgba(0,0,0,.95),
+    0 0 36px -6px rgba(169,230,195,.32);
+}
+.soul:hover::before{color:var(--amber);opacity:.95;text-shadow:0 0 9px rgba(169,230,195,.85)}
+.soul:hover::after{opacity:1}
+.soul:focus-visible{outline:2px solid rgba(169,230,195,.65);outline-offset:3px}
+.soul::before{
+  content:"ᚄᚆᚐᚅᚐᚌᚆᚔ";
+  position:absolute;top:8px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#46583f;opacity:.55;white-space:nowrap;overflow:hidden;
+  pointer-events:none;
+  transition:color .28s,opacity .28s,text-shadow .28s;
+}
+.soul::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(92% 55% at 50% -8%, rgba(198,240,216,.17), transparent 62%);
+  opacity:0;transition:opacity .3s;
+}
+.soul:hover{
+  transform:translateY(-8px);
+  border-color:rgba(169,230,195,.55);
+  box-shadow:
+    inset 0 1px 0 rgba(214,236,222,.12),
+    inset 0 14px 20px rgba(0,0,0,.3),
+    0 28px 44px -14px rgba(0,0,0,.95),
+    0 0 36px -6px rgba(169,230,195,.32);
+}
+.soul-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
+
+/* the ten moss caps, cycled across the souls (page hash 8) */
+.soul:nth-child(10n+1){--cap:var(--mosscap9)}
+.soul:nth-child(10n+2){--cap:var(--mosscap10)}
+.soul:nth-child(10n+3){--cap:var(--mosscap1)}
+.soul:nth-child(10n+4){--cap:var(--mosscap2)}
+.soul:nth-child(10n+5){--cap:var(--mosscap3)}
+.soul:nth-child(10n+6){--cap:var(--mosscap4)}
+.soul:nth-child(10n+7){--cap:var(--mosscap5)}
+.soul:nth-child(10n+8){--cap:var(--mosscap6)}
+.soul:nth-child(10n+9){--cap:var(--mosscap7)}
+.soul:nth-child(10n+0){--cap:var(--mosscap8)}
+
+.soul-portrait{width:84px;height:84px;object-fit:cover;border-radius:50%;
+  border:1px solid rgba(126,151,100,.45);
+  box-shadow:0 6px 16px -8px rgba(0,0,0,.9), inset 0 1px 0 rgba(214,236,222,.12);
+  margin:4px 0 12px;background:#0a0f0a;position:relative;z-index:1}
+.soul h3{font-size:16px;font-weight:600;letter-spacing:.4px;margin:0 0 6px;position:relative;z-index:3}
+.soul h3 a{text-decoration:none;color:var(--parch)}
+.soul h3 a:hover{color:#c9f2d9;text-shadow:0 0 14px rgba(169,230,195,.5)}
+.soul-epithet{font-size:11.8px;font-style:italic;color:var(--muted);line-height:1.5;margin:0;
+  padding-bottom:6px;position:relative;z-index:1}
+
+.backrow{margin-top:36px;text-align:center;font-size:12.5px;letter-spacing:1px}
+.backrow a{color:var(--muted);text-decoration:none}
+.backrow a:hover{color:#c9f2d9}
+
+@media (max-width:640px){
+  .roll{padding:24px 14px 36px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:18px 12px}
+  .soul-portrait{width:68px;height:68px}
+}
+
+
+/* ═══ the ten moss caps — canonical block, source of truth: web/styles/moss-caps.css ═══ */
+:root{
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  --mottle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.028' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23m)'/%3E%3C/svg%3E");
+
+  /* 1 — the full crown: lush, even, the classic mossy stone */
+  --mosscap1:
+    radial-gradient(11% 30px at 4% 0%, #57713f, rgba(87,113,63,0) 72%),
+    radial-gradient(8% 44px at 14% 0%, #68804e, rgba(104,128,78,0) 74%),
+    radial-gradient(13% 26px at 28% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(9% 38px at 40% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(14% 32px at 54% 0%, #94ac78, rgba(148,173,120,0) 70%),
+    radial-gradient(10% 24px at 68% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(8% 46px at 80% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(12% 28px at 95% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(6% 14px at 22% 0%, rgba(169,195,145,.85), rgba(169,195,145,0) 70%),
+    radial-gradient(5% 12px at 58% 0%, rgba(194,220,166,.8), rgba(194,220,166,0) 70%),
+    radial-gradient(7% 16px at 87% 0%, rgba(169,195,145,.72), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,0) 36px),
+    radial-gradient(150% 90% at 74% 0%, rgba(216,236,222,.07), transparent 55%);
+
+  /* 2 — the west cascade: heavy growth falling from the left */
+  --mosscap2:
+    radial-gradient(16% 44px at 0% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(13% 52px at 9% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(11% 36px at 20% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(14% 30px at 31% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(9% 34px at 43% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(7% 20px at 56% 0%, #94ac78, rgba(148,173,120,0) 68%),
+    radial-gradient(5% 14px at 70% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(4% 10px at 84% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(7% 16px at 14% 0%, rgba(194,220,166,.8), rgba(194,220,166,0) 70%),
+    radial-gradient(5% 12px at 34% 0%, rgba(169,195,145,.78), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,0) 42px),
+    radial-gradient(150% 95% at 86% 0%, rgba(216,236,222,.09), transparent 55%);
+
+  /* 3 — the east cascade: mirrored, moonlight escaping the west */
+  --mosscap3:
+    radial-gradient(16% 44px at 100% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(13% 52px at 91% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(11% 36px at 80% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(14% 30px at 69% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(9% 34px at 57% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(7% 20px at 44% 0%, #94ac78, rgba(148,173,120,0) 68%),
+    radial-gradient(5% 14px at 30% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(4% 10px at 16% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(7% 16px at 86% 0%, rgba(194,220,166,.8), rgba(194,220,166,0) 70%),
+    radial-gradient(5% 12px at 66% 0%, rgba(169,195,145,.78), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,0) 42px),
+    radial-gradient(150% 95% at 14% 0%, rgba(216,236,222,.09), transparent 55%);
+
+  /* 4 — the dusting: sparse clumps on a bare moonlit rim */
+  --mosscap4:
+    radial-gradient(7% 20px at 10% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(5% 16px at 26% 0%, #94ac78, rgba(148,173,120,0) 70%),
+    radial-gradient(8% 22px at 44% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(6% 18px at 63% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(5% 14px at 80% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(6% 16px at 94% 0%, #94ac78, rgba(148,173,120,0) 68%),
+    radial-gradient(4% 10px at 35% 0%, rgba(194,220,166,.7), rgba(194,220,166,0) 70%),
+    radial-gradient(4% 10px at 72% 0%, rgba(169,195,145,.68), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,0) 28px),
+    radial-gradient(160% 95% at 50% 0%, rgba(216,236,222,.12), transparent 58%);
+
+  /* 5 — the mound: one great mass mid-crown, light at both shoulders */
+  --mosscap5:
+    radial-gradient(30% 54px at 50% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(20% 44px at 42% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(20% 46px at 60% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(12% 26px at 32% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(12% 28px at 70% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(7% 16px at 52% 0%, rgba(194,220,166,.85), rgba(194,220,166,0) 70%),
+    radial-gradient(5% 12px at 44% 0%, rgba(169,195,145,.75), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,0) 44px),
+    radial-gradient(120% 80% at 12% 0%, rgba(216,236,222,.08), transparent 55%),
+    radial-gradient(120% 80% at 88% 0%, rgba(216,236,222,.08), transparent 55%);
+
+  /* 6 — the drips: a crown with long strands hanging down the face */
+  --mosscap6:
+    radial-gradient(12% 28px at 6% 0%, #57713f, rgba(87,113,63,0) 72%),
+    radial-gradient(10% 26px at 22% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(12% 30px at 38% 0%, #94ac78, rgba(148,173,120,0) 70%),
+    radial-gradient(11% 26px at 56% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(10% 28px at 72% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(12% 26px at 92% 0%, #57713f, rgba(87,113,63,0) 72%),
+    radial-gradient(4% 58px at 18% 0%, #4a5f39, rgba(74,95,57,0) 78%),
+    radial-gradient(3.5% 66px at 50% 0%, #557040, rgba(85,112,64,0) 78%),
+    radial-gradient(4% 54px at 80% 0%, #4a5f39, rgba(74,95,57,0) 78%),
+    radial-gradient(5% 12px at 30% 0%, rgba(194,220,166,.8), rgba(194,220,166,0) 70%),
+    radial-gradient(5% 12px at 64% 0%, rgba(169,195,145,.75), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 38px),
+    radial-gradient(150% 90% at 74% 0%, rgba(216,236,222,.07), transparent 55%);
+
+  /* 7 — the climb: moss claiming both corners, the center left open */
+  --mosscap7:
+    radial-gradient(15% 46px at 0% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(12% 36px at 9% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(8% 24px at 20% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(15% 46px at 100% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(12% 36px at 91% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(8% 24px at 80% 0%, #94ac78, rgba(148,173,120,0) 70%),
+    radial-gradient(5% 14px at 13% 0%, rgba(194,220,166,.75), rgba(194,220,166,0) 70%),
+    radial-gradient(5% 14px at 87% 0%, rgba(169,195,145,.75), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 40px),
+    radial-gradient(150% 90% at 50% 0%, rgba(216,236,222,.11), transparent 58%);
+
+  /* 8 — the patchwork: clumps with wide gaps, light bleeding through */
+  --mosscap8:
+    radial-gradient(10% 34px at 8% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(13% 26px at 34% 0%, #94ac78, rgba(148,173,120,0) 70%),
+    radial-gradient(9% 38px at 52% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(12% 28px at 76% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(8% 22px at 95% 0%, #57713f, rgba(87,113,63,0) 72%),
+    radial-gradient(4% 10px at 22% 0%, rgba(194,220,166,.72), rgba(194,220,166,0) 70%),
+    radial-gradient(4% 10px at 64% 0%, rgba(169,195,145,.7), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,0) 34px),
+    radial-gradient(130% 85% at 22% 0%, rgba(216,236,222,.12), transparent 55%),
+    radial-gradient(130% 85% at 64% 0%, rgba(216,236,222,.12), transparent 55%);
+
+  /* 9 — the shag: deep overgrowth swallowing nearly all the light */
+  --mosscap9:
+    radial-gradient(14% 48px at 0% 0%, #4a5f39, rgba(74,95,57,0) 76%),
+    radial-gradient(16% 56px at 10% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(14% 50px at 24% 0%, #68804e, rgba(104,128,78,0) 74%),
+    radial-gradient(16% 58px at 38% 0%, #557040, rgba(85,112,64,0) 74%),
+    radial-gradient(14% 52px at 52% 0%, #4a5f39, rgba(74,95,57,0) 76%),
+    radial-gradient(16% 56px at 66% 0%, #68804e, rgba(104,128,78,0) 74%),
+    radial-gradient(14% 48px at 80% 0%, #57713f, rgba(87,113,63,0) 74%),
+    radial-gradient(15% 52px at 96% 0%, #4a5f39, rgba(74,95,57,0) 76%),
+    radial-gradient(7% 18px at 16% 0%, rgba(169,195,145,.85), rgba(169,195,145,0) 70%),
+    radial-gradient(6% 16px at 46% 0%, rgba(194,220,166,.8), rgba(194,220,166,0) 70%),
+    radial-gradient(7% 18px at 74% 0%, rgba(169,195,145,.8), rgba(169,195,145,0) 70%),
+    radial-gradient(6% 14px at 90% 0%, rgba(194,220,166,.7), rgba(194,220,166,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,0) 48px),
+    radial-gradient(150% 90% at 50% 0%, rgba(216,236,222,.05), transparent 55%);
+
+  /* 10 — the wind-brush: growth swept rightward, bare west */
+  --mosscap10:
+    radial-gradient(22% 24px at 34% 0%, #68804e, rgba(104,128,78,0) 72%),
+    radial-gradient(24% 26px at 56% 0%, #7e9764, rgba(126,151,100,0) 70%),
+    radial-gradient(26% 22px at 78% 0%, #57713f, rgba(87,113,63,0) 72%),
+    radial-gradient(18% 30px at 94% 0%, #4a5f39, rgba(74,95,57,0) 74%),
+    radial-gradient(10% 16px at 22% 0%, #94ac78, rgba(148,173,120,0) 68%),
+    radial-gradient(8% 14px at 88% 0%, rgba(194,220,166,.78), rgba(194,220,166,0) 70%),
+    radial-gradient(7% 12px at 60% 0%, rgba(169,195,145,.72), rgba(169,195,145,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
+    radial-gradient(150% 90% at 12% 0%, rgba(216,236,222,.09), transparent 55%);
+}
