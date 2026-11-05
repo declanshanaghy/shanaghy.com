@@ -649,7 +649,7 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
   background:linear-gradient(180deg,rgba(28,63,44,.5),rgba(6,13,9,.6));
 }
 .showcase-lede{font-size:12.5px;font-style:italic;color:#93a891;letter-spacing:.3px;margin:0 0 30px}
-.showcase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:34px 28px;position:relative;z-index:1}
+.showcase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:34px 28px;position:relative;z-index:1;align-items:start}
 
 /* the promoted plaques: stone chrome, but larger, with a head row and a gallery strip */
 .showcase-plaque{padding:34px 24px 24px;text-align:left;align-items:stretch}
@@ -681,14 +681,19 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
   padding:7px 10px;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
   color:#9aa189;font-family:var(--mono);text-align:center;
 }
+/* a right-edge fade so the peeking tile reads as a strip, not a cut */
+.showcase-gallery::after{
+  content:"";position:sticky;right:0;flex:0 0 22px;margin-left:-22px;pointer-events:none;
+  background:linear-gradient(90deg,rgba(7,10,8,0),rgba(7,10,8,.92));
+}
 /* the 512px throne shots stay crisp: cap tiles at 420px */
 .showcase-gallery figure{width:min(420px,72vw)}
 
 /* under 1024px: the band stacks clean, no page overflow at 320px */
 @media (max-width:1024px){
-  .showcase{padding:40px 0 8px}
+  .showcase{padding:40px 0 8px;scroll-margin-top:144px}
   .showcase-grid{grid-template-columns:1fr;gap:28px}
-  .showcase-head-row{flex-direction:row}
+  .showcase-head-row{flex-direction:column}
   .showcase-gallery figure{width:min(420px,calc(100vw - 64px));min-width:240px}
   .showcase .pla-count{margin-left:0}
 }
