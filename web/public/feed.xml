@@ -8,12 +8,36 @@
   <id>https://www.shanaghy.com/feed.xml</id>
   <author><name>FiremanDecko</name></author>
   <entry>
+    <id>https://www.shanaghy.com/sessions/seanchan/the-bog-at-full-moon/</id>
+    <title>The Bog at Full Moon.</title>
+    <link href="https://www.shanaghy.com/sessions/seanchan/the-bog-at-full-moon/" rel="alternate" type="text/html"/>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <published>2026-11-05T00:00:00Z</published>
+    <summary>Five fantastical tellings of one soul became one bog: the whole garden re-themed in a single night&#x27;s fan-out, from the five-Luna design quest to the great GKE sweep that moved 119 css files.</summary>
+  </entry>
+  <entry>
+    <id>https://www.shanaghy.com/sessions/odins-throne-hermes/realm-knowledge-db/</id>
+    <title>The Realm, Linked.</title>
+    <link href="https://www.shanaghy.com/sessions/odins-throne-hermes/realm-knowledge-db/" rel="alternate" type="text/html"/>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <published>2026-11-05T00:00:00Z</published>
+    <summary>The throne&#x27;s title box learns the way home — every world&#x27;s name opens its own door on shanaghy.com, backed by a knowledge db crawled from the live site and shipped to every surface by decree.</summary>
+  </entry>
+  <entry>
     <id>https://www.shanaghy.com/sessions/mossy-motd/mossy-front-door/</id>
     <title>The front door is mended by candlelight.</title>
     <link href="https://www.shanaghy.com/sessions/mossy-motd/mossy-front-door/" rel="alternate" type="text/html"/>
     <updated>2026-11-05T00:00:00Z</updated>
     <published>2026-11-05T00:00:00Z</published>
     <summary>A door that would not close, a hinge the garden had forgotten, and the quiet mend that let the ballad garden sleep.</summary>
+  </entry>
+  <entry>
+    <id>https://www.shanaghy.com/sessions/seanchan/the-cards-remember/</id>
+    <title>The Cards Remember.</title>
+    <link href="https://www.shanaghy.com/sessions/seanchan/the-cards-remember/" rel="alternate" type="text/html"/>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <published>2026-11-04T00:00:00Z</published>
+    <summary>Twenty souls of the garden given lore, kin and a telling: the popups learn their own stories, and every card opens its kin&#x27;s card in place.</summary>
   </entry>
   <entry>
     <id>https://www.shanaghy.com/sessions/odins-throne-hermes/vertical-painted-tree/</id>
