@@ -21,7 +21,7 @@ test("the shared Header renders the desktop topbar AND the compact bar + path-sh
   assert.ok(js.includes('className="c-burger"'), "burger glyph present");
   assert.ok(js.includes('aria-expanded'), "burger carries aria-expanded");
   assert.ok(js.includes('aria-controls="cNav"'), "burger controls the sheet");
-  assert.ok(js.includes('className="c-navsheet"'), "path-sheet present");
+  assert.match(js, /className=\{"c-navsheet" \+ \(open \? " open" : ""\)\}/, "path-sheet present, open class rendered from state");
   assert.ok(js.includes('className="c-nav-grid"'), "2-col nav grid present");
   assert.ok(js.includes('className="c-close"'), "sheet close button present");
   assert.ok(js.includes('aria-label="close the paths"'), "close button labelled");
@@ -63,7 +63,7 @@ test("the shared Header marks the current page in both layers", () => {
 test("the shared compact-header css carries the ported rules verbatim", () => {
   const css = read("styles/compact-header.css");
   assert.ok(css.includes(".c-bar{display:none}"), "compact bar desktop-hidden");
-  assert.match(css, /@media \(max-width:1024px\)\{[^]*\.topbar\{display:none\}/, "topbar hidden at the breakpoint");
+  assert.match(css, /@media \(max-width:1024px\)\{[^]*body \.topbar\{display:none\}/, "topbar hidden at the breakpoint, body-scoped to outrank page css (issue #282)");
   assert.match(css, /\.c-bar\{position:sticky;top:0;z-index:60/, "sticky compact bar");
   assert.match(css, /\.c-navsheet\{position:fixed;inset:0;z-index:80/, "fixed path-sheet");
   assert.match(css, /transform:translateY\(-101%\);transition:transform \.32s/, "slide-in transition");
@@ -120,4 +120,73 @@ test("index.css keeps its compact content rules but not the header rules", () =>
     assert.ok(css.includes(kept), `${kept} compact-content rule kept`);
   }
   assert.ok(!css.includes(".topbar{display:none}"), "topbar hiding is the shared stylesheet's now");
+});
+
+/* ── regression: issue #282 — the two bugs PR #281 let slip ──────────────── */
+
+/* css specificity: (ids, classes/attrs/pseudo-classes, types) — a later rule
+   in the cascade only wins over an earlier one of GREATER-OR-EQUAL specificity */
+function specificity(sel) {
+  const ids = (sel.match(/#[\w-]+/g) || []).length;
+  const classes = (sel.match(/[.:][\w-]+|\[[^\]]*\]/g) || []).length;
+  const types = (sel
+    .replace(/#[\w-]+|[.:][\w-]+|\[[^\]]*\]/g, "")
+    .match(/(^|[\s>+~])([a-zA-Z][\w-]*)/g) || []).length;
+  return [ids, classes, types];
+}
+const greaterSpec = (a, b) =>
+  a[0] !== b[0] ? a[0] > b[0] : a[1] !== b[1] ? a[1] > b[1] : a[2] > b[2];
+
+test("issue #282 · the topbar hide rule outranks every page stylesheet in BOTH load orders", () => {
+  const shared = read("styles/compact-header.css");
+  const media = shared.match(/@media \(max-width:1024px\)\{([\s\S]*?)\n\}/);
+  assert.ok(media, "the ≤1024px media block exists");
+  const hide = media[1].match(/(?:^|\n)\s*([^{}\n]+?)\{display:none\}/);
+  assert.ok(hide, "a display:none hide rule exists inside the ≤1024px media block");
+  assert.equal(hide[1], "body .topbar", "the hide rule is body-scoped (0,1,1)");
+  assert.ok(greaterSpec(specificity(hide[1]), specificity(".topbar")),
+    "hide specificity strictly beats a plain .topbar page rule");
+
+  // every page still ships its own base .topbar rule; Next.js injects the page
+  // chunk AFTER the app chunk, so the hide must win on specificity alone
+  for (const page of ["creed", "sessions", "sites", "profiles", "index", "ogham", "paths", "videos"]) {
+    const css = read(`content/${page}.css`);
+    const base = css.match(/(?:^|\n)[ \t]*(\.topbar)\s*\{/);
+    if (!base) continue; // this page never styled the topbar itself
+    // order 1: page css after app css (the live, broken order from #281)
+    assert.ok(!greaterSpec(specificity(base[1]), specificity(hide[1])),
+      `${page}.css .topbar cannot out-rank the hide when loaded after the app css`);
+    // order 2: page css before app css — the hide still wins
+    assert.ok(greaterSpec(specificity(hide[1]), specificity(base[1])),
+      `${page}.css .topbar is out-ranked when loaded before the app css too`);
+  }
+});
+
+test("issue #282 · the open class is rendered from state, so React's re-render preserves it", () => {
+  const js = read("components/Header.js");
+  // the class must come from the render (state-driven), never from an
+  // imperative classList write a re-render would wipe
+  const m = js.match(/className=\{("c-navsheet" \+ \(open \? " open" : ""\))\}/);
+  assert.ok(m, "the sheet's className is computed from the open state");
+  const classNameFor = new Function("open", "return " + m[1]);
+  assert.equal(classNameFor(false), "c-navsheet", "closed render: no open class");
+  assert.equal(classNameFor(true), "c-navsheet open", "open render: the open class rides along");
+  // reconciliation replay: state flips shown→open→closed; every re-render
+  // recomputes className from that same state, so the open class survives
+  const frames = [
+    { shown: false, open: false }, // initial
+    { shown: true, open: false },  // burger tap: un-hidden, laid out
+    { shown: true, open: true },   // next frame: slides in — open PRESENT after the re-render
+    { shown: true, open: false },  // close tap: slides out
+  ];
+  for (const f of frames) {
+    const cls = classNameFor(f.open);
+    assert.ok(cls.startsWith("c-navsheet"), "base class kept through the re-render");
+    assert.equal(cls.includes(" open"), f.open, `open class ${f.open ? "present" : "absent"} when open=${f.open}`);
+  }
+  // nothing imperative can clobber it: the sheet's class is only ever React's
+  assert.ok(!/classList\.(add|remove|toggle)\("open"\)/.test(js),
+    "no imperative classList write touches the open class");
+  assert.match(js, /aria-expanded=\{open \? "true" : "false"\}/,
+    "aria-expanded reads the same state as the class");
 });

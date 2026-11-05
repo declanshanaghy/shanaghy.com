@@ -7,7 +7,8 @@
 
    CONTRACT
      • the compact bar is hidden on desktop (>1024px) and takes over from the
-       .topbar at ≤1024px — .topbar{display:none} lives here now, site-wide;
+       .topbar at ≤1024px — body .topbar{display:none} lives here now, site-wide,
+       body-scoped so per-page .topbar rules can never out-cascade it (issue #282);
      • every rule sits inside a mobile media query, exactly as it did on the
        homepage; the desktop render is untouched;
      • token scopes (--c-tap/--c-pad/--c-r) are re-rooted onto .c-bar/.c-navsheet
@@ -21,7 +22,11 @@
 .c-bar{display:none}
 
 @media (max-width:1024px){
-  .topbar{display:none}
+  /* body-scoped so the hide wins the cascade no matter the chunk order:
+     every page's own css still declares a base .topbar{display:flex}, and
+     Next.js loads it AFTER this app-level chunk — identical specificity
+     would let the page rule override the hide (issue #282). (0,1,1) > (0,1,0). */
+  body .topbar{display:none}
 
   /* ── 0 · compact tokens (re-rooted: the shared header has no #compact) ── */
   .c-bar,.c-navsheet{font-size:16px;--c-tap:44px;--c-pad:max(12px,3.6vw);
