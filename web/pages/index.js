@@ -65,7 +65,10 @@ function gardenEsc(e) {
 
 export default function Page({ html, css }) {
   useEffect(() => {
-    /* ═══ bog at full moon — canvas atmosphere (~30 fps, tab-paused, reduced-motion: 1 frame) ═══ */
+    /* ═══ bog at full moon — canvas atmosphere (~30 fps, tab-paused, reduced-motion: 1 frame).
+       Decree 2026-11-04: the canvas sky carries NO moon of its own — the garden
+       painting's own moon is the page's one moon; and the stage backs the whole
+       page so the garden ground rides down with the scroll. ═══ */
     (function(){
       var REDUCE = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
       var canvas = document.getElementById('bog-scene');
@@ -73,7 +76,6 @@ export default function Page({ html, css }) {
       var ctx = canvas.getContext('2d', { alpha: false });
       if (!ctx) return;
       var CW = 0, CH = 0, DPR = 1, waterY = 0, landY = 0;
-      var moon = { x:0, y:0, r:0 };
       var grainTile = null;
       var STARS = [], MIST = [], WISPS = [], MOTHS = [], GRASS = [], MOTES = [], STREAKS = [];
       var tabHidden = false;
@@ -116,7 +118,7 @@ export default function Page({ html, css }) {
         var clear=[[0.22,0.62],[0.42,0.72],[0.60,0.86],[0.12,0.82],[0.30,0.46]];
         clear.forEach(function(fc){ WISPS.push({bx:fc[0]*CW,by:fc[1]*CH,r:rnd(6,11),ph:rnd(0,6.283),sp:rnd(0.35,0.9),driftR:rnd(16,46),driftS:rnd(0.06,0.2),spin:rnd(-0.5,0.5)}); });
         for(i=0;i<Math.round(clamp(CW/190,5,11));i++){
-          var host=WISPS[(Math.random()*WISPS.length)|0]||{bx:moon.x,by:moon.y};
+          var host=WISPS[(Math.random()*WISPS.length)|0]||{bx:CW*0.5,by:CH*0.62};
           MOTHS.push({host:host,orb:rnd(24,84),sp:rnd(0.28,0.85)*(Math.random()<0.5?1:-1),ph:rnd(0,6.283),tilt:rnd(-0.5,0.5),size:rnd(4.5,9),flap:rnd(6,12),wob:rnd(0.4,1.1)});
         }
         var clumpRow=function(count,baseFn,hR,wR,aR,spread,pc){
@@ -139,85 +141,39 @@ export default function Page({ html, css }) {
 
       function resize(){
         var box=canvas.parentElement.getBoundingClientRect();
-        CW=Math.max(320,Math.round(box.width)); CH=Math.max(220,Math.round(box.height));
+        CW=Math.max(320,Math.round(box.width));
+        /* the stage is a FIXED one-viewport backdrop (decree 2026-11-04
+           round 2: the top image floats behind the entire page content all
+           the way while scrolling), so the painted buffer only needs to
+           cover the viewport — capped a hair past it so the fixed stage
+           never shows an unpainted seam at the bottom edge */
+        CH=clamp(Math.round(box.height),220,Math.round(window.innerHeight*1.04)+120);
         DPR=Math.min(window.devicePixelRatio||1,1.75);
         canvas.width=Math.round(CW*DPR); canvas.height=Math.round(CH*DPR);
         canvas.style.width=CW+'px'; canvas.style.height=CH+'px';
         ctx.setTransform(DPR,0,0,DPR,0,0);
         waterY=CH*(300/560); landY=CH*(420/560);
-        moon={x:CW*0.640,y:CH*(132/560),r:CW*0.108};
+        /* decree 2026-11-04: "there are 2 moons now, we can't have that,
+           remove the moon from the background" — the canvas sky carries NO
+           moon; the garden painting's own moon is the one moon of the page */
         buildScene(); paint(REDUCE?140:performance.now()/1000);
-      }
-
-      function drawMoon(){
-        var x=moon.x,y=moon.y,r=moon.r;
-        var halo=ctx.createRadialGradient(x,y,r*0.6,x,y,r*5.4);
-        halo.addColorStop(0,'rgba(169,230,195,0.30)'); halo.addColorStop(0.28,'rgba(120,208,168,0.13)');
-        halo.addColorStop(0.62,'rgba(70,150,120,0.05)'); halo.addColorStop(1,'rgba(70,150,120,0)');
-        ctx.fillStyle=halo; ctx.fillRect(0,0,CW,CH);
-        var disc=ctx.createRadialGradient(x-r*0.28,y-r*0.3,r*0.15,x,y,r);
-        disc.addColorStop(0,'#ffffff'); disc.addColorStop(0.5,'#f7fcf5');
-        disc.addColorStop(0.85,'#dcefdf'); disc.addColorStop(1,'#a8cfb6');
-        ctx.save(); ctx.beginPath(); ctx.arc(x,y,r,0,6.283);
-        ctx.fillStyle=disc; ctx.shadowColor='rgba(169,230,195,0.85)'; ctx.shadowBlur=r*0.75;
-        ctx.fill(); ctx.restore();
-        ctx.save(); ctx.beginPath(); ctx.arc(x,y,r,0,6.283); ctx.clip();
-        [[-0.34,-0.20,0.19],[0.16,-0.42,0.13],[0.30,0.14,0.22],[-0.06,0.34,0.15],[-0.46,0.30,0.10],[0.44,-0.24,0.09],[0.02,-0.02,0.07]].forEach(function(c){
-          var px=x+c[0]*r,py=y+c[1]*r,pr=c[2]*r;
-          var g=ctx.createRadialGradient(px-pr*0.3,py-pr*0.3,pr*0.1,px,py,pr);
-          g.addColorStop(0,'rgba(150,190,166,0.42)'); g.addColorStop(0.7,'rgba(170,205,182,0.18)'); g.addColorStop(1,'rgba(200,230,210,0)');
-          ctx.beginPath(); ctx.arc(px,py,pr,0,6.283); ctx.fillStyle=g; ctx.fill();
-        }); ctx.restore();
       }
 
       function drawWater(t){
         var g=ctx.createLinearGradient(0,waterY,0,landY+2);
         g.addColorStop(0,'#07140e'); g.addColorStop(0.45,'#040c08'); g.addColorStop(1,'#020604');
         ctx.fillStyle=g; ctx.fillRect(0,waterY,CW,(landY-waterY)+2);
-        var rows=Math.max(6,Math.round((landY-waterY)/3)), rowH=(landY-waterY)/rows;
-        ctx.save(); ctx.globalCompositeOperation='screen';
-        for(var i=0;i<rows;i++){
-          var y=waterY+i*rowH, srcY=2*waterY-y, dy2=srcY-moon.y;
-          if(Math.abs(dy2)>moon.r) continue;
-          var halfW=Math.sqrt(Math.max(0,moon.r*moon.r-dy2*dy2)); if(halfW<=0) continue;
-          var fall=1-i/rows, amp=1.4+i*0.34;
-          var dx=Math.sin(y*0.045+t*1.4)*amp+Math.sin(y*0.11-t*2.0)*amp*0.5;
-          var alpha=Math.pow(fall,1.35)*0.72, cw=halfW*(0.985+0.015*Math.sin(y*0.07+t));
-          var g2=ctx.createLinearGradient(moon.x-cw,0,moon.x+cw,0);
-          g2.addColorStop(0,'rgba(150,210,180,0)'); g2.addColorStop(0.22,'rgba(226,246,234,'+(alpha*0.4).toFixed(3)+')');
-          g2.addColorStop(0.5,'rgba(238,250,240,'+alpha.toFixed(3)+')'); g2.addColorStop(0.78,'rgba(226,246,234,'+(alpha*0.4).toFixed(3)+')');
-          g2.addColorStop(1,'rgba(150,210,180,0)'); ctx.fillStyle=g2;
-          ctx.fillRect(moon.x-cw+dx,y,cw*2,rowH+0.7);
-        }
-        var pool=ctx.createRadialGradient(moon.x,waterY+(landY-waterY)*0.14,moon.r*0.1,moon.x,waterY+(landY-waterY)*0.14,moon.r*2.6);
-        pool.addColorStop(0,'rgba(169,230,195,0.2)'); pool.addColorStop(0.4,'rgba(99,224,160,0.07)'); pool.addColorStop(1,'rgba(99,224,160,0)');
-        ctx.fillStyle=pool; ctx.fillRect(0,waterY,CW,(landY-waterY)+2);
-        ctx.restore();
+        /* moon reflection + pool struck with the moon (decree 2026-11-04):
+           only the ambient streaks remain, anchored on the pool's mid axis */
+        var ax=CW*0.62;
         ctx.save(); ctx.globalCompositeOperation='screen';
         STREAKS.forEach(function(s){
           var off=Math.sin(t*s.sp+s.ph)*CW*0.06, len=CW*(0.24+0.5*s.w);
-          var cx=clamp(moon.x+off*2.2,-len,CW+len);
+          var cx=clamp(ax+off*2.2,-len,CW+len);
           var lg=ctx.createLinearGradient(cx-len,0,cx+len,0);
           lg.addColorStop(0,'rgba(200,235,216,0)'); lg.addColorStop(0.5,'rgba(200,235,216,'+(s.a*0.9).toFixed(3)+')'); lg.addColorStop(1,'rgba(200,235,216,0)');
           ctx.fillStyle=lg; ctx.fillRect(cx-len,s.y,len*2,Math.max(0.8,s.w*1.6));
         }); ctx.restore();
-      }
-
-      function drawLoom(t){
-        var x=moon.x,y=moon.y,r=moon.r, warps=13;
-        var prog=clamp(t/26,0,1);
-        ctx.save(); ctx.globalCompositeOperation='screen'; ctx.lineCap='round';
-        for(var i=0;i<warps;i++){
-          var f=(i+0.5)/warps, on=clamp(prog*warps-i,0,1); if(on<=0.001) continue;
-          var topX=x+(f-0.5)*r*1.2, botX=x+(f-0.5)*CW*1.15;
-          var shim=0.5+0.5*Math.sin(t*1.1+i*0.7), a=(0.035+0.1*shim)*on;
-          var lg=ctx.createLinearGradient(topX,y,botX,landY);
-          lg.addColorStop(0,'rgba(230,244,232,'+(a*1.4).toFixed(3)+')'); lg.addColorStop(0.42,'rgba(169,230,195,'+a.toFixed(3)+')'); lg.addColorStop(1,'rgba(99,224,160,0)');
-          ctx.strokeStyle=lg; ctx.lineWidth=0.9+2*on;
-          ctx.beginPath(); ctx.moveTo(topX,y+r*0.72);
-          ctx.quadraticCurveTo((topX+botX)/2+Math.sin(t*0.4+i)*14,y+(landY-y)*0.62,botX,landY);
-          ctx.stroke();
-        } ctx.restore();
       }
 
       function drawLand(){
@@ -339,7 +295,7 @@ export default function Page({ html, css }) {
         var sky=ctx.createLinearGradient(0,0,0,waterY+2);
         sky.addColorStop(0,'#050b09'); sky.addColorStop(0.5,'#08140f'); sky.addColorStop(1,'#0e2318');
         ctx.fillStyle=sky; ctx.fillRect(0,0,CW,waterY+2);
-        drawStars(t); drawMoon(); drawMist(t); drawWater(t); drawLoom(t);
+        drawStars(t); drawMist(t); drawWater(t);
         drawLand(); drawWisps(t); drawMoths(t); drawGrass(t); drawMotes(t);
         ctx.save(); ctx.globalAlpha=0.5;
         for(var i=0;i<3;i++){
