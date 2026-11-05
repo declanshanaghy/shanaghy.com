@@ -24,15 +24,12 @@ export default function Header({ here }) {
   const navBtnRef = useRef(null);
   const closeBtnRef = useRef(null);
   const wasOpenRef = useRef(false);
+  const openRafRef = useRef(null);
 
-  // open: unhide first, then slide on the next frame (so the transition runs)
-  useEffect(() => {
-    if (!shown) return;
-    document.body.classList.add("c-locked");
-    const raf = requestAnimationFrame(() => setOpen(true));
-    if (closeBtnRef.current) closeBtnRef.current.focus();
-    return () => cancelAnimationFrame(raf);
-  }, [shown]);
+  // the slide-in's rAF is held in a ref so unmount can cancel it cleanly
+  useEffect(() => () => {
+    if (openRafRef.current) cancelAnimationFrame(openRafRef.current);
+  }, []);
 
   // close: unlock, hand focus back to the burger, re-hide after the slide
   useEffect(() => {
@@ -66,9 +63,24 @@ export default function Header({ here }) {
   }, []);
 
   // open: unhide first, then slide on the next frame (so the transition runs);
-  // if the sheet is mid-close (still laid out), just slide it straight back
+  // if the sheet is mid-close (still laid out), just slide it straight back.
+  // The slide-in is scheduled from the CLICK, not from a [shown] effect: on
+  // the homepage that effect could be torn down between the click and the
+  // frame, and its cleanup's cancelAnimationFrame discarded the pending
+  // setOpen — the sheet stayed un-hidden but never slid in, needing a second
+  // click (issue #284). An effect-free rAF has no cleanup that can cancel it.
   const openSheet = () => {
-    if (!shown) { setShown(true); return; }
+    if (!shown) {
+      setShown(true);
+      if (openRafRef.current) cancelAnimationFrame(openRafRef.current);
+      openRafRef.current = requestAnimationFrame(() => {
+        openRafRef.current = null;
+        document.body.classList.add("c-locked");
+        if (closeBtnRef.current) closeBtnRef.current.focus();
+        setOpen(true);
+      });
+      return;
+    }
     document.body.classList.add("c-locked");
     setOpen(true);
     if (closeBtnRef.current) closeBtnRef.current.focus();
