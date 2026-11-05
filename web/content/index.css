@@ -560,6 +560,18 @@ a.persona:hover{color:var(--lume2);border-bottom-color:rgba(169,230,195,.7)}
 .gp-name{font-size:31px;font-weight:600;letter-spacing:.5px;color:var(--moon);text-shadow:0 2px 2px rgba(0,0,0,.85)}
 .gp-epithet{margin-top:6px;font-size:14.5px;font-style:italic;color:#b0c6ad}
 .gp-marks{margin-top:18px;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#a3c79b}
+.gp-bio{margin-top:16px;font-size:14px;line-height:1.7;color:#c4dcc7;max-width:72ch}
+.gp-bio:empty{display:none}
+.gp-kin{margin-top:20px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.gp-kin:empty{display:none}
+.gp-kin::before{content:"its kin in the garden";flex-basis:100%;font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:#7e9764;margin-bottom:-3px}
+.gp-kin-chip{
+  display:inline-block;text-decoration:none;font-size:12px;letter-spacing:1px;color:#c4dcc7;
+  padding:7px 15px;border:1px solid rgba(45,90,66,.6);border-radius:999px;
+  background:linear-gradient(180deg,rgba(18,42,30,.55),rgba(6,13,9,.55));
+  box-shadow:inset 0 1px 0 rgba(169,230,195,.08);transition:color .25s,border-color .25s,text-shadow .25s;
+}
+.gp-kin-chip:hover{color:var(--lume2);border-color:rgba(169,230,195,.6);text-shadow:0 0 12px rgba(169,230,195,.6)}
 .gp-links{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
 .gp-links a{
   display:inline-block;text-decoration:none;font-size:13px;letter-spacing:1.2px;
@@ -1061,6 +1073,18 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
     text-shadow:0 2px 2px rgba(0,0,0,.85)}
   .c-sh-ep{margin-top:4px;font-size:13.5px;font-style:italic;color:#b0c6ad}
   .c-sh-marks{margin-top:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a3c79b}
+  .c-sh-bio{margin-top:13px;font-size:13.5px;line-height:1.6;color:#c4dcc7}
+  .c-sh-bio:empty{display:none}
+  .c-sh-kin{margin-top:15px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .c-sh-kin:empty{display:none}
+  .c-sh-kin::before{content:"its kin in the garden";flex-basis:100%;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:#7e9764;margin-bottom:-4px}
+  .c-sh-kin-chip{
+    display:inline-block;text-decoration:none;font-size:12px;letter-spacing:.8px;color:#c4dcc7;
+    padding:11px 16px;border:1px solid rgba(45,90,66,.6);border-radius:999px;
+    background:linear-gradient(180deg,rgba(18,42,30,.55),rgba(6,13,9,.55));
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.08);
+  }
+  .c-sh-kin-chip:active{color:var(--lume2);border-color:rgba(169,230,195,.6)}
   .c-sh-full{margin-top:16px}
   .c-sh-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
   .c-sh-quick .c-btn{flex:1 1 auto}
