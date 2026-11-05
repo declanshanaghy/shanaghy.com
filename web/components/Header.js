@@ -127,8 +127,12 @@ export default function Header({ here }) {
         </button>
       </nav>
 
-      {/* the Path-Sheet — the homepage's .c-navsheet, verbatim */}
-      <div className="c-navsheet" id="cNav" hidden={!shown}>
+      {/* the Path-Sheet — the homepage's .c-navsheet, verbatim.
+          The .open class that drives transform:none is rendered from state,
+          NOT added imperatively: a state change re-renders this element and
+          React's className reconciliation would wipe any imperative class,
+          leaving the sheet translated off-screen forever (issue #282). */}
+      <div className={"c-navsheet" + (open ? " open" : "")} id="cNav" hidden={!shown}>
         <div className="c-navsheet-head">
           <div><p className="c-ns-over">The Garden · By Path</p><h2>Where would you wander?</h2></div>
           <button
