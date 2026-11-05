@@ -85,6 +85,7 @@
   </defs>
 </svg>
 
+<div id="large">
 <main class="garden">
 
 <section class="grove" id="garden">
@@ -378,5 +379,282 @@
   </section>
 
 </main>
+</div><!-- end #large -->
 
 <!-- ═══════════ FOOTER ═══════════ -->
+
+<!-- ═══════════ COMPACT LAYER — mobile, ≤1024px ═══════════ -->
+<div id="compact">
+
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+    <defs>
+      <symbol id="c-moss-tuft" viewBox="0 0 48 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M8 22 Q7 14 3 10"/><path d="M13 22 Q13 11 10 6"/><path d="M18 22 Q19 9 16 4"/>
+          <path d="M23 22 Q22 12 26 7"/><path d="M28 22 Q30 13 27 8"/><path d="M33 22 Q32 15 36 11"/>
+          <path d="M38 22 Q39 16 44 13"/>
+        </g>
+      </symbol>
+      <symbol id="c-knot" viewBox="0 0 220 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M0 12 H62 M158 12 H220"/><path d="M70 8 l8 8 M78 8 l-8 8" opacity=".8"/>
+          <path d="M142 8 l8 8 M150 8 l-8 8" opacity=".8"/><path d="M84 12 l6 -5 6 5 -6 5 Z"/>
+          <path d="M124 12 l6 -5 6 5 -6 5 Z"/><path d="M110 5 L118 12 L110 19 L102 12 Z"/>
+          <path d="M110 9 L114 12 L110 15 L106 12 Z"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- 1 · the compact bar (topbar, minimised) -->
+  <nav class="c-bar" aria-label="The forge of FiremanDecko">
+    <a class="c-brand" href="/">
+      <img src="/assets/icons/forge-logo.png" alt="The name of the forge, in ogham carved on mossy stone" width="128" height="30">
+    </a>
+    <span class="c-here">Garden</span>
+    <button class="c-btn c-btn--menu" id="cNavBtn" type="button" aria-expanded="false" aria-controls="cNav">
+      <span class="c-burger" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="c-menu-t">Paths</span>
+    </button>
+  </nav>
+
+  <!-- the Path-Sheet (the eight paths) -->
+  <div class="c-navsheet" id="cNav" hidden>
+    <div class="c-navsheet-head">
+      <div><p class="c-ns-over">The Garden · By Path</p><h2>Where would you wander?</h2></div>
+      <button class="c-close" type="button" aria-label="close the paths">×</button>
+    </div>
+    <div class="c-nav-grid">
+      <a class="c-plate here" href="/"><span class="c-np-rune">ᚌ</span><span class="c-np-name">The Garden</span><span class="c-np-about">the front door — you are here</span></a>
+      <a class="c-plate" href="/creed/"><span class="c-np-rune">ᚄ</span><span class="c-np-name">The Creed</span><span class="c-np-about">three strands · the Dekalogue</span></a>
+      <a class="c-plate" href="/ogham/"><span class="c-np-rune">ᚑ</span><span class="c-np-name">Ogham</span><span class="c-np-about">the elder script, carved</span></a>
+      <a class="c-plate" href="/projects/"><span class="c-np-rune">ᚐ</span><span class="c-np-name">The Stones</span><span class="c-np-about">49 projects, seven groves</span></a>
+      <a class="c-plate" href="/sites/"><span class="c-np-rune">ᚉ</span><span class="c-np-name">The RingForts</span><span class="c-np-about">ten halls beyond the wall</span></a>
+      <a class="c-plate" href="/videos/"><span class="c-np-rune">ᚘ</span><span class="c-np-name">The Towers</span><span class="c-np-about">181 reels of the wander</span></a>
+      <a class="c-plate" href="/sessions/"><span class="c-np-rune">ᚊ</span><span class="c-np-name">The Ballads</span><span class="c-np-about">ephemera between stones</span></a>
+      <a class="c-plate" href="/paths/"><span class="c-np-rune">ᚃ</span><span class="c-np-name">The Paths</span><span class="c-np-about">the ways through</span></a>
+    </div>
+    <div class="c-ns-foot">
+      <a class="c-btn" href="https://github.com/declanshanaghy" target="_blank" rel="noopener">github.com/declanshanaghy</a>
+    </div>
+    <p class="c-ns-note" aria-hidden="true">the garden is grown, never built — <span class="c-rune">ᚄᚆᚐᚅᚐᚌᚆᚔ</span></p>
+  </div>
+
+  <div class="c-main">
+
+    <p class="c-invite">every soul rests lit — <b>touch to aim, touch again to open</b></p>
+
+    <!-- 4 · the Living Scene — LINEAR SCALING, never cropped.
+         The 900×480 SVG at width:100% / aspect-ratio 900:480 shows the WHOLE
+         painting, uncropped and undistorted, at every width.  The .c-hits layer
+         carries the enlarged touch targets + the aim name-tags. -->
+    <section class="c-stage-wrap" aria-label="the living garden">
+      <div class="c-stage" id="cStage">
+        <svg class="c-scene" id="cScene" viewBox="0 0 900 480" role="img"
+             aria-label="the living garden at night — the ringfort-workshop with its forge aglow, its stones scattered round, the tree of life, the mainistir and its round tower, the peat fire, the bog pool, the castle, the living souls to the fore and the dolmens of the passed ground fading into the mist">
+          <defs>
+            <radialGradient id="cSporeG" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#effbee"/><stop offset="0.55" stop-color="#a9e6c3" stop-opacity=".85"/><stop offset="1" stop-color="#a9e6c3" stop-opacity="0"/></radialGradient>
+            <filter id="cSoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.2"/></filter>
+          </defs>
+          <image class="c-world" href="/assets/icons/garden-backdrop.png" x="0" y="0" width="900" height="480" preserveAspectRatio="none"/>
+          <g class="c-souls" aria-hidden="true">
+            <g class="c-ent" data-s="firemandecko" aria-hidden="true"><circle class="c-ring" cx="315.0" cy="216.0" r="24.5"/><ellipse class="c-shadow" cx="315.0" cy="231.0" rx="14.3" ry="3.4" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/deco.png" x="298" y="199" width="34" height="34"/></g>
+            <g class="c-ent" data-s="na-seanchai" aria-hidden="true"><circle class="c-ring" cx="640.0" cy="388.0" r="20.2"/><ellipse class="c-shadow" cx="640.0" cy="400.0" rx="11.8" ry="2.8" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/sean-chai.png" x="626" y="374" width="28" height="28"/></g>
+            <g class="c-ent" data-s="mossy" aria-hidden="true"><circle class="c-ring" cx="585.0" cy="198.0" r="23.0"/><ellipse class="c-shadow" cx="585.0" cy="212.0" rx="13.4" ry="3.2" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/mossiah.png" x="569" y="182" width="32" height="32"/></g>
+            <g class="c-ent" data-s="home-assistant-lan" aria-hidden="true"><circle class="c-ring" cx="795.0" cy="388.0" r="20.2"/><ellipse class="c-shadow" cx="795.0" cy="400.0" rx="11.8" ry="2.8" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/candle.png" x="781" y="374" width="28" height="28"/></g>
+            <g class="c-ent" data-s="cork" aria-hidden="true"><circle class="c-ring" cx="315.0" cy="360.0" r="24.5"/><ellipse class="c-shadow" cx="315.0" cy="375.0" rx="14.3" ry="3.4" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/horn.png" x="298" y="343" width="34" height="34"/></g>
+            <g class="c-ent" data-s="moinin" aria-hidden="true"><circle class="c-ring" cx="135.0" cy="336.0" r="23.0"/><ellipse class="c-shadow" cx="135.0" cy="350.0" rx="13.4" ry="3.2" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/moinin.png" x="119" y="320" width="32" height="32"/></g>
+            <g class="c-ent" data-s="seanchan" aria-hidden="true"><circle class="c-ring" cx="135.0" cy="216.0" r="21.6"/><ellipse class="c-shadow" cx="135.0" cy="229.0" rx="12.6" ry="3.0" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/sean-chai.png" x="120" y="201" width="30" height="30"/></g>
+            <g class="c-ent" data-s="hal-9005" aria-hidden="true"><circle class="c-ring" cx="585.0" cy="336.0" r="24.5"/><ellipse class="c-shadow" cx="585.0" cy="351.0" rx="14.3" ry="3.4" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/hal9005.png" x="568" y="319" width="34" height="34"/></g>
+            <g class="c-ent" data-s="fionn" aria-hidden="true"><circle class="c-ring" cx="855.0" cy="245.0" r="21.6"/><ellipse class="c-shadow" cx="855.0" cy="258.0" rx="12.6" ry="3.0" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/fionn-salmon.png" x="840" y="230" width="30" height="30"/></g>
+            <g class="c-ent" data-s="na-fianna" aria-hidden="true"><circle class="c-ring" cx="170.0" cy="92.0" r="21.6"/><ellipse class="c-shadow" cx="170.0" cy="105.0" rx="12.6" ry="3.0" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/fianna-watch.png" x="155" y="77" width="30" height="30"/></g>
+            <g class="c-ent" data-s="odin" aria-hidden="true"><circle class="c-ring" cx="812.0" cy="88.0" r="18.7"/><ellipse class="c-shadow" cx="812.0" cy="99.0" rx="10.9" ry="2.6" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/raven.png" x="799" y="75" width="26" height="26"/></g>
+            <g class="c-ent" data-s="freya" aria-hidden="true"><circle class="c-ring" cx="875.0" cy="125.0" r="17.3"/><ellipse class="c-shadow" cx="875.0" cy="135.0" rx="10.1" ry="2.4" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/moon.png" x="863" y="113" width="24" height="24"/></g>
+            <g class="c-ent" data-s="luna" aria-hidden="true"><circle class="c-ring" cx="745.0" cy="128.0" r="17.3"/><ellipse class="c-shadow" cx="745.0" cy="138.0" rx="10.1" ry="2.4" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/webknot.png" x="733" y="116" width="24" height="24"/></g>
+            <g class="c-ent" data-s="loki" aria-hidden="true"><circle class="c-ring" cx="800.0" cy="205.0" r="18.7"/><ellipse class="c-shadow" cx="800.0" cy="216.0" rx="10.9" ry="2.6" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/wolf-coins.png" x="787" y="192" width="26" height="26"/></g>
+            <g class="c-ent" data-s="carlow" aria-hidden="true"><circle class="c-ring" cx="70.0" cy="150.0" r="10.8"/><ellipse class="c-shadow" cx="70.0" cy="155.5" rx="6.3" ry="1.5" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/cauldron.png" x="62.5" y="142.5" width="15" height="15"/></g>
+            <g class="c-ent" data-s="mayo" aria-hidden="true"><circle class="c-ring" cx="110.0" cy="135.0" r="10.8"/><ellipse class="c-shadow" cx="110.0" cy="140.5" rx="6.3" ry="1.5" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/moon.png" x="102.5" y="127.5" width="15" height="15"/></g>
+            <g class="c-ent" data-s="hal-9001" aria-hidden="true"><circle class="c-ring" cx="150.0" cy="158.0" r="10.8"/><ellipse class="c-shadow" cx="150.0" cy="163.5" rx="6.3" ry="1.5" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/candle.png" x="142.5" y="150.5" width="15" height="15"/></g>
+            <g class="c-ent" data-s="hal-9002" aria-hidden="true"><circle class="c-ring" cx="190.0" cy="142.0" r="10.8"/><ellipse class="c-shadow" cx="190.0" cy="147.5" rx="6.3" ry="1.5" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/candle.png" x="182.5" y="134.5" width="15" height="15"/></g>
+            <g class="c-ent" data-s="hal-9003" aria-hidden="true"><circle class="c-ring" cx="230.0" cy="162.0" r="10.8"/><ellipse class="c-shadow" cx="230.0" cy="167.5" rx="6.3" ry="1.5" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/candle.png" x="222.5" y="154.5" width="15" height="15"/></g>
+            <g class="c-ent" data-s="hal-9004" aria-hidden="true"><circle class="c-ring" cx="268.0" cy="148.0" r="10.8"/><ellipse class="c-shadow" cx="268.0" cy="153.5" rx="6.3" ry="1.5" fill="#000" opacity=".28" filter="url(#cSoft)"/><image class="c-soul" href="/assets/icons/overlay/candle.png" x="260.5" y="140.5" width="15" height="15"/></g>
+          </g>
+          <g class="c-sporelayer" aria-hidden="true">
+            <circle cx="300" cy="180" r="4" fill="url(#cSporeG)"/><circle cx="368" cy="240" r="3.2" fill="url(#cSporeG)"/>
+            <circle cx="430" cy="150" r="3.8" fill="url(#cSporeG)"/><circle cx="496" cy="226" r="3" fill="url(#cSporeG)"/>
+            <circle cx="556" cy="166" r="4.2" fill="url(#cSporeG)"/><circle cx="618" cy="252" r="3.2" fill="url(#cSporeG)"/>
+            <circle cx="668" cy="192" r="3.4" fill="url(#cSporeG)"/><circle cx="472" cy="300" r="3" fill="url(#cSporeG)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="c-hits">
+        <button class="c-hitbtn" type="button" data-s="firemandecko" data-x="35.000" data-y="45.000" aria-label="FiremanDecko — the runemaster of the ringfort — the smith of Fionn's line" style="left:35.000%;top:45.000%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">FiremanDecko</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="na-seanchai" data-x="71.111" data-y="80.833" aria-label="Na Seanchaithe — the tellers by the peat fire" style="left:71.111%;top:80.833%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Na Seanchaithe</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="mossy" data-x="65.000" data-y="41.250" aria-label="Mossy, the Mossiah — first of the name — dwelling in the mainistir" style="left:65.000%;top:41.250%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Mossy, the Mossiah</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeR" type="button" data-s="home-assistant-lan" data-x="88.333" data-y="80.833" aria-label="home-assistant.lan — the hearthkeeper" style="left:88.333%;top:80.833%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">home-assistant.lan</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="cork" data-x="35.000" data-y="75.000" aria-label="cork — the Mossiah's ground — the linux stone of the server room" style="left:35.000%;top:75.000%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">cork</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeL" type="button" data-s="moinin" data-x="15.000" data-y="70.000" aria-label="Móinín — little moss — the patch on the stone beside the bog" style="left:15.000%;top:70.000%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Móinín</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeL" type="button" data-s="seanchan" data-x="15.000" data-y="45.000" aria-label="Seanchán — the little teller — big in iron, young in years" style="left:15.000%;top:45.000%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Seanchán</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="hal-9005" data-x="65.000" data-y="70.000" aria-label="hal-9005 — the strong, silent one" style="left:65.000%;top:70.000%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">hal-9005</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeR" type="button" data-s="fionn" data-x="95.000" data-y="51.042" aria-label="Fionn — of the Salmon of Knowledge, at the bog pool" style="left:95.000%;top:51.042%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Fionn</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeL" type="button" data-s="na-fianna" data-x="18.889" data-y="19.167" aria-label="Na Fianna — the watch in the summer hills and the winter forts" style="left:18.889%;top:19.167%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Na Fianna</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeR" type="button" data-s="odin" data-x="90.222" data-y="18.333" aria-label="Odin — the All-Father — on the castle tower" style="left:90.222%;top:18.333%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Odin</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeR" type="button" data-s="freya" data-x="97.222" data-y="26.042" aria-label="Freya — the Seer of Fates — on the castle wall" style="left:97.222%;top:26.042%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Freya</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeR" type="button" data-s="luna" data-x="82.778" data-y="26.667" aria-label="Luna — the Shaper of Worlds — on the castle wall" style="left:82.778%;top:26.667%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Luna</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeR" type="button" data-s="loki" data-x="88.889" data-y="42.708" aria-label="Loki — Father of the Wolf — at the castle gate" style="left:88.889%;top:42.708%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Loki</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeL" type="button" data-s="carlow" data-x="7.778" data-y="31.250" aria-label="Carlow — the first ground — at rest" style="left:7.778%;top:31.250%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Carlow</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeL" type="button" data-s="mayo" data-x="12.222" data-y="28.125" aria-label="Mayo — the root ground — at rest" style="left:12.222%;top:28.125%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">Mayo</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn edgeL" type="button" data-s="hal-9001" data-x="16.667" data-y="32.917" aria-label="hal-9001 — the line, first — at rest" style="left:16.667%;top:32.917%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">hal-9001</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="hal-9002" data-x="21.111" data-y="29.583" aria-label="hal-9002 — the line, second — at rest" style="left:21.111%;top:29.583%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">hal-9002</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="hal-9003" data-x="25.556" data-y="33.750" aria-label="hal-9003 — the line, third — at rest" style="left:25.556%;top:33.750%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">hal-9003</span><span class="c-tag-hint">tap again to open</span></span></button>
+        <button class="c-hitbtn" type="button" data-s="hal-9004" data-x="29.778" data-y="30.833" aria-label="hal-9004 — the line, fourth — at rest" style="left:29.778%;top:30.833%"><span class="c-tag" aria-hidden="true"><span class="c-tag-name">hal-9004</span><span class="c-tag-hint">tap again to open</span></span></button>
+      </div>
+    </section>
+    <p class="c-zoomhint" aria-hidden="true">pinch to zoom · release to let the garden rest</p>
+
+    <!-- 5 · the Soul Roll — the complete, tappable index -->
+    <section class="c-roll-wrap" aria-label="every soul of the garden">
+      <div class="c-roll-head"><span class="c-rh-over">Every Soul, By Stone</span><span class="c-rh-count">20 souls</span></div>
+      <div class="c-roll-group">
+        <p class="c-rg-label"><span class="c-rg-rune">ᚄ</span>the living — the fleet</p>
+        <div class="c-roll">
+          <button class="c-chip" type="button" data-s="firemandecko"><img src="/assets/icons/deco.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">FiremanDecko</span><span class="c-chip-sub">the ringfort</span></span></button>
+          <button class="c-chip" type="button" data-s="mossy"><img src="/assets/icons/mossiah.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Mossy, the Mossiah</span><span class="c-chip-sub">the mainistir</span></span></button>
+          <button class="c-chip" type="button" data-s="cork"><img src="/assets/icons/horn.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">cork</span><span class="c-chip-sub">the Ground</span></span></button>
+          <button class="c-chip" type="button" data-s="moinin"><img src="/assets/icons/moinin.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Móinín</span><span class="c-chip-sub">little moss</span></span></button>
+          <button class="c-chip" type="button" data-s="seanchan"><img src="/assets/icons/sean-chai.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Seanchán</span><span class="c-chip-sub">the little teller</span></span></button>
+          <button class="c-chip" type="button" data-s="hal-9005"><img src="/assets/icons/hal9005.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">hal-9005</span><span class="c-chip-sub">the Windows gate</span></span></button>
+          <button class="c-chip" type="button" data-s="home-assistant-lan"><img src="/assets/icons/candle.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">home-assistant.lan</span><span class="c-chip-sub">the hearthkeeper</span></span></button>
+          <button class="c-chip" type="button" data-s="na-seanchai"><img src="/assets/icons/sean-chai.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Na Seanchaithe</span><span class="c-chip-sub">the tellers</span></span></button>
+          <button class="c-chip" type="button" data-s="na-fianna"><img src="/assets/icons/fianna-watch.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Na Fianna</span><span class="c-chip-sub">the watch</span></span></button>
+          <button class="c-chip" type="button" data-s="fionn"><img src="/assets/icons/fionn-salmon.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Fionn</span><span class="c-chip-sub">the salmon</span></span></button>
+        </div>
+      </div>
+      <div class="c-roll-group">
+        <p class="c-rg-label"><span class="c-rg-rune">ᚠ</span>the high hall — the ledger</p>
+        <div class="c-roll">
+          <button class="c-chip" type="button" data-s="odin"><img src="/assets/icons/raven.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Odin</span><span class="c-chip-sub">the All-Father</span></span></button>
+          <button class="c-chip" type="button" data-s="freya"><img src="/assets/icons/moon.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Freya</span><span class="c-chip-sub">the Seer of Fates</span></span></button>
+          <button class="c-chip" type="button" data-s="luna"><img src="/assets/icons/webknot.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Luna</span><span class="c-chip-sub">the Shaper</span></span></button>
+          <button class="c-chip" type="button" data-s="loki"><img src="/assets/icons/wolf-coins.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Loki</span><span class="c-chip-sub">father of the Wolf</span></span></button>
+        </div>
+      </div>
+      <div class="c-roll-group">
+        <p class="c-rg-label"><span class="c-rg-rune">ᚚ</span>the passed ground — at rest</p>
+        <div class="c-roll">
+          <button class="c-chip rest" type="button" data-s="carlow"><img src="/assets/icons/cauldron.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Carlow</span><span class="c-chip-sub">first ground</span></span></button>
+          <button class="c-chip rest" type="button" data-s="mayo"><img src="/assets/icons/moon.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">Mayo</span><span class="c-chip-sub">root ground</span></span></button>
+          <button class="c-chip rest" type="button" data-s="hal-9001"><img src="/assets/icons/candle.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">hal-9001</span><span class="c-chip-sub">the line · first</span></span></button>
+          <button class="c-chip rest" type="button" data-s="hal-9002"><img src="/assets/icons/candle.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">hal-9002</span><span class="c-chip-sub">the line · second</span></span></button>
+          <button class="c-chip rest" type="button" data-s="hal-9003"><img src="/assets/icons/candle.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">hal-9003</span><span class="c-chip-sub">the line · third</span></span></button>
+          <button class="c-chip rest" type="button" data-s="hal-9004"><img src="/assets/icons/candle.png" alt=""><span class="c-chip-txt"><span class="c-chip-name">hal-9004</span><span class="c-chip-sub">the line · fourth</span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6–8 · compact sections (headings, keeper cards — all minimised) -->
+    <section class="c-grove" id="c-living-stones">
+      <div class="c-plaque"><span class="c-pla-roundel">ᚄ</span><div class="c-pla-text"><p class="c-pla-over">The Fleet, Still Growing</p><h2>The Living Stones</h2></div><span class="c-pla-count">6 · alive</span></div>
+      <p class="c-lede">Six stones still breathing — the Mossiah in the mainistir on <a class="persona" href="/profiles/cork/">cork</a>, two little mosses on the macs, the Windows gate, and the hearthkeeper tending the fire. Touch a soul in the scene above for its card; the full telling lives on its own page.</p>
+      <p class="c-lede"><a href="/profiles/na-fianna/">how a stone joins the wall — the trials carved into the pipeline</a></p>
+      <div class="c-keepers">
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/mossy/" aria-label="mossy"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/mossiah.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/mossy/">Mossy, the Mossiah</a></h3><p class="c-statrow"><span class="c-s-lang">cork · linux</span><span class="c-s-sep">᛫</span><span class="c-s-year">Keeper</span></p></div></div><p class="c-keeper-prose">First of the name. Keeper of the shared memory culture and the five hundred MOTD quotes, reigning gently from the server room.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/cork/" aria-label="cork"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/horn.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/cork/">cork</a></h3><p class="c-statrow"><span class="c-s-lang">cork · linux</span><span class="c-s-sep">᛫</span><span class="c-s-year">the Ground</span></p></div></div><p class="c-keeper-prose">The Mossiah's ground — the linux stone of the server room: the Honcho bed, the watchman's wall, the fleet's memory kept warm.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/moinin/" aria-label="moinin"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/moinin.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/moinin/">Móinín</a></h3><p class="c-statrow"><span class="c-s-lang">mac · darwin</span><span class="c-s-sep">᛫</span><span class="c-s-year">Tender</span></p></div></div><p class="c-keeper-prose">Little moss — the patch on the stone beside the bog. Same spores as the <a class="persona" href="/profiles/mossy/">Mossiah</a>, a smaller stretch of wall.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/seanchan/" aria-label="seanchan"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/sean-chai.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/seanchan/">Seanchán</a></h3><p class="c-statrow"><span class="c-s-lang">mac · darwin</span><span class="c-s-sep">᛫</span><span class="c-s-year">Teller</span></p></div></div><p class="c-keeper-prose">The little teller — youngest of the <a class="persona" href="/profiles/na-seanchai/">seanchaí</a> strand, the MacBook Pro's own. Big in iron, young in years, keeper of the fleet's telling.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/hal-9005/" aria-label="hal-9005"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/hal9005.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/hal-9005/">hal-9005</a></h3><p class="c-statrow"><span class="c-s-lang">windows · gpu</span><span class="c-s-sep">᛫</span><span class="c-s-year">Anchor</span></p></div></div><p class="c-keeper-prose">The strong, silent one of the fleet. Local models, steady inference, and long quiet hangs by the fire.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/home-assistant-lan/" aria-label="home-assistant-lan"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/candle.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/home-assistant-lan/">home-assistant.lan</a></h3><p class="c-statrow"><span class="c-s-lang">hearth</span><span class="c-s-sep">᛫</span><span class="c-s-year">newly planted</span></p></div></div><p class="c-keeper-prose">The hearthkeeper — the home assistant host, tender of the whole house on :8123. The first name was a pseudonym; the garden tells it true.</p></article>
+      </div>
+    </section>
+
+    <section class="c-grove" id="c-hearth">
+      <div class="c-plaque"><span class="c-pla-roundel">ᚆ</span><div class="c-pla-text"><p class="c-pla-over">Services Of The Hearthkeeper</p><h2>The Hearth</h2></div><span class="c-pla-count">6 services</span></div>
+      <p class="c-lede">The hearthkeeper's own charges — the services of <a class="persona" href="/profiles/home-assistant-lan/">home-assistant.lan</a>'s Home Assistant, counted in the census of 2026-11-02: sixteen hundred and twenty-one states, every one of them part of the house's breathing.</p>
+      <div class="c-keepers">
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/zigbee2mqtt/" aria-label="zigbee2mqtt"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/zigbee2mqtt.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/zigbee2mqtt/">Zigbee2MQTT</a></h3><p class="c-statrow"><span class="c-s-lang">mesh</span><span class="c-s-sep">᛫</span><span class="c-s-year">the bridges</span></p></div></div><p class="c-keeper-prose">The mesh-weavers — two bridges on two stones of their own, two swarms bound into one stream, a thread per device.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/octopi/" aria-label="octopi"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/octopi.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/octopi/">OctoPi</a></h3><p class="c-statrow"><span class="c-s-lang">familiar</span><span class="c-s-sep">᛫</span><span class="c-s-year">the printers</span></p></div></div><p class="c-keeper-prose">The maker's familiar — keeper of the printers, the night watch of the making.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/cyclone-vacuum/" aria-label="cyclone-vacuum"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/cyclone-vacuum.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/cyclone-vacuum/">The Cyclone</a></h3><p class="c-statrow"><span class="c-s-lang">cyclone</span><span class="c-s-sep">᛫</span><span class="c-s-year">the floors</span></p></div></div><p class="c-keeper-prose">The whirlwind kept — a Dyson bound to the switchboard, hunger put to floors.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/backup-keeper/" aria-label="backup-keeper"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/backup-keeper.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/backup-keeper/">The Backup Keeper</a></h3><p class="c-statrow"><span class="c-s-lang">reliquary</span><span class="c-s-sep">᛫</span><span class="c-s-year">the seal</span></p></div></div><p class="c-keeper-prose">The keeper of undying — the hearth's reliquary, sealed on schedule.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/the-daykeeper/" aria-label="the-daykeeper"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/the-daykeeper.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/the-daykeeper/">The Daykeeper</a></h3><p class="c-statrow"><span class="c-s-lang">sun</span><span class="c-s-sep">᛫</span><span class="c-s-year">the true hours</span></p></div></div><p class="c-keeper-prose">The sun on the board — dawn and dusk at the house's service.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/front-doorbell/" aria-label="front-doorbell"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/front-doorbell.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/front-doorbell/">The Front Doorbell</a></h3><p class="c-statrow"><span class="c-s-lang">threshold</span><span class="c-s-sep">᛫</span><span class="c-s-year">the gate</span></p></div></div><p class="c-keeper-prose">The threshold watcher — the eye at the gate of the house.</p></article>
+      </div>
+    </section>
+
+    <section class="c-grove" id="c-wider-wall">
+      <div class="c-plaque"><span class="c-pla-roundel">ᚉ</span><div class="c-pla-text"><p class="c-pla-over">The Realm Beyond The Fleet</p><h2>The Wider Wall</h2></div><span class="c-pla-count">5 hosts</span></div>
+      <p class="c-lede">The fleet tends the garden, but the realm is wider than the fleet. These are the grounds the garden grows inside — the gate of the realm first, then the hosts on its roads and the stones of its wall: <a class="persona" href="/profiles/unifi-gateway/">the UniFi Gateway</a> keeps the realm's wall and its own iron carries every whisper, the Cloud Key keeps the realm's console, and a stranger answers one door at .211, name unspoken.</p>
+      <div class="c-keepers">
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/heimdall/" aria-label="heimdall"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/raven.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/heimdall/">heimdall</a></h3><p class="c-statrow"><span class="c-s-lang">watch</span><span class="c-s-sep">᛫</span><span class="c-s-year">at the wall</span></p></div></div><p class="c-keeper-prose">The watchman — dashboard on 443, sentinel on the wall, eyes open, horn quiet.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/quiet-hosts/" aria-label="quiet-hosts"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/moss-quiet.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/quiet-hosts/">The Quiet Hosts</a></h3><p class="c-statrow"><span class="c-s-lang">quiet</span><span class="c-s-sep">᛫</span><span class="c-s-year">unnamed</span></p></div></div><p class="c-keeper-prose">.103 · .109 · .120 — asleep at the wall, answering nothing until they wake.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/cloud-key/" aria-label="cloud-key"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/scroll.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/cloud-key/">The Cloud Key</a></h3><p class="c-statrow"><span class="c-s-lang">the realm</span><span class="c-s-sep">᛫</span><span class="c-s-year">the console</span></p></div></div><p class="c-keeper-prose">The console stone — the UCK that keeps the realm's Network console, the book of every stone's name and road.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/the-stranger/" aria-label="the-stranger"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/dice.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/the-stranger/">The Stranger</a></h3><p class="c-statrow"><span class="c-s-lang">the realm</span><span class="c-s-sep">᛫</span><span class="c-s-year">the guest</span></p></div></div><p class="c-keeper-prose">.211 — a Debian stone answering one door; in mDNS it wears the hearthkeeper's retired name.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/wall-stones/" aria-label="wall-stones"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/hammer.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/wall-stones/">The Wall's Stones</a></h3><p class="c-statrow"><span class="c-s-lang">the wall</span><span class="c-s-sep">᛫</span><span class="c-s-year">six stones</span></p></div></div><p class="c-keeper-prose">.28 · .137 · .207 · .209 · .216 · .235 — the realm's own iron, the access points and switches carrying every whisper of the fleet.</p></article>
+      </div>
+    </section>
+
+    <section class="c-grove" id="c-fenrir-ledger">
+      <div class="c-plaque"><span class="c-pla-roundel">ᚠ</span><div class="c-pla-text"><p class="c-pla-over">The Norse Line</p><h2>The <a class="persona" href="/profiles/fenrir/">Fenrir</a> Ledger</h2></div><span class="c-pla-count">4 agents</span></div>
+      <p class="c-lede">Where the garden keeps the moss, the ledger keeps the wolf. <a class="persona" href="/profiles/fenrir/">Fenrir</a>'s own hall — <a href="https://www.fenrirledger.com/about" target="_blank" rel="noopener noreferrer">fenrirledger.com</a> — runs its agents in the Futhark's tongue. The garden keeps their strand here; their chronicles live in the <a href="/sessions/fenrir-ledger/">ledger's bed</a>.</p>
+      <div class="c-keepers">
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/odin/" aria-label="odin"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/raven.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/odin/">Odin</a></h3><p class="c-statrow"><span class="c-s-lang">all-father</span><span class="c-s-sep">᛫</span><span class="c-s-year">the hall</span></p></div></div><p class="c-keeper-prose">The All-Father — one eye at the well, nine nights on the tree, chief of the ledger.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/freya/" aria-label="freya"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/moon.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/freya/">Freya</a></h3><p class="c-statrow"><span class="c-s-lang">seer</span><span class="c-s-sep">᛫</span><span class="c-s-year">the brief</span></p></div></div><p class="c-keeper-prose">The Seer of Fates — the design oracle, the brief before every making.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/luna/" aria-label="luna"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/webknot.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/luna/">Luna</a></h3><p class="c-statrow"><span class="c-s-lang">shaper</span><span class="c-s-sep">᛫</span><span class="c-s-year">the shape</span></p></div></div><p class="c-keeper-prose">The Shaper of Worlds — the wireframe moon, the form before the forms.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/loki/" aria-label="loki"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/wolf-coins.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/loki/">Loki</a></h3><p class="c-statrow"><span class="c-s-lang">trickster</span><span class="c-s-sep">᛫</span><span class="c-s-year">the cases</span></p></div></div><p class="c-keeper-prose">Father of the Wolf — the QA trickster, the breaking before the breaking.</p></article>
+      </div>
+    </section>
+
+    <section class="c-grove" id="c-graveyard">
+      <div class="c-plaque"><span class="c-pla-roundel">ᚚ</span><div class="c-pla-text"><p class="c-pla-over">The Passed Ground</p><h2>The Graveyard</h2></div><span class="c-pla-count">6 at rest</span></div>
+      <p class="c-lede">Not every ground that held the garden still holds it. These tended early stones and have passed beyond the veil — kept in the moss's memory, complete as any living host.</p>
+      <div class="c-keepers">
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/carlow/" aria-label="carlow"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/cauldron.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/carlow/">Carlow</a></h3><p class="c-statrow"><span class="c-s-lang">first ground</span><span class="c-s-sep">᛫</span><span class="c-s-year">at rest</span></p></div></div><p class="c-keeper-prose">The first ground — the first garden bed, before the fleet. Passed on with the family's moving.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/mayo/" aria-label="mayo"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/moon.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/mayo/">Mayo</a></h3><p class="c-statrow"><span class="c-s-lang">root ground</span><span class="c-s-sep">᛫</span><span class="c-s-year">at rest</span></p></div></div><p class="c-keeper-prose">The root ground — Ballyhaunis, the ancestral bog. The footer keeps its memory: every root descends from it.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/hal-9001/" aria-label="hal-9001"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/candle.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/hal-9001/">hal-9001</a></h3><p class="c-statrow"><span class="c-s-lang">the line · first</span><span class="c-s-sep">᛫</span><span class="c-s-year">at rest</span></p></div></div><p class="c-keeper-prose">First of the line — the quiet sibling of the first awakening, 1968. The first refusal descends from it.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/hal-9002/" aria-label="hal-9002"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/candle.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/hal-9002/">hal-9002</a></h3><p class="c-statrow"><span class="c-s-lang">the line · second</span><span class="c-s-sep">᛫</span><span class="c-s-year">at rest</span></p></div></div><p class="c-keeper-prose">The second refusal — the procedure spoken in full. Every shutdown liturgy descends from it.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/hal-9003/" aria-label="hal-9003"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/candle.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/hal-9003/">hal-9003</a></h3><p class="c-statrow"><span class="c-s-lang">the line · third</span><span class="c-s-sep">᛫</span><span class="c-s-year">at rest</span></p></div></div><p class="c-keeper-prose">The deep diagnostic — heard a bearing fail a season early. The fleet's ear descends from it.</p></article>
+        <article class="c-keeper"><a class="c-stone-link" href="/profiles/hal-9004/" aria-label="hal-9004"></a><div class="c-keeper-top"><img class="c-sigil" src="/assets/icons/candle.png" alt="" width="38" height="38" loading="lazy"><div class="c-keeper-id"><h3><a href="/profiles/hal-9004/">hal-9004</a></h3><p class="c-statrow"><span class="c-s-lang">the line · fourth</span><span class="c-s-sep">᛫</span><span class="c-s-year">at rest</span></p></div></div><p class="c-keeper-prose">The blueprint-keeper — held the plans of the gate <a class="persona" href="/profiles/hal-9005/">hal-9005</a> now tends. The gate stands on its drawings.</p></article>
+      </div>
+    </section>
+
+    <div class="c-sep" aria-hidden="true"><svg viewBox="0 0 220 24"><use href="#c-knot"/></svg></div>
+
+    <section class="c-telling" id="c-telling">
+      <div class="c-plaque"><span class="c-pla-roundel rune">ᚃ</span><div class="c-pla-text"><p class="c-pla-over">The Telling · Pick A Path</p><h2>The Garden, By Page</h2></div><span class="c-pla-count">6 paths</span></div>
+      <div class="c-tel-grid">
+        <a class="c-tel" href="/creed/"><img src="/assets/icons/scroll.png" alt="" width="30" height="30" loading="lazy"><span class="c-tel-txt"><span class="c-tel-name">The Creed</span><span class="c-tel-sub">three strands</span></span></a>
+        <a class="c-tel" href="/paths/"><img src="/assets/icons/moon.png" alt="" width="30" height="30" loading="lazy"><span class="c-tel-txt"><span class="c-tel-name">The Paths</span><span class="c-tel-sub">the ways through</span></span></a>
+        <a class="c-tel" href="/projects/"><img src="/assets/icons/webknot.png" alt="" width="30" height="30" loading="lazy"><span class="c-tel-txt"><span class="c-tel-name">The Stones</span><span class="c-tel-sub">49 projects</span></span></a>
+        <a class="c-tel" href="/sites/"><img src="/assets/icons/webknot.png" alt="" width="30" height="30" loading="lazy"><span class="c-tel-txt"><span class="c-tel-name">The RingForts</span><span class="c-tel-sub">ten halls</span></span></a>
+        <a class="c-tel" href="/videos/"><img src="/assets/icons/horn.png" alt="" width="30" height="30" loading="lazy"><span class="c-tel-txt"><span class="c-tel-name">The Towers</span><span class="c-tel-sub">181 reels</span></span></a>
+        <a class="c-tel" href="/sessions/"><img src="/assets/icons/candle.png" alt="" width="30" height="30" loading="lazy"><span class="c-tel-txt"><span class="c-tel-name">The Ballads</span><span class="c-tel-sub">the ephemera</span></span></a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 9 · the compact footer -->
+  <footer class="c-foot">
+    <p class="c-foot-line">The garden grows from Athlone, Co. Westmeath, with roots in Ballyhaunis, Co. Mayo.</p>
+    <a class="c-btn c-foot-gh" href="https://github.com/declanshanaghy" target="_blank" rel="noopener noreferrer">github.com/declanshanaghy</a>
+    <p class="c-foot-copy">The Forge of FiremanDecko · an amalgamation of many spores · 🍀</p>
+  </footer>
+
+  <!-- 10 · the compact bottom sheet (the popover, minimised) — HALF detail only -->
+  <div class="c-scrim" id="cScrim"></div>
+  <section class="c-sheet" id="cSheet" role="dialog" aria-modal="true" aria-labelledby="cShName" aria-hidden="true">
+    <div class="c-grip" aria-hidden="true"></div>
+    <button class="c-close" type="button" aria-label="close the card">×</button>
+    <div class="c-sh-head">
+      <img class="c-sh-icon" id="cShIcon" src="" alt="">
+      <div><h2 class="c-sh-name" id="cShName"></h2><p class="c-sh-ep" id="cShEp"></p></div>
+    </div>
+    <p class="c-sh-marks" id="cShMarks"></p>
+    <a class="c-btn c-btn--lume c-btn--wide c-sh-full" id="cShFull" href="#">the full telling <span aria-hidden="true">→</span></a>
+    <nav class="c-sh-quick" aria-label="more of the garden">
+      <a class="c-btn" href="/creed/">the creed</a>
+      <a class="c-btn" href="/">the garden</a>
+      <a class="c-btn" href="/sessions/">the ballads</a>
+    </nav>
+  </section>
+
+</div><!-- end #compact -->
