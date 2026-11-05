@@ -162,6 +162,50 @@ test("issue #282 · the topbar hide rule outranks every page stylesheet in BOTH 
   }
 });
 
+/* ── regression: issue #284 — the first tap was swallowed on the homepage ── */
+
+test("issue #284 · the open commit cannot be cancelled by an effect teardown", () => {
+  const js = read("components/Header.js");
+  // the slide-in rAF commits the open state directly, inside the [shown] effect
+  assert.ok(js.includes("requestAnimationFrame(() => setOpen(true))"),
+    "the rAF commits open directly");
+  assert.ok(!js.includes("cancelAnimationFrame"),
+    "nothing in the Header can cancel a pending open/close — the old cleanup's cancelAnimationFrame is what stranded the sheet (issue #284)");
+  // the [shown] effect must carry NO cleanup: a teardown between the tap and
+  // the frame used to discard the pending setOpen, leaving the sheet un-hidden
+  // but translated off-screen — first tap gone, second tap needed
+  const eff = js.match(/useEffect\(\(\) => \{\s*if \(!shown\) return;[\s\S]*?\}, \[shown\]\);/);
+  assert.ok(eff, "the [shown] effect exists");
+  assert.ok(!eff[0].includes("return () =>"),
+    "the [shown] effect has no cleanup — no teardown can discard the open commit");
+  assert.ok(eff[0].includes('document.body.classList.add("c-locked")'),
+    "the open path still locks the body from the effect");
+});
+
+test("issue #284 · the pending re-hide is token-guarded, so a mid-close reopen wins", () => {
+  const js = read("components/Header.js");
+  assert.ok(js.includes("closeTokRef"), "the close carries a token");
+  assert.match(js, /const tok = \+\+closeTokRef\.current;/,
+    "each close takes a fresh token");
+  assert.match(js, /if \(closeTokRef\.current === tok\) setShown\(false\)/,
+    "the re-hide only fires for the LATEST close");
+  assert.match(js, /closeTokRef\.current\+\+;[^\n]*pending re-hide is void/,
+    "opening the sheet voids any pending re-hide");
+  // replay the hazard the old clearTimeout-cleanup papered over: close, then
+  // reopen inside the 340ms window — the stale timer must be a no-op
+  let shown = true;
+  let tok = 0;
+  let pending = null;
+  const closePath = () => { tok = tok + 1; pending = { fires: () => { if (tok === pending.staleTok) shown = false; }, staleTok: tok }; };
+  const openSheetPath = () => { tok = tok + 1; if (!shown) { shown = true; return; } };
+  closePath();          // sheet closing; a 340ms re-hide is scheduled
+  openSheetPath();       // reopened before the re-hide fires — token moves on
+  pending.fires();       // the stale 340ms timer fires anyway
+  assert.equal(shown, true, "mid-close reopen: the stale re-hide is void, the sheet stays laid out");
+});
+
+/* ── (kept) issue #282 — the open class rendered from state ─────────────── */
+
 test("issue #282 · the open class is rendered from state, so React's re-render preserves it", () => {
   const js = read("components/Header.js");
   // the class must come from the render (state-driven), never from an
