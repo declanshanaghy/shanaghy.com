@@ -512,6 +512,31 @@ flowchart LR
     stoneslnk --> motd
 ```
 
+## The mobile layer (compact, ≤1024px)
+
+The front door runs in two modes, chosen by width alone — no JavaScript
+decides the layout. At **≥1025px** the LARGE mode renders the full garden
+scene with its desktop popover. At **≤1024px** the COMPACT mode takes over:
+the `#large` wrapper is hidden by CSS and the `#compact` wrapper appears,
+delivering the full v3 contract — a linear-scaling SVG scene (the whole
+900×480 painting, never cropped), invisible 48px hit-target layer, two-tap
+AIM interaction (first tap names the soul; second tap opens the bottom
+sheet), Soul Roll (a horizontal chip strip of all 20 souls in three groups),
+compact keeper cards, path-sheet (all eight paths), bottom sheet (HALF
+detail + "the full telling →"), and optional pinch-zoom (1×–4×,
+spring-back). Every compact rule lives inside `@media (max-width:1024px)`;
+every `:hover` behavior lives under a `(hover:hover)` guard so touch devices
+never get a stuck glow. The only rule outside a media query is the inert-by-
+default `#compact{display:none}`.
+
+The design spec, interaction contract, and approved prototype live in
+`ux/mobile/` — the interactions doc is the law, the prototype HTML and CSS
+are the reference. The CSS contract is `ux/mobile/_build/compact.css`,
+verbatim in `web/content/index.css` after the desktop rules. The JS contract
+is `ux/mobile/_build/compact.js`, ported to a `useEffect` in
+`web/pages/index.js` with compact behaviors only (the LARGE mode popover
+and `.rise` reveal live in their existing places and are not duplicated).
+
 ## Verify before pushing
 
 The rule that governs every publish, in prose: run `npm ci && npm run
