@@ -109,8 +109,6 @@ main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:b
 .hero{padding-left:max(16px,4vw);padding-right:max(16px,4vw)}
 .grid,.vgrid,.keepers-grid,.paths-grid{grid-template-columns:repeat(auto-fill,minmax(min(280px,42vw),1fr));width:100%}
 .slab,.plaque-head{max-width:none;width:100%}
-img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
-@media (min-width:1600px){ img.hero3d{border-radius:16px} }
 
 a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(183,205,185,.4)}
 a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
