@@ -1,0 +1,126 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   shanaghy.com — THE SHARED COMPACT HEADER  (issue #280)
+   The homepage's mobile header (.c-bar burger + .c-navsheet path-sheet), lifted
+   verbatim out of web/content/index.css so the shared Header component can
+   render it on EVERY page.  The homepage render stays pixel-identical: every
+   rule below is a byte-for-byte port of the compact block it replaces.
+
+   CONTRACT
+     • the compact bar is hidden on desktop (>1024px) and takes over from the
+       .topbar at ≤1024px — .topbar{display:none} lives here now, site-wide;
+     • every rule sits inside a mobile media query, exactly as it did on the
+       homepage; the desktop render is untouched;
+     • token scopes (--c-tap/--c-pad/--c-r) are re-rooted onto .c-bar/.c-navsheet
+       because the shared header lives outside the homepage's #compact layer;
+     • same decrees as the homepage layer: tap-only (hover rules are decorative
+       and gated behind (hover:hover)), scroll-lock via body.c-locked,
+       reduced-motion collapses the sheet slide to .01ms.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* the switch: the compact bar is desktop-hidden, media takes it from there */
+.c-bar{display:none}
+
+@media (max-width:1024px){
+  .topbar{display:none}
+
+  /* ── 0 · compact tokens (re-rooted: the shared header has no #compact) ── */
+  .c-bar,.c-navsheet{font-size:16px;--c-tap:44px;--c-pad:max(12px,3.6vw);
+    --c-r:13px 7px 13px 7px}
+
+  /* ── 1 · the compact bar  (topbar, minimised) ─────────────────────────── */
+  .c-bar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:10px;
+    padding:5px var(--c-pad);min-height:50px;
+    background:linear-gradient(180deg,rgba(6,13,9,.97),rgba(4,10,7,.9));
+    border-bottom:1px solid rgba(28,63,44,.5);
+    backdrop-filter:saturate(1.1) blur(8px)}
+  .c-brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
+  .c-brand img{height:30px;width:auto;border-radius:5px;border:1px solid rgba(45,90,66,.4);
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 9px rgba(99,224,160,.14))}
+  .c-here{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8ba389;
+    padding-left:10px;border-left:1px solid rgba(45,90,66,.45)}
+
+  /* ── 2 · the compact buttons  (one system, every control) ─────────────── */
+  .c-btn{min-height:var(--c-tap);min-width:var(--c-tap);display:inline-flex;align-items:center;
+    justify-content:center;gap:9px;padding:0 15px;cursor:pointer;text-decoration:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--silver);border:1px solid rgba(45,90,66,.6);
+    border-radius:var(--c-r);background:linear-gradient(180deg,rgba(18,42,30,.66),rgba(6,13,9,.6));
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.08);
+    transition:color .22s,border-color .22s,text-shadow .22s,transform .12s}
+  .c-btn:active{transform:translateY(1px);color:var(--lume2);border-color:rgba(169,230,195,.55)}
+  .c-btn--lume{color:#dff3e2;border-color:rgba(169,230,195,.5);font-family:var(--serif);
+    font-size:14px;letter-spacing:1.1px;text-transform:none;
+    background:linear-gradient(180deg,rgba(28,63,44,.7),rgba(6,13,9,.6));
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.12),0 0 24px -8px rgba(99,224,160,.4)}
+  .c-btn--wide{width:100%}
+  .c-btn--menu{margin-left:auto;padding:0 13px 0 12px}
+  .c-btn[aria-expanded="true"]{color:var(--lume2);border-color:rgba(169,230,195,.6)}
+  .c-burger{display:flex;flex-direction:column;gap:4px;width:16px}
+  .c-burger i{display:block;height:2px;border-radius:2px;background:currentColor;
+    box-shadow:0 0 6px rgba(169,230,195,.35)}
+  .c-close{width:var(--c-tap);height:var(--c-tap);min-width:var(--c-tap);min-height:var(--c-tap);
+    display:inline-flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;
+    border:1px solid rgba(45,90,66,.6);background:rgba(6,13,9,.4);color:var(--silver);
+    font-size:21px;line-height:1}
+  .c-close:active{color:var(--lume2);border-color:rgba(169,230,195,.7)}
+
+  /* ── 3 · the Path-Sheet  (the eight paths, minimised) ─────────────────── */
+  .c-navsheet{position:fixed;inset:0;z-index:80;overflow-y:auto;
+    padding:14px var(--c-pad) calc(26px + env(safe-area-inset-bottom));
+    background:radial-gradient(700px 460px at 50% -80px, rgba(99,224,160,.06), transparent 62%),
+      linear-gradient(180deg,rgba(6,13,9,.985),rgba(4,10,7,.995));
+    transform:translateY(-101%);transition:transform .32s cubic-bezier(.3,.7,.3,1)}
+  .c-navsheet.open{transform:none}
+  .c-navsheet-head{display:flex;align-items:center;gap:11px;padding:4px 2px 13px;
+    border-bottom:1px solid rgba(28,63,44,.4);margin-bottom:13px}
+  .c-navsheet-head .c-ns-over{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+  .c-navsheet-head h2{font-size:18px;font-weight:600;color:var(--moon);letter-spacing:.4px}
+  .c-navsheet .c-close{margin-left:auto}
+  .c-nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .c-plate{position:relative;display:flex;flex-direction:column;justify-content:center;gap:2px;
+    min-height:66px;padding:11px 13px;text-decoration:none;
+    border:1px solid var(--edge);border-radius:var(--c-r);
+    background:var(--grain),var(--cap,var(--mosscap2)),var(--mottle),linear-gradient(180deg,#0d1f17,#040a07);
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.07),0 8px 16px -10px rgba(0,0,0,.85);
+    transition:transform .18s,border-color .18s,box-shadow .18s}
+  .c-plate:nth-child(10n+1){--cap:var(--mosscap2)}.c-plate:nth-child(10n+2){--cap:var(--mosscap3)}
+  .c-plate:nth-child(10n+3){--cap:var(--mosscap4)}.c-plate:nth-child(10n+4){--cap:var(--mosscap5)}
+  .c-plate:nth-child(10n+5){--cap:var(--mosscap6)}.c-plate:nth-child(10n+6){--cap:var(--mosscap7)}
+  .c-plate:nth-child(10n+7){--cap:var(--mosscap8)}.c-plate:nth-child(10n+8){--cap:var(--mosscap9)}
+  .c-plate:nth-child(10n+9){--cap:var(--mosscap10)}.c-plate:nth-child(10n+0){--cap:var(--mosscap1)}
+  .c-plate .c-np-rune{font-family:'Noto Sans Ogham',var(--mono);font-size:18px;line-height:1;color:var(--moss)}
+  .c-plate .c-np-name{font-size:16px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.5px;color:#e6f2e8}
+  .c-plate .c-np-about{font-size:11px;letter-spacing:.3px;color:#9aa189}
+  .c-plate:active{transform:scale(.985)}
+  /* the current page's plate is lume-glowed AT REST — never reveal-on-hover */
+  .c-plate.here{border-color:rgba(169,230,195,.5);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 24px -6px rgba(169,230,195,.35)}
+  .c-plate.here .c-np-rune,.c-plate.here .c-np-name{color:var(--lume2);text-shadow:0 0 10px rgba(169,230,195,.5)}
+  .c-navsheet .c-ns-foot{margin-top:16px;display:flex;justify-content:center}
+  .c-navsheet .c-ns-note{margin-top:20px;text-align:center;font-style:italic;font-size:12.5px;color:#5e7160}
+  .c-navsheet .c-ns-note .c-rune{font-family:'Noto Sans Ogham';color:rgba(45,90,66,.85);margin-left:7px}
+
+  body.c-locked{overflow:hidden}
+}
+
+/* ── hover translation (pointer-only adornment — behaviour stays tap-driven;
+     identical to the homepage layer, so touch can never latch a hover) ──── */
+@media (max-width:1024px) and (hover:hover){
+  .c-btn:hover{color:var(--biolume);border-color:rgba(99,224,160,.55);text-shadow:0 0 12px rgba(99,224,160,.6)}
+  .c-close:hover{color:var(--biolume);border-color:rgba(99,224,160,.7)}
+  .c-plate:hover{border-color:rgba(99,224,160,.45);
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.12),0 0 22px -7px rgba(99,224,160,.35)}
+}
+
+/* ── narrow retunes (still compact; fluid from ~320px up) ────────────────── */
+@media (max-width:620px){
+  .c-nav-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:380px){
+  .c-btn--menu{padding:0 12px 0 11px}
+  .c-btn--menu .c-menu-t{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .c-navsheet{transition-duration:.01ms}
+}
