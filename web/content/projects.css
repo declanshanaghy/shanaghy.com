@@ -686,6 +686,8 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
   content:"";position:sticky;right:0;flex:0 0 22px;margin-left:-22px;pointer-events:none;
   background:linear-gradient(90deg,rgba(7,10,8,0),rgba(7,10,8,.92));
 }
+/* tall portrait sights sit in a narrower frame so they do not stretch the strip */
+.showcase-gallery figure.narrow{width:190px}
 /* the 512px throne shots stay crisp: cap tiles at 420px */
 .showcase-gallery figure{width:min(420px,72vw)}
 
