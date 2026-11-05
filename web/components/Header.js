@@ -16,7 +16,7 @@ export default function Header({ here }) {
       <a className="brand" href="/">
         <img
           className="brand-logo"
-          src="/assets/icons/forge-logo.png"
+          src="/assets/icons/forge-logo.webp"
           alt="The name of the forge, in ogham carved on mossy stone"
           width={160}
           height={40}
