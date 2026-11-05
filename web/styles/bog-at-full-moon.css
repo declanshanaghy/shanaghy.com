@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE BOG AT FULL MOON — canonical design token file (Luna IV · approved)
+   ═══════════════════════════════════════════════════════════════════════════
+
+   Single source of truth for the Bog at Full Moon theme.  Paste the :root
+   block below into every page css that adopts this theme, or @import this
+   file at the top of a page css (the paste form is web/styles/bog-paste.paste.css).
+
+   WIRING CONTRACT — identical to moss-caps.css but retinted for the bog:
+     1. every card-like element carries --cap in its background-image stack
+        (see moss-caps.css for full wiring contract — only hex values change)
+     2. the bog palette replaces the moonlit palette everywhere:
+          import this file OR paste the :root block at the top of the page css,
+          then use the bog token names in place of the moonlit names
+     3. the FIRE stays warm (site law, unchanged):
+          candle colours, peat amber, ember glows — do NOT replace them with bog
+
+   THE TEN SILHOUETTES (unchanged from moss-caps.css — only retinted):
+     1 the full crown   — lush even growth, the classic mossy stone
+     2 the west cascade — heavy growth falling from the left, thinning east
+     3 the east cascade — mirrored, moonlight escaping the thin west
+     4 the dusting      — sparse clumps, the moonlit rim mostly bare
+     5 the mound        — one great mass mid-crown, light at both shoulders
+     6 the drips        — a crown with long strands hanging down the face
+     7 the climb        — moss claiming both corners, the center left open
+     8 the patchwork    — clumps with wide gaps, light bleeding through
+     9 the shag         — deep overgrowth swallowing nearly all the light
+    10 the wind-brush   — growth swept rightward, trailing tails, bare west
+
+   BOG PALETTE (the canonical token set for this theme):
+     --bog-void:#040a07  --bog-black:#060d09  --bog-deep:#0a1712
+     --bog-moss:#122a1e  --bog-leaf:#1c3f2c
+     --lume:#a9e6c3   --silver:#e6f2e8   --moon:#f3faf1
+     --pale:#cfe4d6   --dust:#d9d6bd     --dust-dim:#9aa189
+     --biolume:#63e0a0  --biolume-dim:#2f8f66
+
+   MOONLIT→BOG SWEEP (replace these hex values across all page css when migrating):
+     — backgrounds and stones —
+     #070a08 → #060d09   (#bg       → bog-black)
+     #040705 → #040a07   (#bg2      → bog-void)
+     #1a231a → #122a1e   (#stone-hi → bog-moss)
+     #0d130d → #0a1712   (#stone-lo → bog-deep)
+     #2f3d2e → #1c3f2c   (#edge     → bog-leaf)
+     #19221a → #0d1f17   (stone card hi)
+     #121a12 → #091410   (stone card mid)
+     #0c120c → #040a07   (stone card lo)
+     #1b2419 → #0d1f17   (sheet bg hi)
+     — moss greens (the six solids) —
+     #57713f → #2d5a42   (warm mid-olive  → cool bog moss)
+     #68804e → #3d6b52   (warm hi-olive   → bog mid-moss)
+     #7e9764 → #4f8468   (warm sage       → bog sage)
+     #4a5f39 → #1f4835   (dark olive      → dark bog)
+     #94ac78 → #5e9478   (light sage      → bog hi-moss)
+     #557040 → #2a5842   (medium olive    → bog mid-dark)
+     — highlights and accents —
+     rgba(169,195,145,X) → rgba(99,224,160,X)   (biolume glow)
+     rgba(194,220,166,X) → rgba(169,230,195,X)  (lume shimmer)
+     rgba(216,236,222,X) → rgba(230,242,232,X)  (silver light)
+     — text and chrome —
+     #dcecd9 → #f3faf1   (--moon)
+     #b7cdb9 → #e6f2e8   (--silver)
+     #c9dcc7 → #cfe4d6   (--parch  → --pale)
+     #8ca089 → #9aa189   (--muted  → --dust-dim)
+     #5e7160 → #5e7160   (--dim    unchanged)
+     #d9ead6 → #e6f2e8   (card heading)
+     #93a891 → #93a891   (italic body unchanged)
+     #9db598 → #a7c3b3   (card prose)
+     #a3c79b → #7fc9a4   (marks/lang)
+     #8ba389 → #8ba389   (year/meta unchanged)
+     #8fae8c → #8ba389   (nav label unchanged)
+     rgba(126,151,100,X) → rgba(99,224,160,X)   (edge accents → biolume)
+     rgba(148,173,120,X) → rgba(99,224,160,X)   (moss-hi accents → biolume)
+     rgba(169,230,195,X) → rgba(169,230,195,X)  (lume unchanged)
+     rgba(214,236,222,X) → rgba(230,242,232,X)  (silver light)
+     rgba(198,240,216,X) → rgba(169,230,195,X)  (lume alt)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── bog palette tokens ──────────────────────────────────────────────── */
+  --bog-void:#040a07;
+  --bog-black:#060d09;
+  --bog-deep:#0a1712;
+  --bog-moss:#122a1e;
+  --bog-leaf:#1c3f2c;
+  --lume:#a9e6c3;
+  --silver:#e6f2e8;
+  --moon:#f3faf1;
+  --pale:#cfe4d6;
+  --dust:#d9d6bd;
+  --dust-dim:#9aa189;
+  --biolume:#63e0a0;
+  --biolume-dim:#2f8f66;
+
+  /* ── grain and mottle (identical to moss-caps.css — stone texture) ───── */
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  --mottle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.028' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23m)'/%3E%3C/svg%3E");
+
+  /* ══════════════════════════════════════════════════════════════════════
+     THE TEN BOG MOSS CAPS — silhouettes byte-identical to moss-caps.css;
+     hex values retinted to the Bog at Full Moon palette
+     ══════════════════════════════════════════════════════════════════════ */
+
+  /* 1 — the full crown: lush, even, the classic mossy stone */
+  --mosscap1:
+    radial-gradient(11% 30px at 4% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(8% 44px at 14% 0%, #3d6b52, rgba(61,107,82,0) 74%),
+    radial-gradient(13% 26px at 28% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(9% 38px at 40% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(14% 32px at 54% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(10% 24px at 68% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(8% 46px at 80% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(12% 28px at 95% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(6% 14px at 22% 0%, rgba(99,224,160,.85), rgba(99,224,160,0) 70%),
+    radial-gradient(5% 12px at 58% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(7% 16px at 87% 0%, rgba(99,224,160,.72), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,0) 36px),
+    radial-gradient(150% 90% at 74% 0%, rgba(230,242,232,.07), transparent 55%);
+
+  /* 2 — the west cascade: heavy growth falling from the left */
+  --mosscap2:
+    radial-gradient(16% 44px at 0% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(13% 52px at 9% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(11% 36px at 20% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(14% 30px at 31% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(9% 34px at 43% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 20px at 56% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(5% 14px at 70% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(4% 10px at 84% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 16px at 14% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 34% 0%, rgba(99,224,160,.78), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,0) 42px),
+    radial-gradient(150% 95% at 86% 0%, rgba(230,242,232,.09), transparent 55%);
+
+  /* 3 — the east cascade: mirrored, moonlight escaping the west */
+  --mosscap3:
+    radial-gradient(16% 44px at 100% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(13% 52px at 91% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(11% 36px at 80% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(14% 30px at 69% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(9% 34px at 57% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 20px at 44% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(5% 14px at 30% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(4% 10px at 16% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 16px at 86% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 66% 0%, rgba(99,224,160,.78), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,0) 42px),
+    radial-gradient(150% 95% at 14% 0%, rgba(230,242,232,.09), transparent 55%);
+
+  /* 4 — the dusting: sparse clumps on a bare moonlit rim */
+  --mosscap4:
+    radial-gradient(7% 20px at 10% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(5% 16px at 26% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(8% 22px at 44% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(6% 18px at 63% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(5% 14px at 80% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(6% 16px at 94% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(4% 10px at 35% 0%, rgba(169,230,195,.7), rgba(169,230,195,0) 70%),
+    radial-gradient(4% 10px at 72% 0%, rgba(99,224,160,.68), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,0) 28px),
+    radial-gradient(160% 95% at 50% 0%, rgba(230,242,232,.12), transparent 58%);
+
+  /* 5 — the mound: one great mass mid-crown, light at both shoulders */
+  --mosscap5:
+    radial-gradient(30% 54px at 50% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(20% 44px at 42% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(20% 46px at 60% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 26px at 32% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(12% 28px at 70% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(7% 16px at 52% 0%, rgba(169,230,195,.85), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 44% 0%, rgba(99,224,160,.75), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,0) 44px),
+    radial-gradient(120% 80% at 12% 0%, rgba(230,242,232,.08), transparent 55%),
+    radial-gradient(120% 80% at 88% 0%, rgba(230,242,232,.08), transparent 55%);
+
+  /* 6 — the drips: a crown with long strands hanging down the face */
+  --mosscap6:
+    radial-gradient(12% 28px at 6% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(10% 26px at 22% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(12% 30px at 38% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(11% 26px at 56% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(10% 28px at 72% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(12% 26px at 92% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(4% 58px at 18% 0%, #1f4835, rgba(31,72,53,0) 78%),
+    radial-gradient(3.5% 66px at 50% 0%, #2a5842, rgba(42,88,66,0) 78%),
+    radial-gradient(4% 54px at 80% 0%, #1f4835, rgba(31,72,53,0) 78%),
+    radial-gradient(5% 12px at 30% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 64% 0%, rgba(99,224,160,.75), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 38px),
+    radial-gradient(150% 90% at 74% 0%, rgba(230,242,232,.07), transparent 55%);
+
+  /* 7 — the climb: moss claiming both corners, the center left open */
+  --mosscap7:
+    radial-gradient(15% 46px at 0% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 36px at 9% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(8% 24px at 20% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(15% 46px at 100% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 36px at 91% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(8% 24px at 80% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(5% 14px at 13% 0%, rgba(169,230,195,.75), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 14px at 87% 0%, rgba(99,224,160,.75), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 40px),
+    radial-gradient(150% 90% at 50% 0%, rgba(230,242,232,.11), transparent 58%);
+
+  /* 8 — the patchwork: clumps with wide gaps, light bleeding through */
+  --mosscap8:
+    radial-gradient(10% 34px at 8% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(13% 26px at 34% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(9% 38px at 52% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 28px at 76% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(8% 22px at 95% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(4% 10px at 22% 0%, rgba(169,230,195,.72), rgba(169,230,195,0) 70%),
+    radial-gradient(4% 10px at 64% 0%, rgba(99,224,160,.7), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,0) 34px),
+    radial-gradient(130% 85% at 22% 0%, rgba(230,242,232,.12), transparent 55%),
+    radial-gradient(130% 85% at 64% 0%, rgba(230,242,232,.12), transparent 55%);
+
+  /* 9 — the shag: deep overgrowth swallowing nearly all the light */
+  --mosscap9:
+    radial-gradient(14% 48px at 0% 0%, #1f4835, rgba(31,72,53,0) 76%),
+    radial-gradient(16% 56px at 10% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(14% 50px at 24% 0%, #3d6b52, rgba(61,107,82,0) 74%),
+    radial-gradient(16% 58px at 38% 0%, #2a5842, rgba(42,88,66,0) 74%),
+    radial-gradient(14% 52px at 52% 0%, #1f4835, rgba(31,72,53,0) 76%),
+    radial-gradient(16% 56px at 66% 0%, #3d6b52, rgba(61,107,82,0) 74%),
+    radial-gradient(14% 48px at 80% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(15% 52px at 96% 0%, #1f4835, rgba(31,72,53,0) 76%),
+    radial-gradient(7% 18px at 16% 0%, rgba(99,224,160,.85), rgba(99,224,160,0) 70%),
+    radial-gradient(6% 16px at 46% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(7% 18px at 74% 0%, rgba(99,224,160,.8), rgba(99,224,160,0) 70%),
+    radial-gradient(6% 14px at 90% 0%, rgba(169,230,195,.7), rgba(169,230,195,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,0) 48px),
+    radial-gradient(150% 90% at 50% 0%, rgba(230,242,232,.05), transparent 55%);
+
+  /* 10 — the wind-brush: growth swept rightward, bare west */
+  --mosscap10:
+    radial-gradient(22% 24px at 34% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(24% 26px at 56% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(26% 22px at 78% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(18% 30px at 94% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(10% 16px at 22% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(8% 14px at 88% 0%, rgba(169,230,195,.78), rgba(169,230,195,0) 70%),
+    radial-gradient(7% 12px at 60% 0%, rgba(99,224,160,.72), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
+    radial-gradient(150% 90% at 12% 0%, rgba(230,242,232,.09), transparent 55%);
+}

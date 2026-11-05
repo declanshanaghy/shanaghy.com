@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Stones — the archive of groves · FiremanDecko</title>
+<meta name="description" content="The Stones: a quiet archive of 50 stones in 7 groves and 3 keepers — the bog at full moon." />
+<style>
+  /* ============================================================
+     THE STONES — the archive
+     "The Bog at Full Moon" — painterly dark-fantasy maximalism
+     single file · all inline · zero network · system fonts only
+     ============================================================ */
+  :root{
+    --bog-void:#040a07;
+    --bog-black:#060d09;
+    --bog-deep:#0a1712;
+    --bog-moss:#122a1e;
+    --bog-leaf:#1c3f2c;
+    --lume:#a9e6c3;
+    --silver:#e6f2e8;
+    --moon:#f3faf1;
+    --pale:#cfe4d6;
+    --dust:#d9d6bd;
+    --dust-dim:#9aa189;
+    --biolume:#63e0a0;
+    --biolume-dim:#2f8f66;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bog-void);scroll-behavior:smooth}
+  body{
+    font-family:var(--serif);
+    color:var(--pale);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100%;
+    background:var(--bog-void);
+  }
+  ::selection{background:rgba(99,224,160,.28);color:var(--moon)}
+
+  /* ---------- fixed painterly backdrop ---------- */
+  #stage{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+    background:radial-gradient(120% 90% at 63% 20%, #0e2018 0%, #08130e 44%, #040a07 100%);}
+  #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #moss{position:absolute;inset:0;width:100%;height:100%;z-index:4;mix-blend-mode:screen;opacity:.85}
+  #vignette{position:absolute;inset:0;z-index:5;
+    background:radial-gradient(135% 105% at 63% 24%, rgba(0,0,0,0) 34%, rgba(4,10,7,.58) 76%, rgba(2,6,4,.94) 100%)}
+  #bloom{position:absolute;inset:0;z-index:6;mix-blend-mode:screen;filter:blur(2px);
+    background:radial-gradient(42% 30% at 63% 20%, rgba(169,230,195,.20) 0%, rgba(169,230,195,.05) 46%, rgba(169,230,195,0) 74%)}
+
+  /* ---------- topbar: a moss-overgrown beam ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    background:
+      linear-gradient(180deg, rgba(6,13,9,.94) 0%, rgba(8,18,13,.90) 66%, rgba(4,10,7,.72) 100%);
+    border-bottom:1px solid rgba(99,224,160,.22);
+    box-shadow:0 12px 34px rgba(0,0,0,.6), inset 0 -1px 0 rgba(99,224,160,.12);
+    backdrop-filter:blur(6px);
+  }
+  .topbar::after{ /* moss cap creeping along the beam */
+    content:"";position:absolute;left:0;right:0;bottom:-9px;height:12px;pointer-events:none;
+    background:radial-gradient(60% 100% at 12% 0%, rgba(99,224,160,.40), transparent 70%),
+               radial-gradient(50% 100% at 48% 0%, rgba(99,224,160,.28), transparent 72%),
+               radial-gradient(55% 100% at 86% 0%, rgba(99,224,160,.34), transparent 70%);
+    opacity:.5;
+  }
+  .topbar-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;
+    gap:6px 4px;padding:12px clamp(14px,3.4vw,30px)}
+  .brand-mark{display:flex;align-items:center;gap:10px;margin-right:auto;text-decoration:none;
+    padding:4px 8px}
+  .brand-mark .sigil{width:26px;height:26px;filter:drop-shadow(0 0 10px rgba(99,224,160,.55));
+    animation:sigil-spin 60s linear infinite;transform-origin:center}
+  @keyframes sigil-spin{to{transform:rotate(360deg)}}
+  .brand-mark .word{font-family:var(--mono);font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--lume);text-shadow:0 0 16px rgba(99,224,160,.5)}
+  .nav{display:flex;align-items:center;flex-wrap:wrap;gap:2px 4px}
+  .nav a{
+    position:relative;text-decoration:none;color:var(--pale);
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    padding:8px 12px;border-radius:4px;transition:color .3s, text-shadow .3s;
+  }
+  .nav a::before{ /* firefly hover glow */
+    content:"";position:absolute;inset:0;border-radius:4px;opacity:0;transition:opacity .35s;
+    background:radial-gradient(70% 120% at 50% 120%, rgba(99,224,160,.34), transparent 72%);
+    pointer-events:none;
+  }
+  .nav a:hover,.nav a:focus-visible{color:var(--moon);text-shadow:0 0 16px rgba(99,224,160,.7);outline:none}
+  .nav a:hover::before,.nav a:focus-visible::before{opacity:1}
+  .nav a.current{color:var(--moon);text-shadow:0 0 18px rgba(99,224,160,.85)}
+  .nav a.current::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--biolume),transparent);
+    box-shadow:0 0 10px rgba(99,224,160,.9)}
+  .nav a .ext{font-size:9px;opacity:.6;margin-left:3px}
+
+  /* ---------- page column ---------- */
+  #page{position:relative;z-index:10;max-width:1180px;margin:0 auto;
+    padding:clamp(22px,4vw,54px) clamp(14px,3.4vw,30px) 40px}
+
+  /* ---------- hero plaque ---------- */
+  .hero{position:relative;text-align:center;padding:clamp(24px,4.4vw,54px) 22px;
+    margin-bottom:clamp(20px,3vw,34px);
+    background:
+      radial-gradient(90% 130% at 50% 0%, rgba(99,224,160,.10), transparent 70%),
+      linear-gradient(180deg, rgba(10,23,18,.72), rgba(6,13,9,.62));
+    border:1px solid rgba(99,224,160,.24);
+    border-radius:14px;
+    box-shadow:inset 0 0 40px rgba(4,10,7,.7), 0 22px 60px rgba(0,0,0,.55);
+  }
+  .hero .frame{position:absolute;inset:8px;border:1px solid rgba(169,230,195,.14);border-radius:9px;pointer-events:none}
+  .hero .kicker{font-family:var(--mono);font-size:clamp(9px,1vw,12px);letter-spacing:.5em;text-transform:uppercase;
+    color:var(--biolume);text-shadow:0 0 18px rgba(99,224,160,.6);margin-bottom:.9em}
+  .hero h1{font-weight:500;font-size:clamp(40px,8.6vw,104px);line-height:.92;letter-spacing:.03em;color:var(--moon);
+    text-shadow:0 0 34px rgba(169,230,195,.42),0 0 96px rgba(99,224,160,.2),0 2px 3px rgba(0,0,0,.6)}
+  .hero h1 .thin{display:block;font-style:italic;font-weight:400;font-size:.26em;letter-spacing:.14em;color:var(--lume);margin-top:.5em;
+    text-shadow:0 0 22px rgba(169,230,195,.4)}
+  .hero-sub{margin-top:1.1em;font-style:italic;font-size:clamp(13px,1.6vw,19px);color:var(--silver);opacity:.9}
+  .hero-count{margin-top:1.05em;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:clamp(10px,1.2vw,13.5px);letter-spacing:.24em;text-transform:uppercase;
+    color:var(--lume);text-shadow:0 0 16px rgba(99,224,160,.5)}
+  .hero-count .sep{color:var(--biolume);opacity:.8;text-shadow:0 0 12px rgba(99,224,160,.9)}
+
+  /* ---------- rune tab strip ---------- */
+  .runestrip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 auto clamp(26px,4vw,46px);
+    padding:10px clamp(8px,2vw,16px);border-radius:12px;
+    background:linear-gradient(180deg, rgba(8,18,13,.6), rgba(5,11,8,.5));
+    border:1px solid rgba(99,224,160,.16);box-shadow:inset 0 0 26px rgba(4,10,7,.6)}
+  .rtab{display:flex;align-items:center;gap:8px;text-decoration:none;padding:7px 12px 7px 8px;border-radius:8px;
+    border:1px solid rgba(99,224,160,.16);
+    background:linear-gradient(180deg, rgba(12,28,20,.7), rgba(6,14,10,.6));
+    transition:border-color .3s, box-shadow .3s, transform .3s}
+  .rtab:hover,.rtab:focus-visible{transform:translateY(-2px);border-color:rgba(99,224,160,.5);
+    box-shadow:0 0 22px rgba(99,224,160,.28);outline:none}
+  .rt-rune{display:inline-flex;width:16px;height:24px;color:var(--biolume);opacity:.85;filter:drop-shadow(0 0 6px rgba(99,224,160,.6))}
+  .rt-rune svg,.lh-rune svg,.pl-rune svg{width:100%;height:100%;display:block}
+  .rt-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pale)}
+  .rt-count{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dust-dim)}
+  .rtab.active{border-color:rgba(99,224,160,.6);box-shadow:0 0 26px rgba(99,224,160,.34)}
+  .rtab.active .rt-label{color:var(--moon)}
+
+  /* ---------- grove: a clearing behind a mist curtain ---------- */
+  .grove{position:relative;margin-bottom:clamp(30px,5vw,58px);
+    padding:clamp(18px,3vw,30px) clamp(14px,2.6vw,26px);
+    background:linear-gradient(180deg, rgba(9,21,15,.52), rgba(5,12,9,.42));
+    border:1px solid rgba(99,224,160,.12);border-radius:16px;
+    box-shadow:inset 0 0 50px rgba(4,10,7,.6)}
+  .grove-head{display:flex;align-items:center;gap:clamp(12px,2vw,22px);flex-wrap:wrap;
+    padding-bottom:16px;margin-bottom:22px;border-bottom:1px solid rgba(99,224,160,.16)}
+  .lh-rune{display:inline-flex;width:clamp(24px,3vw,34px);height:clamp(38px,4.6vw,52px);
+    color:var(--lume);opacity:.9;filter:drop-shadow(0 0 12px rgba(99,224,160,.55))}
+  .lh-text{flex:1;min-width:200px}
+  .lh-over{font-family:var(--mono);font-size:clamp(9px,1vw,11.5px);letter-spacing:.34em;text-transform:uppercase;
+    color:var(--biolume);opacity:.9;text-shadow:0 0 14px rgba(99,224,160,.5)}
+  .lh-text h2{font-weight:500;font-size:clamp(24px,3.6vw,42px);line-height:1.02;color:var(--moon);margin:.14em 0 .18em;
+    text-shadow:0 0 26px rgba(169,230,195,.36),0 1px 2px rgba(0,0,0,.6)}
+  .lh-lede{font-style:italic;font-size:clamp(12.5px,1.5vw,17px);color:var(--silver);opacity:.88;max-width:62ch}
+  .lh-plaque{display:flex;align-items:center;gap:9px;padding:9px 14px;border-radius:8px;
+    background:radial-gradient(120% 160% at 50% -30%, rgba(99,224,160,.22), transparent 70%),
+              linear-gradient(180deg, rgba(12,28,20,.86), rgba(6,14,10,.8));
+    border:1px solid rgba(99,224,160,.34);box-shadow:0 0 22px rgba(99,224,160,.18), inset 0 0 16px rgba(4,10,7,.7)}
+  .pl-rune{display:inline-flex;width:11px;height:18px;color:var(--biolume);filter:drop-shadow(0 0 6px rgba(99,224,160,.6))}
+  .pl-count{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lume);
+    text-shadow:0 0 14px rgba(99,224,160,.5)}
+
+  /* ---------- grid of standing stones ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:clamp(16px,2vw,24px)}
+  .keepers-grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+
+  .stone,.keeper{position:relative;
+    padding:24px 18px 18px;
+    border-radius:9px 9px 12px 12px;
+    background:
+      linear-gradient(180deg, #0b1a12 0%, #08130d 58%, #050c08 100%);
+    border:1px solid rgba(99,224,160,.18);
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.10), 0 16px 38px rgba(0,0,0,.55);
+    transition:transform .4s, box-shadow .4s, border-color .4s;
+    overflow:visible;
+  }
+  .stone::before,.keeper::before{ /* the standing face — a hewn taper */
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(180deg, rgba(99,224,160,.06), transparent 26%),
+               radial-gradient(90% 60% at 50% 108%, rgba(4,10,7,.6), transparent 70%);
+    clip-path:polygon(3% 0,97% 0,100% 5%,98% 100%,2% 100%,0 5%);
+  }
+  .stone:hover,.keeper:hover{transform:translateY(-4px);border-color:rgba(99,224,160,.44);
+    box-shadow:inset 0 1px 0 rgba(169,230,195,.16), 0 22px 50px rgba(0,0,0,.6), 0 0 34px rgba(99,224,160,.2)}
+  .stone-cap{position:absolute;left:0;right:0;top:-2px;width:100%;height:22px;pointer-events:none;opacity:.95}
+  .stone-link{position:absolute;inset:0;z-index:2;border-radius:inherit}
+  .stone-link:focus-visible{outline:2px solid rgba(99,224,160,.6);outline-offset:3px}
+
+  .wisp{position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:64px;height:64px;z-index:1;
+    pointer-events:none;filter:drop-shadow(0 0 14px rgba(99,224,160,.65))}
+  .wisp .cage{width:100%;height:100%;animation:wisp-float 7s ease-in-out infinite, wisp-spin 26s linear infinite;transform-origin:center}
+  @keyframes wisp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  @keyframes wisp-spin{to{transform:rotate(360deg)}}
+
+  .stone-name{position:relative;z-index:3;font-weight:500;font-size:clamp(17px,1.9vw,22px);line-height:1.12;margin-bottom:.55em}
+  .stone-name a{color:var(--moon);text-decoration:none;
+    text-shadow:0 0 20px rgba(169,230,195,.55), 0 -1px 0 rgba(0,0,0,.85), 0 1px 1px rgba(99,224,160,.25)}
+  .stone-name a:hover{text-shadow:0 0 28px rgba(169,230,195,.9), 0 0 60px rgba(99,224,160,.5), 0 -1px 0 rgba(0,0,0,.85)}
+  .stone-story{position:relative;z-index:1;font-size:13.5px;line-height:1.56;color:var(--pale);opacity:.9}
+  .stone-story a,.playsline a{color:var(--lume);text-decoration:none;border-bottom:1px solid rgba(99,224,160,.4);
+    text-shadow:0 0 12px rgba(99,224,160,.4)}
+  .stone-story a:hover,.playsline a:hover{color:var(--moon);border-color:var(--biolume)}
+  .playsline{position:relative;z-index:1;margin-top:.7em;font-style:italic;font-size:12.5px;color:var(--dust-dim)}
+  .marks{position:relative;z-index:1;margin-top:1.05em;padding-top:.8em;border-top:1px solid rgba(99,224,160,.12);
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dust-dim)}
+  .m-lang{color:var(--lume);opacity:.9}
+  .m-sep{color:var(--biolume);opacity:.7}
+  .m-gh{color:var(--dust-dim);opacity:.8;letter-spacing:.12em}
+
+  /* lamp above the keepers' stones */
+  .keeper-lamp{position:absolute;top:-34px;left:50%;transform:translateX(-50%);width:56px;height:56px;z-index:1;
+    pointer-events:none;filter:drop-shadow(0 0 16px rgba(99,224,160,.75))}
+  .keeper-lamp svg{width:100%;height:100%;animation:lamp-pulse 4.6s ease-in-out infinite}
+  @keyframes lamp-pulse{0%,100%{opacity:.82}50%{opacity:1}}
+  .grove-keepers .stone-name a{color:var(--lume)}
+
+  /* ---------- mist curtain between clearings ---------- */
+  .mist-sep{height:clamp(48px,7vw,96px);margin:0 auto;max-width:1180px;opacity:.85;pointer-events:none}
+  .mist-sep svg{width:100%;height:100%;display:block}
+
+  /* ---------- footer ---------- */
+  .foot{position:relative;z-index:10;max-width:1180px;margin:0 auto;padding:34px clamp(14px,3.4vw,30px) 70px;
+    text-align:center;border-top:1px solid rgba(99,224,160,.16)}
+  .foot-line{font-style:italic;font-size:13.5px;color:var(--silver);opacity:.85;max-width:60ch;margin:0 auto}
+  .foot-gh{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--lume);text-decoration:none;text-shadow:0 0 16px rgba(99,224,160,.5)}
+  .foot-gh:hover{color:var(--moon);text-shadow:0 0 24px rgba(99,224,160,.9)}
+  .foot-copy{margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dust-dim);opacity:.72}
+
+  @media (max-width:640px){
+    .brand-mark .word{display:none}
+    .nav a{font-size:10px;padding:7px 8px;letter-spacing:.14em}
+    .lh-plaque{width:100%;justify-content:center}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .brand-mark .sigil,.wisp .cage,.keeper-lamp svg{animation:none}
+    .rtab:hover,.stone:hover,.keeper:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div id="stage" aria-hidden="true">
+  <canvas id="scene"></canvas>
+  <svg id="moss" preserveAspectRatio="none"></svg>
+  <div id="bloom"></div>
+  <div id="vignette"></div>
+</div>
+
+<!-- ═══════════ SHARED SIGILS & ORNAMENTS — glyphs cut as SVG geometry ═══════════ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- futhark-rune staves, carved (never a typed unicode glyph) -->
+    <symbol id="rune-ai" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M20 8 L33 22 M20 26 L33 40"/></g></symbol>
+    <symbol id="rune-home" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M20 8 L7 22 M20 26 L7 40"/></g></symbol>
+    <symbol id="rune-web" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M9 16 L31 34 M31 16 L9 34"/></g></symbol>
+    <symbol id="rune-games" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M20 30 L35 13"/></g></symbol>
+    <symbol id="rune-print" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M20 38 L33 52"/></g></symbol>
+    <symbol id="rune-hardware" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M7 13 H33 M20 4 L33 17"/></g></symbol>
+    <symbol id="rune-misc" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M20 24 L34 10 M20 24 L34 40"/></g></symbol>
+    <symbol id="rune-keepers" viewBox="0 0 40 64"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 V60 M20 14 L33 26 L20 40 L7 26 Z"/></g></symbol>
+
+    <!-- the moon-sigil of the forge -->
+    <symbol id="forge-moon" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="3">
+        <circle cx="50" cy="50" r="34"/>
+        <ellipse cx="50" cy="50" rx="34" ry="12"/>
+        <ellipse cx="50" cy="50" rx="12" ry="34"/>
+        <path d="M50 16 L74 33 L74 67 L50 84 L26 67 L26 33 Z" stroke-opacity=".55"/>
+      </g>
+      <circle cx="50" cy="50" r="4" fill="currentColor"/>
+    </symbol>
+
+    <!-- will-o'-the-wisp: a glowing wireframe cage -->
+    <symbol id="wisp-cage" viewBox="0 0 64 64">
+      <g fill="none" stroke="#d6ecd8" stroke-width="1" opacity=".5">
+        <path d="M32 12 L52 24 L52 40 L32 52 L12 40 L12 24 Z"/>
+        <path d="M32 12 L32 52 M12 24 L52 40 M52 24 L12 40"/>
+        <path d="M32 4 L56 30 L32 60 L8 30 Z" stroke-opacity=".4"/>
+      </g>
+      <circle cx="32" cy="32" r="13" fill="none" stroke="#a9e6c3" stroke-width=".8" opacity=".55"/>
+      <radialGradient id="wg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#f5fbf5" stop-opacity=".95"/>
+        <stop offset="45%" stop-color="#a9e6c3" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#63e0a0" stop-opacity="0"/>
+      </radialGradient>
+      <circle cx="32" cy="32" r="11" fill="url(#wg)"/>
+      <circle cx="32" cy="32" r="3.4" fill="#f3faf1"/>
+    </symbol>
+
+    <!-- keeper lamp -->
+    <symbol id="keeper-lamp" viewBox="0 0 64 64">
+      <g fill="none" stroke="#d6ecd8" stroke-width="1.1" opacity=".6">
+        <path d="M32 8 L44 20 V40 L32 54 L20 40 V20 Z"/>
+        <path d="M32 2 V62 M4 32 H60" stroke-opacity=".3"/>
+        <path d="M8 8 L56 56 M56 8 L8 56" stroke-opacity=".22"/>
+      </g>
+      <radialGradient id="lg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity=".95"/>
+        <stop offset="40%" stop-color="#a9e6c3" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#63e0a0" stop-opacity="0"/>
+      </radialGradient>
+      <circle cx="32" cy="30" r="14" fill="url(#lg)"/>
+      <ellipse cx="32" cy="30" rx="4.2" ry="7" fill="#f3faf1"/>
+    </symbol>
+
+    <!-- moss cap for the standing stones -->
+    <symbol id="moss-cap" viewBox="0 0 200 24" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="mcg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#63e0a0" stop-opacity=".85"/>
+          <stop offset="60%" stop-color="#2f8f66" stop-opacity=".5"/>
+          <stop offset="100%" stop-color="#122a1e" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 0 H200 V8 Q186 17 172 9 Q158 2 144 11 Q130 19 116 8 Q102 0 88 10 Q74 19 60 9 Q46 0 32 10 Q18 19 4 8 Q2 6 0 7 Z" fill="url(#mcg)"/>
+      <g fill="#a9e6c3" opacity=".55">
+        <circle cx="24" cy="9" r="1.6"/><circle cx="58" cy="11" r="1.4"/><circle cx="96" cy="8" r="1.8"/>
+        <circle cx="132" cy="11" r="1.3"/><circle cx="168" cy="9" r="1.6"/><circle cx="42" cy="6" r="1"/>
+        <circle cx="112" cy="5" r="1"/><circle cx="150" cy="6" r="1.1"/>
+      </g>
+    </symbol>
+
+    <!-- mist curtain separating the clearings -->
+    <symbol id="mist-curtain" viewBox="0 0 1200 130" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="mt1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#96c8af" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#96c8af" stop-opacity=".14"/>
+          <stop offset="100%" stop-color="#96c8af" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="mt2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#b4d5c0" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#b4d5c0" stop-opacity=".1"/>
+          <stop offset="100%" stop-color="#b4d5c0" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="300" cy="60" rx="420" ry="34" fill="url(#mt1)"/>
+      <ellipse cx="880" cy="72" rx="470" ry="40" fill="url(#mt2)"/>
+      <ellipse cx="600" cy="40" rx="300" ry="24" fill="url(#mt1)"/>
+      <g fill="none" stroke="#a9e6c3" stroke-width="1" opacity=".35">
+        <path d="M0 66 Q300 44 600 64 T1200 58"/>
+        <path d="M0 84 Q360 108 720 84 T1200 92" opacity=".7"/>
+      </g>
+      <g fill="#a9e6c3" opacity=".5">
+        <circle cx="150" cy="62" r="2"/><circle cx="600" cy="58" r="2.4"/><circle cx="1050" cy="86" r="1.8"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════ TOPBAR — a moss-overgrown beam ═══════════ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-mark" href="index.html" aria-label="FiremanDecko — the front door">
+      <svg class="sigil" viewBox="0 0 100 100" aria-hidden="true"><use href="#forge-moon"/></svg>
+      <span class="word">FiremanDecko</span>
+    </a>
+    <nav class="nav" aria-label="The garden">
+      <a href="creed.html">The Creed</a>
+      <a href="garden.html">The Garden</a>
+      <a href="https://www.shanaghy.com/paths/" target="_blank" rel="noopener">The Paths<span class="ext">&#8599;</span></a>
+      <a href="projects.html" class="current" aria-current="page">The Stones</a>
+      <a href="https://www.shanaghy.com/sites/" target="_blank" rel="noopener">The RingForts<span class="ext">&#8599;</span></a>
+      <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">The Towers<span class="ext">&#8599;</span></a>
+      <a href="https://www.shanaghy.com/sessions/" target="_blank" rel="noopener">The Ballads<span class="ext">&#8599;</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="page">
+  <!-- ═══════════ HERO — the archive plaque ═══════════ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <span class="frame" aria-hidden="true"></span>
+    <p class="kicker">the archive &nbsp;·&nbsp; the stones</p>
+    <h1 id="hero-title">The Stones<span class="thin">groves of standing stones at the water's edge</span></h1>
+    <p class="hero-sub">A quiet archive from Athlone, Co. Westmeath</p>
+    <p class="hero-count">
+      <span>50 stones</span><span class="sep">&#9670;</span><span>7 groves</span><span class="sep">&#9670;</span><span>3 keepers</span>
+    </p>
+  </section>
+
+  <!-- ═══════════ RUNE TAB STRIP — the groves at a glance ═══════════ -->
+  <nav class="runestrip" aria-label="The groves">
+      <a class="rtab" href="#grove-ai"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-ai"/></svg></span><span class="rt-label">Agents</span><span class="rt-count">&times;7</span></a>
+      <a class="rtab" href="#grove-home"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-home"/></svg></span><span class="rt-label">Hearth</span><span class="rt-count">&times;7</span></a>
+      <a class="rtab" href="#grove-web"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-web"/></svg></span><span class="rt-label">Webwork</span><span class="rt-count">&times;9</span></a>
+      <a class="rtab" href="#grove-games"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-games"/></svg></span><span class="rt-label">Games</span><span class="rt-count">&times;3</span></a>
+      <a class="rtab" href="#grove-print"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-print"/></svg></span><span class="rt-label">Craft</span><span class="rt-count">&times;3</span></a>
+      <a class="rtab" href="#grove-hardware"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-hardware"/></svg></span><span class="rt-label">Elders</span><span class="rt-count">&times;19</span></a>
+      <a class="rtab" href="#grove-misc"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-misc"/></svg></span><span class="rt-label">Curio</span><span class="rt-count">&times;2</span></a>
+      <a class="rtab" href="#grove-keepers"><span class="rt-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-keepers"/></svg></span><span class="rt-label">Keepers</span><span class="rt-count">&times;3</span></a>
+  </nav>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+  <section class="grove" id="grove-ai" aria-labelledby="h-grove-ai">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-ai"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove I · The Raven&#8217;s Perch</p>
+        <h2 id="h-grove-ai">AI &amp; Agents</h2>
+        <p class="lh-lede">Agent tooling, memory UIs, and model tending.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-ai"/></svg></span><span class="pl-count">7 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="honcho-ui">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/honcho-ui/" target="_blank" rel="noopener">honcho-ui</a></h3>
+        <p class="stone-story">A web UI for wandering the memory of Honcho — sessions, metadata, documents, insights pulled up from where they sank. The old stories say the hazel nuts of Segais drop only for those who wait at the well; this one fishes them out in the dark, and moss keeps the caches soft. Huginn flies out, but it is Muninn's pane that remembers.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="claude-todo">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/claude-todo/" target="_blank" rel="noopener">claude-todo</a></h3>
+        <p class="stone-story">A Claude Code mod: a per-session todo backlog that execs its titles into subagents, watched from a command-and-control pane. Like Bricriu's feast, every hero is seated at his own contest — and around this stone the party-command reels screen nightly, companions ordered across the field as the backlog orders its own.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">25 reels</a></p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="hermes-todo">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/hermes-todo/" target="_blank" rel="noopener">hermes-todo</a></h3>
+        <p class="stone-story">A per-repo todo backlog for Hermes agents — a worker per todo in its own git worktree, with guarded state transitions, prompt drafting, call tracing, and a TUI pane. The Valkyries chose their marked from orbit; these workers drop one per task, split the ground, and are not always gentle about it. The orbit-drops screen beside this stone.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">24 reels</a></p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="re-goatmower">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/re-goatmower/" target="_blank" rel="noopener">re-goatmower</a></h3>
+        <p class="stone-story">Gently untangling the goat. The pooka rode a tangled beast through the garden at dusk and left the knots for the morning; this repo is the patient comb, working the burrs out one commit at a time.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="ollama-models">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/ollama-models/" target="_blank" rel="noopener">ollama-models</a></h3>
+        <p class="stone-story">Custom model definitions for Open WebUI — vessels for shapes of thought. The Dagda's cauldron never sent a guest away unsatisfied; neither does this shelf, though every ladle comes out slightly different each time the moss is brushed aside.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="ai-prompts">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/ai-prompts/" target="_blank" rel="noopener">ai-prompts</a></h3>
+        <p class="stone-story">A collection of prompts — incantations in the making. The old scribes cut their strongest words in <a href="creed.html#two-tongues">ogham</a> along the edge of a stone so the wind could read them; these are cut along the edge of a prompt file. The spellbook reels screen beside this stone.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">6 reels</a></p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="odins-throne-hermes">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/odins-throne-hermes/" target="_blank" rel="noopener">odins-throne-hermes</a></h3>
+        <p class="stone-story">Hlidskjalf inside Hermes — watch the fleet's GKE agent Jobs from the desktop: live log streams, decrees, verdicts, Ragnarök. A vendored port of Odin's Throne, scoped to its own Norse theme.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove" id="grove-home" aria-labelledby="h-grove-home">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-home"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove II · The Listening Horn</p>
+        <h2 id="h-grove-home">Home Lab &amp; Automation</h2>
+        <p class="lh-lede">The house that watches itself.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-home"/></svg></span><span class="pl-count">7 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="vulcan-brownout">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/vulcan-brownout/" target="_blank" rel="noopener">vulcan-brownout</a></h3>
+        <p class="stone-story">A Home Assistant integration that watches low-battery devices through the house. Goibniu's forge never went cold, and neither should the sentries on the wall; this one tracks the embers as they fade and calls it the news. Mortar-line reels screen alongside.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">4 reels</a></p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="heimdall-battery-sentinel">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/heimdall-battery-sentinel/" target="_blank" rel="noopener">heimdall-battery-sentinel</a></h3>
+        <p class="stone-story">A battery power monitor for Home Assistant. <a class="persona" href="https://www.shanaghy.com/profiles/heimdall/" target="_blank" rel="noopener">Heimdall</a> hears the grass grow and needs less sleep than a bird; this sentinel hears the cells drain. The round towers kept their watch the same way — one bell, long before the shore was seen.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="heimdall_battery_sentinel">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/heimdall_battery_sentinel/" target="_blank" rel="noopener">heimdall_battery_sentinel</a></h3>
+        <p class="stone-story">The older rune of the battery watch — the first shape of the sentinel before it was renamed. Lia Fáil cried out under a rightful king, and this stone still cries out under every dying battery, in a voice the house has learned to trust.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="thor">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/thor/" target="_blank" rel="noopener">thor</a></h3>
+        <p class="stone-story">An electricity monitor. Taranis hurled the thunder and counted every strike; this meter counts the quieter kind — the current passing the wall of an Athlone kitchen, storm or no storm. The meters that watch the storm screen beside it.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">3 reels</a></p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2021</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="bbqberry">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/bbqberry/" target="_blank" rel="noopener">bbqberry</a></h3>
+        <p class="stone-story">A Raspberry Pi tending the BBQ. The Bealtaine fires were lit to bless the herds and cook the year's first meat; this one keeps its own small fire and reports on it like a farmer at the gate. The fireside reels screen on the stone itself.</p>
+        <div class="marks"><span class="m-lang">Go</span><span class="m-sep">·</span><span class="m-year">2020</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="fitbitexp">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/fitbitexp/" target="_blank" rel="noopener">fitbitexp</a></h3>
+        <p class="stone-story">Fitbit data, kept. Oisín went hunting for the three hundred years of Tír na nÓg and found every step had been counted against him; this repo does the counting for you, moss creeping over the charts.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2017</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="electroplater">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/electroplater/" target="_blank" rel="noopener">electroplater</a></h3>
+        <p class="stone-story">Servo speed control for a WEMOS D1 mini (ESP8266), driven by a potentiometer. Lugh's spear never missed its mark, and neither does a well-trimmed pot; the reels of the steady hand at the stick screen alongside this stone.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">3 reels</a></p>
+        <div class="marks"><span class="m-lang">HTML</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove" id="grove-web" aria-labelledby="h-grove-web">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-web"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove III · The Weaver&#8217;s Knot</p>
+        <h2 id="h-grove-web">Web &amp; Extensions</h2>
+        <p class="lh-lede">Browser tweaks and quiet experiments.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-web"/></svg></span><span class="pl-count">9 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="chromext-amazon-order-filter">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/chromext-amazon-order-filter/" target="_blank" rel="noopener">chromext-amazon-order-filter</a></h3>
+        <p class="stone-story">A Chrome extension that filters Amazon order history by status — pending, returned, cancelled, completed — with a background-cached, client-side pager. The bog keeps everything that falls into it, but a good spade-wielder knows which stratum to lift; this one sifts the peat by status.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="gcal-always-monday">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/gcal-always-monday/" target="_blank" rel="noopener">gcal-always-monday</a></h3>
+        <p class="stone-story">A browser tweak that persuades Google Calendar every day is Monday. Manannán's mist folds the mornings over on each other so the traveler never knows which dawn he is walking into; here the week is folded politely flat.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="session-logs">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/session-logs/" target="_blank" rel="noopener">session-logs</a></h3>
+        <p class="stone-story">Session logs and artifacts. The monastic scribes copied their vellum not because the words would change but so they would not; this shelf holds the same stubbornness, ink drying under a small candle.</p>
+        <div class="marks"><span class="m-lang">HTML</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="dek-calculators1">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/dek-calculators1/" target="_blank" rel="noopener">dek-calculators1</a></h3>
+        <p class="stone-story">Assorted JavaScript calculators. The druids counted by rods and kept their arithmetic to themselves; these at least show their working, figures worn soft with moss.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">·</span><span class="m-year">2019</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="vercel-experiment">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/vercel-experiment/" target="_blank" rel="noopener">vercel-experiment</a></h3>
+        <p class="stone-story">An early Vercel deployment experiment. The first coracle crossing left the monks guessing which shore would answer; this one found out in a single push, and the answer was: it renders.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">·</span><span class="m-year">2022</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="docker-py-001">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/docker-py-001/" target="_blank" rel="noopener">docker-py-001</a></h3>
+        <p class="stone-story">First steps with Docker and Python. The first flagstone of Newgrange was laid without knowing the roof would still hold five thousand winters on; this container holds, for now.</p>
+        <div class="marks"><span class="m-lang">JavaScript</span><span class="m-sep">·</span><span class="m-year">2024</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="python-fundamentals">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/python-fundamentals/" target="_blank" rel="noopener">python-fundamentals</a></h3>
+        <p class="stone-story">Python fundamentals — notes and exercises. <a class="persona" href="https://www.shanaghy.com/profiles/fionn/" target="_blank" rel="noopener">Fionn</a> cooked the <a class="persona" href="https://www.shanaghy.com/profiles/salmon-of-knowledge/" target="_blank" rel="noopener">Salmon of Knowledge</a> and burned his thumb on it; every exercise here is a small scald taken on purpose, wisdom one bite at a time.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="rizz-power-up">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/rizz-power-up/" target="_blank" rel="noopener">rizz-power-up</a></h3>
+        <p class="stone-story">A TypeScript playfulness experiment. Aengus dreamt of a swan-girl and searched Ireland a year for the shape of the dream; this repo chased a smaller charm and caught it in fewer commits.</p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">·</span><span class="m-year">2025</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="dollar-game">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/dollar-game/" target="_blank" rel="noopener">dollar-game</a></h3>
+        <p class="stone-story">A TypeScript game of grinding out dollars, coin by coin. The Táin was fought over counted cattle; every tabletop keeps its own herds to tally. Reels of the turn-based tabletop screen alongside.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">4 reels</a></p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">·</span><span class="m-year">2025</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove" id="grove-games" aria-labelledby="h-grove-games">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-games"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove IV · The Parlor Dice</p>
+        <h2 id="h-grove-games">Games &amp; Play</h2>
+        <p class="lh-lede">Donal digs diamonds. And emeralds.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-games"/></svg></span><span class="pl-count">3 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="emerald-diggin-donal">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/emerald-diggin-donal/" target="_blank" rel="noopener">emerald-diggin-donal</a></h3>
+        <p class="stone-story">A faithful CGA web clone of Digger (1983) — Donal digs the most emeralds ever. The sídhe hoards are buried under green mounds for a reason, and this one buries them deeper.</p>
+        <div class="marks"><span class="m-lang">C</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="diamond-diggin-donal">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/diamond-diggin-donal/" target="_blank" rel="noopener">diamond-diggin-donal</a></h3>
+        <p class="stone-story">A faithful web port of Digger (1983), GPL v2 — and the garden arcade besides: every untamed world in the yard drains at last to the digger's field. All the wild roads of Cruachan run down into one cave; so do the reels.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">54 reels</a></p>
+        <div class="marks"><span class="m-lang">TypeScript</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="gwent">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/gwent/" target="_blank" rel="noopener">gwent</a></h3>
+        <p class="stone-story">An electronic Gwent board. The gods whiled the ages at fidchell, and the stakes were never small; this board hosts stranger contests still. The AI matches screen on the stone itself.</p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove" id="grove-print" aria-labelledby="h-grove-print">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-print"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove V · The Ring-Giver&#8217;s Gift</p>
+        <h2 id="h-grove-print">3D Print &amp; Craft</h2>
+        <p class="lh-lede">From Blender scripts to gold-plated Claddaghs.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-print"/></svg></span><span class="pl-count">3 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="DexOneRing">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/DexOneRing/" target="_blank" rel="noopener">DexOneRing</a></h3>
+        <p class="stone-story">A parameterized Blender-scripted, 3D-printable celtic ring — carved knotwork, runic inscription, gold inlay channel. Draupnir dripped eight rings of itself every ninth night; this one needs a printer and a plate of resin, but the echo is the same. The Norse-ring reels screen beside it.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">17 reels</a></p>
+        <div class="marks"><span class="m-lang">Python</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="PeytonsBirthdayCladdaghRing">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/PeytonsBirthdayCladdaghRing/" target="_blank" rel="noopener">PeytonsBirthdayCladdaghRing</a></h3>
+        <p class="stone-story">A photo log of making a Claddagh ring for Peyton's birthday — resin print to gold-plated finish. Midir wooed Étaín with tokens of the sídhe and the patience of fifty years; this forge took a weekend. Films of the medieval forge screen alongside.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">4 reels</a></p>
+        <div class="marks"><span class="m-lang">CSS</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="Accessories">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/Accessories/" target="_blank" rel="noopener">Accessories</a></h3>
+        <p class="stone-story">Various 3D and 2D models for accessories. Gobán Saor wandered the land building wonders for whoever asked well; this workbench keeps his habit, printing what the garden needs. The faire-machine reels screen on the stone itself.</p>
+        <div class="marks"><span class="m-lang">OpenSCAD</span><span class="m-sep">·</span><span class="m-year">2016</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove" id="grove-hardware" aria-labelledby="h-grove-hardware">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-hardware"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove VI · The Elder Stones</p>
+        <h2 id="h-grove-hardware">The Early Years — Hardware</h2>
+        <p class="lh-lede">Arduino boards, Eagle schematics, robots. The spores that started it all (2011&#8211;2019).</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-hardware"/></svg></span><span class="pl-count">19 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="ArduinoLibraries">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/ArduinoLibraries/" target="_blank" rel="noopener">ArduinoLibraries</a></h3>
+        <p class="stone-story">Arduino libraries for the chips used across the projects. Ogma cut <a href="creed.html#two-tongues">ogham</a> because ink was never deep enough; libraries are the same kind of scar — etched once, read by everything after. An LED scar screens on the stone itself.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">·</span><span class="m-year">2012</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="Morpheus">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/Morpheus/" target="_blank" rel="noopener">Morpheus</a></h3>
+        <p class="stone-story">A collection of hardware and software units for hobby robots. The Morrígan took three shapes in one morning and called each of them useful; this framework settles for the one that carries parts.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">·</span><span class="m-year">2012</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="JabberBot">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/JabberBot/" target="_blank" rel="noopener">JabberBot</a></h3>
+        <p class="stone-story">A Bluetooth remote-controlled robot. Cú Chulainn took the hound's place at Culann's gate and kept it a lifetime; this rover only has to keep the carpet. The robot-hound reels screen alongside.</p>
+      <p class="playsline">plays alongside: <a href="https://www.shanaghy.com/videos/" target="_blank" rel="noopener">3 reels</a></p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">·</span><span class="m-year">2011</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="VinoTemp">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/VinoTemp/" target="_blank" rel="noopener">VinoTemp</a></h3>
+        <p class="stone-story">A controller board for the VinoTemp wine fridge. The sídhe keep their good drink cool under the hills where the sun's arithmetic does not reach; this board does the same for an Athlone kitchen.</p>
+        <div class="marks"><span class="m-lang">Eagle</span><span class="m-sep">·</span><span class="m-year">2015</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="ByrneLite">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/ByrneLite/" target="_blank" rel="noopener">ByrneLite</a></h3>
+        <p class="stone-story">A three-port solid state relay board, the S108T02 at its heart. The old raths kept three-way gatestones — one path for each knock the visitor knew; Byrne by name, raven by temperament, this switch answers three doors at once.</p>
+        <div class="marks"><span class="m-lang">Arduino</span><span class="m-sep">·</span><span class="m-year">2013</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="BBRegulator">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/BBRegulator/" target="_blank" rel="noopener">BBRegulator</a></h3>
+        <p class="stone-story">An LM78XX-based breadboard voltage regulator. The Cailleach holds winter's storms in one hand and lets none of them loose unmeasured; the regulator keeps a steadier grip on the current.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">·</span><span class="m-year">2011</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="Valentines2K11">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/Valentines2K11/" target="_blank" rel="noopener">Valentines2K11</a></h3>
+        <p class="stone-story">Arduino RGB LEDs with an IR proximity sensor and a tilt switch — a valentine that knows when you are near. Diarmuid and Gráinne fled with their torches held low and their hearts lit; this one blinks.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">·</span><span class="m-year">2011</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="AlcoTop">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/AlcoTop/" target="_blank" rel="noopener">AlcoTop</a></h3>
+        <p class="stone-story">An Xmas pub crawl drinking cap. The Wild Hunt rides at midwinter and stops at every door that owes it cheer; the cap lights the way of the modern rider.</p>
+        <div class="marks"><span class="m-lang">Arduino</span><span class="m-sep">·</span><span class="m-year">2013</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="NiceDice">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/NiceDice/" target="_blank" rel="noopener">NiceDice</a></h3>
+        <p class="stone-story">Electronic dice from Make: Electronics Experiment #23. Bones have been thrown at Samhain since before the churchyard had a fence; these pips land as squarely as any.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">·</span><span class="m-year">2011</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="KeypadBackpack">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/KeypadBackpack/" target="_blank" rel="noopener">KeypadBackpack</a></h3>
+        <p class="stone-story">A keypad backpack. Every dolmen knows its own passcode — approached from the right quarter, the stones speak; this one gives the code out politely.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">·</span><span class="m-year">2012</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="StormBox">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/StormBox/" target="_blank" rel="noopener">StormBox</a></h3>
+        <p class="stone-story">A storm in a box — an early build. The Fomorians corked worse weather in worse caskets; this one sits quietly on the shelf and rattles only when the LEDs ask.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">·</span><span class="m-year">2011</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="StormBox2">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/StormBox2/" target="_blank" rel="noopener">StormBox2</a></h3>
+        <p class="stone-story">StormBox redux. Mag Tuired was fought twice before the sides got it right; the second storm is brewed longer and bursts cleaner.</p>
+        <div class="marks"><span class="m-lang">Java</span><span class="m-sep">·</span><span class="m-year">2012</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="GenieSteroids">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/GenieSteroids/" target="_blank" rel="noopener">GenieSteroids</a></h3>
+        <p class="stone-story">A hardware experiment with borrowed courage. The leprechaun's toolkit never lends a dull blade; whatever the Genie wished for, the soldering got the sharper end of it.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">·</span><span class="m-year">2012</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="Max756Breakout">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/Max756Breakout/" target="_blank" rel="noopener">Max756Breakout</a></h3>
+        <p class="stone-story">A MAX756 SMPS DC-DC step-up breakout board. Brigid's bellows raise a low fire to a working heat without wasting a coal; the converter lifts the voltage with the same thrift.</p>
+        <div class="marks"><span class="m-lang">Prolog</span><span class="m-sep">·</span><span class="m-year">2013</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="BeerLux">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/BeerLux/" target="_blank" rel="noopener">BeerLux</a></h3>
+        <p class="stone-story">Brewing electronics. Goibniu brewed the ale that spared the gods from decay and the drinker from the morning after; this rig aims only at the first half.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">·</span><span class="m-year">2018</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="VolcanoHat">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/VolcanoHat/" target="_blank" rel="noopener">VolcanoHat</a></h3>
+        <p class="stone-story">A wearable hardware experiment. The cinders of Slieve Gullion were worn as a crown by whoever dared the summit; this one glows without the climb.</p>
+        <div class="marks"><span class="m-lang">C++</span><span class="m-sep">·</span><span class="m-year">2018</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="CocoBra">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/CocoBra/" target="_blank" rel="noopener">CocoBra</a></h3>
+        <p class="stone-story">An Arduino experiment, woven. At Imbolc the rushes are plaited into wards against the dark; wire and cloth weave just as tightly here.</p>
+        <div class="marks"><span class="m-lang">Arduino</span><span class="m-sep">·</span><span class="m-year">2013</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="smiler">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/smiler/" target="_blank" rel="noopener">smiler</a></h3>
+        <p class="stone-story">The internet-controllable smiley sign. At Lughnasadh the lanterns of the harvest grin down the whole hill; this grin is carried by wire instead, and greets whoever knocks.</p>
+        <div class="marks"><span class="m-lang">Go</span><span class="m-sep">·</span><span class="m-year">2016</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="dek-eagle-lbr">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/dek-eagle-lbr/" target="_blank" rel="noopener">dek-eagle-lbr</a></h3>
+        <p class="stone-story">Custom Eagle symbols, devices, packages, and scripts. An eagle has watched from the crown of Yggdrasil since the first winter, marking what is built below; these libraries are the marks.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">·</span><span class="m-year">2011</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove" id="grove-misc" aria-labelledby="h-grove-misc">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-misc"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">Grove VII · The Keeper&#8217;s Cauldron</p>
+        <h2 id="h-grove-misc">Ledgers &amp; Curiosities</h2>
+        <p class="lh-lede">Ledgers and relics that answer to no grove — they keep their own quiet corner.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-misc"/></svg></span><span class="pl-count">2 stones</span></div>
+    </header>
+    <div class="grid">
+      <article class="stone" data-repo="life-ledger">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/life-ledger/" target="_blank" rel="noopener">life-ledger</a></h3>
+        <p class="stone-story">A personal life management ledger. The <a class="persona" href="https://www.shanaghy.com/profiles/na-seanchai/" target="_blank" rel="noopener">seanchaí</a> recited the births, debts, and harvests of a house generation to generation, needing no page; this ledger keeps a few, mossed and quiet.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+      <article class="stone" data-repo="zeroforge">
+        <span class="wisp" aria-hidden="true"><svg class="cage" viewBox="0 0 64 64"><use href="#wisp-cage"/></svg></span>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/zeroforge/" target="_blank" rel="noopener">zeroforge</a></h3>
+        <p class="stone-story">The first spore — carried up from the depths of Athlone. The Tuatha Dé burned their ships on landing so nothing would be simple to return to; the forge's patient zero cools the same way.</p>
+        <div class="marks"><span class="m-lang">—</span><span class="m-sep">·</span><span class="m-year">2026</span> <span class="m-gh" title="the repo itself">&#8599; repo</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="mist-sep" aria-hidden="true"><svg viewBox="0 0 1200 130" preserveAspectRatio="none"><use href="#mist-curtain"/></svg></div>
+
+  <section class="grove grove-keepers" id="grove-keepers" aria-labelledby="h-keepers">
+    <header class="grove-head">
+      <span class="lh-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-keepers"/></svg></span>
+      <div class="lh-text">
+        <p class="lh-over">The Quiet Watch · Lights That Never Go Out</p>
+        <h2 id="h-keepers">The Keepers</h2>
+        <p class="lh-lede">Self-hosted on the cork server — always lit, always on.</p>
+      </div>
+      <div class="lh-plaque"><span class="pl-rune" aria-hidden="true"><svg viewBox="0 0 40 64"><use href="#rune-keepers"/></svg></span><span class="pl-count">3 keepers</span></div>
+    </header>
+    <div class="grid keepers-grid">
+      <article class="keeper">
+        <a class="stone-link" href="https://www.shanaghy.com/projects/cork-server/" target="_blank" rel="noopener" aria-label="cork server"></a>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <span class="keeper-lamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#keeper-lamp"/></svg></span>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/cork-server/" target="_blank" rel="noopener">cork server</a></h3>
+        <p class="stone-story">Always-on Linux heart of the lab — Docker + Portainer.</p>
+        <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">·</span><span class="m-year">Always-on</span></div>
+      </article>
+      <article class="keeper">
+        <a class="stone-link" href="https://www.shanaghy.com/projects/mossy-motd/" target="_blank" rel="noopener" aria-label="Mossy MOTD"></a>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <span class="keeper-lamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#keeper-lamp"/></svg></span>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/mossy-motd/" target="_blank" rel="noopener">Mossy MOTD</a></h3>
+        <p class="stone-story">500-quote Irish login greeter on cork.</p>
+        <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">·</span><span class="m-year">Always-on</span></div>
+      </article>
+      <article class="keeper">
+        <a class="stone-link" href="https://www.shanaghy.com/projects/corkbai-honcho/" target="_blank" rel="noopener" aria-label="corkbai-honcho"></a>
+        <svg class="stone-cap" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><use href="#moss-cap"/></svg>
+        <span class="keeper-lamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#keeper-lamp"/></svg></span>
+        <h3 class="stone-name"><a href="https://www.shanaghy.com/projects/corkbai-honcho/" target="_blank" rel="noopener">corkbai-honcho</a></h3>
+        <p class="stone-story">Shared memory culture for the agent fleet, on cork.</p>
+        <div class="marks"><span class="m-lang">Cork</span><span class="m-sep">·</span><span class="m-year">Always-on</span></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="foot">
+  <p class="foot-line">The garden grows from Athlone, Co. Westmeath, with roots in
+    Ballyhaunis, Co. Mayo.</p>
+  <a class="foot-gh" href="https://github.com/declanshanaghy" target="_blank" rel="noopener noreferrer">github.com/declanshanaghy</a>
+  <p class="foot-copy">The Forge of FiremanDecko · an amalgamation of many spores · &#127808;</p>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- fixed painterly backdrop: the bog at full moon ---------- */
+  const canvas = document.getElementById("scene");
+  const ctx = canvas.getContext("2d", { alpha: false });
+  let W = 0, H = 0, DPR = 1, waterY = 0;
+  let moon = { x: 0, y: 0, r: 0 };
+  const STARS = [], MIST = [], WISPS = [], MOTHS = [], GRASS = [], MOTES = [], STREAKS = [];
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  function buildScene() {
+    STARS.length = MIST.length = WISPS.length = MOTHS.length = 0;
+    GRASS.length = MOTES.length = STREAKS.length = 0;
+
+    for (let i = 0; i < Math.round((W * H) / 11000); i++) {
+      STARS.push({ x: Math.random() * W, y: Math.random() * waterY * 0.9, r: rnd(0.4, 1.5), ph: rnd(0, 6.28), sp: rnd(0.4, 1.6) });
+    }
+    for (let i = 0; i < 7; i++) {
+      MIST.push({ y: waterY * rnd(0.3, 1.02), x: rnd(-0.2, 1.2) * W, w: W * rnd(0.5, 1.3), h: H * rnd(0.04, 0.12),
+        sp: rnd(0.12, 0.5) * (i % 2 ? 1 : -1), a: rnd(0.03, 0.09) });
+    }
+    for (let i = 0; i < Math.round(clamp(W / 130, 6, 14)); i++) {
+      WISPS.push({ bx: rnd(0.06, 0.94) * W, by: rnd(0.22, 0.92) * waterY * 1.5, r: rnd(7, 14),
+        ph: rnd(0, 6.28), sp: rnd(0.35, 1.0), driftR: rnd(18, 54), driftS: rnd(0.06, 0.2), spin: rnd(-0.5, 0.5) });
+    }
+    for (let i = 0; i < Math.round(clamp(W / 210, 4, 9)); i++) {
+      const host = WISPS[(Math.random() * WISPS.length) | 0] || { bx: moon.x, by: moon.y };
+      MOTHS.push({ host, orb: rnd(26, 82), sp: rnd(0.3, 0.8) * (Math.random() < 0.5 ? 1 : -1), ph: rnd(0, 6.28),
+        tilt: rnd(-0.5, 0.5), size: rnd(4.5, 8.5), flap: rnd(6, 12), wob: rnd(0.4, 1.1) });
+    }
+    const clump = (count, base, hR, wR, aR, spread, per) => {
+      for (let c = 0; c < count; c++) {
+        const cx = rnd(-0.03, 1.03) * W, b = base(), n = Math.round(rnd(per[0], per[1]));
+        for (let i = 0; i < n; i++) {
+          const off = rnd(-spread, spread);
+          GRASS.push({ x: cx + off, base: b + rnd(-6, 6), h: rnd(hR[0], hR[1]), lean: (off / spread) * 0.5 + rnd(-0.16, 0.16),
+            w: rnd(wR[0], wR[1]), ph: rnd(0, 6.28), sp: rnd(0.5, 1.3), a: rnd(aR[0], aR[1]) });
+        }
+      }
+    };
+    clump(Math.round(clamp(W / 30, 12, 40)), () => waterY + rnd(-8, 12), [H * 0.05, H * 0.12], [0.6, 1.2], [0.1, 0.26], 34, [4, 7]);
+    clump(Math.round(clamp(W / 60, 6, 20)), () => H + rnd(0, H * 0.04), [H * 0.16, H * 0.32], [1.4, 2.6], [0.38, 0.7], 56, [4, 8]);
+    for (let i = 0; i < Math.round(clamp(W / 30, 24, 70)); i++) {
+      MOTES.push({ x: Math.random() * W, y: Math.random() * H, r: rnd(0.5, 2), ph: rnd(0, 6.28), sp: rnd(0.15, 0.6), vy: rnd(-0.28, 0.16) });
+    }
+    for (let i = 0; i < 22; i++) STREAKS.push({ y: waterY + rnd(6, H * 0.46), ph: rnd(0, 6.28), sp: rnd(0.5, 1.6), w: rnd(0.25, 1), a: rnd(0.05, 0.2) });
+  }
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    waterY = H * 0.52;
+    moon = { x: W * 0.66, y: H * 0.24, r: Math.min(W, H) * 0.15 };
+    buildScene(); buildMoss();
+  }
+
+  function drawMoon() {
+    const { x, y, r } = moon;
+    const halo = ctx.createRadialGradient(x, y, r * 0.6, x, y, r * 5);
+    halo.addColorStop(0, "rgba(169,230,195,0.26)"); halo.addColorStop(0.3, "rgba(120,208,168,0.12)");
+    halo.addColorStop(0.65, "rgba(70,150,120,0.05)"); halo.addColorStop(1, "rgba(70,150,120,0)");
+    ctx.fillStyle = halo; ctx.fillRect(0, 0, W, H);
+    const disc = ctx.createRadialGradient(x - r * 0.28, y - r * 0.3, r * 0.15, x, y, r);
+    disc.addColorStop(0, "#ffffff"); disc.addColorStop(0.5, "#f7fcf5"); disc.addColorStop(0.85, "#dcefdf"); disc.addColorStop(1, "#a8cfb6");
+    ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fillStyle = disc;
+    ctx.shadowColor = "rgba(169,230,195,0.8)"; ctx.shadowBlur = r * 0.7; ctx.fill(); ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.clip();
+    for (const [cx, cy, cr] of [[-0.34,-0.2,0.19],[0.16,-0.42,0.13],[0.3,0.14,0.22],[-0.06,0.34,0.15],[-0.46,0.3,0.1],[0.44,-0.24,0.09]]) {
+      const px = x + cx * r, py = y + cy * r, pr = cr * r;
+      const g = ctx.createRadialGradient(px - pr * 0.3, py - pr * 0.3, pr * 0.1, px, py, pr);
+      g.addColorStop(0, "rgba(150,190,166,0.4)"); g.addColorStop(1, "rgba(200,230,210,0)");
+      ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.283); ctx.fillStyle = g; ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawWater(t) {
+    const g = ctx.createLinearGradient(0, waterY, 0, H);
+    g.addColorStop(0, "#07140e"); g.addColorStop(0.4, "#040c08"); g.addColorStop(1, "#020604");
+    ctx.fillStyle = g; ctx.fillRect(0, waterY, W, H - waterY);
+    const rows = Math.round((H - waterY) / 3), rowH = (H - waterY) / rows;
+    ctx.save(); ctx.globalCompositeOperation = "screen";
+    for (let i = 0; i < rows; i++) {
+      const y = waterY + i * rowH, srcY = 2 * waterY - y, dy = srcY - moon.y;
+      if (Math.abs(dy) > moon.r) continue;
+      const halfW = Math.sqrt(Math.max(0, moon.r * moon.r - dy * dy)); if (halfW <= 0) continue;
+      const fall = 1 - i / rows, amp = 1.4 + i * 0.32;
+      const dx = Math.sin(y * 0.045 + t * 1.4) * amp + Math.sin(y * 0.11 - t * 2.0) * amp * 0.5;
+      const alpha = Math.pow(fall, 1.35) * 0.62, cw = halfW * 0.99;
+      const g2 = ctx.createLinearGradient(moon.x - cw, 0, moon.x + cw, 0);
+      g2.addColorStop(0, "rgba(150,210,180,0)"); g2.addColorStop(0.5, "rgba(238,250,240," + alpha.toFixed(3) + ")");
+      g2.addColorStop(1, "rgba(150,210,180,0)");
+      ctx.fillStyle = g2; ctx.fillRect(moon.x - cw + dx, y, cw * 2, rowH + 0.7);
+    }
+    for (const s of STREAKS) {
+      const off = Math.sin(t * s.sp + s.ph) * W * 0.06, len = W * (0.24 + 0.5 * s.w);
+      const cx = clamp(moon.x + off * 2.2, -len, W + len);
+      const lg = ctx.createLinearGradient(cx - len, 0, cx + len, 0);
+      lg.addColorStop(0, "rgba(200,235,216,0)"); lg.addColorStop(0.5, "rgba(200,235,216," + (s.a * 0.8).toFixed(3) + ")");
+      lg.addColorStop(1, "rgba(200,235,216,0)");
+      ctx.fillStyle = lg; ctx.fillRect(cx - len, s.y, len * 2, Math.max(0.8, s.w * 1.6));
+    }
+    ctx.restore();
+  }
+
+  function drawGrass(t) {
+    ctx.save(); ctx.lineCap = "round";
+    for (const b of GRASS) {
+      const sway = Math.sin(t * b.sp + b.ph) * (8 + b.h * 0.14);
+      const tipX = b.x + b.lean * b.h * 0.55 + sway, tipY = b.base - b.h;
+      const g = ctx.createLinearGradient(b.x, b.base, tipX, tipY);
+      g.addColorStop(0, "rgba(28,63,44," + (b.a * 0.55).toFixed(3) + ")");
+      g.addColorStop(0.55, "rgba(140,195,165," + (b.a * 0.85).toFixed(3) + ")");
+      g.addColorStop(1, "rgba(232,248,238," + b.a.toFixed(3) + ")");
+      ctx.strokeStyle = g; ctx.lineWidth = b.w;
+      ctx.beginPath(); ctx.moveTo(b.x, b.base);
+      ctx.quadraticCurveTo(b.x + b.lean * b.h * 0.16 + sway * 0.35, b.base - b.h * 0.58, tipX, tipY); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawCage(x, y, cr, rot, a) {
+    const V = [[0,-1,0],[1,0,0],[0,0,1],[-1,0,0],[0,0,-1],[0,1,0]];
+    const E = [[0,1],[0,2],[0,3],[0,4],[5,1],[5,2],[5,3],[5,4],[1,2],[2,3],[3,4],[4,1]];
+    const cosr = Math.cos(rot), sinr = Math.sin(rot), ct = Math.cos(0.42), st = Math.sin(0.42);
+    const P = V.map(([vx, vy, vz]) => {
+      let X = vx * cosr - vz * sinr, Z = vx * sinr + vz * cosr;
+      let Y = vy * ct - Z * st; Z = vy * st + Z * ct;
+      const s = 1 / (1 + Z * 0.28);
+      return { x: x + X * cr * s, y: y + Y * cr * s, s };
+    });
+    ctx.save(); ctx.lineWidth = 0.9; ctx.strokeStyle = "rgba(214,228,216," + (0.4 * a).toFixed(3) + ")";
+    for (const [i, j] of E) { ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[j].x, P[j].y); ctx.stroke(); }
+    ctx.restore();
+  }
+
+  function wispPos(w, t) {
+    return { x: w.bx + Math.cos(t * w.driftS + w.ph) * w.driftR,
+             y: w.by + Math.sin(t * w.driftS * 1.3 + w.ph * 1.7) * w.driftR * 0.6 };
+  }
+
+  function drawWisps(t) {
+    ctx.save(); ctx.globalCompositeOperation = "screen";
+    for (const w of WISPS) {
+      const p = wispPos(w, t), pulse = 0.55 + 0.45 * Math.sin(t * w.sp * 2 + w.ph), R = w.r * (1 + 0.06 * pulse);
+      const hg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, R * 6);
+      hg.addColorStop(0, "rgba(169,230,195," + (0.32 * pulse).toFixed(3) + ")");
+      hg.addColorStop(0.25, "rgba(169,230,195," + (0.11 * pulse).toFixed(3) + ")"); hg.addColorStop(1, "rgba(169,230,195,0)");
+      ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(p.x, p.y, R * 6, 0, 6.283); ctx.fill();
+      const cg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, R);
+      cg.addColorStop(0, "rgba(245,251,245," + (0.9 * pulse).toFixed(3) + ")"); cg.addColorStop(1, "rgba(169,230,195,0)");
+      ctx.fillStyle = cg; ctx.beginPath(); ctx.arc(p.x, p.y, R, 0, 6.283); ctx.fill();
+      drawCage(p.x, p.y, R * 2.4, t * w.spin + w.ph, 0.5 + 0.5 * pulse);
+    }
+    ctx.restore();
+  }
+
+  function drawMoths(t) {
+    ctx.save(); ctx.globalCompositeOperation = "screen";
+    for (const m of MOTHS) {
+      const hp = wispPos(m.host, t), a = t * m.sp + m.ph;
+      const x = hp.x + Math.cos(a) * m.orb, y = hp.y + Math.sin(a) * m.orb * m.tilt + Math.sin(t * m.wob + m.ph) * 6;
+      const wing = m.size * (0.28 + 0.72 * Math.abs(Math.sin(t * m.flap + m.ph)));
+      ctx.save(); ctx.translate(x, y); ctx.rotate(a + Math.PI / 2);
+      ctx.fillStyle = "rgba(226,244,232,0.4)";
+      ctx.beginPath(); ctx.ellipse(0, -wing * 0.5, m.size * 0.42, wing, -0.4, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0, wing * 0.5, m.size * 0.42, wing, 0.4, 0, 6.283); ctx.fill();
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function drawMist(t) {
+    ctx.save();
+    for (const m of MIST) {
+      let x = m.x + t * m.sp * 26; x = ((x % (W + m.w)) + (W + m.w)) % (W + m.w) - m.w * 0.5;
+      const g = ctx.createRadialGradient(x + m.w / 2, m.y, m.w * 0.05, x + m.w / 2, m.y, m.w * 0.6);
+      g.addColorStop(0, "rgba(150,200,175," + m.a.toFixed(3) + ")");
+      g.addColorStop(0.55, "rgba(150,200,175," + (m.a * 0.4).toFixed(3) + ")"); g.addColorStop(1, "rgba(150,200,175,0)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(x + m.w / 2, m.y, m.w * 0.6, m.h, 0, 0, 6.283); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawMotes(t) {
+    ctx.save(); ctx.globalCompositeOperation = "screen";
+    for (const d of MOTES) {
+      let y = (d.y + t * d.vy * 20) % H; if (y < 0) y += H;
+      const x = d.x + Math.sin(t * d.sp + d.ph) * 18;
+      const tw = 0.4 + 0.6 * Math.abs(Math.sin(t * d.sp * 1.7 + d.ph));
+      ctx.beginPath(); ctx.arc(x, y, d.r, 0, 6.283); ctx.fillStyle = "rgba(226,244,232," + (0.3 * tw).toFixed(3) + ")"; ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawStars(t) {
+    ctx.save(); ctx.globalCompositeOperation = "screen";
+    for (const s of STARS) {
+      const tw = 0.35 + 0.65 * Math.abs(Math.sin(t * s.sp + s.ph));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283); ctx.fillStyle = "rgba(214,232,220," + (0.5 * tw).toFixed(3) + ")"; ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  let grainTile = null, grainPat = null;
+  function makeGrain() {
+    const s = 140, g = document.createElement("canvas"); g.width = g.height = s;
+    const gc = g.getContext("2d"), img = gc.createImageData(s, s);
+    for (let i = 0; i < img.data.length; i += 4) { const v = (Math.random() * 255) | 0; img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 20; }
+    gc.putImageData(img, 0, 0); grainTile = g;
+    grainPat = ctx.createPattern(grainTile, "repeat");
+  }
+  function drawGrain() {
+    if (!grainPat) return;
+    ctx.save(); ctx.globalCompositeOperation = "overlay"; ctx.globalAlpha = 0.45;
+    ctx.fillStyle = grainPat; ctx.fillRect(0, 0, W, H); ctx.restore();
+  }
+
+  function paint(t) {
+    ctx.fillStyle = "#040a07"; ctx.fillRect(0, 0, W, H);
+    const sky = ctx.createLinearGradient(0, 0, 0, waterY + 2);
+    sky.addColorStop(0, "#050b09"); sky.addColorStop(0.5, "#08140f"); sky.addColorStop(1, "#0e2318");
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, W, waterY + 2);
+    drawStars(t); drawMoon(); drawMist(t); drawWater(t);
+    drawWisps(t); drawMoths(t); drawGrass(t); drawMotes(t); drawGrain();
+  }
+
+  /* ---------- living moss border (SVG) ---------- */
+  function buildMoss() {
+    const svg = document.getElementById("moss");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const NS = "http://www.w3.org/2000/svg";
+    const defs = document.createElementNS(NS, "defs");
+    defs.innerHTML = '<radialGradient id="mossGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#63e0a0" stop-opacity="0.9"/><stop offset="100%" stop-color="#1c3f2c" stop-opacity="0"/></radialGradient>' +
+      '<linearGradient id="mossEdge" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f2a1c" stop-opacity="0.92"/><stop offset="100%" stop-color="#040a07" stop-opacity="0.4"/></linearGradient>';
+    svg.appendChild(defs);
+    const band = document.createElementNS(NS, "g"); svg.appendChild(band);
+    const tendrils = document.createElementNS(NS, "g"); svg.appendChild(tendrils);
+    const edge = 30;
+    const steps = 24;
+    const mkEdge = (fn) => {
+      const outer = [], inner = [];
+      for (let i = 0; i <= steps; i++) {
+        const f = i / steps, bumpy = Math.abs(Math.sin(f * Math.PI * 6)) * 20 + Math.random() * 14;
+        outer.push(fn(f, 0)); inner.push(fn(f, edge + bumpy));
+      }
+      let d = "M " + outer[0][0] + " " + outer[0][1];
+      for (let i = 1; i < outer.length; i++) d += " L " + outer[i][0].toFixed(1) + " " + outer[i][1].toFixed(1);
+      for (let i = inner.length - 1; i >= 0; i--) d += " L " + inner[i][0].toFixed(1) + " " + inner[i][1].toFixed(1);
+      return d + " Z";
+    };
+    const edges = [(f, o) => [f * W, o], (f, o) => [f * W, H - o], (f, o) => [o, f * H], (f, o) => [W - o, f * H]];
+    for (const fn of edges) {
+      const p = document.createElementNS(NS, "path");
+      p.setAttribute("d", mkEdge(fn)); p.setAttribute("fill", "url(#mossEdge)"); band.appendChild(p);
+    }
+    const tcount = Math.round(clamp((W + H) / 64, 14, 46));
+    for (let i = 0; i < tcount; i++) {
+      const side = i % 4; let x, y, dx, dy;
+      if (side === 0) { x = rnd(0.03, 0.97) * W; y = rnd(2, 12); dx = 0; dy = 1; }
+      else if (side === 1) { x = rnd(0.03, 0.97) * W; y = H - rnd(2, 12); dx = 0; dy = -1; }
+      else if (side === 2) { x = rnd(2, 12); y = rnd(0.05, 0.95) * H; dx = 1; dy = 0; }
+      else { x = W - rnd(2, 12); y = rnd(0.05, 0.95) * H; dx = -1; dy = 0; }
+      const len = rnd(40, 110), seg = 3; let d = "M " + x.toFixed(1) + " " + y.toFixed(1), cx = x, cy = y;
+      for (let s = 0; s < seg; s++) {
+        const step = len / seg;
+        const nx = cx + dx * step + (dy !== 0 ? rnd(-30, 30) : rnd(-22, 22));
+        const ny = cy + dy * step + (dx !== 0 ? rnd(-30, 30) : rnd(-22, 22));
+        d += " Q " + ((cx + nx) / 2 + rnd(-16, 16)).toFixed(1) + " " + ((cy + ny) / 2 + rnd(-16, 16)).toFixed(1) + " " + nx.toFixed(1) + " " + ny.toFixed(1);
+        cx = nx; cy = ny;
+      }
+      const path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d); path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "rgba(99,224,160,0.5)"); path.setAttribute("stroke-width", rnd(0.7, 1.7).toFixed(2));
+      path.setAttribute("stroke-linecap", "round"); tendrils.appendChild(path);
+    }
+  }
+
+  /* ---------- rune strip: mark the clearing in view ---------- */
+  const tabs = Array.from(document.querySelectorAll(".rtab"));
+  const targets = tabs.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const id = "#" + e.target.id;
+          tabs.forEach(t => t.classList.toggle("active", t.getAttribute("href") === id));
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    targets.forEach(t => io.observe(t));
+  }
+
+  let rt = null;
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(resize, 150); });
+
+  makeGrain(); resize();
+  if (REDUCE) { paint(140); }
+  else {
+    let start = 0, last = 0;
+    const frame = (now) => {
+      if (!start) start = now;
+      if (!document.hidden && now - last > 33) { last = now; paint((now - start) / 1000); }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
+</body>
+</html>
