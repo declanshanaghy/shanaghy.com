@@ -24,39 +24,25 @@ export default function Header({ here }) {
   const navBtnRef = useRef(null);
   const closeBtnRef = useRef(null);
   const wasOpenRef = useRef(false);
-  const closeTokRef = useRef(0);
 
-  // open: unhide first, then slide on the next frame (so the transition runs).
-  // The open commit is deliberately NOT cancellable: on the heavy homepage this
-  // effect can be torn down between the tap and the frame (hydration-era
-  // re-render), and the old cleanup's frame-cancel discarded the
-  // pending setOpen — the sheet stayed un-hidden but never slid in, so the
-  // first tap was swallowed and a second was needed (issue #284). With no
-  // cleanup there is no code path that can strand the sheet; a rAF firing
-  // after a true unmount is a harmless no-op state update. The proven-good
-  // creed path is untouched: same effect, same frames — it never relied on
-  // the cancel to work.
+  // open: unhide first, then slide on the next frame (so the transition runs)
   useEffect(() => {
     if (!shown) return;
     document.body.classList.add("c-locked");
-    requestAnimationFrame(() => setOpen(true));
+    const raf = requestAnimationFrame(() => setOpen(true));
     if (closeBtnRef.current) closeBtnRef.current.focus();
+    return () => cancelAnimationFrame(raf);
   }, [shown]);
 
-  // close: unlock, hand focus back to the burger, re-hide after the slide.
-  // The re-hide timer is token-guarded instead of cancelled-by-cleanup, for
-  // the same reason as the open rAF: a teardown between the close and the
-  // timer must not strand the sheet laid-out-but-closed (the mirror of the
-  // #284 limbo), and a mid-close reopen must void the pending re-hide rather
-  // than fight it after it fires.
+  // close: unlock, hand focus back to the burger, re-hide after the slide
   useEffect(() => {
     if (open) { wasOpenRef.current = true; return; }
     if (!wasOpenRef.current) return; // never opened — nothing to close
     wasOpenRef.current = false;
     document.body.classList.remove("c-locked");
     if (navBtnRef.current) navBtnRef.current.focus();
-    const tok = ++closeTokRef.current;
-    setTimeout(() => { if (closeTokRef.current === tok) setShown(false); }, 340);
+    const t = setTimeout(() => setShown(false), 340);
+    return () => clearTimeout(t);
   }, [open]);
 
   // Escape closes the sheet
@@ -82,7 +68,6 @@ export default function Header({ here }) {
   // open: unhide first, then slide on the next frame (so the transition runs);
   // if the sheet is mid-close (still laid out), just slide it straight back
   const openSheet = () => {
-    closeTokRef.current++; // any pending re-hide is void — the sheet is opening
     if (!shown) { setShown(true); return; }
     document.body.classList.add("c-locked");
     setOpen(true);
