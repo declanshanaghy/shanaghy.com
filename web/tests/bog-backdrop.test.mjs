@@ -109,3 +109,44 @@ test("built paths page: the port proves the whole path end to end", { skip: !bui
 test("built scene asset is served from the public tree", { skip: !built("index.html") && "run npm run build first" }, () => {
   assert.ok(existsSync(path.join(root, "out", "assets/js/bog-scene.js")), "the scene script ships in the export");
 });
+
+/* ── unit: the /creed/ port (issue #142) ───────────────────────────────── */
+
+test("creed.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/creed.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("SHARED SIGILS")[0]), "the page adds no script tag of its own");
+});
+
+test("creed.html keeps its original content marks and section count", () => {
+  const html = read("content/creed.html");
+  assert.ok(html.includes("The band kept two grounds, and the new band keeps both. The winter halls are the"));
+  /* the <section count on origin/main before the port was 1; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 1, "section count unchanged from origin/main");
+});
+
+test("creed.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/creed.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.garden\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built creed page: the backdrop rides behind the telling", { skip: !built("creed/index.html") && "run npm run build first" }, () => {
+  const html = built("creed/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the shared scene script is mounted by the chrome");
+  assert.ok(html.includes("The band kept two grounds, and the new band keeps both. The winter halls are the"));
+  assert.equal((html.match(/<section/g) || []).length, 1, "section count unchanged from origin/main");
+});
