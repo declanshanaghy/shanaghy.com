@@ -51,7 +51,7 @@ export default function Layout({ title, description, here, children, bare }) {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       {bare ? null : <Header here={here} />}

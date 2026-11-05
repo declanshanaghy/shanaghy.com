@@ -668,3 +668,352 @@ a.stone-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
     linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
     radial-gradient(150% 90% at 12% 0%, rgba(216,236,222,.09), transparent 55%);
 }
+
+/* hide desktop chrome in compact mode — compact layer has its own .c-bar and .c-foot */
+@media (max-width:1024px){
+  .topbar{display:none}
+  .foot{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   shanaghy.com — COMPACT MODE  (v3 · Luna, the wireframe moon)
+   The new mobile layer.  ADDITIVE BY CONSTRUCTION:
+     • every rule below sits inside a mobile media query;
+     • every class is `c-`namespaced and only ever exists inside #compact;
+     • the desktop render (#large) is the site exactly as it ships today,
+       untouched — no shared selector reaches it.
+   PORT: this whole file becomes a mobile block appended to
+   web/content/index.css, and the #compact markup is added alongside the
+   existing front-door markup.  A purely additive diff.
+
+   v3 DECREES
+     1. THE PAINTING SCALES LINEARLY — UNBREAKABLE.  The garden scene renders
+        at uniform scale, aspect-preserved, width-proportional (viewBox
+        0 0 900 480 · width:100% · aspect-ratio:900/480).  No crop, no fixed
+        vh height, no pan-by-default, no distortion.  At 1024px it is
+        1024×546, at 412px 412×220, at 360px 360×192.  The scale is
+        CONTINUOUS as the viewport narrows.  Exploration is OPT-IN pinch-zoom
+        which springs back; the resting state is the whole painting, always.
+     2. NO HOVER DEPENDENCY.  Every behavioural interaction is tap-driven;
+        glowing things glow AT REST; labels are always-visible (Roll) or
+        revealed by the AIM state (scene souls).  Decorative :hover is moved
+        under @media (hover:hover) so a touch device can never get a stuck
+        hover; the behaviour is identical with the mouse unplugged.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* the switch: COMPACT is hidden while LARGE is on screen */
+#compact{display:none}
+
+@media (max-width:1024px){
+  #large{display:none}
+  #compact{display:block}
+
+  /* ── 0 · compact tokens ───────────────────────────────────────────────── */
+  #compact{font-size:16px;--c-tap:44px;--c-pad:max(12px,3.6vw);
+    --c-r:13px 7px 13px 7px;
+    overflow-x:clip}   /* clip stray hit-target/pill overhang; y stays visible */
+
+  /* ── 1 · the compact bar  (topbar, minimised) ─────────────────────────── */
+  .c-bar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:10px;
+    padding:5px var(--c-pad);min-height:50px;
+    background:linear-gradient(180deg,rgba(7,10,8,.97),rgba(4,7,5,.9));
+    border-bottom:1px solid rgba(126,151,100,.32);
+    backdrop-filter:saturate(1.1) blur(8px)}
+  .c-brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
+  .c-brand img{height:30px;width:auto;border-radius:5px;border:1px solid rgba(148,173,120,.3);
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 9px rgba(169,230,195,.12))}
+  .c-here{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8fae8c;
+    padding-left:10px;border-left:1px solid rgba(126,151,100,.35)}
+
+  /* ── 2 · the compact buttons  (one system, every control) ─────────────── */
+  .c-btn{min-height:var(--c-tap);min-width:var(--c-tap);display:inline-flex;align-items:center;
+    justify-content:center;gap:9px;padding:0 15px;cursor:pointer;text-decoration:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--silver);border:1px solid rgba(126,151,100,.5);
+    border-radius:var(--c-r);background:linear-gradient(180deg,rgba(26,35,26,.66),rgba(7,10,8,.6));
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.08);
+    transition:color .22s,border-color .22s,text-shadow .22s,transform .12s}
+  .c-btn:active{transform:translateY(1px);color:var(--lume2);border-color:rgba(169,230,195,.55)}
+  .c-btn--lume{color:#dff3e2;border-color:rgba(169,230,195,.5);font-family:var(--serif);
+    font-size:14px;letter-spacing:1.1px;text-transform:none;
+    background:linear-gradient(180deg,rgba(30,44,28,.7),rgba(7,10,8,.6));
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 24px -8px rgba(169,230,195,.4)}
+  .c-btn--wide{width:100%}
+  .c-btn--menu{margin-left:auto;padding:0 13px 0 12px}
+  .c-btn[aria-expanded="true"]{color:var(--lume2);border-color:rgba(169,230,195,.6)}
+  .c-burger{display:flex;flex-direction:column;gap:4px;width:16px}
+  .c-burger i{display:block;height:2px;border-radius:2px;background:currentColor;
+    box-shadow:0 0 6px rgba(169,230,195,.35)}
+  .c-close{width:var(--c-tap);height:var(--c-tap);min-width:var(--c-tap);min-height:var(--c-tap);
+    display:inline-flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;
+    border:1px solid rgba(126,151,100,.5);background:rgba(7,10,8,.4);color:var(--silver);
+    font-size:21px;line-height:1}
+  .c-close:active{color:var(--lume2);border-color:rgba(169,230,195,.7)}
+
+  /* ── 3 · the Path-Sheet  (the eight paths, minimised) ─────────────────── */
+  .c-navsheet{position:fixed;inset:0;z-index:80;overflow-y:auto;
+    padding:14px var(--c-pad) calc(26px + env(safe-area-inset-bottom));
+    background:radial-gradient(700px 460px at 50% -80px, rgba(196,222,208,.08), transparent 62%),
+      linear-gradient(180deg,rgba(7,10,8,.985),rgba(4,7,5,.995));
+    transform:translateY(-101%);transition:transform .32s cubic-bezier(.3,.7,.3,1)}
+  .c-navsheet.open{transform:none}
+  .c-navsheet-head{display:flex;align-items:center;gap:11px;padding:4px 2px 13px;
+    border-bottom:1px solid rgba(126,151,100,.28);margin-bottom:13px}
+  .c-navsheet-head .c-ns-over{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+  .c-navsheet-head h2{font-size:18px;font-weight:600;color:var(--moon);letter-spacing:.4px}
+  .c-navsheet .c-close{margin-left:auto}
+  .c-nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .c-plate{position:relative;display:flex;flex-direction:column;justify-content:center;gap:2px;
+    min-height:66px;padding:11px 13px;text-decoration:none;
+    border:1px solid var(--edge);border-radius:var(--c-r);
+    background:var(--grain),var(--cap,var(--mosscap2)),var(--mottle),linear-gradient(180deg,#19221a,#0c120c);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.07),0 8px 16px -10px rgba(0,0,0,.85);
+    transition:transform .18s,border-color .18s,box-shadow .18s}
+  .c-plate:nth-child(10n+1){--cap:var(--mosscap2)}.c-plate:nth-child(10n+2){--cap:var(--mosscap3)}
+  .c-plate:nth-child(10n+3){--cap:var(--mosscap4)}.c-plate:nth-child(10n+4){--cap:var(--mosscap5)}
+  .c-plate:nth-child(10n+5){--cap:var(--mosscap6)}.c-plate:nth-child(10n+6){--cap:var(--mosscap7)}
+  .c-plate:nth-child(10n+7){--cap:var(--mosscap8)}.c-plate:nth-child(10n+8){--cap:var(--mosscap9)}
+  .c-plate:nth-child(10n+9){--cap:var(--mosscap10)}.c-plate:nth-child(10n+0){--cap:var(--mosscap1)}
+  .c-plate .c-np-rune{font-family:'Noto Sans Ogham',var(--mono);font-size:18px;line-height:1;color:var(--moss)}
+  .c-plate .c-np-name{font-size:16px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.5px;color:#d9ead6}
+  .c-plate .c-np-about{font-size:11px;letter-spacing:.3px;color:#8ca089}
+  .c-plate:active{transform:scale(.985)}
+  /* the current page's plate is lume-glowed AT REST — never reveal-on-hover */
+  .c-plate.here{border-color:rgba(169,230,195,.5);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 24px -6px rgba(169,230,195,.35)}
+  .c-plate.here .c-np-rune,.c-plate.here .c-np-name{color:var(--lume2);text-shadow:0 0 10px rgba(169,230,195,.5)}
+  .c-navsheet .c-ns-foot{margin-top:16px;display:flex;justify-content:center}
+  .c-navsheet .c-ns-note{margin-top:20px;text-align:center;font-style:italic;font-size:12.5px;color:#5e7160}
+  .c-navsheet .c-ns-note .c-rune{font-family:'Noto Sans Ogham';color:rgba(126,151,100,.7);margin-left:7px}
+
+  /* ══ 4 · THE LIVING SCENE — LINEAR SCALING, NEVER CROPPED ═══════════════
+     The scene is the SVG at viewBox 0 0 900 480 with width:100% and
+     aspect-ratio:900/480 (height derives from width).  A vector element with
+     a viewBox and a width-proportional box scales UNIFORMLY and CONTINUOUSLY
+     with its container: the whole painting is always visible, never cropped,
+     never distorted, at every width from 320px up.  412→412×220, 1024→1024×546.
+     Full-bleed (the -pad margins cancel .c-main's gutters) so the painting
+     spans the exact viewport width and the ratio is exactly 1.875. */
+  .c-main{padding:0 var(--c-pad) 20px}
+  .c-invite{margin:12px 0 8px;text-align:center;font-style:italic;color:#a9c29f;font-size:13.5px;letter-spacing:.3px}
+  .c-invite b{color:var(--lume2);font-style:normal;font-weight:600}
+  .c-stage-wrap{position:relative;margin:6px calc(-1 * var(--c-pad)) 0;overflow:visible}
+  .c-stage{position:relative;overflow:hidden;background:#05080a;
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.08),inset 0 -1px 0 rgba(0,0,0,.6);
+    transform-origin:0 0;transition:transform .34s cubic-bezier(.3,.7,.3,1)}
+  .c-stage.zooming{transition:none}
+  .c-scene{display:block;width:100%;height:auto;aspect-ratio:900/480}
+
+  /* the souls, painted in the SVG — resting glow, never hover-only */
+  .c-ent .c-soul{transition:filter .3s;
+    filter:drop-shadow(0 0 4px rgba(169,230,195,.45)) drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+  .c-ent .c-ring{fill:none;stroke:rgba(201,242,217,.9);stroke-width:1.7;opacity:0;
+    transition:opacity .2s;filter:drop-shadow(0 0 6px rgba(169,230,195,.75))}
+  .c-ent.aim .c-ring{opacity:1}
+  .c-ent.aim .c-soul{filter:drop-shadow(0 0 13px rgba(201,242,217,.95)) brightness(1.22)}
+  .c-ent.pulse .c-soul{filter:drop-shadow(0 0 13px rgba(201,242,217,.95)) brightness(1.18)}
+
+  /* the hit layer — enlarged invisible touch targets over the scaled scene.
+     Buttons are a11y/keyboard controls; pointer taps are resolved by NEAREST
+     SOUL in JS (below), so overlapping targets can never steal a tap. */
+  .c-hits{position:absolute;inset:0;pointer-events:none}
+  .c-hitbtn{position:absolute;left:0;top:0;transform:translate(-50%,-50%);
+    width:48px;height:48px;min-width:48px;min-height:48px;padding:0;margin:0;border:0;
+    background:transparent;pointer-events:none;-webkit-tap-highlight-color:transparent}
+  .c-hitbtn::-moz-focus-inner{border:0}
+  .c-tag{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    display:inline-flex;flex-direction:column;gap:1px;padding:5px 11px 6px;border-radius:11px;
+    white-space:nowrap;opacity:0;transition:opacity .18s;pointer-events:none;z-index:6;
+    background:linear-gradient(180deg,rgba(13,21,13,.98),rgba(5,9,5,.98));
+    border:1px solid rgba(169,230,195,.55);
+    box-shadow:0 10px 22px -8px rgba(0,0,0,.92),0 0 18px -6px rgba(169,230,195,.5)}
+  .c-hitbtn.edgeL .c-tag{left:0;transform:none}
+  .c-hitbtn.edgeR .c-tag{left:auto;right:24px;transform:none}
+  .c-hitbtn.aim .c-tag,.c-hitbtn:focus-visible .c-tag{opacity:1}
+  .c-tag-name{font-size:12.5px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.5px;color:var(--lume2)}
+  .c-tag-hint{font-size:8.5px;letter-spacing:1.2px;text-transform:uppercase;color:#8ba389}
+  .c-hitbtn:focus-visible{outline:2px solid rgba(169,230,195,.7);outline-offset:2px;border-radius:8px}
+  /* debug: reveal the touch targets (#hits) for review */
+  #compact.show-hits .c-hitbtn{outline:1px dashed rgba(169,230,195,.9);outline-offset:0;
+    background:rgba(169,230,195,.10);border-radius:50%}
+
+  .c-zoomhint{margin:7px 0 0;text-align:center;font-family:var(--mono);font-size:9.5px;
+    letter-spacing:1.6px;text-transform:uppercase;color:#6f8a6c}
+
+  /* ── 5 · the Soul Roll  (the guaranteed ≥44px index) ──────────────────── */
+  .c-roll-wrap{margin-top:12px;border:1px solid var(--edge);border-radius:14px 8px 14px 8px;
+    background:var(--grain),var(--mosscap9),var(--mottle),linear-gradient(180deg,#19221a,#0c120c);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.07),0 12px 24px -16px rgba(0,0,0,.9);
+    padding:11px 0 12px}
+  .c-roll-head{display:flex;align-items:baseline;gap:9px;padding:0 13px 4px}
+  .c-roll-head .c-rh-over{font-size:9.5px;letter-spacing:2.6px;text-transform:uppercase;color:var(--muted)}
+  .c-roll-head .c-rh-count{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;
+    color:#8ba389;text-transform:uppercase}
+  .c-roll-group{padding:6px 0 3px}
+  .c-roll-group .c-rg-label{padding:0 13px 6px;font-size:9.5px;letter-spacing:2.4px;text-transform:uppercase;color:#8fae8c}
+  .c-roll-group .c-rg-label .c-rg-rune{font-family:'Noto Sans Ogham';color:var(--moss);margin-right:6px}
+  .c-roll{display:flex;gap:8px;overflow-x:auto;padding:2px 13px 5px;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;scrollbar-width:none}
+  .c-roll::-webkit-scrollbar{display:none}
+  .c-chip{flex:0 0 auto;scroll-snap-align:start;min-height:var(--c-tap);
+    display:inline-flex;align-items:center;gap:8px;padding:6px 13px 6px 7px;cursor:pointer;text-align:left;
+    border:1px solid rgba(126,151,100,.42);border-radius:24px;
+    background:linear-gradient(180deg,rgba(26,35,26,.72),rgba(7,10,8,.72));
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.07),0 6px 14px -9px rgba(0,0,0,.9);
+    transition:border-color .2s,box-shadow .2s,transform .12s}
+  .c-chip:active{transform:translateY(1px);border-color:rgba(169,230,195,.6)}
+  .c-chip img{width:30px;height:30px;border-radius:7px;flex-shrink:0;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.7)) drop-shadow(0 0 7px rgba(169,230,195,.18))}
+  .c-chip .c-chip-txt{display:flex;flex-direction:column;line-height:1.15}
+  .c-chip .c-chip-name{font-size:13.5px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.3px;color:#dbe9d7}
+  .c-chip .c-chip-sub{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#7f9a7c}
+  .c-chip.rest .c-chip-name{color:#b9c8b3}
+  .c-chip.rest img{opacity:.82}
+  .c-chip:focus-visible{outline:2px solid rgba(169,230,195,.6);outline-offset:2px}
+
+  /* ── 6 · compact section headings  (plaque-head, minimised) ───────────── */
+  .c-grove{margin-top:26px}
+  .c-plaque{display:flex;align-items:center;gap:11px;margin:0 0 10px}
+  .c-pla-roundel{width:34px;height:34px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;border:1px solid rgba(126,151,100,.45);
+    background:radial-gradient(circle at 38% 30%, #26301f, #0d130d 78%);
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.8),inset 0 -2px 3px rgba(214,236,222,.08);
+    font-family:'Noto Sans Ogham',var(--mono);font-size:15px;color:var(--silver)}
+  .c-pla-text{min-width:0}
+  .c-pla-text .c-pla-over{font-size:9px;letter-spacing:2.8px;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+  .c-pla-text h2{font-size:18px;font-weight:600;letter-spacing:.6px;color:var(--moon);
+    text-shadow:0 2px 2px rgba(0,0,0,.85)}
+  .c-pla-text h2 a{text-decoration:none;color:inherit}
+  .c-pla-count{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;
+    text-transform:uppercase;color:#8ba389;white-space:nowrap}
+  .c-lede{margin:0 0 14px;font-size:16px;line-height:1.6;color:#b8c9b3;letter-spacing:.15px}
+  .c-lede a{color:var(--silver);text-decoration:none;border-bottom:1px dotted rgba(183,205,185,.4)}
+
+  /* ── 7 · compact keeper / stone cards  (single column, row form) ──────── */
+  .c-keepers{display:flex;flex-direction:column;gap:9px}
+  .c-keeper{--cap:var(--mosscap2);position:relative;display:block;padding:12px 14px 13px;
+    border:1px solid var(--edge);border-radius:var(--c-r);
+    background:var(--grain),var(--cap),var(--mottle),linear-gradient(180deg,#19221a,#0c120c);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.07),0 8px 16px -12px rgba(0,0,0,.85);
+    transition:transform .18s,border-color .18s,box-shadow .18s}
+  .c-keeper:nth-child(10n+1){--cap:var(--mosscap2)}.c-keeper:nth-child(10n+2){--cap:var(--mosscap3)}
+  .c-keeper:nth-child(10n+3){--cap:var(--mosscap4)}.c-keeper:nth-child(10n+4){--cap:var(--mosscap5)}
+  .c-keeper:nth-child(10n+5){--cap:var(--mosscap6)}.c-keeper:nth-child(10n+6){--cap:var(--mosscap7)}
+  .c-keeper:nth-child(10n+7){--cap:var(--mosscap8)}.c-keeper:nth-child(10n+8){--cap:var(--mosscap9)}
+  .c-keeper:nth-child(10n+9){--cap:var(--mosscap10)}.c-keeper:nth-child(10n+0){--cap:var(--mosscap1)}
+  /* resting depth cue (the desktop's hover-lift, made static); tap = active press */
+  .c-keeper:active{transform:scale(.99);border-color:rgba(169,230,195,.45)}
+  .c-keeper-top{display:flex;align-items:center;gap:11px}
+  .c-keeper .c-sigil{width:38px;height:38px;flex-shrink:0;border-radius:9px;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.7)) drop-shadow(0 0 7px rgba(169,230,195,.14))}
+  .c-keeper-id{min-width:0;flex:1}
+  .c-keeper h3{font-size:17px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.6px;
+    color:#d9ead6;text-shadow:0 2px 1px rgba(0,0,0,.9)}
+  .c-keeper h3 a{text-decoration:none;color:inherit}
+  .c-statrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:3px;
+    font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:#a3c79b}
+  .c-statrow .c-s-year{color:#8ba389}
+  .c-statrow .c-s-sep{color:#55684f}
+  .c-keeper-prose{margin-top:8px;font-size:16px;line-height:1.5;color:#9db598}
+  .c-keeper-prose a{color:var(--silver);text-decoration:none;border-bottom:1px dotted rgba(183,205,185,.4)}
+  .c-stone-link{position:absolute;inset:0;border-radius:inherit}
+  .c-stone-link:focus-visible{outline:2px solid rgba(169,230,195,.6);outline-offset:2px;border-radius:inherit}
+
+  .c-sep{display:flex;justify-content:center;padding:24px 0 2px;color:#4a5f45;opacity:.85}
+  .c-sep svg{width:200px;height:24px}
+
+  /* ── 8 · the compact wayfinding  (#telling, minimised) ────────────────── */
+  .c-telling{margin-top:26px}
+  .c-telling .c-plaque{margin-bottom:12px}
+  .c-tel-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .c-tel{min-height:56px;display:flex;align-items:center;gap:10px;padding:9px 12px;text-decoration:none;
+    border:1px solid rgba(126,151,100,.42);border-radius:var(--c-r);
+    background:linear-gradient(180deg,rgba(26,35,26,.6),rgba(7,10,8,.6));
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.07);
+    transition:border-color .2s,box-shadow .2s}
+  .c-tel img{width:30px;height:30px;border-radius:8px;flex-shrink:0;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.7)) drop-shadow(0 0 7px rgba(169,230,195,.15))}
+  .c-tel .c-tel-txt{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .c-tel .c-tel-name{font-size:14.5px;font-weight:600;font-variant-caps:all-small-caps;letter-spacing:.4px;color:#d9ead6}
+  .c-tel .c-tel-sub{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#7f9a7c}
+  .c-tel:active{border-color:rgba(169,230,195,.55)}
+  .c-tel:focus-visible{outline:2px solid rgba(169,230,195,.6);outline-offset:2px}
+
+  /* ── 9 · the compact footer ───────────────────────────────────────────── */
+  .c-foot{padding:22px var(--c-pad) calc(34px + env(safe-area-inset-bottom));text-align:center}
+  .c-foot-line{font-size:12.5px;font-style:italic;color:#93a891;letter-spacing:.4px;margin-bottom:13px}
+  .c-foot-gh{margin:0 auto}
+  .c-foot-copy{margin-top:14px;font-size:11.5px;letter-spacing:.7px;color:#8ba389}
+
+  /* ── 10 · the compact bottom sheet  (the popover, minimised) ──────────── */
+  .c-scrim{position:fixed;inset:0;z-index:90;background:rgba(3,6,4,.72);
+    opacity:0;pointer-events:none;transition:opacity .28s;backdrop-filter:blur(2px)}
+  .c-scrim.open{opacity:1;pointer-events:auto}
+  .c-sheet{position:fixed;left:0;right:0;bottom:0;z-index:95;max-height:82vh;overflow-y:auto;
+    padding:9px 18px calc(20px + env(safe-area-inset-bottom));
+    border-top:1px solid rgba(126,151,100,.55);border-radius:20px 20px 0 0;
+    background:var(--grain),var(--mosscap5),var(--mottle),linear-gradient(180deg,#1b2419 0%,#121a12 46%,#0b100b 100%);
+    box-shadow:0 -20px 60px -18px rgba(0,0,0,.95),0 0 60px rgba(169,230,195,.05);
+    transform:translateY(102%);transition:transform .32s cubic-bezier(.3,.7,.3,1);touch-action:pan-y}
+  .c-sheet.open{transform:none}
+  .c-grip{width:42px;height:5px;border-radius:3px;margin:2px auto 7px;background:rgba(126,151,100,.55)}
+  .c-sheet .c-close{position:absolute;top:11px;right:13px}
+  .c-sh-head{display:flex;gap:14px;align-items:center;padding:7px 0 14px;
+    border-bottom:1px solid rgba(126,151,100,.28)}
+  .c-sh-icon{width:62px;height:62px;flex-shrink:0;border-radius:12px;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,.8)) drop-shadow(0 0 13px rgba(169,230,195,.18))}
+  .c-sh-name{font-size:22px;font-weight:600;letter-spacing:.3px;color:var(--moon);line-height:1.12;
+    text-shadow:0 2px 2px rgba(0,0,0,.85)}
+  .c-sh-ep{margin-top:4px;font-size:13.5px;font-style:italic;color:#b0c6ad}
+  .c-sh-marks{margin-top:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a3c79b}
+  .c-sh-full{margin-top:16px}
+  .c-sh-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+  .c-sh-quick .c-btn{flex:1 1 auto}
+
+  body.c-locked{overflow:hidden}
+}
+
+/* ══════════════ HOVER TRANSLATION  (pointer-only adornment) ═════════════════
+   Nothing below CHANGES BEHAVIOUR: every compact interaction is tap-driven and
+   every resting state already glows.  These rules only add a decorative hint on
+   devices that actually have a hovering pointer, so touch can never latch a
+   hover.  The compact behaviour is provably identical with the mouse unplugged.
+   (Site-wide pattern table → shanaghy-mobile-prototype-interactions.md §3.8.) */
+@media (max-width:1024px) and (hover:hover){
+  .c-btn:hover{color:var(--lume2);border-color:rgba(169,230,195,.55);text-shadow:0 0 12px rgba(169,230,195,.6)}
+  .c-close:hover{color:var(--lume2);border-color:rgba(169,230,195,.7)}
+  .c-plate:hover{border-color:rgba(169,230,195,.45);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 22px -7px rgba(169,230,195,.35)}
+  .c-chip:hover{border-color:rgba(169,230,195,.6);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 22px -6px rgba(169,230,195,.5)}
+  .c-chip:hover .c-chip-name{color:var(--lume2)}
+  .c-keeper:hover{border-color:rgba(169,230,195,.45);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 22px -8px rgba(169,230,195,.35)}
+  .c-tel:hover{border-color:rgba(169,230,195,.55);
+    box-shadow:inset 0 1px 0 rgba(214,236,222,.12),0 0 22px -6px rgba(169,230,195,.45)}
+  .c-tel:hover .c-tel-name{color:var(--lume2)}
+  .c-lede a:hover,.c-keeper-prose a:hover{color:var(--lume2);border-bottom-color:rgba(169,230,195,.7)}
+}
+
+/* on a touch device there is no hover: the AIM ring/tag is the 'fake mouseover' */
+@media (max-width:1024px) and (hover:none){
+  .c-hitbtn{cursor:default}
+}
+
+/* ── narrow retunes (still compact; fluid from ~320px up) ─────────────────── */
+@media (max-width:620px){
+  .c-nav-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:400px){
+  .c-tel-grid{grid-template-columns:1fr}
+}
+@media (max-width:380px){
+  .c-btn--menu{padding:0 12px 0 11px}
+  .c-btn--menu .c-menu-t{display:none}
+  .c-chip .c-chip-sub{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .c-navsheet,.c-sheet,.c-scrim,.c-stage{transition-duration:.01ms}
+  .c-tag{transition:none}
+}
