@@ -1,6 +1,6 @@
 # shanaghy.com
 
-Personal site of Declan Shanaghy — Castlehaven, West Cork.
+Personal site of Declan Shanaghy, Athlone, Co. Westmeath.
 
 ## The one-minute garden
 
