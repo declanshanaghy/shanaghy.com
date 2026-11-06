@@ -507,7 +507,7 @@ a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
 }
 
 /* ═══ bog-backdrop paste — canonical block for the site-wide rollout (issue #141).
-   Source of truth: web/styles/bog-backdrop.paste.css. Paste verbatim at the END of a page's css, then
+   Source of truth: this file. Paste verbatim at the END of a page's css, then
    lift that page's content wrapper above the stage (see the contract below).
    The painted scene itself lives in /assets/js/bog-scene.js, mounted once
    site-wide by the Layout chrome; the page only supplies the four
