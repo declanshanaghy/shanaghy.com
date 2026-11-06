@@ -315,6 +315,45 @@ test("foxes-bow.css pastes the canonical block and lifts the wrapper above the s
   assert.match(page, /main\.profile\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
 });
 
+test("hal-9005.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/profiles/hal-9005.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("profile-head")[0]), "the page adds no script tag of its own");
+});
+
+test("hal-9005.html keeps its original content marks and section count", () => {
+  const html = read("content/profiles/hal-9005.html");
+  assert.ok(html.includes("hal-9005"), "the profile's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("hal-9005.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/profiles/hal-9005.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.profile\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built hal-9005 page: the backdrop rides behind the Windows gate", { skip: !built("profiles/hal-9005/index.html") && "run npm run build first" }, () => {
+  const html = built("profiles/hal-9005/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("hal-9005"), "the profile's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
 test("built foxes-bow page: the backdrop rides behind the totem", { skip: !built("profiles/foxes-bow/index.html") && "run npm run build first" }, () => {
   const html = built("profiles/foxes-bow/index.html");
   for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
