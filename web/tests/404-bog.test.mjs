@@ -46,9 +46,12 @@ test("404.css pastes the canonical block and lifts the wrapper above the stage",
 /* ── integration: the BUILT page ─────────────────────────────────────── */
 
 function built() {
-  const p = path.join(root, "out", "404.html");
-  if (!existsSync(p)) return null;
-  return readFileSync(p, "utf8");
+  /* trailingSlash: true in next.config.js exports the 404 page to
+     out/404/index.html (and older builds also wrote out/404.html) */
+  for (const p of [path.join(root, "out", "404", "index.html"), path.join(root, "out", "404.html")]) {
+    if (existsSync(p)) return readFileSync(p, "utf8");
+  }
+  return null;
 }
 
 test("built 404 page: the port proves the whole path end to end", { skip: !built() && "run npm run build first" }, () => {
