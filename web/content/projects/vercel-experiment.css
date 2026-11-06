@@ -295,7 +295,20 @@ img{display:block}
 }
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
 
-/* ── bog-backdrop paste (source of truth: web/styles/bog-backdrop.paste.css) ─── */
+/* ═══ bog-backdrop paste — canonical block for the site-wide rollout (issue #141).
+   Source of truth: this file. Paste verbatim at the END of a page's css, then
+   lift that page's content wrapper above the stage (see the contract below).
+   The painted scene itself lives in /assets/js/bog-scene.js, mounted once
+   site-wide by the Layout chrome; the page only supplies the four
+   aria-hidden decorative divs: the grainfx, vign and bloom overlays,
+   and the stage div wrapping the bog-scene canvas.
+   STACKING CONTRACT:
+   - the fixed stage sits at z-index 0 (the page's living ground);
+   - page content wrappers ride above it via position:relative;z-index:1;
+   - sticky topbars stay above that (the shared topbar is z-index 50);
+   - the canvas keeps its slight depth-of-field blur (filter:blur(3px))
+     with the transform:scale(1.014) overscan; #bog-stage clips the rim.
+   The canvas sky paints NO moon (the one-moon law, decree 2026-11-04). ═══ */
 
 /* ── bog weather overlays (page-level grain · vignette · bloom) ──── */
 #bog-grainfx{
