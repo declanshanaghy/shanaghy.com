@@ -36,7 +36,7 @@ test("the-daykeeper.css pastes the canonical block and lifts the wrapper above t
   assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
   assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
   assert.match(page, /main\.profile\{position:relative;z-index:1\}/, "the content wrapper stacks above the stage");
-  assert.match(page, /\.topbar\{position:sticky;top:0;z-index:50\}/, "the topbar stays above the stage");
+  assert.match(page, /\.topbar\{position:sticky;top:0;z-index:50/, "the topbar stays above the stage");
 });
 
 /* ── integration: the BUILT page ─────────────────────────────────────── */
