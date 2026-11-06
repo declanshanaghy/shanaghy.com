@@ -81,6 +81,33 @@ test("paths.css pastes the canonical block and lifts the wrapper above the stage
   assert.match(page, /main\.garden\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
 });
 
+/* ── unit: the /laws/handcrafted-over-platform/ port (issue #147) ──────── */
+
+test("handcrafted-over-platform.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/laws/handcrafted-over-platform.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+});
+
+test("handcrafted-over-platform.html keeps its original content marks", () => {
+  const html = read("content/laws/handcrafted-over-platform.html");
+  assert.ok(html.includes("Law 6 · Handcrafted Over Platform"));
+});
+
+test("handcrafted-over-platform.css pastes the canonical block and lifts the page body above the stage", () => {
+  const page = read("content/laws/handcrafted-over-platform.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: stage is the fixed ground");
+  assert.match(page, /img\.hero3d,\.profile-head,\.slab,\.backrow\{position:relative;z-index:1\}/, "page body blocks stack above the stage");
+});
+
 /* ── integration: the BUILT pages ─────────────────────────────────────── */
 
 function built(name) {
@@ -106,6 +133,114 @@ test("built paths page: the port proves the whole path end to end", { skip: !bui
   assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1);
 });
 
+test("built handcrafted-over-platform page: the port proves the whole path end to end", { skip: !built("laws/handcrafted-over-platform/index.html") && "run npm run build first" }, () => {
+  const html = built("laws/handcrafted-over-platform/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.ok(html.includes("Law 6 · Handcrafted Over Platform"));
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1);
+});
+
 test("built scene asset is served from the public tree", { skip: !built("index.html") && "run npm run build first" }, () => {
   assert.ok(existsSync(path.join(root, "out", "assets/js/bog-scene.js")), "the scene script ships in the export");
+});
+
+/* ── unit: the /creed/ port (issue #142) ───────────────────────────────── */
+
+test("creed.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/creed.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("SHARED SIGILS")[0]), "the page adds no script tag of its own");
+});
+
+test("creed.html keeps its original content marks and section count", () => {
+  const html = read("content/creed.html");
+  assert.ok(html.includes("The band kept two grounds, and the new band keeps both. The winter halls are the"));
+  /* the <section count on origin/main before the port was 1; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 1, "section count unchanged from origin/main");
+});
+
+test("creed.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/creed.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.garden\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built creed page: the backdrop rides behind the telling", { skip: !built("creed/index.html") && "run npm run build first" }, () => {
+  const html = built("creed/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the shared scene script is mounted by the chrome");
+  assert.ok(html.includes("The band kept two grounds, and the new band keeps both. The winter halls are the"));
+  assert.equal((html.match(/<section/g) || []).length, 1, "section count unchanged from origin/main");
+});
+
+/* ── unit: the /laws/delegated-is-verified/ port (issue #144) ─────────── */
+
+test("delegated-is-verified.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/laws/delegated-is-verified.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+});
+
+test("delegated-is-verified.html keeps its original content marks", () => {
+  const html = read("content/laws/delegated-is-verified.html");
+  assert.ok(html.includes("Law 10 · Delegated, Therefore Verified"));
+  assert.ok(html.includes("What is delegated is verified."));
+  assert.ok(html.includes("back to the Dekalogue"));
+});
+
+test("delegated-is-verified.css pastes the backdrop block and lifts the riders above the stage", () => {
+  const page = read("content/laws/delegated-is-verified.css");
+  for (const sel of ["#bog-grainfx", ".bog-vign", ".bog-bloom", "#bog-stage", "#bog-scene"]) {
+    assert.ok(page.includes(sel), `${sel} rule present`);
+  }
+  assert.match(page, /#bog-stage\{position:fixed/, "the stage is the fixed ground at z-index 0");
+  assert.match(page, /#bog-scene\{[^}]*filter:blur\(3px\)/s, "canvas keeps its depth-of-field blur");
+  assert.match(page, /#bog-scene\{[^}]*transform:scale\(1\.014\)/s, "overscan hides the blur rim");
+  assert.match(
+    page, /@media\(prefers-reduced-motion:reduce\)\{#bog-stage\{box-shadow:none\}\}/,
+    "reduced-motion guard"
+  );
+  assert.match(
+    page, /img\.hero3d,\.profile-head,\.slab,\.backrow\{position:relative;z-index:1\}/,
+    "every rider of this flat page stacks above the stage"
+  );
+});
+
+test("built delegated-is-verified page: the port proves the whole path end to end", { skip: !built("laws/delegated-is-verified/index.html") && "run npm run build first" }, () => {
+  const html = built("laws/delegated-is-verified/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.ok(html.includes("Law 10 · Delegated, Therefore Verified"), "the law's own mark survives the port");
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+});
+
+test("built never-model-carved page: the backdrop rides behind the law", { skip: !built("laws/never-model-carved/index.html") && "run npm run build first" }, () => {
+  const html = built("laws/never-model-carved/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.ok(html.includes("Law 9 · The Chisel, Not the Model"), "the law's own content mark survives");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1);
 });

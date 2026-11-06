@@ -76,34 +76,14 @@ export default function Page({ html, css }) {
     var $ = function(s, r) { return (r || document).querySelector(s); };
     var $$ = function(s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
 
-    var navSheet = $('#cNav'), navBtn = $('#cNavBtn');
+    /* the compact bar + Path-Sheet are the shared chrome's now
+       (web/components/Header.js — issue #280); this page keeps only
+       the scene, the soul sheet and the roll */
+
     var scrim = $('#cScrim'), sheet = $('#cSheet');
     var stage = $('#cStage');
     var hitBtns = $$('#compact .c-hitbtn');
     var soulGroups = $$('#compact .c-ent');
-
-    /* ── Path-Sheet ─────────────────────────────────────────────────── */
-    function openNav() {
-      if (!navSheet) return;
-      navSheet.hidden = false;
-      requestAnimationFrame(function() { navSheet.classList.add('open'); });
-      if (navBtn) navBtn.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('c-locked');
-      var c = $('.c-close', navSheet); if (c) c.focus();
-    }
-    function closeNav() {
-      if (!navSheet) return;
-      navSheet.classList.remove('open');
-      if (navBtn) navBtn.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('c-locked');
-      setTimeout(function() { if (!navSheet.classList.contains('open')) navSheet.hidden = true; }, 340);
-    }
-    if (navBtn) navBtn.addEventListener('click', function() {
-      navSheet && navSheet.classList.contains('open') ? closeNav() : openNav();
-    });
-    if (navSheet) {
-      $$('a, .c-close', navSheet).forEach(function(a) { a.addEventListener('click', closeNav); });
-    }
 
     /* ── bottom sheet: the whole card (epithet, marks, lore, kin), then "the full telling →" ─── */
     var lastFocus = null;
@@ -271,8 +251,7 @@ export default function Page({ html, css }) {
     /* ── Escape closes whichever overlay is open ────────────────────── */
     function onEsc(e) {
       if (e.key !== 'Escape') return;
-      if (navSheet && navSheet.classList.contains('open')) closeNav();
-      else if (sheet && sheet.classList.contains('open')) closeSheet();
+      if (sheet && sheet.classList.contains('open')) closeSheet();
       else if (aimed) clearAim();
     }
     document.addEventListener('keydown', onEsc);
@@ -292,7 +271,6 @@ export default function Page({ html, css }) {
         }
       } else {
         if (sheet) closeSheet();
-        if (navSheet && navSheet.classList.contains('open')) closeNav();
         clearAim(); resetZoom();
       }
     }
