@@ -559,6 +559,438 @@ test("built zigbee2mqtt page: the backdrop rides behind the mesh-weavers", { ski
   assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
 });
 
+test("Accessories.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/Accessories.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ["bog-stage", "bog-grainfx", "bog-vign", "bog-bloom"]) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html), "the page adds no scene script of its own");
+});
+
+test("Accessories.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/Accessories.html");
+  assert.ok(html.includes("Accessories"), "the stone's own mark survives the port");
+  assert.ok(html.includes("the workbench of the garden"), "the slab's own tell survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("Accessories.css pastes the canonical block and lifts the page body above the stage", () => {
+  const page = read("content/projects/Accessories.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /\.runestrip,\.page-head,main\.page,\.plaque-head,\.slab\{position:relative;z-index:1\}/, "the loose page body containers stack above the stage");
+  assert.match(page, /footer\.foot\{position:relative;z-index:1\}/, "the footer rides above the stage");
+  assert.match(page, /\.topbar\{[^}]*position:sticky[^}]*z-index:50/s, "the sticky topbar stays above the stage");
+});
+
+test("built Accessories page: the backdrop rides behind the ring-giver's workbench", { skip: !built("projects/Accessories/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/Accessories/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("Accessories"), "the stone's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("BeerLux.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/BeerLux.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("BeerLux.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/BeerLux.html");
+  assert.ok(html.includes("BeerLux"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("BeerLux.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/BeerLux.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built BeerLux page: the backdrop rides behind the brewer's stone", { skip: !built("projects/BeerLux/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/BeerLux/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("BeerLux"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("ByrneLite.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/ByrneLite.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("ByrneLite.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/ByrneLite.html");
+  assert.ok(html.includes("ByrneLite"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("ByrneLite.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/ByrneLite.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built ByrneLite page: the backdrop rides behind the raven stone", { skip: !built("projects/ByrneLite/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/ByrneLite/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("ByrneLite"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("DexOneRing.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/DexOneRing.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("DexOneRing.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/DexOneRing.html");
+  assert.ok(html.includes("DexOneRing"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("DexOneRing.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/DexOneRing.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built DexOneRing page: the backdrop rides behind the ring-giver's gift", { skip: !built("projects/DexOneRing/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/DexOneRing/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("DexOneRing"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("GenieSteroids.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/GenieSteroids.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("GenieSteroids.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/GenieSteroids.html");
+  assert.ok(html.includes("GenieSteroids"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("GenieSteroids.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/GenieSteroids.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built GenieSteroids page: the backdrop rides behind the eldest stone", { skip: !built("projects/GenieSteroids/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/GenieSteroids/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("GenieSteroids"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("JabberBot.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/JabberBot.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("JabberBot.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/JabberBot.html");
+  assert.ok(html.includes("JabberBot"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("JabberBot.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/JabberBot.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built JabberBot page: the backdrop rides behind the rover's stone", { skip: !built("projects/JabberBot/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/JabberBot/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("JabberBot"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("KeypadBackpack.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/KeypadBackpack.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("KeypadBackpack.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/KeypadBackpack.html");
+  assert.ok(html.includes("KeypadBackpack"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("KeypadBackpack.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/KeypadBackpack.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built KeypadBackpack page: the backdrop rides behind the keyless lock's stone", { skip: !built("projects/KeypadBackpack/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/KeypadBackpack/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("KeypadBackpack"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("Max756Breakout.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/Max756Breakout.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("Max756Breakout.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/Max756Breakout.html");
+  assert.ok(html.includes("Max756Breakout"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("Max756Breakout.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/Max756Breakout.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built Max756Breakout page: the backdrop rides behind the eldest stone", { skip: !built("projects/Max756Breakout/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/Max756Breakout/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("Max756Breakout"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("PeytonsBirthdayCladdaghRing.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/PeytonsBirthdayCladdaghRing.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("PeytonsBirthdayCladdaghRing.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/PeytonsBirthdayCladdaghRing.html");
+  assert.ok(html.includes("PeytonsBirthdayCladdaghRing"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("PeytonsBirthdayCladdaghRing.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/PeytonsBirthdayCladdaghRing.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built PeytonsBirthdayCladdaghRing page: the backdrop rides behind the ring-giver's gift", { skip: !built("projects/PeytonsBirthdayCladdaghRing/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/PeytonsBirthdayCladdaghRing/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("PeytonsBirthdayCladdaghRing"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("StormBox.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/StormBox.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("StormBox.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/StormBox.html");
+  assert.ok(html.includes("StormBox"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("StormBox.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/StormBox.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built StormBox page: the backdrop rides behind the storm in a box", { skip: !built("projects/StormBox/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/StormBox/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("StormBox"), "the project's own mark survives the build");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("ai-prompts.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/ai-prompts.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("ai-prompts.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/ai-prompts.html");
+  assert.ok(html.includes("ai-prompts"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("ai-prompts.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/ai-prompts.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built ai-prompts page: the backdrop rides behind the incantation stones", { skip: !built("projects/ai-prompts/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/ai-prompts/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("ai-prompts"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
 test("bbqberry.html carries the four decorative divs exactly once each", () => {
   const html = read("content/projects/bbqberry.html");
   assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
