@@ -402,7 +402,123 @@ test("built heimdall page: the backdrop rides behind the watchman", { skip: !bui
   assert.ok(html.includes("heimdall"), "the profile's own mark survives the port");
   assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
 });
-/* ── unit: the /profiles/zigbee2mqtt/ port (issue #195) ───────────────── */
+
+test("ArduinoLibraries.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/ArduinoLibraries.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("ArduinoLibraries.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/ArduinoLibraries.html");
+  assert.ok(html.includes("ArduinoLibraries"), "the page's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("ArduinoLibraries.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/ArduinoLibraries.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built ArduinoLibraries page: the backdrop rides behind the elder stones", { skip: !built("projects/ArduinoLibraries/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/ArduinoLibraries/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("ArduinoLibraries"), "the page's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("BBRegulator.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/BBRegulator.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("BBRegulator.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/BBRegulator.html");
+  assert.ok(html.includes("BBRegulator"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("BBRegulator.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/BBRegulator.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built BBRegulator page: the backdrop rides behind the eldest stone", { skip: !built("projects/BBRegulator/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/BBRegulator/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("BBRegulator"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("na-fianna.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/profiles/na-fianna.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("profile-head")[0]), "the page adds no script tag of its own");
+});
+
+test("na-fianna.html keeps its original content marks and section count", () => {
+  const html = read("content/profiles/na-fianna.html");
+  assert.ok(html.includes("Na Fianna"), "the band's own name survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("na-fianna.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/profiles/na-fianna.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.profile\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built na-fianna page: the backdrop rides behind the band", { skip: !built("profiles/na-fianna/index.html") && "run npm run build first" }, () => {
+  const html = built("profiles/na-fianna/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("Na Fianna"), "the band's own name survives the build");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
 
 test("zigbee2mqtt.html carries the four decorative divs exactly once each", () => {
   const html = read("content/profiles/zigbee2mqtt.html");
