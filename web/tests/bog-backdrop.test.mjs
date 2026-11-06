@@ -1190,3 +1190,42 @@ test("built mossy-motd page: the backdrop rides behind the threshold greeter", {
   assert.ok(html.includes("mossy-motd"), "the project's own mark survives the build");
   assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
 });
+
+test("rizz-power-up.html carries the four decorative divs exactly once each", () => {
+  const html = read("content/projects/rizz-power-up.html");
+  assert.equal((html.match(/id="bog-stage"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-scene"/g) || []).length, 1);
+  assert.equal((html.match(/id="bog-grainfx"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-vign"/g) || []).length, 1);
+  assert.equal((html.match(/class="bog-bloom"/g) || []).length, 1);
+  for (const d of ['bog-stage', 'bog-grainfx', 'bog-vign', 'bog-bloom']) {
+    assert.ok(html.includes(`${d}" aria-hidden="true"`), `${d} is aria-hidden`);
+  }
+  assert.ok(!/<script/.test(html.split("runestrip")[0]), "the page adds no script tag of its own");
+});
+
+test("rizz-power-up.html keeps its original content marks and section count", () => {
+  const html = read("content/projects/rizz-power-up.html");
+  assert.ok(html.includes("rizz-power-up"), "the project's own mark survives the port");
+  /* the <section count on origin/main before the port was 0; the backdrop
+     divs must not change it */
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
+
+test("rizz-power-up.css pastes the canonical block and lifts the wrapper above the stage", () => {
+  const page = read("content/projects/rizz-power-up.css");
+  const paste = read("styles/bog-backdrop.paste.css").trim();
+  assert.ok(page.includes(paste), "the canonical paste rides verbatim at the end of the page css");
+  assert.match(page, /#bog-stage\{[^}]*position:fixed/, "the paste took: the fixed stage rule is present");
+  assert.match(page, /main\.page\{position:relative;z-index:1\}/, "content wrapper stacks above the stage");
+});
+
+test("built rizz-power-up page: the backdrop rides behind the charm of power", { skip: !built("projects/rizz-power-up/index.html") && "run npm run build first" }, () => {
+  const html = built("projects/rizz-power-up/index.html");
+  for (const m of ['id="bog-stage"', 'id="bog-scene"', 'id="bog-grainfx"', 'class="bog-vign"', 'class="bog-bloom"']) {
+    assert.equal((html.match(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length, 1, `${m} exactly once`);
+  }
+  assert.equal((html.match(/src="\/assets\/js\/bog-scene\.js"/g) || []).length, 1, "the chrome loads the shared scene once");
+  assert.ok(html.includes("rizz-power-up"), "the project's own mark survives the port");
+  assert.equal((html.match(/<section/g) || []).length, 0, "section count unchanged from origin/main (zero)");
+});
