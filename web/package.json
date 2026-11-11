@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "prebuild": "python3 ../scripts/gen_sitemap.py || true",
     "dev": "next dev",
     "build": "next build",
     "test": "node --test tests/",
