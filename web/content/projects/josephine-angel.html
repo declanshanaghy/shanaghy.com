@@ -1,0 +1,393 @@
+<!-- ═══════════ BOG BACKDROP · the site-wide living ground (issue #211) ═══════════ -->
+<!-- decorative, aria-hidden; the scene itself is painted by the shared
+     /assets/js/bog-scene.js mounted once by the Layout chrome -->
+<div id="bog-grainfx" aria-hidden="true"></div>
+<div class="bog-vign" aria-hidden="true"></div>
+<div class="bog-bloom" aria-hidden="true"></div>
+<div id="bog-stage" aria-hidden="true"><canvas id="bog-scene"></canvas></div>
+
+<div class="runestrip">
+    <a class="rtab" href="/#grove-ai"><span class="rt-rune">ᚐ</span><span class="rt-label">Agents</span><span class="rt-count">×6</span></a>
+    <a class="rtab" href="/#grove-home"><span class="rt-rune">ᚓ</span><span class="rt-label">Hearth</span><span class="rt-count">×7</span></a>
+    <a class="rtab" href="/#grove-web"><span class="rt-rune">ᚔ</span><span class="rt-label">Webwork</span><span class="rt-count">×9</span></a>
+    <a class="rtab" href="/#grove-games"><span class="rt-rune">ᚊ</span><span class="rt-label">Games</span><span class="rt-count">×3</span></a>
+    <a class="rtab here" href="/#grove-print"><span class="rt-rune">ᚇ</span><span class="rt-label">Craft</span><span class="rt-count">×4</span></a>
+    <a class="rtab" href="/#grove-hardware"><span class="rt-rune">ᚅ</span><span class="rt-label">Elders</span><span class="rt-count">×19</span></a>
+    <a class="rtab" href="/#grove-misc"><span class="rt-rune">ᚏ</span><span class="rt-label">Curio</span><span class="rt-count">×2</span></a>
+    <a class="rtab" href="/#grove-keepers"><span class="rt-rune">ᚑ</span><span class="rt-label">Keepers</span><span class="rt-count">×3</span></a>
+  </div>
+
+
+<!-- ═══════════ ENGRAVED HEADER — THE STONE'S OWN SIGNAGE ═══════════ -->
+<header class="page-head">
+  <span class="ph-rune" aria-hidden="true">ᚇ</span>
+  <a class="crumb" href="/">ᚔ back to the forge</a>
+  <div class="signage">
+    <img class="ph-icon" src="/assets/icons/projects/josephine-angel.webp" alt="" width="72" height="72" loading="lazy">
+    <h1>Josephine Angel</h1>
+    <p class="ph-grove"><span class="rune">ᚇ</span>Grove V · The Ring-Giver&#39;s Gift</p>
+  </div>
+  <div class="ph-marks">
+    <span class="m-lang">Blender</span><span class="m-sep">᛫</span><span class="m-year">2026</span>
+  </div>
+</header>
+
+<main class="page ja" data-current="final">
+<div class="ja-top failed">
+  <nav class="pipeline" aria-label="Pipeline stages"><div class="tabs" role="tablist" aria-label="Pipeline stages"><button type="button" role="tab" class="tab done" id="tab-preview-2d" data-stage="preview-2d" aria-controls="panel-preview-2d" aria-selected="false" aria-disabled="false" tabindex="-1" title="Preview 2D: done">Preview 2D<span class="vh">, done</span></button>
+<span class="arrow" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M0 6H23"/><path class="head" d="M22 1.5L30 6L22 10.5Z"/></svg></span>
+<button type="button" role="tab" class="tab done" id="tab-preview-mesh" data-stage="preview-mesh" aria-controls="panel-preview-mesh" aria-selected="false" aria-disabled="false" tabindex="-1" title="Preview Mesh: done">Preview Mesh<span class="vh">, done</span></button>
+<span class="arrow" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M0 6H23"/><path class="head" d="M22 1.5L30 6L22 10.5Z"/></svg></span>
+<button type="button" role="tab" class="tab done" id="tab-preview-inscriptions" data-stage="preview-inscriptions" aria-controls="panel-preview-inscriptions" aria-selected="false" aria-disabled="false" tabindex="-1" title="Preview Inscriptions: done">Preview Inscriptions<span class="vh">, done</span></button>
+<span class="arrow" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M0 6H23"/><path class="head" d="M22 1.5L30 6L22 10.5Z"/></svg></span>
+<button type="button" role="tab" class="tab done" id="tab-preview-cutouts" data-stage="preview-cutouts" aria-controls="panel-preview-cutouts" aria-selected="false" aria-disabled="false" tabindex="-1" title="Preview cutouts/hollows: done">Preview cutouts/hollows<span class="vh">, done</span></button>
+<span class="arrow" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M0 6H23"/><path class="head" d="M22 1.5L30 6L22 10.5Z"/></svg></span>
+<button type="button" role="tab" class="tab current failed" id="tab-final" data-stage="final" aria-controls="panel-final" aria-selected="true" aria-disabled="false" tabindex="0" title="Final Mesh Rendering: failed, current">Final Mesh Rendering<span class="vh">, failed, current</span></button>
+</div></nav>
+</div>
+<div class="ja-main">
+<div class="panel" role="tabpanel" id="panel-preview-2d" aria-labelledby="tab-preview-2d" data-stage="preview-2d" tabindex="0" hidden>
+<section id="sources"><h2>Reference photos</h2><div class="grid small"><figure><img src="/assets/projects/josephine-angel/sources-josephine.jpg" alt="josephine" loading="lazy"><figcaption>josephine</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-josephine2.jpg" alt="josephine2" loading="lazy"><figcaption>josephine2</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-marie1.jpg" alt="marie1" loading="lazy"><figcaption>marie1</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-marie2.jpg" alt="marie2" loading="lazy"><figcaption>marie2</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-marie3.jpg" alt="marie3" loading="lazy"><figcaption>marie3</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-marie4.jpg" alt="marie4" loading="lazy"><figcaption>marie4</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve1.jpg" alt="steve1" loading="lazy"><figcaption>steve1</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve2.jpg" alt="steve2" loading="lazy"><figcaption>steve2</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve3.jpg" alt="steve3" loading="lazy"><figcaption>steve3</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve4.jpg" alt="steve4" loading="lazy"><figcaption>steve4</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve5.jpg" alt="steve5" loading="lazy"><figcaption>steve5</figcaption></figure>
+</div></section>
+
+<section id="views"><h2>Source views sent to Meshy</h2><h3>Front</h3><div class="view-input"><div class="view-result"><figure><img src="/assets/projects/josephine-angel/views-front-view-sent-to-meshy.jpg" alt="Front view sent to Meshy" loading="lazy"><figcaption>Front view sent to Meshy</figcaption></figure>
+</div><div class="view-gemini"><p class="view-label">Gemini prompt</p><p class="prompt">Edit the first image, the front view of a white clay memorial sculpture. Keep the camera angle, framing and composition: the baby angel Josephine in a ribbed knitted bobble hat and buttoned knitted cardigan (as in photos 6 and 7), eyes peacefully closed, holding a blank scroll, with large lightning-veined wings; her father kneeling on the left and her mother kneeling on the right, looking at each other; a blank tablet behind each parent; a blank ribbon banner across the front; a low rugged base of stacked angular faceted stones. The man is a sculpted likeness of the man in photos 2 and 3 (broad face, strong jaw, short slightly tousled hair swept up and back, clean-shaven, no glasses); the woman of the woman in photos 4 and 5 (long straight dark hair past her shoulders, a hairband, her face shape, eyes and nose, no glasses). Both calm and solemn with mouths gently closed. Josephine&#x27;s lower body is a clearly sculpted baby, never a shapeless mass: she sits upright on the top stone, below her cardigan she wears a white disposable diaper (as in photo 7), and her chubby bare baby legs (as chubby as the legs in photo 8) hang down over the front edge of the stone, knees bent, with small bare feet resting flat on the stone below; legs and feet are joined to the stone with no gaps. Seen from the front, both legs are fully visible side by side, from the diaper down to the toes, two matching legs of equal length with two matching feet: the scroll is held up against her chest with its lower end above her knees, and nothing (scroll, parents, tablets, hair) passes in front of her legs. Nothing else is added anywhere: no extra hands, arms or figures, no planks, sticks, posts or props, no extra hats or hoods. Each hand has exactly four fingers and a thumb. Design it to 3D-print with as little support as possible: the kneeling man&#x27;s hand rests flat and fully in contact on top of his raised knee, palm and all four fingers pressed onto the knee with no gap underneath; his other hand lies flat against his thigh; both parents&#x27; arms are close against their bodies with no gaps; the scroll is held tight against the baby&#x27;s body; the ribbon banner lies on and is joined to the stone base along its length, no free-hanging ends; no thin protruding parts, no floating pieces, no deep undercuts; overhangs are gentle slopes. All-white unpainted clay, plain light grey seamless background, soft even studio light. No color, no text, no symbols.</p><p class="view-label">Gemini reference images, in prompt order</p><div class="grid small"><figure><img src="/assets/projects/josephine-angel/views-front-view-sent-to-meshy.jpg" alt="Image 1: current front view" loading="lazy"><figcaption>Image 1: current front view</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve3.jpg" alt="Image 2: steve3" loading="lazy"><figcaption>Image 2: steve3</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-steve5.jpg" alt="Image 3: steve5" loading="lazy"><figcaption>Image 3: steve5</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-marie2.jpg" alt="Image 4: marie2" loading="lazy"><figcaption>Image 4: marie2</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-marie1.jpg" alt="Image 5: marie1" loading="lazy"><figcaption>Image 5: marie1</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-josephine.jpg" alt="Image 6: josephine" loading="lazy"><figcaption>Image 6: josephine</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/sources-josephine2.jpg" alt="Image 7: josephine2" loading="lazy"><figcaption>Image 7: josephine2</figcaption></figure>
+</div></div></div>
+<h3>Back</h3><div class="view-input"><div class="view-result"><figure><img src="/assets/projects/josephine-angel/views-back-view-sent-to-meshy.jpg" alt="Back view sent to Meshy" loading="lazy"><figcaption>Back view sent to Meshy</figcaption></figure>
+</div><div class="view-gemini"><p class="view-label">Gemini prompt</p><p class="prompt">Photo-retouch the first image, a 3D render of a white clay sculpture seen from directly behind, into a realistic studio product photograph. It must stay a back view: identical camera angle, framing, silhouette, composition and positions of every element; nothing may turn toward the camera, appear or disappear; nothing on the back that the render does not show. Refine sculpted detail on feathers, knitwear and stones. Seen from behind, Josephine faces away from the camera: only her back, the back of her hat and the seat of her diaper show between the wings; her legs and feet hang down the far (front) side of the stone and are hidden, never hanging toward the camera. Josephine&#x27;s lower body is a clearly sculpted baby, never a shapeless mass: she sits upright on the top stone, below her cardigan she wears a white disposable diaper (as in photo 7), and her chubby bare baby legs (as chubby as the legs in photo 8) hang down over the front edge of the stone, knees bent, with small bare feet resting flat on the stone below; legs and feet are joined to the stone with no gaps. Seen from the front, both legs are fully visible side by side, from the diaper down to the toes, two matching legs of equal length with two matching feet: the scroll is held up against her chest with its lower end above her knees, and nothing (scroll, parents, tablets, hair) passes in front of her legs. Nothing else is added anywhere: no extra hands, arms or figures, no planks, sticks, posts or props, no extra hats or hoods. Each hand has exactly four fingers and a thumb. Design it to 3D-print with as little support as possible: the kneeling man&#x27;s hand rests flat and fully in contact on top of his raised knee, palm and all four fingers pressed onto the knee with no gap underneath; his other hand lies flat against his thigh; both parents&#x27; arms are close against their bodies with no gaps; the scroll is held tight against the baby&#x27;s body; the ribbon banner lies on and is joined to the stone base along its length, no free-hanging ends; no thin protruding parts, no floating pieces, no deep undercuts; overhangs are gentle slopes. All-white unpainted clay, plain light grey seamless background, soft even studio light. No color, no text, no symbols.</p><p class="view-label">Gemini reference images, in prompt order</p><div class="grid small"><figure><img src="/assets/projects/josephine-angel/views-image-1-turntable-frame-19.jpg" alt="Image 1: turntable frame 19" loading="lazy"><figcaption>Image 1: turntable frame 19</figcaption></figure>
+</div></div></div>
+<h3>Right</h3><div class="view-input"><div class="view-result"><figure><img src="/assets/projects/josephine-angel/views-right-view-sent-to-meshy.jpg" alt="Right view sent to Meshy" loading="lazy"><figcaption>Right view sent to Meshy</figcaption></figure>
+</div><div class="view-gemini"><p class="view-label">Gemini prompt</p><p class="prompt">Photo-retouch the first image, a 3D render of a white clay sculpture seen from its right side, into a realistic studio product photograph. It must stay a right-side view: identical camera angle, framing, silhouette, composition and positions of every element; nothing may turn toward the camera. The flat featureless grey block in the first image is a placeholder, not part of the sculpture: replace it completely with what belongs there, seen from this right-side angle. The second image is only a close-up reference, cropped from the approved front view, of Josephine&#x27;s diaper, legs and feet; never reproduce it or its front-on angle. She sits on her stone with her legs exactly as in that close-up: exactly two chubby bare legs held together side by side in the middle under her diaper, hanging straight down over the front edge of her stone, both small bare feet together below; never spread apart, never to the sides, no other legs or feet anywhere. Fill the rest of the block with the stone, wing, tablet and figures around it, continuing what surrounds the block. No grey block remains. Refine sculpted detail on feathers, knitwear, faces, hair and stones. Josephine&#x27;s lower body is a clearly sculpted baby, never a shapeless mass: she sits upright on the top stone, below her cardigan she wears a white disposable diaper (as in photo 7), and her chubby bare baby legs (as chubby as the legs in photo 8) hang down over the front edge of the stone, knees bent, with small bare feet resting flat on the stone below; legs and feet are joined to the stone with no gaps. Seen from the front, both legs are fully visible side by side, from the diaper down to the toes, two matching legs of equal length with two matching feet: the scroll is held up against her chest with its lower end above her knees, and nothing (scroll, parents, tablets, hair) passes in front of her legs. Nothing else is added anywhere: no extra hands, arms or figures, no planks, sticks, posts or props, no extra hats or hoods. Each hand has exactly four fingers and a thumb. Design it to 3D-print with as little support as possible: the kneeling man&#x27;s hand rests flat and fully in contact on top of his raised knee, palm and all four fingers pressed onto the knee with no gap underneath; his other hand lies flat against his thigh; both parents&#x27; arms are close against their bodies with no gaps; the scroll is held tight against the baby&#x27;s body; the ribbon banner lies on and is joined to the stone base along its length, no free-hanging ends; no thin protruding parts, no floating pieces, no deep undercuts; overhangs are gentle slopes. All-white unpainted clay, plain light grey seamless background, soft even studio light. No color, no text, no symbols.</p><p class="view-label">Gemini reference images, in prompt order</p><div class="grid small"></div></div></div>
+<h3>Left</h3><div class="view-input"><div class="view-result"><figure><img src="/assets/projects/josephine-angel/views-left-view-sent-to-meshy.jpg" alt="Left view sent to Meshy" loading="lazy"><figcaption>Left view sent to Meshy</figcaption></figure>
+</div><div class="view-gemini"><p class="view-label">Gemini prompt</p><p class="prompt">Photo-retouch the first image, a 3D render of a white clay sculpture seen from its left side, into a realistic studio product photograph. It must stay a left-side view: identical camera angle, framing, silhouette, composition and positions of every element; nothing may turn toward the camera. The flat featureless grey block in the first image is a placeholder, not part of the sculpture: replace it completely with what belongs there, seen from this left-side angle. The second image is only a close-up reference, cropped from the approved front view, of Josephine&#x27;s diaper, legs and feet; never reproduce it or its front-on angle. She sits on her stone with her legs exactly as in that close-up: exactly two chubby bare legs held together side by side in the middle under her diaper, hanging straight down over the front edge of her stone, both small bare feet together below; never spread apart, never to the sides, no other legs or feet anywhere. Fill the rest of the block with the stone, wing, tablet and figures around it, continuing what surrounds the block. No grey block remains. Refine sculpted detail on feathers, knitwear, faces, hair and stones. Josephine&#x27;s lower body is a clearly sculpted baby, never a shapeless mass: she sits upright on the top stone, below her cardigan she wears a white disposable diaper (as in photo 7), and her chubby bare baby legs (as chubby as the legs in photo 8) hang down over the front edge of the stone, knees bent, with small bare feet resting flat on the stone below; legs and feet are joined to the stone with no gaps. Seen from the front, both legs are fully visible side by side, from the diaper down to the toes, two matching legs of equal length with two matching feet: the scroll is held up against her chest with its lower end above her knees, and nothing (scroll, parents, tablets, hair) passes in front of her legs. Nothing else is added anywhere: no extra hands, arms or figures, no planks, sticks, posts or props, no extra hats or hoods. Each hand has exactly four fingers and a thumb. Design it to 3D-print with as little support as possible: the kneeling man&#x27;s hand rests flat and fully in contact on top of his raised knee, palm and all four fingers pressed onto the knee with no gap underneath; his other hand lies flat against his thigh; both parents&#x27; arms are close against their bodies with no gaps; the scroll is held tight against the baby&#x27;s body; the ribbon banner lies on and is joined to the stone base along its length, no free-hanging ends; no thin protruding parts, no floating pieces, no deep undercuts; overhangs are gentle slopes. All-white unpainted clay, plain light grey seamless background, soft even studio light. No color, no text, no symbols.</p><p class="view-label">Gemini reference images, in prompt order</p><div class="grid small"></div></div></div>
+<h3>Meshy multi-image-to-3D</h3><table class="meshy-settings"><tr><th>Images, in order</th><td class="num">front, back</td></tr>
+<tr><th>Text prompt</th><td class="num">None: multi-image-to-3D takes no text prompt, only the images</td></tr>
+<tr><th>AI model</th><td class="num">latest</td></tr>
+<tr><th>Geometry resolution</th><td class="num">2k</td></tr>
+<tr><th>Texture</th><td class="num">no</td></tr>
+<tr><th>Formats</th><td class="num">glb, stl</td></tr>
+<tr><th>Credits per task</th><td class="num">25</td></tr>
+</table></section>
+
+</div>
+
+<div class="panel" role="tabpanel" id="panel-preview-mesh" aria-labelledby="tab-preview-mesh" data-stage="preview-mesh" tabindex="0" hidden>
+<section id="model"><h2>Interactive mesh</h2>
+<model-viewer id="mv-preview-mesh" src="/assets/projects/josephine-angel/preview-mesh.glb" environment-image="/assets/projects/josephine-angel/environment.png" camera-controls auto-rotate auto-rotate-delay="3000" rotation-per-second="15deg" interaction-prompt="none" shadow-intensity="1" shadow-softness="0.8" exposure="2.1" tone-mapping="agx" camera-orbit="0deg 80deg auto" alt="model-c Preview Mesh mesh"></model-viewer>
+
+</section>
+
+<section id="generation"><h2>Generation</h2><table><tr><th>Meshy task</th><td class="num">01a1d394-4d8b-7671-b7d9-d7d4d8e09b0d</td></tr>
+<tr><th>Inputs</th><td class="num">model-c-view-front, model-c-view-back</td></tr>
+<tr><th>Model / geometry</th><td class="num">latest / 2k</td></tr>
+<tr><th>Credits</th><td class="num">25</td></tr>
+<tr><th>Triangles</th><td class="num">3,229,967</td></tr>
+<tr><th>Non-manifold edges</th><td class="num">21</td></tr>
+<tr><th>Size at 107 mm tall (x × y × z)</th><td class="num">83.8 × 73.7 × 107.0 mm</td></tr>
+<tr><th>Viewer mesh</th><td class="num">—</td></tr>
+</table></section>
+
+<section id="closeups"><h2>Close-ups</h2><div class="grid"><figure><img src="/assets/projects/josephine-angel/closeups-steve-front-working-mesh.jpg" alt="Steve, front, working mesh" loading="lazy"><figcaption>Steve, front, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-front-meshy.jpg" alt="Steve, front, Meshy" loading="lazy"><figcaption>Steve, front, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-three-quarter-working-mesh.jpg" alt="Steve, three-quarter, working mesh" loading="lazy"><figcaption>Steve, three-quarter, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-three-quarter-meshy.jpg" alt="Steve, three-quarter, Meshy" loading="lazy"><figcaption>Steve, three-quarter, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-marie-front-working-mesh.jpg" alt="Marie, front, working mesh" loading="lazy"><figcaption>Marie, front, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-marie-front-meshy.jpg" alt="Marie, front, Meshy" loading="lazy"><figcaption>Marie, front, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-marie-three-quarter-working-mesh.jpg" alt="Marie, three-quarter, working mesh" loading="lazy"><figcaption>Marie, three-quarter, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-marie-three-quarter-meshy.jpg" alt="Marie, three-quarter, Meshy" loading="lazy"><figcaption>Marie, three-quarter, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-s-hands-front-working-mesh.jpg" alt="Steve&#x27;s hands, front, working mesh" loading="lazy"><figcaption>Steve&#x27;s hands, front, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-s-hands-front-meshy.jpg" alt="Steve&#x27;s hands, front, Meshy" loading="lazy"><figcaption>Steve&#x27;s hands, front, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-s-hands-three-quarter-working-mesh.jpg" alt="Steve&#x27;s hands, three-quarter, working mesh" loading="lazy"><figcaption>Steve&#x27;s hands, three-quarter, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-steve-s-hands-three-quarter-meshy.jpg" alt="Steve&#x27;s hands, three-quarter, Meshy" loading="lazy"><figcaption>Steve&#x27;s hands, three-quarter, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-legs-front-working-mesh.jpg" alt="Josephine&#x27;s legs, front, working mesh" loading="lazy"><figcaption>Josephine&#x27;s legs, front, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-legs-front-meshy.jpg" alt="Josephine&#x27;s legs, front, Meshy" loading="lazy"><figcaption>Josephine&#x27;s legs, front, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-legs-three-quarter-right-working-mesh.jpg" alt="Josephine&#x27;s legs, three-quarter right, working mesh" loading="lazy"><figcaption>Josephine&#x27;s legs, three-quarter right, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-legs-three-quarter-right-meshy.jpg" alt="Josephine&#x27;s legs, three-quarter right, Meshy" loading="lazy"><figcaption>Josephine&#x27;s legs, three-quarter right, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-legs-three-quarter-left-working-mesh.jpg" alt="Josephine&#x27;s legs, three-quarter left, working mesh" loading="lazy"><figcaption>Josephine&#x27;s legs, three-quarter left, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-legs-three-quarter-left-meshy.jpg" alt="Josephine&#x27;s legs, three-quarter left, Meshy" loading="lazy"><figcaption>Josephine&#x27;s legs, three-quarter left, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-face-hat-and-cardigan-working-mesh.jpg" alt="Josephine&#x27;s face, hat and cardigan, working mesh" loading="lazy"><figcaption>Josephine&#x27;s face, hat and cardigan, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-face-hat-and-cardigan-meshy.jpg" alt="Josephine&#x27;s face, hat and cardigan, Meshy" loading="lazy"><figcaption>Josephine&#x27;s face, hat and cardigan, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-feet-working-mesh.jpg" alt="Josephine&#x27;s feet, working mesh" loading="lazy"><figcaption>Josephine&#x27;s feet, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-josephine-s-feet-meshy.jpg" alt="Josephine&#x27;s feet, Meshy" loading="lazy"><figcaption>Josephine&#x27;s feet, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-rock-base-front-working-mesh.jpg" alt="Rock base, front, working mesh" loading="lazy"><figcaption>Rock base, front, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-rock-base-front-meshy.jpg" alt="Rock base, front, Meshy" loading="lazy"><figcaption>Rock base, front, Meshy</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-rock-base-three-quarter-working-mesh.jpg" alt="Rock base, three-quarter, working mesh" loading="lazy"><figcaption>Rock base, three-quarter, working mesh</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/closeups-rock-base-three-quarter-meshy.jpg" alt="Rock base, three-quarter, Meshy" loading="lazy"><figcaption>Rock base, three-quarter, Meshy</figcaption></figure>
+</div></section>
+
+<section id="renders"><h2>Mesh renders (scaled to 107 mm)</h2><div class="grid"><figure><img src="/assets/projects/josephine-angel/renders-front.jpg" alt="Front" loading="lazy"><figcaption>Front</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/renders-three-quarter-right.jpg" alt="Three-quarter, right" loading="lazy"><figcaption>Three-quarter, right</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/renders-three-quarter-left.jpg" alt="Three-quarter, left" loading="lazy"><figcaption>Three-quarter, left</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/renders-left.jpg" alt="Left" loading="lazy"><figcaption>Left</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/renders-right.jpg" alt="Right" loading="lazy"><figcaption>Right</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/renders-back.jpg" alt="Back" loading="lazy"><figcaption>Back</figcaption></figure>
+</div></section>
+
+<section id="prep"><h2>Prep</h2><h3>Prepared sculpture</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/prep-three-quarter.jpg" alt="Three-quarter" loading="lazy"><figcaption>Three-quarter</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/prep-back.jpg" alt="Back" loading="lazy"><figcaption>Back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/prep-front.jpg" alt="Front" loading="lazy"><figcaption>Front</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/prep-side.jpg" alt="Side" loading="lazy"><figcaption>Side</figcaption></figure>
+</div>
+<h3>Input mesh to prep</h3><div class="grid small"><figure><img src="/assets/projects/josephine-angel/renders-back.jpg" alt="Raw back" loading="lazy"><figcaption>Raw back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/renders-front.jpg" alt="Raw front" loading="lazy"><figcaption>Raw front</figcaption></figure>
+</div>
+</section>
+
+</div>
+
+<div class="panel" role="tabpanel" id="panel-preview-inscriptions" aria-labelledby="tab-preview-inscriptions" data-stage="preview-inscriptions" tabindex="0" hidden>
+<section id="model-inscriptions"><h2>Interactive mesh</h2>
+<model-viewer id="mv-preview-inscriptions" src="/assets/projects/josephine-angel/preview-inscriptions.glb" environment-image="/assets/projects/josephine-angel/environment.png" camera-controls auto-rotate auto-rotate-delay="3000" rotation-per-second="15deg" interaction-prompt="none" shadow-intensity="1" shadow-softness="0.8" exposure="2.1" tone-mapping="agx" camera-orbit="0deg 80deg auto" alt="model-c Preview Inscriptions mesh"></model-viewer>
+
+</section>
+
+<section id="inscriptions"><h2>Inscriptions</h2><h3>Scroll</h3><div class="inscription"><table class="inscription-sizes"><tr><th>Text</th><td class="num">Josephine / Shanaghy</td></tr>
+<tr><th>Lettering (w × h)</th><td class="num">12.8 × 5.72 mm</td></tr>
+<tr><th>Text area (w × h)</th><td class="num">13.5 × 6 mm, fit max</td></tr>
+<tr><th>Cap / rune height</th><td class="num">2.47 mm</td></tr>
+<tr><th>Relief / embed</th><td class="num">0.6 / 0.4 mm</td></tr>
+<tr><th>Thinnest stroke</th><td class="num">0.308 mm</td></tr>
+<tr><th>Faired onto</th><td class="num">degree 2 in u × degree 3 in v</td></tr>
+<tr><th>Fairing</th><td class="num">98 vertices, at most 0.125 mm; 0 left (beyond the cap)</td></tr>
+<tr><th>Off the fair surface, rms</th><td class="num">0.0412 → 0.0421 mm; under the letters 0.0401 (max 0.104)</td></tr>
+<tr><th>Bases embedded / tops clear</th><td class="num">100.0% / 100.0%</td></tr>
+</table>
+<div class="grid"><figure><img src="/assets/projects/josephine-angel/inscriptions-close-up.jpg" alt="Close up" loading="lazy"><figcaption>Close up</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-raking-light.jpg" alt="Raking light" loading="lazy"><figcaption>Raking light</figcaption></figure>
+</div></div>
+<h3>Banner</h3><div class="inscription"><table class="inscription-sizes"><tr><th>Text</th><td class="num">13 April 2026 / Lightning Crashes</td></tr>
+<tr><th>Lettering (w × h)</th><td class="num">22.7 × 5.96 mm</td></tr>
+<tr><th>Text area (w × h)</th><td class="num">36 × 6.25 mm, fit max</td></tr>
+<tr><th>Cap / rune height</th><td class="num">2.3 mm</td></tr>
+<tr><th>Relief / embed</th><td class="num">0.6 / 0.4 mm</td></tr>
+<tr><th>Thinnest stroke</th><td class="num">0.303 mm</td></tr>
+<tr><th>Faired onto</th><td class="num">spline along u every 2 mm × degree 3 in v</td></tr>
+<tr><th>Fairing</th><td class="num">58 vertices, at most 0.157 mm; 0 left (beyond the cap)</td></tr>
+<tr><th>Off the fair surface, rms</th><td class="num">0.0112 → 0.0142 mm; under the letters 0.0158 (max 0.0536)</td></tr>
+<tr><th>Bases embedded / tops clear</th><td class="num">100.0% / 100.0%</td></tr>
+</table>
+<div class="grid"><figure><img src="/assets/projects/josephine-angel/inscriptions-close-up-2.jpg" alt="Close up" loading="lazy"><figcaption>Close up</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-raking-light-2.jpg" alt="Raking light" loading="lazy"><figcaption>Raking light</figcaption></figure>
+</div></div>
+<h3>Ogham tablet</h3><div class="inscription"><table class="inscription-sizes"><tr><th>Text</th><td class="num">Seosaimhín</td></tr>
+<tr><th>Lettering (w × h)</th><td class="num">7.86 × 18.2 mm</td></tr>
+<tr><th>Text area (w × h)</th><td class="num">9 × 18.5 mm, fit max</td></tr>
+<tr><th>Strokes across the stem</th><td class="num">3.9 mm</td></tr>
+<tr><th>Relief / embed</th><td class="num">0.6 / 0.4 mm</td></tr>
+<tr><th>Thinnest stroke</th><td class="num">0.45 mm</td></tr>
+<tr><th>Faired onto</th><td class="num">degree 1 in u × degree 1 in v</td></tr>
+<tr><th>Fairing</th><td class="num">71 vertices, at most 0.101 mm; 0 left (beyond the cap)</td></tr>
+<tr><th>Off the fair surface, rms</th><td class="num">0.0392 → 0.0148 mm; under the letters 0.013 (max 0.0366)</td></tr>
+<tr><th>Bases embedded / tops clear</th><td class="num">100.0% / 100.0%</td></tr>
+</table>
+<div class="grid"><figure><img src="/assets/projects/josephine-angel/inscriptions-close-up-3.jpg" alt="Close up" loading="lazy"><figcaption>Close up</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-raking-light-3.jpg" alt="Raking light" loading="lazy"><figcaption>Raking light</figcaption></figure>
+</div></div>
+<h3>Futhark tablet</h3><div class="inscription"><table class="inscription-sizes"><tr><th>Text</th><td class="num">Josephine</td></tr>
+<tr><th>Lettering (w × h)</th><td class="num">10.6 × 16.7 mm</td></tr>
+<tr><th>Text area (w × h)</th><td class="num">11 × 17 mm, fit max</td></tr>
+<tr><th>Cap / rune height</th><td class="num">4.72 mm</td></tr>
+<tr><th>Relief / embed</th><td class="num">0.6 / 0.4 mm</td></tr>
+<tr><th>Thinnest stroke</th><td class="num">0.5 mm</td></tr>
+<tr><th>Faired onto</th><td class="num">degree 1 in u × degree 1 in v</td></tr>
+<tr><th>Fairing</th><td class="num">94 vertices, at most 0.133 mm; 0 left (beyond the cap)</td></tr>
+<tr><th>Off the fair surface, rms</th><td class="num">0.0266 → 0.0099 mm; under the letters 0.0082 (max 0.0463)</td></tr>
+<tr><th>Bases embedded / tops clear</th><td class="num">100.0% / 100.0%</td></tr>
+</table>
+<div class="grid"><figure><img src="/assets/projects/josephine-angel/inscriptions-close-up-4.jpg" alt="Close up" loading="lazy"><figcaption>Close up</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-raking-light-4.jpg" alt="Raking light" loading="lazy"><figcaption>Raking light</figcaption></figure>
+</div></div>
+<h3>On the sculpture</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/inscriptions-front.jpg" alt="Front" loading="lazy"><figcaption>Front</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-three-quarter.jpg" alt="Three-quarter" loading="lazy"><figcaption>Three-quarter</figcaption></figure>
+</div>
+</section>
+
+</div>
+
+<div class="panel" role="tabpanel" id="panel-preview-cutouts" aria-labelledby="tab-preview-cutouts" data-stage="preview-cutouts" tabindex="0" hidden>
+<section id="model-cutouts"><h2>Interactive mesh (outside; the sections show the inside)</h2>
+<model-viewer id="mv-preview-cutouts" src="/assets/projects/josephine-angel/preview-cutouts.glb" environment-image="/assets/projects/josephine-angel/environment.png" camera-controls auto-rotate auto-rotate-delay="3000" rotation-per-second="15deg" interaction-prompt="none" shadow-intensity="1" shadow-softness="0.8" exposure="2.1" tone-mapping="agx" camera-orbit="0deg 80deg auto" alt="model-c Preview cutouts/hollows mesh"></model-viewer>
+
+</section>
+
+<section id="cutouts"><h2>Cutouts and hollows</h2><div><h3>Cut model</h3><table><tr><th>Scale</th><td class="num">0.901</td></tr>
+<tr><th>Size (x × y × z)</th><td class="num">75.5 × 70.0 × 106.2 mm</td></tr>
+<tr><th>Plinth</th><td class="num">10.1 mm</td></tr>
+<tr><th>Puck, above the base</th><td class="num">2.98 to 19.0 mm</td></tr>
+<tr><th>Hollow</th><td class="num">25,693.2 mm³</td></tr>
+<tr><th>Wing-root necks (left / right)</th><td class="num">4.77 / 4.99 mm</td></tr>
+<tr><th>Stop opening</th><td class="num">Ø30.0 mm, 2 chord(s) trimmed off, 400.6 mm²</td></tr>
+<tr><th>Walls: bore / seat / stop</th><td class="num">2.02 / 1.72 / 2.15 mm</td></tr>
+<tr><th>Hollow wall</th><td class="num">2 mm</td></tr>
+<tr><th>Sealed voids filled solid</th><td class="num">none</td></tr>
+<tr><th>Leak render</th><td class="num"><span class="pass">pass</span></td></tr>
+</table></div>
+<h3>Sections</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/cutouts-section-tealight.jpg" alt="Section tealight" loading="lazy"><figcaption>Section tealight</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-axis.jpg" alt="Section axis" loading="lazy"><figcaption>Section axis</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-x-0.jpg" alt="Section x = 0" loading="lazy"><figcaption>Section x = 0</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-front-back.jpg" alt="Section front back" loading="lazy"><figcaption>Section front back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-seat.jpg" alt="Section seat" loading="lazy"><figcaption>Section seat</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-chest.jpg" alt="Section chest" loading="lazy"><figcaption>Section chest</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-roots.jpg" alt="Section roots" loading="lazy"><figcaption>Section roots</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-section-base.jpg" alt="Section base" loading="lazy"><figcaption>Section base</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-internals-front.jpg" alt="Internals front" loading="lazy"><figcaption>Internals front</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-internals-side.jpg" alt="Internals side" loading="lazy"><figcaption>Internals side</figcaption></figure>
+</div>
+<h3>Wing roots</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/cutouts-roots-back.jpg" alt="Roots back" loading="lazy"><figcaption>Roots back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-roots-three-quarter-left.jpg" alt="Roots three-quarter left" loading="lazy"><figcaption>Roots three-quarter left</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-roots-three-quarter-right.jpg" alt="Roots three-quarter right" loading="lazy"><figcaption>Roots three-quarter right</figcaption></figure>
+</div>
+<h3>Leak test</h3><div class="grid small"><figure><img src="/assets/projects/josephine-angel/cutouts-leak-front.jpg" alt="Leak front" loading="lazy"><figcaption>Leak front</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-leak-front.jpg" alt="Leak back" loading="lazy"><figcaption>Leak back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-leak-front.jpg" alt="Leak left" loading="lazy"><figcaption>Leak left</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-leak-front.jpg" alt="Leak right" loading="lazy"><figcaption>Leak right</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-leak-front.jpg" alt="Leak top" loading="lazy"><figcaption>Leak top</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-leak-front.jpg" alt="Leak three-quarter" loading="lazy"><figcaption>Leak three-quarter</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/cutouts-leak-bottom-control.jpg" alt="Leak bottom control" loading="lazy"><figcaption>Leak bottom control</figcaption></figure>
+</div>
+</section>
+
+</div>
+
+<div class="panel" role="tabpanel" id="panel-final" aria-labelledby="tab-final" data-stage="final" tabindex="0">
+<section id="model-final"><h2>Interactive mesh</h2>
+<model-viewer id="mv-final" src="/assets/projects/josephine-angel/final.glb" environment-image="/assets/projects/josephine-angel/environment.png" camera-controls auto-rotate auto-rotate-delay="3000" rotation-per-second="15deg" interaction-prompt="none" shadow-intensity="1" shadow-softness="0.8" exposure="2.1" tone-mapping="agx" camera-orbit="0deg 80deg auto" alt="model-c Final Mesh Rendering mesh"></model-viewer>
+<p class="muted">This stage's full-resolution mesh in the lit scene for Blender: <code>josephine-angel.blend</code> (opens in Material Preview; the translucent resin and PLA materials are in it for the final render).</p>
+
+</section>
+
+<section id="final"><h2>Final mesh</h2><h3>Overview</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/final-three-quarter-back.jpg" alt="Three-quarter back" loading="lazy"><figcaption>Three-quarter back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-three-quarter.jpg" alt="Three-quarter" loading="lazy"><figcaption>Three-quarter</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/final-back.jpg" alt="Back" loading="lazy"><figcaption>Back</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/final-bottom.jpg" alt="Bottom" loading="lazy"><figcaption>Bottom</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/inscriptions-front.jpg" alt="Front" loading="lazy"><figcaption>Front</figcaption></figure>
+</div>
+<h3>Glow</h3><div class="grid wide"><figure><img src="/assets/projects/josephine-angel/final-glow.jpg" alt="Glow" loading="lazy"><figcaption>Glow</figcaption></figure>
+</div>
+<h3>Faces</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/final-josephine-face.jpg" alt="Josephine face" loading="lazy"><figcaption>Josephine face</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/final-marie-face.jpg" alt="Marie face" loading="lazy"><figcaption>Marie face</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/final-steve-face.jpg" alt="Steve face" loading="lazy"><figcaption>Steve face</figcaption></figure>
+</div>
+<h3>Wings</h3><div class="grid "><figure><img src="/assets/projects/josephine-angel/final-wing-left.jpg" alt="Wing left" loading="lazy"><figcaption>Wing left</figcaption></figure>
+<figure><img src="/assets/projects/josephine-angel/final-wing-veins.jpg" alt="Wing veins" loading="lazy"><figcaption>Wing veins</figcaption></figure>
+</div>
+</section>
+
+<section id="report"><h2>Build report</h2>
+<p class="muted">From <code>assemble-report.json</code>, written 13 Nov 01:34.</p>
+<div class="tables"><div><h3>Summary</h3><table><tr><th>Triangles</th><td class="num">400,000</td></tr>
+<tr><th>Size (x × y × z)</th><td class="num">75.5 × 70.0 × 106.2 mm</td></tr>
+<tr><th>Height</th><td class="num">106.2 mm</td></tr>
+<tr><th>Mass</th><td class="num">109.0 g</td></tr>
+<tr><th>Material</th><td class="num">translucent white ABS-like resin</td></tr>
+<tr><th>Volume</th><td class="num">97,288.8 mm³</td></tr>
+<tr><th>Watertight</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Shells</th><td class="num">1</td></tr>
+<tr><th>Self-intersecting pairs</th><td class="num">74</td></tr>
+<tr><th>Printer</th><td class="num">Elegoo Mars 5 Ultra</td></tr>
+<tr><th>Scale</th><td class="num">0.901</td></tr>
+<tr><th>Build time</th><td class="num">4.9 s</td></tr>
+<tr><th>Blender</th><td class="num">5.2.3 LTS</td></tr>
+</table></div>
+<div><h3>Checks: 25 of 27 pass</h3><table><tr><th>Wing roots / front unchanged</th><td class="num"><span class="fail">fail</span></td></tr>
+<tr><th>Design / cutter census / bore / watertight</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Design / cutter census / stop opening / watertight</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Design / cutter census / hollow / watertight</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Design / cutter census / wing channels / watertight</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Angel / watertight</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Walls / hollow to light</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Wing roots / left</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Wing roots / right</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Breakthrough / a skin distance / hollow</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Breakthrough / a skin distance</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Breakthrough / b rays / hollow</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Breakthrough / b rays</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Breakthrough / c openings</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Breakthrough / d leak render</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Base</th><td class="num"><span class="fail">fail</span></td></tr>
+<tr><th>Bore / puck passes</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light openings / band d</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light openings / seat d</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light openings / bore d</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light openings / opening d</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light openings / light passes bore</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light openings</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Bed / fits upright</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Bed / fits with allowance</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Drainage</th><td class="num"><span class="pass">pass</span></td></tr>
+<tr><th>Light pipe</th><td class="num"><span class="pass">pass</span></td></tr>
+</table></div>
+<div><h3>Walls, mm (thinnest / 5th percentile)</h3><table><tr><th>Hollow</th><td class="num">2.00 / 2.08</td></tr>
+<tr><th>Wing channels</th><td class="num">1.00 / 1.11</td></tr>
+<tr><th>Bore</th><td class="num">2.02 / 2.02</td></tr>
+<tr><th>Opening</th><td class="num">1.95 / 3.35</td></tr>
+<tr><th>Seat</th><td class="num">1.72 / 3.02</td></tr>
+<tr><th>Stop</th><td class="num">2.15 / 2.57</td></tr>
+<tr><th>Hollow to light</th><td class="num">1.51 / —</td></tr>
+<tr><th>Wing root neck, left</th><td class="num">4.77 mm</td></tr>
+<tr><th>Wing root neck, right</th><td class="num">4.99 mm</td></tr>
+</table></div>
+<div><h3>Outputs</h3><table><tr><th>josephine-angel.stl</th><td class="num">19.1 MB</td></tr>
+<tr><th>josephine-angel.3mf</th><td class="num">5.1 MB</td></tr>
+<tr><th>josephine-angel.glb</th><td class="num">6.9 MB</td></tr>
+<tr><th>josephine-angel.blend</th><td class="num">10.4 MB</td></tr>
+</table></div>
+</div></section>
+
+</div>
+
+</div>
+<div class="ja-foot">
+  <p class="muted">Josephine's Angel: model C. Private: shows real family members.</p>
+  <details class="log"><summary>Stage log (20)</summary><div class="scroll"><table><tr><td class="num">01:35:02</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">01:34:52</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:30:30</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">01:28:00</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:27:09</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">01:23:43</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:19:50</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:17:24</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">01:13:08</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:12:31</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">01:08:50</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:07:39</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">01:04:44</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">01:03:36</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">00:59:00</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">00:57:21</td><td>Final Mesh Rendering</td><td>Final checks failed</td></tr>
+<tr><td class="num">00:54:55</td><td>Final Mesh Rendering</td><td>Simplifying, checking and rendering</td></tr>
+<tr><td class="num">00:54:29</td><td>Final Mesh Rendering</td><td>Failed: see its assemble log</td></tr>
+<tr><td class="num">00:53:20</td><td>Preview cutouts/hollows</td><td>Cutouts ready for review</td></tr>
+<tr><td class="num">00:52:50</td><td>Place cutouts/hollows</td><td>Cutting the seat and hollows</td></tr>
+</table></div></details>
+</div>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+
+  <div class="plaque-head"><div class="pla-roundel">ᚏ</div><div class="pla-text"><p class="over">Where The Paths Cross</p><h2>The Trail</h2></div><span class="pla-rune">ᚏ</span></div>
+  <div class="slab">
+    <p class="foot-line">what pertains, tied by hand:</p>
+    <p class="loretie" style="margin-top:16px;color:#b6a37c">of the telling: this stone stands in <a href="/creed/#strand-seanchai" style="color:var(--gold)">Strand I</a> of the creed — <em>the Mind — the tellers' trade, the words that survive</em>.</p>
+    <div class="trail">
+      <a href="/projects/PeytonsBirthdayCladdaghRing/">a sibling of the craft grove ↗</a>
+      <a href="/projects/DexOneRing/">another stone of the bench ↗</a>
+    </div>
+  </div>

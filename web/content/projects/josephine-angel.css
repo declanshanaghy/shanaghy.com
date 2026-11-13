@@ -1,0 +1,725 @@
+
+
+@font-face{font-family:'Noto Sans Ogham';src:url('/assets/fonts/NotoSansOgham-Regular.ttf') format('truetype');font-display:swap;}
+.rt-rune,.rune,.ph-rune,.ph-grove,.pla-roundel,.pla-rune,.lh-rune{font-family:'Noto Sans Ogham',var(--mono,monospace);}
+:root{
+  --bog-void:#040a07; --bog-black:#060d09; --bog-deep:#0a1712;
+  --bog-moss:#122a1e; --bog-leaf:#1c3f2c;
+  --biolume:#63e0a0; --biolume-dim:#2f8f66;
+  --dust:#d9d6bd; --dust-dim:#9aa189; --pale:#cfe4d6;
+  --bg:#060d09; --bg2:#040a07;
+  --stone-hi:#122a1e; --stone-lo:#0a1712; --edge:#1c3f2c;
+  --moss-hi:#5e9478; --moss:#4f8468; --moss-lo:#3d6b52;
+  --bronze:#4f8468; --bronze2:#5e9478;
+  --amber:#a9e6c3; --amber2:#c9f2d9;
+  --lume:#a9e6c3; --lume2:#c9f2d9;
+  --gold:#e6f2e8;
+  --moon:#f3faf1; --silver:#e6f2e8; --parch:#cfe4d6; --muted:#9aa189; --dim:#5e7160;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{
+  font-family:var(--serif); color:var(--parch);
+  background:
+    radial-gradient(1100px 700px at 50% -140px, rgba(28,63,44,.12), transparent 60%),
+    radial-gradient(1000px 620px at 6% 112%, rgba(28,63,44,.06), transparent 55%),
+    radial-gradient(900px 600px at 88% 108%, rgba(10,23,18,.07), transparent 55%),
+    var(--bg);
+  min-height:100vh; overflow-x:hidden;
+}
+::selection{background:rgba(169,230,195,.35);color:#f3faf1}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#040a07}
+::-webkit-scrollbar-thumb{background:#122a1e;border-radius:6px;border:2px solid #040a07}
+::-webkit-scrollbar-thumb:hover{background:#1c3f2c}
+a{color:inherit}
+svg{display:block}
+img{display:block}
+
+/* ── bog topbar: a moss-overgrown beam ───────────────────────────────── */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  gap:10px 18px;padding:12px clamp(14px,3vw,30px);
+  background:
+    linear-gradient(180deg, rgba(22,48,36,.55) 0%, rgba(10,24,17,.9) 26%, rgba(6,13,9,.94) 100%);
+  border-bottom:1px solid rgba(99,224,160,.16);
+  box-shadow:0 16px 34px -22px rgba(0,0,0,.95), inset 0 1px 0 rgba(169,230,195,.07);
+  backdrop-filter:blur(2px);
+}
+/* moss fringe creeping over the beam's lower edge */
+.topbar::after{
+  content:"";position:absolute;left:0;right:0;bottom:-8px;height:11px;
+  pointer-events:none;opacity:.85;
+  background:
+    radial-gradient(circle at 5px 0, #1c3f2c 3.2px, rgba(28,63,44,0) 3.6px) 0 0/13px 11px repeat-x,
+    radial-gradient(circle at 9px 0, #122a1e 2.4px, rgba(18,42,30,0) 2.8px) 0 0/19px 11px repeat-x;
+  filter:saturate(1.1);
+}
+/* moonlight line at the very top of the beam */
+.topbar::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,rgba(99,224,160,0),rgba(169,230,195,.22),rgba(99,224,160,0));
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;position:relative;
+  padding:5px 10px 5px 8px;border-radius:12px 5px 12px 5px;
+  border:1px solid rgba(99,224,160,.2);
+  background:linear-gradient(180deg,rgba(28,63,44,.5),rgba(6,13,9,.6));
+  box-shadow:inset 0 1px 0 rgba(169,230,195,.08), 0 6px 14px -8px rgba(0,0,0,.9);
+  transition:border-color .3s, box-shadow .3s, transform .3s;
+}
+.brand:hover,.brand:focus-visible{
+  border-color:rgba(169,230,195,.5);transform:translateY(-1px);
+  box-shadow:inset 0 1px 0 rgba(169,230,195,.14), 0 0 22px -4px rgba(99,224,160,.4);
+  outline:none;
+}
+.brand-logo{display:block;height:40px;width:auto;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(99,224,160,.18));
+  border-radius:6px;border:1px solid rgba(99,224,160,.22)}
+.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(99,224,160,.4))}
+.runestrip{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.runestrip::-webkit-scrollbar{display:none}
+.rtab{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:6px 12px 7px;border:1px solid transparent;border-radius:10px 4px 10px 4px;
+  text-decoration:none;transition:background .28s,border-color .28s,transform .28s;flex-shrink:0;
+}
+.rt-rune{font-size:19px;line-height:1.15;color:var(--biolume-dim);opacity:.75;transition:color .28s,filter .28s,opacity .28s}
+.rt-label{font-family:var(--mono);font-size:8.4px;letter-spacing:2px;color:#7f9c88;text-transform:uppercase;white-space:nowrap;transition:color .28s}
+.rt-count{font-size:8px;letter-spacing:1px;color:#4d5f47}
+.rtab:hover .rt-rune,.rtab:focus .rt-rune{color:var(--biolume);opacity:1;filter:drop-shadow(0 0 8px rgba(99,224,160,.8))}
+.rtab:hover,.rtab:focus{background:rgba(99,224,160,.07);border-color:rgba(99,224,160,.32);outline:none;transform:translateY(-1px)}
+.rtab:hover .rt-label,.rtab:focus .rt-label{color:var(--lume)}
+.rtab.here,.rtab.active{border-color:rgba(169,230,195,.42);background:rgba(99,224,160,.09)}
+.rtab.here .rt-rune,.rtab.active .rt-rune{color:var(--lume);opacity:1;filter:drop-shadow(0 0 9px rgba(99,224,160,.7))}
+.rtab.here .rt-label,.rtab.active .rt-label{color:var(--silver)}
+.toplinks{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.tlink{
+  text-decoration:none;font-family:var(--mono);font-size:8.4px;letter-spacing:2px;text-transform:uppercase;
+  color:#7f9c88;transition:color .28s,text-shadow .28s;
+}
+.tlink:hover{color:var(--lume);text-shadow:0 0 8px rgba(99,224,160,.5)}
+.tlink.here{color:var(--silver);text-shadow:0 0 8px rgba(169,230,195,.4)}
+.ghpill{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.8px;
+  color:var(--lume);text-decoration:none;text-transform:uppercase;
+  padding:10px 24px;border:1px solid rgba(99,224,160,.3);border-radius:14px 5px 14px 5px;
+  background:linear-gradient(180deg, rgba(28,63,44,.5), rgba(6,13,9,.55));
+  box-shadow:inset 0 1px 0 rgba(169,230,195,.09), 0 8px 18px -10px rgba(0,0,0,.9);
+  transition:color .28s,border-color .28s,text-shadow .28s,transform .28s;
+}
+.ghpill:hover,.ghpill:focus{color:var(--moon);border-color:rgba(169,230,195,.6);text-shadow:0 0 12px rgba(99,224,160,.6);transform:translateY(-2px);outline:none}
+
+
+/* ---- engraved page header ---- */
+.page-head{
+  position:relative;text-align:center;
+  padding:46px 18px 30px;
+  background:
+    radial-gradient(60% 26% at 50% 108%, rgba(28,63,44,.10), transparent 70%),
+    radial-gradient(ellipse 90% 68% at 50% 60%, #091410 0%, #060d09 62%, #040a07 100%);
+  overflow:hidden;
+}
+.ph-rune{
+  position:absolute;top:-30px;right:2%;
+  font-size:190px;line-height:1;color:rgba(169,230,195,.05);
+  pointer-events:none;user-select:none;font-family:var(--serif);
+}
+.crumb{
+  display:inline-block;margin-bottom:16px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;
+  color:#8ba389;text-decoration:none;
+  padding:5px 14px;border:1px solid rgba(99,224,160,.4);border-radius:9px 3px 9px 3px;
+  background:linear-gradient(180deg,rgba(10,23,18,.6),rgba(6,13,9,.6));
+  transition:color .25s,border-color .25s,text-shadow .25s;
+}
+.crumb:hover{color:var(--amber2);border-color:rgba(169,230,195,.55);text-shadow:0 0 10px rgba(169,230,195,.5)}
+.signage{
+  --cap:var(--mosscap9);
+  position:relative;display:inline-block;
+  padding:26px 44px 30px;
+  background:
+    var(--grain),
+    var(--cap),
+    var(--mottle),
+    linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  border:1px solid rgba(99,224,160,.5);
+  border-radius:22px 30px 18px 28px / 28px 20px 30px 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(230,242,232,.1),
+    inset 0 14px 22px rgba(0,0,0,.42),
+    inset 0 -14px 24px rgba(0,0,0,.5),
+    0 22px 40px -18px rgba(0,0,0,.9);
+}
+.signage::after{
+  content:"";position:absolute;left:8%;right:8%;bottom:6%;height:26%;
+  border-radius:50%;
+  background:radial-gradient(60% 100% at 50% 100%, rgba(28,63,44,.4), rgba(28,63,44,0) 75%);
+  pointer-events:none;
+}
+.signage::before{
+  content:"ᚄᚆᚐᚅᚐᚌᚆᚔ";
+  position:absolute;top:9px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#1c3f2c;opacity:.55;white-space:nowrap;overflow:hidden;pointer-events:none;
+}
+.ph-icon{
+  width:64px;height:64px;margin:0 auto 10px;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(169,230,195,.18));
+}
+.signage h1{
+  font-size:clamp(21px,4.4vw,34px);font-weight:600;
+  font-variant-caps:all-small-caps;letter-spacing:1.2px;color:#f3faf1;
+  text-shadow:0 2px 2px rgba(0,0,0,.9), 0 -1px 0 rgba(230,242,232,.14), 0 0 26px rgba(169,230,195,.14);
+  overflow-wrap:anywhere;
+}
+.ph-grove{
+  margin-top:9px;font-size:10.5px;letter-spacing:3.2px;color:#8ba389;text-transform:uppercase;
+}
+.ph-grove .rune{color:var(--amber2);text-shadow:0 0 9px rgba(169,230,195,.55);margin-right:4px}
+.ph-marks{
+  margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+}
+.m-lang{color:#7fc9a4;font-variant-caps:all-small-caps}
+.m-year{color:#8ba389}
+.m-sep{color:#1c3f2c;font-size:12px}
+
+/* ---- sections ---- */
+.page{max-width:860px;margin:0 auto;padding:6px 24px 26px}
+.cutline{display:flex;justify-content:center;padding:14px 0 2px;color:#2d5a42;opacity:.85}
+.cutline svg{width:220px;height:24px}
+.plaque-head{display:flex;align-items:center;gap:16px;margin:26px 0 14px}
+.pla-roundel{
+  width:52px;height:52px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(99,224,160,.45);
+  background:radial-gradient(circle at 38% 30%, #0d1f17, #0a1712 78%);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8), inset 0 -2px 3px rgba(230,242,232,.07), 0 6px 14px -6px rgba(0,0,0,.8);
+  font-size:22px;color:var(--gold);
+}
+.pla-roundel::after{
+  content:"";position:absolute;
+}
+.pla-text .over{font-size:9.5px;letter-spacing:3px;color:#9aa189;text-transform:uppercase;margin-bottom:3px}
+.pla-text h2{
+  font-size:22px;font-weight:600;letter-spacing:.8px;color:#f3faf1;
+  text-shadow:0 2px 2px rgba(0,0,0,.85), 0 -1px 0 rgba(230,242,232,.1);
+}
+.pla-rune{margin-left:auto;font-size:34px;line-height:1;color:rgba(169,230,195,.16);pointer-events:none}
+.slab{
+  --cap:var(--mosscap2);
+  position:relative;
+  padding:26px 30px 24px;
+  background:
+    var(--grain),
+    var(--cap),
+    radial-gradient(70px 42px at 100% 100%, rgba(28,63,44,.10), transparent 72%),
+    var(--mottle),
+    linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  border:1px solid var(--edge);
+  border-radius:26px 34px 20px 32px / 32px 22px 36px 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(230,242,232,.07),
+    inset 0 16px 22px rgba(0,0,0,.38),
+    inset 0 -16px 26px rgba(0,0,0,.5),
+    0 10px 20px -12px rgba(0,0,0,.85);
+}
+.slab::before{
+  content:"ᚄᚆᚐᚅᚐᚌᚆᚔ";
+  position:absolute;top:9px;left:0;right:0;
+  text-align:center;font-size:10px;letter-spacing:7px;text-indent:7px;
+  color:#1c3f2c;opacity:.55;white-space:nowrap;overflow:hidden;pointer-events:none;
+}
+.slab p{font-size:14.5px;line-height:1.75;color:#a7c3b3;letter-spacing:.2px}
+.slab p + p{margin-top:13px}
+.slab em{color:#cfe4d6;font-style:italic}
+.slab .drop{
+  float:left;font-size:46px;line-height:.92;margin:4px 10px 0 0;color:var(--amber2);
+  text-shadow:0 2px 3px rgba(0,0,0,.85), 0 0 16px rgba(169,230,195,.35);
+}
+.mossline{margin-top:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase}
+.mossline a{color:#7fc9a4;text-decoration:none;border-bottom:1px dotted rgba(99,224,160,.55);transition:color .25s,text-shadow .25s}
+.mossline a:hover,.mossline a:focus{color:var(--amber2);text-shadow:0 0 9px rgba(169,230,195,.5)}
+
+/* ---- films ---- */
+.onfilm{
+  --cap:var(--mosscap5);
+  margin-top:14px;display:flex;align-items:center;flex-wrap:wrap;gap:14px;
+  padding:16px 18px 14px;
+  background:
+    var(--grain),
+    var(--cap),
+    var(--mottle),
+    linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  border:1px solid var(--edge);
+  border-radius:16px 22px 14px 20px / 20px 14px 24px 16px;
+}
+.onfilm-label{font-size:8.5px;letter-spacing:1.9px;text-transform:uppercase;color:#9aa189}
+.onfilm a{
+  display:block;border-radius:7px 3px 7px 3px;overflow:hidden;border:1px solid #122a1e;
+  box-shadow:inset 0 1px 0 rgba(230,242,232,.08), 0 4px 9px -5px rgba(0,0,0,.8);
+  transition:border-color .28s;text-decoration:none;
+}
+.onfilm a:hover{border-color:rgba(169,230,195,.6)}
+.onfilm img{display:block;width:150px;height:84px;object-fit:cover;filter:brightness(.82) saturate(.92);transition:filter .3s}
+.onfilm a:hover img{filter:brightness(1.04) saturate(1.05)}
+.film-note{margin-top:10px;font-size:12px;font-style:italic;color:#93a891}
+
+/* ---- footer ---- */
+.foot{padding:26px 20px 60px;text-align:center}
+.foot-knot{width:220px;height:24px;margin:0 auto 20px;color:#2d5a42}
+.foot-line{font-size:13px;font-style:italic;color:#93a891;letter-spacing:.5px;margin-bottom:14px}
+.foot-gh{
+  display:inline-block;text-decoration:none;
+  font-size:13px;letter-spacing:1.5px;color:var(--gold);
+  padding:9px 22px;border:1px solid rgba(99,224,160,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(10,23,18,.55),rgba(6,13,9,.55));
+  box-shadow:inset 0 1px 0 rgba(230,242,232,.08), 0 6px 14px -6px rgba(0,0,0,.8);
+  transition:color .25s,border-color .25s,text-shadow .25s,transform .25s;
+}
+.foot-gh:hover{color:var(--amber2);border-color:rgba(169,230,195,.55);text-shadow:0 0 12px rgba(169,230,195,.6);transform:translateY(-2px)}
+.foot-colophon{margin-top:18px;font-size:10.5px;letter-spacing:1.6px;color:#7f9c88;text-transform:uppercase}
+.foot-copy{margin-top:10px;font-size:12.5px;letter-spacing:.8px;color:#8ba389}
+
+@media (max-width:760px){
+  .rt-label,.rt-count{display:none}
+  .rtab{padding:6px 10px}
+  .ph-rune{display:none}
+  .signage{padding:22px 22px 26px}
+  .slab{padding:24px 20px 22px}
+  .pla-rune{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
+
+.filmplay{--cap:var(--mosscap8);position:relative;width:100%;max-width:480px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(169,230,195,.28);cursor:pointer;
+  background:
+    var(--grain),
+    var(--cap),
+    var(--mottle),
+    linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  background-size:cover;background-position:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);margin:6px 0}
+.filmplay::before{content:"";position:absolute;inset:0;background:rgba(4,10,7,.34)}
+.filmplay::after{content:"";position:absolute;left:50%;top:50%;width:52px;height:52px;transform:translate(-50%,-50%);
+  border-radius:50%;background:radial-gradient(circle at 38% 32%, #c9f2d9, #7fc9a4 78%);
+  box-shadow:0 0 22px rgba(169,230,195,.5), inset 0 -4px 10px rgba(0,0,0,.45);transition:transform .25s}
+.filmplay:hover::after{transform:translate(-50%,-50%) scale(1.08)}
+.filmplay iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.film-title{display:block;font-family:var(--mono,monospace);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:#8ba389;margin-top:6px;max-width:480px;text-decoration:none}
+.trail{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.trail a{display:inline-block;text-decoration:none;font-size:12.5px;letter-spacing:1px;color:var(--gold);
+  padding:7px 16px;border:1px solid rgba(99,224,160,.45);border-radius:12px 4px 12px 4px;
+  background:linear-gradient(180deg,rgba(10,23,18,.55),rgba(6,13,9,.55));transition:color .25s,border-color .25s}
+.trail a:hover{color:var(--amber2);border-color:rgba(169,230,195,.55)}
+
+.brand-name{font-size:11.5px;letter-spacing:2.6px;font-weight:700;
+  background:linear-gradient(180deg,#e6f2e8 0%,#7fc9a4 48%,#e6f2e8 52%,#2d5a42 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 1px 0 rgba(230,242,232,.14), 0 -1px 0 rgba(0,0,0,.55);}
+.brand{position:relative}
+.brand::before{content:none}
+.brand-logo{display:block;height:40px;width:auto;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.8)) drop-shadow(0 0 10px rgba(169,230,195,.12));
+  border-radius:6px;border:1px solid rgba(169,230,195,.3)}
+.brand-logo:hover{filter:drop-shadow(0 0 12px rgba(169,230,195,.3))}
+a.persona{text-decoration:none;color:var(--gold);border-bottom:1px dotted rgba(169,230,195,.4)}
+a.persona:hover{color:var(--amber2);border-bottom-color:rgba(169,230,195,.7)}
+
+/* full-bleed responsive layout — override */
+main,.garden,.garden > *,.profile,section.grove,.paths-grid,.keepers-grid,.grid,.vgrid,.slab,.hero{max-width:100%}
+main,.garden{padding-left:max(16px,4vw);padding-right:max(16px,4vw);box-sizing:border-box}
+.hero{padding-left:max(16px,4vw);padding-right:max(16px,4vw)}
+.grid,.vgrid,.keepers-grid,.paths-grid{grid-template-columns:repeat(auto-fill,minmax(min(280px,42vw),1fr));width:100%}
+.slab,.plaque-head{max-width:none;width:100%}
+img.hero3d{width:100%;max-width:none;height:auto;display:block;margin:0 auto;border-radius:12px}
+@media (min-width:1600px){ img.hero3d{border-radius:16px} }
+
+/* ═══ the bog at full moon — canonical block, source of truth: web/styles/bog-at-full-moon.css ═══ */
+/* ═══ the bog at full moon — canonical block, source of truth: web/styles/bog-at-full-moon.css ═══ */
+:root{
+  --bog-void:#040a07;
+  --bog-black:#060d09;
+  --bog-deep:#0a1712;
+  --bog-moss:#122a1e;
+  --bog-leaf:#1c3f2c;
+  --lume:#a9e6c3;
+  --silver:#e6f2e8;
+  --moon:#f3faf1;
+  --pale:#cfe4d6;
+  --dust:#d9d6bd;
+  --dust-dim:#9aa189;
+  --biolume:#63e0a0;
+  --biolume-dim:#2f8f66;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.09'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  --mottle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.028' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23m)'/%3E%3C/svg%3E");
+
+  /* 1 — the full crown: lush, even, the classic mossy stone */
+  --mosscap1:
+    radial-gradient(11% 30px at 4% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(8% 44px at 14% 0%, #3d6b52, rgba(61,107,82,0) 74%),
+    radial-gradient(13% 26px at 28% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(9% 38px at 40% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(14% 32px at 54% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(10% 24px at 68% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(8% 46px at 80% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(12% 28px at 95% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(6% 14px at 22% 0%, rgba(99,224,160,.85), rgba(99,224,160,0) 70%),
+    radial-gradient(5% 12px at 58% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(7% 16px at 87% 0%, rgba(99,224,160,.72), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,0) 36px),
+    radial-gradient(150% 90% at 74% 0%, rgba(230,242,232,.07), transparent 55%);
+
+  /* 2 — the west cascade: heavy growth falling from the left */
+  --mosscap2:
+    radial-gradient(16% 44px at 0% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(13% 52px at 9% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(11% 36px at 20% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(14% 30px at 31% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(9% 34px at 43% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 20px at 56% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(5% 14px at 70% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(4% 10px at 84% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 16px at 14% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 34% 0%, rgba(99,224,160,.78), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,0) 42px),
+    radial-gradient(150% 95% at 86% 0%, rgba(230,242,232,.09), transparent 55%);
+
+  /* 3 — the east cascade: mirrored, moonlight escaping the west */
+  --mosscap3:
+    radial-gradient(16% 44px at 100% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(13% 52px at 91% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(11% 36px at 80% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(14% 30px at 69% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(9% 34px at 57% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 20px at 44% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(5% 14px at 30% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(4% 10px at 16% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(7% 16px at 86% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 66% 0%, rgba(99,224,160,.78), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,0) 42px),
+    radial-gradient(150% 95% at 14% 0%, rgba(230,242,232,.09), transparent 55%);
+
+  /* 4 — the dusting: sparse clumps on a bare moonlit rim */
+  --mosscap4:
+    radial-gradient(7% 20px at 10% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(5% 16px at 26% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(8% 22px at 44% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(6% 18px at 63% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(5% 14px at 80% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(6% 16px at 94% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(4% 10px at 35% 0%, rgba(169,230,195,.7), rgba(169,230,195,0) 70%),
+    radial-gradient(4% 10px at 72% 0%, rgba(99,224,160,.68), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,0) 28px),
+    radial-gradient(160% 95% at 50% 0%, rgba(230,242,232,.12), transparent 58%);
+
+  /* 5 — the mound: one great mass mid-crown, light at both shoulders */
+  --mosscap5:
+    radial-gradient(30% 54px at 50% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(20% 44px at 42% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(20% 46px at 60% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 26px at 32% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(12% 28px at 70% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(7% 16px at 52% 0%, rgba(169,230,195,.85), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 44% 0%, rgba(99,224,160,.75), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,0) 44px),
+    radial-gradient(120% 80% at 12% 0%, rgba(230,242,232,.08), transparent 55%),
+    radial-gradient(120% 80% at 88% 0%, rgba(230,242,232,.08), transparent 55%);
+
+  /* 6 — the drips: a crown with long strands hanging down the face */
+  --mosscap6:
+    radial-gradient(12% 28px at 6% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(10% 26px at 22% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(12% 30px at 38% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(11% 26px at 56% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(10% 28px at 72% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(12% 26px at 92% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(4% 58px at 18% 0%, #1f4835, rgba(31,72,53,0) 78%),
+    radial-gradient(3.5% 66px at 50% 0%, #2a5842, rgba(42,88,66,0) 78%),
+    radial-gradient(4% 54px at 80% 0%, #1f4835, rgba(31,72,53,0) 78%),
+    radial-gradient(5% 12px at 30% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 12px at 64% 0%, rgba(99,224,160,.75), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 38px),
+    radial-gradient(150% 90% at 74% 0%, rgba(230,242,232,.07), transparent 55%);
+
+  /* 7 — the climb: moss claiming both corners, the center left open */
+  --mosscap7:
+    radial-gradient(15% 46px at 0% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 36px at 9% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(8% 24px at 20% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(15% 46px at 100% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 36px at 91% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(8% 24px at 80% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(5% 14px at 13% 0%, rgba(169,230,195,.75), rgba(169,230,195,0) 70%),
+    radial-gradient(5% 14px at 87% 0%, rgba(99,224,160,.75), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 40px),
+    radial-gradient(150% 90% at 50% 0%, rgba(230,242,232,.11), transparent 58%);
+
+  /* 8 — the patchwork: clumps with wide gaps, light bleeding through */
+  --mosscap8:
+    radial-gradient(10% 34px at 8% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(13% 26px at 34% 0%, #5e9478, rgba(94,148,120,0) 70%),
+    radial-gradient(9% 38px at 52% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(12% 28px at 76% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(8% 22px at 95% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(4% 10px at 22% 0%, rgba(169,230,195,.72), rgba(169,230,195,0) 70%),
+    radial-gradient(4% 10px at 64% 0%, rgba(99,224,160,.7), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,0) 34px),
+    radial-gradient(130% 85% at 22% 0%, rgba(230,242,232,.12), transparent 55%),
+    radial-gradient(130% 85% at 64% 0%, rgba(230,242,232,.12), transparent 55%);
+
+  /* 9 — the shag: deep overgrowth swallowing nearly all the light */
+  --mosscap9:
+    radial-gradient(14% 48px at 0% 0%, #1f4835, rgba(31,72,53,0) 76%),
+    radial-gradient(16% 56px at 10% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(14% 50px at 24% 0%, #3d6b52, rgba(61,107,82,0) 74%),
+    radial-gradient(16% 58px at 38% 0%, #2a5842, rgba(42,88,66,0) 74%),
+    radial-gradient(14% 52px at 52% 0%, #1f4835, rgba(31,72,53,0) 76%),
+    radial-gradient(16% 56px at 66% 0%, #3d6b52, rgba(61,107,82,0) 74%),
+    radial-gradient(14% 48px at 80% 0%, #2d5a42, rgba(45,90,66,0) 74%),
+    radial-gradient(15% 52px at 96% 0%, #1f4835, rgba(31,72,53,0) 76%),
+    radial-gradient(7% 18px at 16% 0%, rgba(99,224,160,.85), rgba(99,224,160,0) 70%),
+    radial-gradient(6% 16px at 46% 0%, rgba(169,230,195,.8), rgba(169,230,195,0) 70%),
+    radial-gradient(7% 18px at 74% 0%, rgba(99,224,160,.8), rgba(99,224,160,0) 70%),
+    radial-gradient(6% 14px at 90% 0%, rgba(169,230,195,.7), rgba(169,230,195,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,0) 48px),
+    radial-gradient(150% 90% at 50% 0%, rgba(230,242,232,.05), transparent 55%);
+
+  /* 10 — the wind-brush: growth swept rightward, bare west */
+  --mosscap10:
+    radial-gradient(22% 24px at 34% 0%, #3d6b52, rgba(61,107,82,0) 72%),
+    radial-gradient(24% 26px at 56% 0%, #4f8468, rgba(79,132,104,0) 70%),
+    radial-gradient(26% 22px at 78% 0%, #2d5a42, rgba(45,90,66,0) 72%),
+    radial-gradient(18% 30px at 94% 0%, #1f4835, rgba(31,72,53,0) 74%),
+    radial-gradient(10% 16px at 22% 0%, #5e9478, rgba(94,148,120,0) 68%),
+    radial-gradient(8% 14px at 88% 0%, rgba(169,230,195,.78), rgba(169,230,195,0) 70%),
+    radial-gradient(7% 12px at 60% 0%, rgba(99,224,160,.72), rgba(99,224,160,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0) 32px),
+    radial-gradient(150% 90% at 12% 0%, rgba(230,242,232,.09), transparent 55%);
+}
+
+
+
+/* ═══ bog-backdrop paste — canonical block for the site-wide rollout (issue #141).
+   Source of truth: this file. Paste verbatim at the END of a page's css, then
+   lift that page's content wrapper above the stage (see the contract below).
+   The painted scene itself lives in /assets/js/bog-scene.js, mounted once
+   site-wide by the Layout chrome; the page only supplies the four
+   aria-hidden decorative divs: the grainfx, vign and bloom overlays,
+   and the stage div wrapping the bog-scene canvas.
+   STACKING CONTRACT:
+   - the fixed stage sits at z-index 0 (the page's living ground);
+   - page content wrappers ride above it via position:relative;z-index:1;
+   - sticky topbars stay above that (the shared topbar is z-index 50);
+   - the canvas keeps its slight depth-of-field blur (filter:blur(3px))
+     with the transform:scale(1.014) overscan; #bog-stage clips the rim.
+   The canvas sky paints NO moon (the one-moon law, decree 2026-11-04). ═══ */
+
+/* ── bog weather overlays (page-level grain · vignette · bloom) ──── */
+#bog-grainfx{
+  position:fixed;inset:0;z-index:60;pointer-events:none;
+  mix-blend-mode:overlay;opacity:.42;
+}
+.bog-vign{
+  position:fixed;inset:0;z-index:58;pointer-events:none;
+  background:radial-gradient(130% 100% at 62% 26%, rgba(0,0,0,0) 40%, rgba(4,10,7,.5) 78%, rgba(2,6,4,.9) 100%);
+}
+.bog-bloom{
+  position:fixed;inset:0;z-index:59;pointer-events:none;
+  mix-blend-mode:screen;
+  background:radial-gradient(30% 26% at 79% 11%, rgba(169,230,195,.14) 0%, rgba(169,230,195,.045) 46%, rgba(169,230,195,0) 76%);
+  filter:blur(1px);
+}
+
+/* ── bog canvas: the flowing ground of the WHOLE garden ───────────
+   The stage is a FIXED full-viewport backdrop: the painted bog never
+   scrolls away, every page grows over the same living ground from the
+   top of the page to the last wayfinding stone. The canvas sky carries
+   NO moon of its own (the page's own painted moon stays the one moon),
+   and the painted buffer caps just past one viewport (see
+   /assets/js/bog-scene.js resize) so there is no seam and no fade. */
+#bog-stage{
+  position:fixed;top:0;left:0;width:100vw;height:100vh;height:100dvh;
+  overflow:hidden;z-index:0;
+  background:#020604;pointer-events:none;
+  box-shadow:inset 0 0 120px rgba(2,6,4,.9);
+}
+#bog-scene{
+  display:block;position:absolute;inset:0;width:100%;height:100%;
+  /* the flowing bog sits far behind the page, so it carries a slight
+     depth-of-field blur; the foreground stays sharp. The overscan hides
+     the blur's rim fringe against the stage's own dark ground. */
+  filter:blur(3px);
+  transform:scale(1.014);
+}
+@media(prefers-reduced-motion:reduce){#bog-stage{box-shadow:none}}
+
+
+/* ═══ Josephine Angel review — the pipeline preview grown in the moss ═══
+   The layout is the review's own: a status line and the stage pipeline over
+   one panel per stage. Everything is scoped under main.ja so the preview's
+   names (top, tab, grid, figure, table) never reach the shared chrome. */
+.ja{
+  --ja-fg:#cfe4d6; --ja-mut:#9aa189; --ja-acc:#a9e6c3; --ja-ok:#7fc9a4; --ja-bad:#f2867d;
+  --ja-line:rgba(99,224,160,.18); --ja-edge:#5e9478; --ja-gate:#e8c26a; --ja-gate-fg:#f5c451;
+  --ja-done:#1c3f2c; --ja-done-fg:#c9f2d9; --ja-cur:#63e0a0; --ja-cur-fg:#040a07;
+  --ja-sel:#a9e6c3; --ja-sel-fg:#040a07; --ja-pend:#5e7160; --ja-focus:#c9f2d9;
+  --gut:16px;
+  max-width:1240px;margin:0 auto;padding:6px var(--gut) 26px;color:var(--ja-fg);
+}
+@media (min-width:720px){.ja{--gut:28px}}
+.ja [hidden]{display:none!important}
+.ja .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.ja .muted{color:var(--ja-mut)}
+
+/* top: the pipeline, always visible */
+.ja-top{
+  --cap:var(--mosscap5);
+  position:sticky;top:var(--ja-stick,0);z-index:40;margin:18px 0 0;padding:12px var(--gut) 0;
+  background:var(--grain),var(--cap),var(--mottle),linear-gradient(180deg,rgba(13,31,23,.96) 0%,rgba(9,20,16,.96) 62%,rgba(4,10,7,.97) 100%);
+  border:1px solid var(--edge);border-radius:22px 30px 18px 28px / 28px 20px 30px 16px;
+  box-shadow:inset 0 1px 0 rgba(230,242,232,.07),0 14px 26px -14px rgba(0,0,0,.9);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+
+/* the pipeline: stadium nodes and arrows, as keyboard tabs */
+.ja .pipeline{overflow-x:auto;scrollbar-width:thin;padding:4px 0 16px}
+.ja .tabs{display:flex;align-items:center;width:max-content;margin:0 auto;padding:0 10px}
+.ja .tab{position:relative;flex:none;font:15px/1.2 var(--serif);letter-spacing:.4px;padding:10px 18px;
+  border-radius:16px 6px 16px 6px;border:1.5px dashed var(--ja-pend);background:none;color:var(--ja-fg);
+  cursor:not-allowed;white-space:nowrap;transition:filter .2s,box-shadow .2s,transform .2s}
+.ja .tab.done{background:linear-gradient(180deg,#1c3f2c,#122a1e);border:1.5px solid #2f8f66;color:var(--ja-done-fg);cursor:pointer}
+.ja .tab.current{background:var(--ja-cur);border:1.5px solid var(--ja-cur);color:var(--ja-cur-fg);cursor:pointer;box-shadow:0 0 16px -2px rgba(99,224,160,.55)}
+.ja .tab.upcoming{background:var(--ja-cur);border:1.5px solid var(--ja-cur);color:var(--ja-cur-fg)}
+.ja .tab .spin{width:14px;height:14px;margin-left:8px;vertical-align:-2px;animation:ja-spin .9s linear infinite}
+.ja .tab .spin circle{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:65 35}
+@keyframes ja-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ja .tab .spin{animation:none}}
+.ja .tab .pause{width:14px;height:14px;margin-left:8px;vertical-align:-2px;fill:currentColor}
+.ja .tab[aria-selected="true"]{background:var(--ja-sel);border:1.5px solid var(--ja-sel);color:var(--ja-sel-fg);box-shadow:0 0 18px -2px rgba(169,230,195,.6)}
+.ja .tab.current[aria-selected="true"]{box-shadow:0 0 0 2px #060d09,0 0 0 4.5px var(--ja-cur),0 0 20px rgba(99,224,160,.5)}
+.ja .tab.failed,.ja .tab.failed[aria-selected="true"]{border:2px solid var(--ja-bad);box-shadow:0 0 0 1.5px var(--ja-bad),0 0 16px -4px rgba(242,134,125,.6)}
+.ja .tab:is(.done,.current):hover{filter:brightness(1.12);transform:translateY(-1px)}
+.ja .tab:focus-visible{outline:3px solid var(--ja-focus);outline-offset:4px}
+.ja .tab .badge{position:absolute;top:-8px;right:-6px;font:600 10px/1 var(--mono);letter-spacing:.04em;
+  text-transform:uppercase;padding:3px 6px;border-radius:999px;background:var(--ja-gate);color:#040a07;border:1.5px solid #060d09}
+.ja .arrow{flex:none;display:flex;width:30px}
+.ja .arrow svg{width:30px;height:12px;display:block}
+.ja .arrow path{stroke:var(--ja-edge);stroke-width:1.5;fill:none}
+.ja .arrow path.head{fill:var(--ja-edge);stroke:none}
+@media (max-width:719px){.ja .tab{font-size:14px;padding:8px 14px}.ja .arrow,.ja .arrow svg{width:22px}.ja .tabs{margin:0}}
+@media (min-width:720px){.ja .tabs{width:auto;flex-wrap:wrap;justify-content:center;row-gap:14px}}
+
+/* the selected stage's view */
+.ja-main{padding:8px 0 30px}
+.ja .panel{outline:none}
+.ja section{margin-top:30px}
+.ja h2{font-family:var(--serif);font-size:22px;line-height:1.3;font-weight:600;letter-spacing:.8px;color:#f3faf1;
+  margin:0 0 14px;padding-bottom:9px;border-bottom:1px solid var(--ja-line);
+  text-shadow:0 2px 2px rgba(0,0,0,.85),0 -1px 0 rgba(230,242,232,.1)}
+.ja h2::before{content:"ᚇ";font-family:'Noto Sans Ogham',var(--mono);color:var(--ja-acc);margin-right:10px;font-size:18px;
+  text-shadow:0 0 9px rgba(169,230,195,.55)}
+.ja h3{font-family:var(--mono);font-size:10.5px;margin:24px 0 10px;color:var(--ja-mut);font-weight:600;text-transform:uppercase;letter-spacing:3px}
+.ja section>h3:first-of-type,.ja h2+h3{margin-top:4px}
+.ja p{margin:10px 0}
+.ja .empty{margin:40px 0;padding:28px;text-align:center;color:var(--ja-mut);border:1px dashed var(--ja-line);border-radius:10px}
+.ja .grid{display:grid;gap:14px;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));width:100%}
+.ja .grid.small{grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:10px}
+.ja .grid.wide{grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))}
+@media (max-width:420px){.ja .grid{grid-template-columns:1fr}.ja .grid.small{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* every figure is a small moss-capped stone around its image */
+.ja figure{
+  --cap:var(--mosscap5);
+  margin:0;padding:7px 7px 0;overflow:hidden;
+  background:var(--grain),var(--cap),var(--mottle),linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  border:1px solid var(--edge);border-radius:16px 22px 12px 20px / 20px 14px 22px 12px;
+  box-shadow:inset 0 1px 0 rgba(230,242,232,.07),0 10px 20px -12px rgba(0,0,0,.85);
+  transition:border-color .3s,box-shadow .3s,transform .3s;
+}
+.ja figure:hover{border-color:rgba(169,230,195,.5);box-shadow:0 0 22px -6px rgba(99,224,160,.4);transform:translateY(-1px)}
+.ja figure img{width:100%;height:auto;display:block;border-radius:10px 14px 8px 12px;border:1px solid rgba(4,10,7,.8)}
+.ja figcaption{padding:7px 5px 9px;color:#93a891;font-size:13px;line-height:1.4;font-style:italic;letter-spacing:.3px}
+.ja .grid>figure:nth-child(10n+1){--cap:var(--mosscap5)}
+.ja .grid>figure:nth-child(10n+2){--cap:var(--mosscap6)}
+.ja .grid>figure:nth-child(10n+3){--cap:var(--mosscap7)}
+.ja .grid>figure:nth-child(10n+4){--cap:var(--mosscap8)}
+.ja .grid>figure:nth-child(10n+5){--cap:var(--mosscap9)}
+.ja .grid>figure:nth-child(10n+6){--cap:var(--mosscap10)}
+.ja .grid>figure:nth-child(10n+7){--cap:var(--mosscap1)}
+.ja .grid>figure:nth-child(10n+8){--cap:var(--mosscap2)}
+.ja .grid>figure:nth-child(10n+9){--cap:var(--mosscap3)}
+.ja .grid>figure:nth-child(10n+0){--cap:var(--mosscap4)}
+/* narrower than the column so a finger or wheel beside it scrolls the page, not the mesh */
+.ja model-viewer{display:block;width:min(820px,calc(100% - 120px));margin:0 auto;height:min(72vh,720px);min-height:300px;background:#26262b;
+  border:1px solid var(--edge);border-radius:22px 30px 18px 28px / 28px 20px 30px 16px;
+  box-shadow:inset 0 0 40px rgba(0,0,0,.6),0 14px 30px -16px rgba(0,0,0,.95)}
+@media (max-width:719px){.ja model-viewer{width:calc(100% - 72px);height:min(60vh,520px)}}
+
+/* tables are engraved slabs */
+.ja table{
+  --cap:var(--mosscap5);
+  border-collapse:separate;border-spacing:0;max-width:100%;
+  background:var(--grain),var(--cap),var(--mottle),linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  border:1px solid var(--edge);border-radius:14px 20px 12px 18px / 18px 12px 20px 12px;
+  box-shadow:inset 0 1px 0 rgba(230,242,232,.07),0 10px 20px -12px rgba(0,0,0,.85);padding-top:14px}
+@media (max-width:719px){.ja table{display:block;overflow-x:auto}}
+.ja th,.ja td{text-align:left;padding:7px 14px;border-bottom:1px solid var(--ja-line);font-size:14px;vertical-align:top}
+.ja tr:last-child>th,.ja tr:last-child>td{border-bottom:0}
+.ja th{color:var(--ja-mut);font-weight:500}
+.ja td{color:#cfe4d6}
+.ja td.num{font-variant-numeric:tabular-nums}
+.ja .pass{color:var(--ja-ok);font-weight:600;text-shadow:0 0 8px rgba(99,224,160,.35)}
+.ja .fail{color:var(--ja-bad);font-weight:600}
+.ja .tables{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));align-items:start}
+.ja .tables h3{margin-top:0}
+.ja .tables table{display:table;width:100%}
+.ja code{font-family:var(--mono);font-size:12.5px;overflow-wrap:anywhere;color:var(--ja-acc)}
+
+/* bottom: who it's for and the stage log */
+.ja-foot{padding:0 0 30px;font-size:14px}
+.ja-foot .muted{margin:0 0 8px;font-style:italic}
+.ja .log summary{cursor:pointer;color:var(--ja-mut);font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase}
+.ja .log summary:hover{color:var(--ja-acc)}
+.ja .log .scroll{margin-top:8px;max-height:40vh;overflow:auto}
+.ja .log table{display:table}
+.ja .log td{font-size:13px;padding:4px 12px}
+
+/* an inscription: its numbers beside its renders */
+.ja .inscription{display:grid;gap:14px;align-items:start;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.ja .inscription:has(.inscription-sizes){grid-template-columns:minmax(260px,320px) minmax(0,1fr)}}
+.ja .inscription-sizes{display:table;width:100%}
+.ja .inscription-sizes th{white-space:nowrap}
+
+/* a generate stage: its status and its log lines */
+.ja .stage-now{font-size:17px;margin:0 0 14px}
+.ja .stage-log{display:table;width:100%}
+.ja .stage-log td:first-child{white-space:nowrap;color:var(--ja-mut);width:1%}
+
+/* a concept view beside the Gemini prompt and reference images that made it */
+.ja .view-input{display:grid;gap:14px;align-items:start;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.ja .view-input{grid-template-columns:minmax(240px,320px) minmax(0,1fr)}}
+.ja .view-result,.ja .view-gemini{min-width:0}
+.ja .view-result .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.ja .view-label{margin:0 0 6px;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--ja-mut)}
+.ja .prompt{
+  --cap:var(--mosscap5);
+  margin:0 0 14px;padding:20px 18px 14px;font-size:14px;line-height:1.7;color:#a7c3b3;overflow-wrap:anywhere;
+  background:var(--grain),var(--cap),var(--mottle),linear-gradient(180deg,#0d1f17 0%,#091410 62%,#040a07 100%);
+  border:1px solid var(--edge);border-radius:18px 26px 14px 24px / 24px 16px 26px 14px;
+  box-shadow:inset 0 1px 0 rgba(230,242,232,.07),inset 0 12px 18px rgba(0,0,0,.32),0 10px 20px -12px rgba(0,0,0,.85)}
+.ja .meshy-settings th{white-space:nowrap}
+
+/* ── josephine-angel port of the bog backdrop ─────────────────────────
+   The stage sits at z-index 0; the content wrapper, runestrip, stone
+   header and trail plaques ride above it at z-index 1; the sticky chrome
+   (z-index 50+) stays above all. */
+main.page{position:relative;z-index:1}
+.runestrip{position:relative;z-index:1}
+header.page-head{position:relative;z-index:1}
+.plaque-head,.slab{position:relative;z-index:1}

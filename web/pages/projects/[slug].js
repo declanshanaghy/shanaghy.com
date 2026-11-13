@@ -5,7 +5,7 @@ import { ContentPage } from "../../lib/ContentPage";
 
 const SLUGS = fs.readdirSync(path.join(process.cwd(), "content", "projects")).filter((f) => f.endsWith(".html")).map((f) => f.replace(/\.html$/, ""));
 
-export default function Project({ slug, html, css }) {
+export default function Project({ slug, html, css, script }) {
   return (
     <ContentPage
       title={`${slug} — the stones`}
@@ -13,6 +13,7 @@ export default function Project({ slug, html, css }) {
       here="/projects/"
       html={html}
       css={css}
+      script={script}
     />
   );
 }
@@ -22,5 +23,8 @@ export function getStaticPaths() {
 }
 
 export function getStaticProps({ params }) {
-  return { props: { slug: params.slug, html: readContent(`projects/${params.slug}.html`), css: readContentCss(`projects/${params.slug}.css`) } };
+  // a stone that needs behaviour of its own ships it as /assets/js/projects/<slug>.js
+  const js = `/assets/js/projects/${params.slug}.js`;
+  const script = fs.existsSync(path.join(process.cwd(), "public", js)) ? js : null;
+  return { props: { slug: params.slug, html: readContent(`projects/${params.slug}.html`), css: readContentCss(`projects/${params.slug}.css`), script } };
 }
